@@ -1,6 +1,6 @@
 ﻿namespace Ferry_Ticketing_App.Pages
 {
-    partial class ucOneWayTripSummary
+    partial class ucOneWTripSummary
     {
         /// <summary> 
         /// Required designer variable.

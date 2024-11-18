@@ -64,6 +64,12 @@
     <Compile Include="Pages\ucCheckout.Designer.cs">
       <DependentUpon>ucCheckout.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ucComplete.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\ucComplete.Designer.cs">
+      <DependentUpon>ucComplete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ucFindTrips.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -76,11 +82,11 @@
     <Compile Include="Pages\ucIndividualTrips.Designer.cs">
       <DependentUpon>ucIndividualTrips.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ucOneWayTripSummary.cs">
+    <Compile Include="Pages\ucOneWTripSummary.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pages\ucOneWayTripSummary.Designer.cs">
-      <DependentUpon>ucOneWayTripSummary.cs</DependentUpon>
+    <Compile Include="Pages\ucOneWTripSummary.Designer.cs">
+      <DependentUpon>ucOneWTripSummary.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\ucPassengerContactInfo.cs">
       <SubType>UserControl</SubType>
@@ -88,17 +94,35 @@
     <Compile Include="Pages\ucPassengerContactInfo.Designer.cs">
       <DependentUpon>ucPassengerContactInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ucPayment.cs">
+    <Compile Include="Pages\ucOneWTripPayment.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pages\ucPayment.Designer.cs">
-      <DependentUpon>ucPayment.cs</DependentUpon>
+    <Compile Include="Pages\ucOneWTripPayment.Designer.cs">
+      <DependentUpon>ucOneWTripPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ucPassengerDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\ucPassengerDetails.Designer.cs">
+      <DependentUpon>ucPassengerDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\ucPaymentCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Pages\ucPaymentCard.Designer.cs">
       <DependentUpon>ucPaymentCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ucPaymentPassengerInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\ucPaymentPassengerInfo.Designer.cs">
+      <DependentUpon>ucPaymentPassengerInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ucRoundTripPayment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\ucRoundTripPayment.Designer.cs">
+      <DependentUpon>ucRoundTripPayment.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\ucRoundTripTripSummary.cs">
       <SubType>UserControl</SubType>
@@ -129,23 +153,35 @@
     <EmbeddedResource Include="Pages\ucCheckout.resx">
       <DependentUpon>ucCheckout.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ucComplete.resx">
+      <DependentUpon>ucComplete.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\ucFindTrips.resx">
       <DependentUpon>ucFindTrips.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ucIndividualTrips.resx">
       <DependentUpon>ucIndividualTrips.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\ucOneWayTripSummary.resx">
-      <DependentUpon>ucOneWayTripSummary.cs</DependentUpon>
+    <EmbeddedResource Include="Pages\ucOneWTripSummary.resx">
+      <DependentUpon>ucOneWTripSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ucPassengerContactInfo.resx">
       <DependentUpon>ucPassengerContactInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\ucPayment.resx">
-      <DependentUpon>ucPayment.cs</DependentUpon>
+    <EmbeddedResource Include="Pages\ucOneWTripPayment.resx">
+      <DependentUpon>ucOneWTripPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ucPassengerDetails.resx">
+      <DependentUpon>ucPassengerDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ucPaymentCard.resx">
       <DependentUpon>ucPaymentCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ucPaymentPassengerInfo.resx">
+      <DependentUpon>ucPaymentPassengerInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ucRoundTripPayment.resx">
+      <DependentUpon>ucRoundTripPayment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ucRoundTripTripSummary.resx">
       <DependentUpon>ucRoundTripTripSummary.cs</DependentUpon>
@@ -413,6 +449,60 @@
   <ItemGroup>
     <Folder Include="Classes\" />
     <Folder Include="Utilities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btngrabPay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\individualPassengerDetails.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Passenger Details.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\datePlaceholder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnDateLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnDateRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnDeleteReturnTrip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\completepageHeader.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\progressComplete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ticketPH.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnCompleteBTH.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnCompleteDownload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnCompletePrint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ticketPH2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ticketPH3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ticketPH4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ticketPHFinal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ticketPlaceholder.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

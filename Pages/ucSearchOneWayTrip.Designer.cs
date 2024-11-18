@@ -80,7 +80,7 @@
             this.ucIndividualTrips1.BackColor = System.Drawing.Color.Transparent;
             this.ucIndividualTrips1.Location = new System.Drawing.Point(15, 248);
             this.ucIndividualTrips1.Name = "ucIndividualTrips1";
-            this.ucIndividualTrips1.Size = new System.Drawing.Size(602, 235);
+            this.ucIndividualTrips1.Size = new System.Drawing.Size(602, 318);
             this.ucIndividualTrips1.TabIndex = 5;
             // 
             // pnlSummary
@@ -320,7 +320,7 @@
             this.AutoScroll = true;
             this.Controls.Add(this.pnlSearchOneWayTrip);
             this.Name = "ucSearchOneWayTrip";
-            this.Size = new System.Drawing.Size(1009, 720);
+            this.Size = new System.Drawing.Size(1026, 720);
             this.pnlSearchOneWayTrip.ResumeLayout(false);
             this.pnlSummary.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pblblSummary)).EndInit();

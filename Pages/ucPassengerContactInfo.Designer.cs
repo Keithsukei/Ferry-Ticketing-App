@@ -28,18 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucPassenger_ContactInfo));
             this.pnlPassengerControlInfo = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pnlPassengerDetailsPH = new System.Windows.Forms.Panel();
-            this.cmbBoxNationality = new System.Windows.Forms.ComboBox();
-            this.cmbBoxGender = new System.Windows.Forms.ComboBox();
-            this.cmbBType = new System.Windows.Forms.ComboBox();
-            this.lblPassengerPHNo = new System.Windows.Forms.Label();
-            this.lblPassengerPHHeader = new System.Windows.Forms.Label();
-            this.dtpDateOfBirth = new System.Windows.Forms.DateTimePicker();
-            this.txtMI = new System.Windows.Forms.TextBox();
-            this.txtLName = new System.Windows.Forms.TextBox();
-            this.txtFName = new System.Windows.Forms.TextBox();
             this.pnlContactInfoPH = new System.Windows.Forms.Panel();
             this.cbAgreement = new System.Windows.Forms.CheckBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
@@ -62,9 +55,8 @@
             this.lblDepartureDate = new System.Windows.Forms.Label();
             this.lblNoOfPassengers = new System.Windows.Forms.Label();
             this.lblFCityCode = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.ucPassengerDetails1 = new Ferry_Ticketing_App.Pages.ucPassengerDetails();
             this.pnlPassengerControlInfo.SuspendLayout();
-            this.pnlPassengerDetailsPH.SuspendLayout();
             this.pnlContactInfoPH.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbContactInfoHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProgress)).BeginInit();
@@ -76,6 +68,7 @@
             // 
             this.pnlPassengerControlInfo.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.pnlFindTripsbg;
             this.pnlPassengerControlInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlPassengerControlInfo.Controls.Add(this.ucPassengerDetails1);
             this.pnlPassengerControlInfo.Controls.Add(this.button2);
             this.pnlPassengerControlInfo.Controls.Add(this.button1);
             this.pnlPassengerControlInfo.Controls.Add(this.pnlPassengerDetailsPH);
@@ -88,6 +81,18 @@
             this.pnlPassengerControlInfo.Name = "pnlPassengerControlInfo";
             this.pnlPassengerControlInfo.Size = new System.Drawing.Size(1009, 1499);
             this.pnlPassengerControlInfo.TabIndex = 0;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.btnContinuePassengerInfo;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(755, 1390);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(198, 71);
+            this.button2.TabIndex = 6;
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // button1
             // 
@@ -104,114 +109,12 @@
             // pnlPassengerDetailsPH
             // 
             this.pnlPassengerDetailsPH.BackColor = System.Drawing.Color.Transparent;
-            this.pnlPassengerDetailsPH.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.Passengerdetails;
-            this.pnlPassengerDetailsPH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pnlPassengerDetailsPH.Controls.Add(this.cmbBoxNationality);
-            this.pnlPassengerDetailsPH.Controls.Add(this.cmbBoxGender);
-            this.pnlPassengerDetailsPH.Controls.Add(this.cmbBType);
-            this.pnlPassengerDetailsPH.Controls.Add(this.lblPassengerPHNo);
-            this.pnlPassengerDetailsPH.Controls.Add(this.lblPassengerPHHeader);
-            this.pnlPassengerDetailsPH.Controls.Add(this.dtpDateOfBirth);
-            this.pnlPassengerDetailsPH.Controls.Add(this.txtMI);
-            this.pnlPassengerDetailsPH.Controls.Add(this.txtLName);
-            this.pnlPassengerDetailsPH.Controls.Add(this.txtFName);
+            this.pnlPassengerDetailsPH.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.Passenger_Details;
+            this.pnlPassengerDetailsPH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pnlPassengerDetailsPH.Location = new System.Drawing.Point(56, 999);
             this.pnlPassengerDetailsPH.Name = "pnlPassengerDetailsPH";
-            this.pnlPassengerDetailsPH.Size = new System.Drawing.Size(911, 353);
+            this.pnlPassengerDetailsPH.Size = new System.Drawing.Size(214, 26);
             this.pnlPassengerDetailsPH.TabIndex = 5;
-            // 
-            // cmbBoxNationality
-            // 
-            this.cmbBoxNationality.Font = new System.Drawing.Font("SF Pro Display", 22F);
-            this.cmbBoxNationality.FormattingEnabled = true;
-            this.cmbBoxNationality.Location = new System.Drawing.Point(493, 261);
-            this.cmbBoxNationality.Name = "cmbBoxNationality";
-            this.cmbBoxNationality.Size = new System.Drawing.Size(206, 43);
-            this.cmbBoxNationality.TabIndex = 11;
-            // 
-            // cmbBoxGender
-            // 
-            this.cmbBoxGender.Font = new System.Drawing.Font("SF Pro Display", 22F);
-            this.cmbBoxGender.FormattingEnabled = true;
-            this.cmbBoxGender.Location = new System.Drawing.Point(710, 169);
-            this.cmbBoxGender.Name = "cmbBoxGender";
-            this.cmbBoxGender.Size = new System.Drawing.Size(145, 43);
-            this.cmbBoxGender.TabIndex = 11;
-            // 
-            // cmbBType
-            // 
-            this.cmbBType.Font = new System.Drawing.Font("SF Pro Display", 22F);
-            this.cmbBType.FormattingEnabled = true;
-            this.cmbBType.Location = new System.Drawing.Point(341, 261);
-            this.cmbBType.Name = "cmbBType";
-            this.cmbBType.Size = new System.Drawing.Size(123, 43);
-            this.cmbBType.TabIndex = 11;
-            // 
-            // lblPassengerPHNo
-            // 
-            this.lblPassengerPHNo.AutoSize = true;
-            this.lblPassengerPHNo.Font = new System.Drawing.Font("SF Pro Display", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassengerPHNo.ForeColor = System.Drawing.Color.Gray;
-            this.lblPassengerPHNo.Location = new System.Drawing.Point(182, 66);
-            this.lblPassengerPHNo.Name = "lblPassengerPHNo";
-            this.lblPassengerPHNo.Size = new System.Drawing.Size(31, 32);
-            this.lblPassengerPHNo.TabIndex = 10;
-            this.lblPassengerPHNo.Text = "#";
-            this.lblPassengerPHNo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblPassengerPHHeader
-            // 
-            this.lblPassengerPHHeader.AutoSize = true;
-            this.lblPassengerPHHeader.Font = new System.Drawing.Font("SF Pro Display", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassengerPHHeader.ForeColor = System.Drawing.Color.Gray;
-            this.lblPassengerPHHeader.Location = new System.Drawing.Point(31, 66);
-            this.lblPassengerPHHeader.Name = "lblPassengerPHHeader";
-            this.lblPassengerPHHeader.Size = new System.Drawing.Size(145, 32);
-            this.lblPassengerPHHeader.TabIndex = 10;
-            this.lblPassengerPHHeader.Text = "Passenger";
-            // 
-            // dtpDateOfBirth
-            // 
-            this.dtpDateOfBirth.CalendarForeColor = System.Drawing.Color.Transparent;
-            this.dtpDateOfBirth.CalendarMonthBackground = System.Drawing.Color.Transparent;
-            this.dtpDateOfBirth.CalendarTitleBackColor = System.Drawing.Color.Transparent;
-            this.dtpDateOfBirth.CalendarTitleForeColor = System.Drawing.Color.Transparent;
-            this.dtpDateOfBirth.CalendarTrailingForeColor = System.Drawing.Color.Transparent;
-            this.dtpDateOfBirth.Font = new System.Drawing.Font("SF Pro Display", 21F);
-            this.dtpDateOfBirth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDateOfBirth.Location = new System.Drawing.Point(57, 262);
-            this.dtpDateOfBirth.Name = "dtpDateOfBirth";
-            this.dtpDateOfBirth.Size = new System.Drawing.Size(205, 41);
-            this.dtpDateOfBirth.TabIndex = 9;
-            this.dtpDateOfBirth.Value = new System.DateTime(2024, 11, 17, 20, 44, 40, 0);
-            // 
-            // txtMI
-            // 
-            this.txtMI.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtMI.Font = new System.Drawing.Font("SF Pro Display", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMI.Location = new System.Drawing.Point(343, 170);
-            this.txtMI.Name = "txtMI";
-            this.txtMI.Size = new System.Drawing.Size(53, 39);
-            this.txtMI.TabIndex = 8;
-            this.txtMI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtLName
-            // 
-            this.txtLName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtLName.Font = new System.Drawing.Font("SF Pro Display", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLName.Location = new System.Drawing.Point(431, 170);
-            this.txtLName.Name = "txtLName";
-            this.txtLName.Size = new System.Drawing.Size(250, 39);
-            this.txtLName.TabIndex = 8;
-            // 
-            // txtFName
-            // 
-            this.txtFName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtFName.Font = new System.Drawing.Font("SF Pro Display", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFName.Location = new System.Drawing.Point(58, 170);
-            this.txtFName.Name = "txtFName";
-            this.txtFName.Size = new System.Drawing.Size(250, 39);
-            this.txtFName.TabIndex = 8;
             // 
             // pnlContactInfoPH
             // 
@@ -448,17 +351,14 @@
             this.lblFCityCode.TabIndex = 0;
             this.lblFCityCode.Text = "Code";
             // 
-            // button2
+            // ucPassengerDetails1
             // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.btnContinuePassengerInfo;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(755, 1390);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(198, 71);
-            this.button2.TabIndex = 6;
-            this.button2.UseVisualStyleBackColor = false;
+            this.ucPassengerDetails1.BackColor = System.Drawing.Color.Transparent;
+            this.ucPassengerDetails1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucPassengerDetails1.BackgroundImage")));
+            this.ucPassengerDetails1.Location = new System.Drawing.Point(54, 1042);
+            this.ucPassengerDetails1.Name = "ucPassengerDetails1";
+            this.ucPassengerDetails1.Size = new System.Drawing.Size(913, 302);
+            this.ucPassengerDetails1.TabIndex = 7;
             // 
             // ucPassenger_ContactInfo
             // 
@@ -473,8 +373,6 @@
             this.Name = "ucPassenger_ContactInfo";
             this.Size = new System.Drawing.Size(1026, 679);
             this.pnlPassengerControlInfo.ResumeLayout(false);
-            this.pnlPassengerDetailsPH.ResumeLayout(false);
-            this.pnlPassengerDetailsPH.PerformLayout();
             this.pnlContactInfoPH.ResumeLayout(false);
             this.pnlContactInfoPH.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbContactInfoHeader)).EndInit();
@@ -512,16 +410,8 @@
         private System.Windows.Forms.TextBox txtConfirmEmailAdd;
         private System.Windows.Forms.TextBox txtEmailAdd;
         private System.Windows.Forms.TextBox txtMobileNo;
-        private System.Windows.Forms.DateTimePicker dtpDateOfBirth;
-        private System.Windows.Forms.TextBox txtMI;
-        private System.Windows.Forms.TextBox txtLName;
-        private System.Windows.Forms.TextBox txtFName;
         private System.Windows.Forms.CheckBox cbAgreement;
-        private System.Windows.Forms.Label lblPassengerPHNo;
-        private System.Windows.Forms.Label lblPassengerPHHeader;
-        private System.Windows.Forms.ComboBox cmbBoxNationality;
-        private System.Windows.Forms.ComboBox cmbBoxGender;
-        private System.Windows.Forms.ComboBox cmbBType;
         private System.Windows.Forms.Button button2;
+        private ucPassengerDetails ucPassengerDetails1;
     }
 }

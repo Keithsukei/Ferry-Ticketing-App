@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace Ferry_Ticketing_App.Pages
 {
-    public partial class ucIndividualTrips : UserControl
+    public partial class ucComplete : UserControl
     {
-        public ucIndividualTrips()
+        public ucComplete()
         {
             InitializeComponent();
         }
 
-        private void label13_Click(object sender, EventArgs e)
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

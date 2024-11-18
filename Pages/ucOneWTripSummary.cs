@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Ferry_Ticketing_App.Pages
 {
-    public partial class ucOneWayTripSummary : UserControl
+    public partial class ucOneWTripSummary : UserControl
     {
-        public ucOneWayTripSummary()
+        public ucOneWTripSummary()
         {
             InitializeComponent();
         }

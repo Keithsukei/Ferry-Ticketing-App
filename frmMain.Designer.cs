@@ -33,6 +33,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.pnlSidePanel = new System.Windows.Forms.Panel();
             this.btnLogout = new System.Windows.Forms.Button();
+            this.ucComplete1 = new Ferry_Ticketing_App.Pages.ucComplete();
             this.pnlSidePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,12 +98,22 @@
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
+            // ucComplete1
+            // 
+            this.ucComplete1.AutoScroll = true;
+            this.ucComplete1.BackColor = System.Drawing.Color.White;
+            this.ucComplete1.Location = new System.Drawing.Point(254, 41);
+            this.ucComplete1.Name = "ucComplete1";
+            this.ucComplete1.Size = new System.Drawing.Size(1026, 720);
+            this.ucComplete1.TabIndex = 9;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.ucComplete1);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.btnClose);
@@ -123,6 +134,7 @@
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnBack;
+        private Pages.ucComplete ucComplete1;
     }
 }
 

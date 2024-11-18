@@ -1,6 +1,6 @@
 ﻿namespace Ferry_Ticketing_App.Pages
 {
-    partial class ucPayment
+    partial class ucRoundTripPayment
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,24 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucRoundTripPayment));
             this.pnlPayment = new System.Windows.Forms.Panel();
             this.btnPaymentContinue = new System.Windows.Forms.Button();
             this.btnPaymentBack = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.ucOneWayTripSummary1 = new Ferry_Ticketing_App.Pages.ucOneWayTripSummary();
+            this.pnlContactInfo = new System.Windows.Forms.Panel();
+            this.lblCIMobileNo = new System.Windows.Forms.Label();
+            this.lblCIAddress = new System.Windows.Forms.Label();
+            this.lblCIEmailAdd = new System.Windows.Forms.Label();
+            this.lblCIName = new System.Windows.Forms.Label();
             this.pbPassengerGuidelines = new System.Windows.Forms.PictureBox();
-            this.btnMLPay = new System.Windows.Forms.Button();
             this.btnMaya = new System.Windows.Forms.Button();
-            this.btn711 = new System.Windows.Forms.Button();
-            this.btnPalawan = new System.Windows.Forms.Button();
             this.btnGcash = new System.Windows.Forms.Button();
             this.btnCard = new System.Windows.Forms.Button();
             this.pnlPaymentSummary = new System.Windows.Forms.Panel();
             this.pbPaymentOptionsHeader = new System.Windows.Forms.PictureBox();
             this.pbYoureAlmostThere = new System.Windows.Forms.PictureBox();
             this.pbProgress = new System.Windows.Forms.PictureBox();
+            this.ucPaymentPassengerInfo1 = new Ferry_Ticketing_App.Pages.ucPaymentPassengerInfo();
+            this.ucRoundTripTripSummary1 = new Ferry_Ticketing_App.Pages.ucRoundTripTripSummary();
             this.pnlPayment.SuspendLayout();
+            this.pnlContactInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPassengerGuidelines)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPaymentOptionsHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbYoureAlmostThere)).BeginInit();
@@ -56,26 +59,24 @@
             // 
             this.pnlPayment.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.paymentBG;
             this.pnlPayment.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlPayment.Controls.Add(this.ucPaymentPassengerInfo1);
+            this.pnlPayment.Controls.Add(this.ucRoundTripTripSummary1);
             this.pnlPayment.Controls.Add(this.btnPaymentContinue);
             this.pnlPayment.Controls.Add(this.btnPaymentBack);
-            this.pnlPayment.Controls.Add(this.panel3);
-            this.pnlPayment.Controls.Add(this.panel2);
-            this.pnlPayment.Controls.Add(this.ucOneWayTripSummary1);
+            this.pnlPayment.Controls.Add(this.pnlContactInfo);
             this.pnlPayment.Controls.Add(this.pbPassengerGuidelines);
-            this.pnlPayment.Controls.Add(this.btnMLPay);
             this.pnlPayment.Controls.Add(this.btnMaya);
-            this.pnlPayment.Controls.Add(this.btn711);
-            this.pnlPayment.Controls.Add(this.btnPalawan);
             this.pnlPayment.Controls.Add(this.btnGcash);
             this.pnlPayment.Controls.Add(this.btnCard);
             this.pnlPayment.Controls.Add(this.pnlPaymentSummary);
             this.pnlPayment.Controls.Add(this.pbPaymentOptionsHeader);
             this.pnlPayment.Controls.Add(this.pbYoureAlmostThere);
             this.pnlPayment.Controls.Add(this.pbProgress);
+            this.pnlPayment.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlPayment.Location = new System.Drawing.Point(0, 0);
             this.pnlPayment.Name = "pnlPayment";
-            this.pnlPayment.Size = new System.Drawing.Size(1009, 2102);
-            this.pnlPayment.TabIndex = 0;
+            this.pnlPayment.Size = new System.Drawing.Size(1009, 2000);
+            this.pnlPayment.TabIndex = 1;
             // 
             // btnPaymentContinue
             // 
@@ -83,7 +84,7 @@
             this.btnPaymentContinue.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.btnContinuePassengerInfo;
             this.btnPaymentContinue.FlatAppearance.BorderSize = 0;
             this.btnPaymentContinue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPaymentContinue.Location = new System.Drawing.Point(753, 1710);
+            this.btnPaymentContinue.Location = new System.Drawing.Point(757, 1832);
             this.btnPaymentContinue.Name = "btnPaymentContinue";
             this.btnPaymentContinue.Size = new System.Drawing.Size(198, 71);
             this.btnPaymentContinue.TabIndex = 11;
@@ -95,62 +96,80 @@
             this.btnPaymentBack.FlatAppearance.BorderSize = 0;
             this.btnPaymentBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPaymentBack.Image = global::Ferry_Ticketing_App.Properties.Resources.btnBackPassengerInfo;
-            this.btnPaymentBack.Location = new System.Drawing.Point(50, 1710);
+            this.btnPaymentBack.Location = new System.Drawing.Point(61, 1830);
             this.btnPaymentBack.Name = "btnPaymentBack";
             this.btnPaymentBack.Size = new System.Drawing.Size(198, 71);
             this.btnPaymentBack.TabIndex = 10;
             this.btnPaymentBack.UseVisualStyleBackColor = false;
             // 
-            // panel3
+            // pnlContactInfo
             // 
-            this.panel3.BackColor = System.Drawing.Color.Transparent;
-            this.panel3.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.paymentPassengerInfo;
-            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel3.Location = new System.Drawing.Point(37, 1515);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(545, 155);
-            this.panel3.TabIndex = 9;
+            this.pnlContactInfo.BackColor = System.Drawing.Color.Transparent;
+            this.pnlContactInfo.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.paymentContactInfo;
+            this.pnlContactInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pnlContactInfo.Controls.Add(this.lblCIMobileNo);
+            this.pnlContactInfo.Controls.Add(this.lblCIAddress);
+            this.pnlContactInfo.Controls.Add(this.lblCIEmailAdd);
+            this.pnlContactInfo.Controls.Add(this.lblCIName);
+            this.pnlContactInfo.Location = new System.Drawing.Point(37, 1448);
+            this.pnlContactInfo.Name = "pnlContactInfo";
+            this.pnlContactInfo.Size = new System.Drawing.Size(547, 155);
+            this.pnlContactInfo.TabIndex = 9;
             // 
-            // panel2
+            // lblCIMobileNo
             // 
-            this.panel2.BackColor = System.Drawing.Color.Transparent;
-            this.panel2.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.paymentContactInfo;
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel2.Location = new System.Drawing.Point(37, 1349);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(545, 155);
-            this.panel2.TabIndex = 9;
+            this.lblCIMobileNo.AutoSize = true;
+            this.lblCIMobileNo.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCIMobileNo.ForeColor = System.Drawing.Color.Gray;
+            this.lblCIMobileNo.Location = new System.Drawing.Point(380, 61);
+            this.lblCIMobileNo.Name = "lblCIMobileNo";
+            this.lblCIMobileNo.Size = new System.Drawing.Size(39, 13);
+            this.lblCIMobileNo.TabIndex = 18;
+            this.lblCIMobileNo.Text = "label3";
             // 
-            // ucOneWayTripSummary1
+            // lblCIAddress
             // 
-            this.ucOneWayTripSummary1.BackColor = System.Drawing.Color.Transparent;
-            this.ucOneWayTripSummary1.Location = new System.Drawing.Point(37, 1050);
-            this.ucOneWayTripSummary1.Name = "ucOneWayTripSummary1";
-            this.ucOneWayTripSummary1.Size = new System.Drawing.Size(545, 285);
-            this.ucOneWayTripSummary1.TabIndex = 8;
+            this.lblCIAddress.AutoSize = true;
+            this.lblCIAddress.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCIAddress.ForeColor = System.Drawing.Color.Gray;
+            this.lblCIAddress.Location = new System.Drawing.Point(21, 109);
+            this.lblCIAddress.Name = "lblCIAddress";
+            this.lblCIAddress.Size = new System.Drawing.Size(39, 13);
+            this.lblCIAddress.TabIndex = 18;
+            this.lblCIAddress.Text = "label3";
+            // 
+            // lblCIEmailAdd
+            // 
+            this.lblCIEmailAdd.AutoSize = true;
+            this.lblCIEmailAdd.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCIEmailAdd.ForeColor = System.Drawing.Color.Gray;
+            this.lblCIEmailAdd.Location = new System.Drawing.Point(207, 61);
+            this.lblCIEmailAdd.Name = "lblCIEmailAdd";
+            this.lblCIEmailAdd.Size = new System.Drawing.Size(39, 13);
+            this.lblCIEmailAdd.TabIndex = 18;
+            this.lblCIEmailAdd.Text = "label3";
+            // 
+            // lblCIName
+            // 
+            this.lblCIName.AutoSize = true;
+            this.lblCIName.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCIName.ForeColor = System.Drawing.Color.Gray;
+            this.lblCIName.Location = new System.Drawing.Point(21, 64);
+            this.lblCIName.Name = "lblCIName";
+            this.lblCIName.Size = new System.Drawing.Size(39, 13);
+            this.lblCIName.TabIndex = 18;
+            this.lblCIName.Text = "label3";
             // 
             // pbPassengerGuidelines
             // 
             this.pbPassengerGuidelines.BackColor = System.Drawing.Color.Transparent;
             this.pbPassengerGuidelines.Image = global::Ferry_Ticketing_App.Properties.Resources.PassengerGuidelines;
-            this.pbPassengerGuidelines.Location = new System.Drawing.Point(38, 852);
+            this.pbPassengerGuidelines.Location = new System.Drawing.Point(38, 676);
             this.pbPassengerGuidelines.Name = "pbPassengerGuidelines";
             this.pbPassengerGuidelines.Size = new System.Drawing.Size(545, 184);
             this.pbPassengerGuidelines.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbPassengerGuidelines.TabIndex = 7;
             this.pbPassengerGuidelines.TabStop = false;
-            // 
-            // btnMLPay
-            // 
-            this.btnMLPay.BackColor = System.Drawing.Color.Transparent;
-            this.btnMLPay.FlatAppearance.BorderSize = 0;
-            this.btnMLPay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMLPay.Image = global::Ferry_Ticketing_App.Properties.Resources.btnPaymentML;
-            this.btnMLPay.Location = new System.Drawing.Point(416, 496);
-            this.btnMLPay.Name = "btnMLPay";
-            this.btnMLPay.Size = new System.Drawing.Size(162, 153);
-            this.btnMLPay.TabIndex = 6;
-            this.btnMLPay.UseVisualStyleBackColor = false;
             // 
             // btnMaya
             // 
@@ -164,37 +183,13 @@
             this.btnMaya.TabIndex = 6;
             this.btnMaya.UseVisualStyleBackColor = false;
             // 
-            // btn711
-            // 
-            this.btn711.BackColor = System.Drawing.Color.Transparent;
-            this.btn711.FlatAppearance.BorderSize = 0;
-            this.btn711.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn711.Image = global::Ferry_Ticketing_App.Properties.Resources.btnPayment711;
-            this.btn711.Location = new System.Drawing.Point(416, 672);
-            this.btn711.Name = "btn711";
-            this.btn711.Size = new System.Drawing.Size(162, 153);
-            this.btn711.TabIndex = 6;
-            this.btn711.UseVisualStyleBackColor = false;
-            // 
-            // btnPalawan
-            // 
-            this.btnPalawan.BackColor = System.Drawing.Color.Transparent;
-            this.btnPalawan.FlatAppearance.BorderSize = 0;
-            this.btnPalawan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPalawan.Image = global::Ferry_Ticketing_App.Properties.Resources.btnPaymentPalawan;
-            this.btnPalawan.Location = new System.Drawing.Point(229, 672);
-            this.btnPalawan.Name = "btnPalawan";
-            this.btnPalawan.Size = new System.Drawing.Size(162, 153);
-            this.btnPalawan.TabIndex = 6;
-            this.btnPalawan.UseVisualStyleBackColor = false;
-            // 
             // btnGcash
             // 
             this.btnGcash.BackColor = System.Drawing.Color.Transparent;
             this.btnGcash.FlatAppearance.BorderSize = 0;
             this.btnGcash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGcash.Image = global::Ferry_Ticketing_App.Properties.Resources.btnPaymentGcash;
-            this.btnGcash.Location = new System.Drawing.Point(41, 672);
+            this.btnGcash.Location = new System.Drawing.Point(416, 496);
             this.btnGcash.Name = "btnGcash";
             this.btnGcash.Size = new System.Drawing.Size(162, 153);
             this.btnGcash.TabIndex = 6;
@@ -254,18 +249,35 @@
             this.pbProgress.TabIndex = 2;
             this.pbProgress.TabStop = false;
             // 
-            // ucPayment
+            // ucPaymentPassengerInfo1
+            // 
+            this.ucPaymentPassengerInfo1.BackColor = System.Drawing.Color.Transparent;
+            this.ucPaymentPassengerInfo1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucPaymentPassengerInfo1.BackgroundImage")));
+            this.ucPaymentPassengerInfo1.Location = new System.Drawing.Point(38, 1614);
+            this.ucPaymentPassengerInfo1.Name = "ucPaymentPassengerInfo1";
+            this.ucPaymentPassengerInfo1.Size = new System.Drawing.Size(545, 155);
+            this.ucPaymentPassengerInfo1.TabIndex = 13;
+            // 
+            // ucRoundTripTripSummary1
+            // 
+            this.ucRoundTripTripSummary1.BackColor = System.Drawing.Color.Transparent;
+            this.ucRoundTripTripSummary1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucRoundTripTripSummary1.BackgroundImage")));
+            this.ucRoundTripTripSummary1.Location = new System.Drawing.Point(38, 875);
+            this.ucRoundTripTripSummary1.Name = "ucRoundTripTripSummary1";
+            this.ucRoundTripTripSummary1.Size = new System.Drawing.Size(545, 562);
+            this.ucRoundTripTripSummary1.TabIndex = 12;
+            // 
+            // ucRoundTripPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.Color.White;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Controls.Add(this.pnlPayment);
-            this.DoubleBuffered = true;
-            this.Name = "ucPayment";
-            this.Size = new System.Drawing.Size(1026, 720);
+            this.Name = "ucRoundTripPayment";
+            this.Size = new System.Drawing.Size(1009, 720);
             this.pnlPayment.ResumeLayout(false);
+            this.pnlContactInfo.ResumeLayout(false);
+            this.pnlContactInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPassengerGuidelines)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPaymentOptionsHeader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbYoureAlmostThere)).EndInit();
@@ -275,23 +287,23 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel pnlPayment;
+        private System.Windows.Forms.Button btnPaymentContinue;
+        private System.Windows.Forms.Button btnPaymentBack;
+        private System.Windows.Forms.Panel pnlContactInfo;
+        private System.Windows.Forms.Label lblCIMobileNo;
+        private System.Windows.Forms.Label lblCIAddress;
+        private System.Windows.Forms.Label lblCIEmailAdd;
+        private System.Windows.Forms.Label lblCIName;
+        private System.Windows.Forms.PictureBox pbPassengerGuidelines;
+        private System.Windows.Forms.Button btnMaya;
+        private System.Windows.Forms.Button btnGcash;
+        private System.Windows.Forms.Button btnCard;
+        private System.Windows.Forms.Panel pnlPaymentSummary;
+        private System.Windows.Forms.PictureBox pbPaymentOptionsHeader;
         private System.Windows.Forms.PictureBox pbYoureAlmostThere;
         private System.Windows.Forms.PictureBox pbProgress;
-        private System.Windows.Forms.PictureBox pbPaymentOptionsHeader;
-        private System.Windows.Forms.Panel pnlPaymentSummary;
-        private System.Windows.Forms.Button btnCard;
-        private System.Windows.Forms.Button btnMLPay;
-        private System.Windows.Forms.Button btnMaya;
-        private System.Windows.Forms.Button btn711;
-        private System.Windows.Forms.Button btnPalawan;
-        private System.Windows.Forms.Button btnGcash;
-        private System.Windows.Forms.PictureBox pbPassengerGuidelines;
-        private ucOneWayTripSummary ucOneWayTripSummary1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnPaymentBack;
-        private System.Windows.Forms.Button btnPaymentContinue;
+        private System.Windows.Forms.Panel pnlPayment;
+        private ucRoundTripTripSummary ucRoundTripTripSummary1;
+        private ucPaymentPassengerInfo ucPaymentPassengerInfo1;
     }
 }
