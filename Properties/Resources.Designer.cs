@@ -293,6 +293,16 @@ namespace Ferry_Ticketing_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btnSendOtp {
+            get {
+                object obj = ResourceManager.GetObject("btnSendOtp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btnSummaryContinue {
             get {
                 object obj = ResourceManager.GetObject("btnSummaryContinue", resourceCulture);
@@ -343,6 +353,16 @@ namespace Ferry_Ticketing_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DateTimePicker {
+            get {
+                object obj = ResourceManager.GetObject("DateTimePicker", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap departureclosed {
             get {
                 object obj = ResourceManager.GetObject("departureclosed", resourceCulture);
@@ -363,6 +383,36 @@ namespace Ferry_Ticketing_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap departureDetails {
+            get {
+                object obj = ResourceManager.GetObject("departureDetails", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap departureDetails2 {
+            get {
+                object obj = ResourceManager.GetObject("departureDetails2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap departureDetails3 {
+            get {
+                object obj = ResourceManager.GetObject("departureDetails3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap departureopen {
             get {
                 object obj = ResourceManager.GetObject("departureopen", resourceCulture);
@@ -376,6 +426,16 @@ namespace Ferry_Ticketing_App.Properties {
         internal static System.Drawing.Bitmap departureopennoselected {
             get {
                 object obj = ResourceManager.GetObject("departureopennoselected", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap departureSummaryNoSelected {
+            get {
+                object obj = ResourceManager.GetObject("departureSummaryNoSelected", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -663,6 +723,26 @@ namespace Ferry_Ticketing_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap paymentGcash {
+            get {
+                object obj = ResourceManager.GetObject("paymentGcash", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap paymentMaya {
+            get {
+                object obj = ResourceManager.GetObject("paymentMaya", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap PaymentOptionsHeader {
             get {
                 object obj = ResourceManager.GetObject("PaymentOptionsHeader", resourceCulture);
@@ -853,6 +933,16 @@ namespace Ferry_Ticketing_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap returnDetails {
+            get {
+                object obj = ResourceManager.GetObject("returnDetails", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap returnopen {
             get {
                 object obj = ResourceManager.GetObject("returnopen", resourceCulture);
@@ -863,9 +953,49 @@ namespace Ferry_Ticketing_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap returnSummaryNoSelectedd {
+            get {
+                object obj = ResourceManager.GetObject("returnSummaryNoSelectedd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap roundTripSummary {
+            get {
+                object obj = ResourceManager.GetObject("roundTripSummary", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap roundTripSummaryPH {
             get {
                 object obj = ResourceManager.GetObject("roundTripSummaryPH", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap roundtTripSummaryPH3 {
+            get {
+                object obj = ResourceManager.GetObject("roundtTripSummaryPH3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap roundtTripSummaryPHFinal {
+            get {
+                object obj = ResourceManager.GetObject("roundtTripSummaryPHFinal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -36,6 +36,9 @@
             this.btnCeb2Bohol = new System.Windows.Forms.Button();
             this.pbSeparator = new System.Windows.Forms.PictureBox();
             this.pnlFindTripsPlaceholder = new System.Windows.Forms.Panel();
+            this.txtPassengers = new System.Windows.Forms.TextBox();
+            this.txtTo = new System.Windows.Forms.TextBox();
+            this.txtFrom = new System.Windows.Forms.TextBox();
             this.btnSearchTrips = new System.Windows.Forms.Button();
             this.pbArrowLR = new System.Windows.Forms.PictureBox();
             this.pbtxtTo = new System.Windows.Forms.PictureBox();
@@ -47,11 +50,8 @@
             this.rbRoundTrip = new System.Windows.Forms.RadioButton();
             this.pblblFindTrips = new System.Windows.Forms.PictureBox();
             this.pblblPopularRoutes = new System.Windows.Forms.PictureBox();
-            this.txtFrom = new System.Windows.Forms.TextBox();
-            this.txtTo = new System.Windows.Forms.TextBox();
-            this.txtDepart = new System.Windows.Forms.TextBox();
-            this.txtReturn = new System.Windows.Forms.TextBox();
-            this.txtNoOfPassengers = new System.Windows.Forms.TextBox();
+            this.dtpDepart = new Ferry_Ticketing_App.Classes.CustomDateTimePicker();
+            this.dtpReturn = new Ferry_Ticketing_App.Classes.CustomDateTimePicker();
             this.pnlFindTripsAS.SuspendLayout();
             this.pnlFindTrips.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSeparator)).BeginInit();
@@ -156,9 +156,9 @@
             // 
             this.pnlFindTripsPlaceholder.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.pnlFindTripsPlaceholder;
             this.pnlFindTripsPlaceholder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlFindTripsPlaceholder.Controls.Add(this.txtNoOfPassengers);
-            this.pnlFindTripsPlaceholder.Controls.Add(this.txtReturn);
-            this.pnlFindTripsPlaceholder.Controls.Add(this.txtDepart);
+            this.pnlFindTripsPlaceholder.Controls.Add(this.dtpReturn);
+            this.pnlFindTripsPlaceholder.Controls.Add(this.dtpDepart);
+            this.pnlFindTripsPlaceholder.Controls.Add(this.txtPassengers);
             this.pnlFindTripsPlaceholder.Controls.Add(this.txtTo);
             this.pnlFindTripsPlaceholder.Controls.Add(this.txtFrom);
             this.pnlFindTripsPlaceholder.Controls.Add(this.btnSearchTrips);
@@ -176,6 +176,33 @@
             this.pnlFindTripsPlaceholder.Size = new System.Drawing.Size(939, 270);
             this.pnlFindTripsPlaceholder.TabIndex = 0;
             // 
+            // txtPassengers
+            // 
+            this.txtPassengers.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPassengers.Font = new System.Drawing.Font("SF Pro Display", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassengers.Location = new System.Drawing.Point(690, 189);
+            this.txtPassengers.Name = "txtPassengers";
+            this.txtPassengers.Size = new System.Drawing.Size(59, 45);
+            this.txtPassengers.TabIndex = 9;
+            // 
+            // txtTo
+            // 
+            this.txtTo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTo.Font = new System.Drawing.Font("SF Pro Display", 20F);
+            this.txtTo.Location = new System.Drawing.Point(576, 127);
+            this.txtTo.Name = "txtTo";
+            this.txtTo.Size = new System.Drawing.Size(301, 32);
+            this.txtTo.TabIndex = 6;
+            // 
+            // txtFrom
+            // 
+            this.txtFrom.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtFrom.Font = new System.Drawing.Font("SF Pro Display", 20F);
+            this.txtFrom.Location = new System.Drawing.Point(121, 127);
+            this.txtFrom.Name = "txtFrom";
+            this.txtFrom.Size = new System.Drawing.Size(301, 32);
+            this.txtFrom.TabIndex = 5;
+            // 
             // btnSearchTrips
             // 
             this.btnSearchTrips.AutoSize = true;
@@ -183,11 +210,12 @@
             this.btnSearchTrips.FlatAppearance.BorderSize = 0;
             this.btnSearchTrips.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearchTrips.Image = global::Ferry_Ticketing_App.Properties.Resources.btnSearchTrip;
-            this.btnSearchTrips.Location = new System.Drawing.Point(781, 187);
+            this.btnSearchTrips.Location = new System.Drawing.Point(774, 186);
             this.btnSearchTrips.Name = "btnSearchTrips";
             this.btnSearchTrips.Size = new System.Drawing.Size(155, 61);
             this.btnSearchTrips.TabIndex = 3;
             this.btnSearchTrips.UseVisualStyleBackColor = true;
+            this.btnSearchTrips.Click += new System.EventHandler(this.btnSearchTrips_Click);
             // 
             // pbArrowLR
             // 
@@ -256,12 +284,13 @@
             this.rbOneWay.Name = "rbOneWay";
             this.rbOneWay.Size = new System.Drawing.Size(110, 27);
             this.rbOneWay.TabIndex = 1;
-            this.rbOneWay.TabStop = true;
             this.rbOneWay.Text = "One Way";
             this.rbOneWay.UseVisualStyleBackColor = true;
+            this.rbOneWay.CheckedChanged += new System.EventHandler(this.rbOneWay_CheckedChanged);
             // 
             // rbRoundTrip
             // 
+            this.rbRoundTrip.Checked = true;
             this.rbRoundTrip.Font = new System.Drawing.Font("SF Pro Display", 13F);
             this.rbRoundTrip.Location = new System.Drawing.Point(66, 69);
             this.rbRoundTrip.Name = "rbRoundTrip";
@@ -270,6 +299,7 @@
             this.rbRoundTrip.TabStop = true;
             this.rbRoundTrip.Text = "Round Trip";
             this.rbRoundTrip.UseVisualStyleBackColor = true;
+            this.rbRoundTrip.CheckedChanged += new System.EventHandler(this.rbRoundTrip_CheckedChanged);
             // 
             // pblblFindTrips
             // 
@@ -290,50 +320,23 @@
             this.pblblPopularRoutes.TabIndex = 0;
             this.pblblPopularRoutes.TabStop = false;
             // 
-            // txtFrom
+            // dtpDepart
             // 
-            this.txtFrom.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtFrom.Font = new System.Drawing.Font("SF Pro Display", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFrom.Location = new System.Drawing.Point(117, 121);
-            this.txtFrom.Name = "txtFrom";
-            this.txtFrom.Size = new System.Drawing.Size(305, 45);
-            this.txtFrom.TabIndex = 5;
+            this.dtpDepart.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDepart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDepart.Location = new System.Drawing.Point(141, 192);
+            this.dtpDepart.Name = "dtpDepart";
+            this.dtpDepart.Size = new System.Drawing.Size(147, 38);
+            this.dtpDepart.TabIndex = 10;
             // 
-            // txtTo
+            // dtpReturn
             // 
-            this.txtTo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTo.Font = new System.Drawing.Font("SF Pro Display", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTo.Location = new System.Drawing.Point(573, 120);
-            this.txtTo.Name = "txtTo";
-            this.txtTo.Size = new System.Drawing.Size(305, 45);
-            this.txtTo.TabIndex = 6;
-            // 
-            // txtDepart
-            // 
-            this.txtDepart.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDepart.Font = new System.Drawing.Font("SF Pro Display", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDepart.Location = new System.Drawing.Point(137, 189);
-            this.txtDepart.Name = "txtDepart";
-            this.txtDepart.Size = new System.Drawing.Size(154, 45);
-            this.txtDepart.TabIndex = 7;
-            // 
-            // txtReturn
-            // 
-            this.txtReturn.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtReturn.Font = new System.Drawing.Font("SF Pro Display", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReturn.Location = new System.Drawing.Point(389, 189);
-            this.txtReturn.Name = "txtReturn";
-            this.txtReturn.Size = new System.Drawing.Size(154, 45);
-            this.txtReturn.TabIndex = 8;
-            // 
-            // txtNoOfPassengers
-            // 
-            this.txtNoOfPassengers.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtNoOfPassengers.Font = new System.Drawing.Font("SF Pro Display", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoOfPassengers.Location = new System.Drawing.Point(690, 189);
-            this.txtNoOfPassengers.Name = "txtNoOfPassengers";
-            this.txtNoOfPassengers.Size = new System.Drawing.Size(59, 45);
-            this.txtNoOfPassengers.TabIndex = 9;
+            this.dtpReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
+            this.dtpReturn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpReturn.Location = new System.Drawing.Point(391, 192);
+            this.dtpReturn.Name = "dtpReturn";
+            this.dtpReturn.Size = new System.Drawing.Size(149, 38);
+            this.dtpReturn.TabIndex = 11;
             // 
             // ucFindTrips
             // 
@@ -380,10 +383,10 @@
         private System.Windows.Forms.RadioButton rbRoundTrip;
         private System.Windows.Forms.PictureBox pblblFindTrips;
         private System.Windows.Forms.PictureBox pblblPopularRoutes;
-        private System.Windows.Forms.TextBox txtFrom;
+        private System.Windows.Forms.TextBox txtPassengers;
         private System.Windows.Forms.TextBox txtTo;
-        private System.Windows.Forms.TextBox txtDepart;
-        private System.Windows.Forms.TextBox txtReturn;
-        private System.Windows.Forms.TextBox txtNoOfPassengers;
+        private System.Windows.Forms.TextBox txtFrom;
+        private Classes.CustomDateTimePicker dtpDepart;
+        private Classes.CustomDateTimePicker dtpReturn;
     }
 }

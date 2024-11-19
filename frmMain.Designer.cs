@@ -1,4 +1,6 @@
-﻿namespace Ferry_Ticketing_App
+﻿using Ferry_Ticketing_App.Pages;
+
+namespace Ferry_Ticketing_App
 {
     partial class frmMain
     {
@@ -28,26 +30,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnBack = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.pnlSidePanel = new System.Windows.Forms.Panel();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.ucComplete1 = new Ferry_Ticketing_App.Pages.ucComplete();
+            this.ucFindTrips1 = new Ferry_Ticketing_App.Pages.ucFindTrips();
+            this.ucSearchRoundTrip1 = new Ferry_Ticketing_App.Pages.ucSearchRoundTrip();
             this.pnlSidePanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnBack
-            // 
-            this.btnBack.BackColor = System.Drawing.Color.Transparent;
-            this.btnBack.FlatAppearance.BorderSize = 0;
-            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBack.Image = global::Ferry_Ticketing_App.Properties.Resources.arrowback;
-            this.btnBack.Location = new System.Drawing.Point(265, 6);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(29, 29);
-            this.btnBack.TabIndex = 8;
-            this.btnBack.UseVisualStyleBackColor = false;
             // 
             // btnMinimize
             // 
@@ -98,14 +88,21 @@
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // ucComplete1
+            // ucFindTrips1
             // 
-            this.ucComplete1.AutoScroll = true;
-            this.ucComplete1.BackColor = System.Drawing.Color.White;
-            this.ucComplete1.Location = new System.Drawing.Point(254, 41);
-            this.ucComplete1.Name = "ucComplete1";
-            this.ucComplete1.Size = new System.Drawing.Size(1026, 720);
-            this.ucComplete1.TabIndex = 9;
+            this.ucFindTrips1.Location = new System.Drawing.Point(254, 36);
+            this.ucFindTrips1.Name = "ucFindTrips1";
+            this.ucFindTrips1.Size = new System.Drawing.Size(1026, 720);
+            this.ucFindTrips1.TabIndex = 11;
+            // 
+            // ucSearchRoundTrip1
+            // 
+            this.ucSearchRoundTrip1.AutoScroll = true;
+            this.ucSearchRoundTrip1.BackColor = System.Drawing.Color.White;
+            this.ucSearchRoundTrip1.Location = new System.Drawing.Point(254, 36);
+            this.ucSearchRoundTrip1.Name = "ucSearchRoundTrip1";
+            this.ucSearchRoundTrip1.Size = new System.Drawing.Size(1026, 720);
+            this.ucSearchRoundTrip1.TabIndex = 10;
             // 
             // frmMain
             // 
@@ -113,11 +110,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1280, 720);
-            this.Controls.Add(this.ucComplete1);
-            this.Controls.Add(this.btnBack);
+            this.Controls.Add(this.ucFindTrips1);
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.pnlSidePanel);
+            this.Controls.Add(this.ucSearchRoundTrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -133,8 +130,8 @@
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Button btnBack;
-        private Pages.ucComplete ucComplete1;
+        private Pages.ucSearchRoundTrip ucSearchRoundTrip1;
+        private ucFindTrips ucFindTrips1;
     }
 }
 

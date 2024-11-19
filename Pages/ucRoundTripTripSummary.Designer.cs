@@ -275,7 +275,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.roundTripSummaryPH;
+            this.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.roundtTripSummaryPHFinal;
             this.Controls.Add(this.pbRetArrowRight);
             this.Controls.Add(this.pbDepArrowRight);
             this.Controls.Add(this.lblRetAccommodation);
