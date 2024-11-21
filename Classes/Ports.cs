@@ -91,9 +91,5 @@ namespace Ferry_Ticketing_App.Classes
             new Ports("Zamboanga Port", "ZAM", "Zamboanga", "Mindanao", 6.9, 122.0667,
                 new List<(string, int[])> { ("Cebu Port", new int[] {1}), ("Manila Port", new int[] {2}) })
         };
-        public static Ports FindPortByName(string portName)
-        {
-            return Port.FirstOrDefault(p => p.PortName.Equals(portName, StringComparison.OrdinalIgnoreCase));
-        }
     }
 }

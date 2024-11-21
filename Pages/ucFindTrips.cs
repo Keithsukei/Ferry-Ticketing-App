@@ -22,9 +22,7 @@ namespace Ferry_Ticketing_App.Pages
         public ucFindTrips()
         {
             InitializeComponent();
-    
             portsList = Ports.Port;
-
             suggestionBoxFrom = new ListBox
             {
                 Visible = false,
@@ -42,7 +40,9 @@ namespace Ferry_Ticketing_App.Pages
             this.Controls.Add(suggestionBoxTo);
 
             txtFrom.KeyUp += (s, e) => UpdateSuggestions(txtFrom, suggestionBoxFrom, portsList);
-            txtTo.KeyUp += (s, e) => UpdateSuggestions(txtTo, suggestionBoxTo, portsList);
+            txtTo.Enter += (s, e) => UpdateSuggestions(txtTo, suggestionBoxTo, portsList, isToField: true);
+            txtTo.KeyUp += (s, e) => UpdateSuggestions(txtTo, suggestionBoxTo, portsList, isToField: true);
+            txtTo.GotFocus += (s, e) => UpdateSuggestions(txtTo, suggestionBoxTo, portsList, isToField: true);
 
             suggestionBoxFrom.Click += (s, e) => SelectSuggestion(txtFrom, suggestionBoxFrom);
             suggestionBoxTo.Click += (s, e) => SelectSuggestion(txtTo, suggestionBoxTo);
@@ -65,28 +65,51 @@ namespace Ferry_Ticketing_App.Pages
                 dtpReturn.Visible = false;
             }
         }
-        private void UpdateSuggestions(TextBox textBox, ListBox suggestionBox, List<Ports> portsList)
+        private void UpdateSuggestions(TextBox textBox, ListBox suggestionBox, List<Ports> portsList, bool isToField = false)
         {
             string input = textBox.Text.Trim();
+            List<string> closestMatches;
 
-            if (string.IsNullOrEmpty(input))
+            if (isToField)
             {
-                suggestionBox.Visible = false;
-                return;
+                var fromPortInput = txtFrom.Text.Trim();
+                var fromPort = portsList.FirstOrDefault(port =>
+                    port.PortName.Equals(fromPortInput, StringComparison.OrdinalIgnoreCase) ||
+                    port.City.Equals(fromPortInput, StringComparison.OrdinalIgnoreCase) ||
+                    port.Code.Equals(fromPortInput, StringComparison.OrdinalIgnoreCase));
+
+                if (fromPort == null || string.IsNullOrEmpty(fromPortInput))
+                {
+                    // Clear and hide txtTo suggestions if txtFrom is invalid or empty
+                    suggestionBox.Items.Clear();
+                    suggestionBox.Visible = false;
+                    return;
+                }
+
+                closestMatches = fromPort.Connections
+                    .Select(conn => portsList.FirstOrDefault(p => p.PortName.Equals(conn.Item1))?.City)
+                    .Where(city => !string.IsNullOrEmpty(city))
+                    .Distinct()
+                    .Where(city => city.IndexOf(input, StringComparison.OrdinalIgnoreCase) >= 0)
+                    .OrderBy(city => city)
+                    .ToList();
+            }
+            else
+            {
+                // Show all Ports
+                closestMatches = portsList
+                    .Where(port => port.PortName.IndexOf(input, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                                   port.Code.IndexOf(input, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                                   port.City.IndexOf(input, StringComparison.OrdinalIgnoreCase) >= 0)
+                    .OrderBy(port => StringUtils.LevenshteinDistance(input, port.City))
+                    .Select(port => port.City)
+                    .Distinct()
+                    .Take(5) // Limit to 5 suggestions
+                    .ToList();
             }
 
-            // Get closest matches based on the port name, code, or city
-            var closestMatches = portsList
-                .Where(port => port.PortName.IndexOf(input, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                               port.Code.IndexOf(input, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                               port.City.IndexOf(input, StringComparison.OrdinalIgnoreCase) >= 0)
-                .OrderBy(port => StringUtils.LevenshteinDistance(input, port.PortName))
-                .Take(5)
-                .Select(port => $"{port.City}, {port.PortName}, {port.Code}")
-                .ToList();
-
-            suggestionBox.Items.Clear(); // Clear previous suggestions
-            suggestionBox.Items.AddRange(closestMatches.ToArray()); // Add new suggestions
+            suggestionBox.Items.Clear();
+            suggestionBox.Items.AddRange(closestMatches.ToArray());
 
             if (suggestionBox.Items.Count > 0)
             {
@@ -100,12 +123,12 @@ namespace Ferry_Ticketing_App.Pages
                 suggestionBox.Width = textBox.Width;
                 suggestionBox.Height = suggestionBox.PreferredHeight;
 
-                suggestionBox.Visible = true; // Show suggestion box
+                suggestionBox.Visible = true;
                 suggestionBox.BringToFront();
             }
             else
             {
-                suggestionBox.Visible = false; // Hide suggestion box if no matches
+                suggestionBox.Visible = false;
             }
         }
 
@@ -120,87 +143,50 @@ namespace Ferry_Ticketing_App.Pages
 
         private void btnSearchTrips_Click(object sender, EventArgs e)
         {
-            // Retrieve and trim inputs
-            string fromPort = txtFrom.Text.Trim();
-            string toPort = txtTo.Text.Trim();
-            DateTime departDate = dtpDepart.Value;
-            DateTime returnDate = dtpReturn.Value;
-            int passengers;
+            var searchRoundControl = this.Parent.Controls.OfType<ucSearchRoundTrip>().FirstOrDefault();
 
-            // Validate passengers input
-            if (!int.TryParse(txtPassengers.Text, out passengers) || passengers <= 0)
+            if (searchRoundControl != null)
             {
-                MessageBox.Show("Please enter a valid number of passengers.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                string fromPort = txtFrom.Text.Trim();
+                string toPort = txtTo.Text.Trim();
+                DateTime departDate = dtpDepart.Value;
+                DateTime returnDate = dtpReturn.Value;
+                int passengers;
 
-            // Validate ports input
-            if (string.IsNullOrWhiteSpace(fromPort) || string.IsNullOrWhiteSpace(toPort))
-            {
-                MessageBox.Show("Please enter both 'From' and 'To' locations.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Find the "From" port by matching PortName, City, or Code
-            var fromPortData = Ports.Port.FirstOrDefault(p =>
-                p.PortName.Equals(fromPort, StringComparison.OrdinalIgnoreCase) ||
-                p.City.Equals(fromPort, StringComparison.OrdinalIgnoreCase) ||
-                p.Code.Equals(fromPort, StringComparison.OrdinalIgnoreCase)
-            );
-
-            if (fromPortData == null)
-            {
-                MessageBox.Show($"Port '{fromPort}' not found. Please check your input.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Find the "To" port by matching PortName, City, or Code
-            var toPortData = Ports.Port.FirstOrDefault(p =>
-                p.PortName.Equals(toPort, StringComparison.OrdinalIgnoreCase) ||
-                p.City.Equals(toPort, StringComparison.OrdinalIgnoreCase) ||
-                p.Code.Equals(toPort, StringComparison.OrdinalIgnoreCase)
-            );
-
-            if (toPortData == null)
-            {
-                MessageBox.Show($"Port '{toPort}' not found. Please check your input.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Check if "To" port has a valid connection from the "From" port
-            var toConnection = fromPortData.Connections.FirstOrDefault(c =>
-                c.Destination.Equals(toPortData.PortName, StringComparison.OrdinalIgnoreCase)
-            );
-
-            if (toConnection == null)
-            {
-                MessageBox.Show($"No direct connection from '{fromPort}' to '{toPort}'. Please select a valid route.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Check if round trip is selected
-            bool isRoundTrip = rbRoundTrip.Checked;
-
-            if (isRoundTrip)
-            {
-                // Access main form and update round-trip details
-                var mainForm = this.FindForm() as frmMain;
-                if (mainForm != null)
+                if (!int.TryParse(txtPassengers.Text, out passengers) || passengers <= 0)
                 {
-                    mainForm.UpdateSearchRoundTrip(
-                        fromPortData.Code,
-                        toConnection.Destination,
-                        passengers,
-                        departDate,
-                        returnDate
-                    );
-                    this.Visible = false;
+                    MessageBox.Show("Please enter a valid number of passengers.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
+
+                var fromPortData = portsList.FirstOrDefault(p => p.PortName.Equals(fromPort, StringComparison.OrdinalIgnoreCase) || p.City.Equals(fromPort, StringComparison.OrdinalIgnoreCase));
+                var toPortData = portsList.FirstOrDefault(p => p.PortName.Equals(toPort, StringComparison.OrdinalIgnoreCase) || p.City.Equals(toPort, StringComparison.OrdinalIgnoreCase));
+
+                if (fromPortData == null || toPortData == null)
+                {
+                    MessageBox.Show("Invalid ports selected.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Pass the data to the ucSearchRoundTrip control
+                searchRoundControl.UpdateItinerary(
+                    fromPortData.Code,
+                    fromPortData.City,
+                    toPortData.Code,
+                    toPortData.City,
+                    passengers,
+                    departDate,
+                    returnDate
+                );
+
+                searchRoundControl.Visible = true;
+                searchRoundControl.BringToFront();
             }
             else
             {
-                MessageBox.Show("One-Way trip functionality is not yet implemented.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Could not find the ucSearchRound control.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }
