@@ -143,8 +143,9 @@ namespace Ferry_Ticketing_App.Pages
 
         private void btnSearchTrips_Click(object sender, EventArgs e)
         {
+            DateTime selectedDate = dtpDepart.Value;
             var searchRoundControl = this.Parent.Controls.OfType<ucSearchRoundTrip>().FirstOrDefault();
-
+            var individualTripControl = this.Parent.Controls.OfType<ucIndividualTrips>().FirstOrDefault();
             if (searchRoundControl != null)
             {
                 string fromPort = txtFrom.Text.Trim();
@@ -159,8 +160,12 @@ namespace Ferry_Ticketing_App.Pages
                     return;
                 }
 
-                var fromPortData = portsList.FirstOrDefault(p => p.PortName.Equals(fromPort, StringComparison.OrdinalIgnoreCase) || p.City.Equals(fromPort, StringComparison.OrdinalIgnoreCase));
-                var toPortData = portsList.FirstOrDefault(p => p.PortName.Equals(toPort, StringComparison.OrdinalIgnoreCase) || p.City.Equals(toPort, StringComparison.OrdinalIgnoreCase));
+                var fromPortData = portsList.FirstOrDefault(p =>
+                    p.PortName.Equals(fromPort, StringComparison.OrdinalIgnoreCase) ||
+                    p.City.Equals(fromPort, StringComparison.OrdinalIgnoreCase));
+                var toPortData = portsList.FirstOrDefault(p =>
+                    p.PortName.Equals(toPort, StringComparison.OrdinalIgnoreCase) ||
+                    p.City.Equals(toPort, StringComparison.OrdinalIgnoreCase));
 
                 if (fromPortData == null || toPortData == null)
                 {
@@ -168,7 +173,6 @@ namespace Ferry_Ticketing_App.Pages
                     return;
                 }
 
-                // Pass the data to the ucSearchRoundTrip control
                 searchRoundControl.UpdateItinerary(
                     fromPortData.Code,
                     fromPortData.City,
@@ -181,6 +185,9 @@ namespace Ferry_Ticketing_App.Pages
 
                 searchRoundControl.Visible = true;
                 searchRoundControl.BringToFront();
+
+                // Pass the selected departure date to the slider
+                searchRoundControl.LoadInitialDates(departDate);
             }
             else
             {

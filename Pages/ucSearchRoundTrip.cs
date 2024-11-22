@@ -12,19 +12,19 @@ namespace Ferry_Ticketing_App.Pages
 {
     public partial class ucSearchRoundTrip : UserControl
     {
+        private DateTime startingDate;
+
         public ucSearchRoundTrip()
         {
             InitializeComponent();
         }
-        public void SetTripDetails(string fromCode, string fromCity, string toCode, string toCity, int passengers, DateTime departDate, DateTime returnDate)
+        public void LoadInitialDates(DateTime selectedDate)
         {
-            lblFromCode.Text = fromCode;
-            lblFromCity.Text = fromCity;
-            lblToCode.Text = toCode;
-            lblToCity.Text = toCity;
-            lblNoOfPassengers.Text = passengers.ToString();
-            lblDepartureDate.Text = departDate.ToString("MM/dd/yyyy");
-            lblArrivalDate.Text = returnDate.ToString("MM/dd/yyyy");
+            var individualTripsControl = this.Controls.OfType<ucIndividualTrips>().FirstOrDefault();
+            if (individualTripsControl != null)
+            {
+                individualTripsControl.SetStartDate(selectedDate); // Ensure this method works
+            }
         }
         public void UpdateItinerary(string fromCode, string fromCity, string toCode, string toCity, int passengers, DateTime departDate, DateTime returnDate)
         {
