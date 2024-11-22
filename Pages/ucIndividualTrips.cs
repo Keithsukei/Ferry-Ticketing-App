@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,10 +25,32 @@ namespace Ferry_Ticketing_App.Pages
                 btnDate1, btnDate2, btnDate3, btnDate4, btnDate5,
                 btnDate6, btnDate7, btnDate8, btnDate9, btnDate10
             };
+            
 
             // Hook up navigation button events
             btnLeft.Click += (s, e) => UpdateDates(-10);
             btnRight.Click += (s, e) => UpdateDates(10);
+        }
+        private void HighlightDate(DateTime dateToHighlight)
+        {
+            foreach (var button in dateButtons)
+            {
+                if (button.Tag is DateTime buttonDate && buttonDate.Date == dateToHighlight.Date) // Match only the date part
+                {
+                    button.FlatStyle = FlatStyle.Flat;
+                    button.FlatAppearance.BorderSize = 1;
+                    button.FlatAppearance.BorderColor = Color.Black; // Set a border color
+                    button.BackColor = Color.LightBlue;                 // Optional: highlight background
+                    button.ForeColor = Color.Black;                    // Optional: change text color
+                }
+                else
+                {
+                    button.FlatStyle = FlatStyle.Flat;
+                    button.FlatAppearance.BorderSize = 0;
+                    button.BackColor = Color.White;
+                    button.ForeColor = Color.Black;
+                }
+            }
         }
 
         public void SetStartDate(DateTime startDate)
@@ -47,21 +71,9 @@ namespace Ferry_Ticketing_App.Pages
         }
         public void InitializeWithDate(DateTime startDate)
         {
-            Console.WriteLine($"Initializing slider with date: {startDate}");
-            currentDateStart = startDate.Date; // Ensure only the date part is used
-            UpdateDateButtons(); // Refresh the slider buttons with the new start date
-
-            // Automatically highlight the initial date
-            var selectedButton = dateButtons.FirstOrDefault(btn =>
-                btn.Tag is DateTime date && date.Date == currentDateStart.Date);
-            if (selectedButton != null)
-            {
-                HighlightSelectedDate(selectedButton);
-            }
-            else
-            {
-                Console.WriteLine("No matching button found for the selected date.");
-            }
+            currentDateStart = startDate; // Set the starting date
+            HighlightDate(startDate);
+            UpdateDateButtons();
         }
         private void UpdateDateButtons()
         {
@@ -70,7 +82,12 @@ namespace Ferry_Ticketing_App.Pages
                 DateTime date = currentDateStart.AddDays(i);
                 dateButtons[i].Text = $"{date.Day}\n{date:ddd}\n{date:MMM}";
                 dateButtons[i].Tag = date;
+
+                dateButtons[i].Click -= DateButton_Click; // Avoid duplicate event handlers
+                dateButtons[i].Click += DateButton_Click;
             }
+
+            HighlightDate(currentDateStart);
         }
 
         private void UpdateDates(int offset)
@@ -81,30 +98,11 @@ namespace Ferry_Ticketing_App.Pages
 
         private void DateButton_Click(object sender, EventArgs e)
         {
-            var selectedButton = sender as Button;
-            if (selectedButton != null)
+            if (sender is Button selectedButton && selectedButton.Tag is DateTime selectedDate)
             {
-                // Get the date from the button's Tag
-                DateTime selectedDate = (DateTime)selectedButton.Tag;
-
-                // Highlight the selected date button
-                HighlightSelectedDate(selectedButton);
-
-                // Perform any additional actions with the selected date
-                MessageBox.Show($"Selected Date: {selectedDate.ToShortDateString()}");
+                HighlightDate(selectedDate);
             }
         }
 
-        private void HighlightSelectedDate(Button selectedButton)
-        {
-            foreach (var btn in dateButtons)
-            {
-                btn.BackColor = SystemColors.Control; // Reset button background color
-                btn.ForeColor = Color.Black;         // Reset text color
-            }
-
-            selectedButton.BackColor = Color.LightBlue; // Highlight selected button background
-            selectedButton.ForeColor = Color.White;    // Change text color for better visibility
-        }
     }
 }

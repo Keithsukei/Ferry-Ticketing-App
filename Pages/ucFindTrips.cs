@@ -145,7 +145,6 @@ namespace Ferry_Ticketing_App.Pages
         {
             DateTime selectedDate = dtpDepart.Value;
             var searchRoundControl = this.Parent.Controls.OfType<ucSearchRoundTrip>().FirstOrDefault();
-            var individualTripControl = this.Parent.Controls.OfType<ucIndividualTrips>().FirstOrDefault();
             if (searchRoundControl != null)
             {
                 string fromPort = txtFrom.Text.Trim();
@@ -153,6 +152,20 @@ namespace Ferry_Ticketing_App.Pages
                 DateTime departDate = dtpDepart.Value;
                 DateTime returnDate = dtpReturn.Value;
                 int passengers;
+                var individualTrips = searchRoundControl.Controls.OfType<ucIndividualTrips>().FirstOrDefault();
+
+                if (searchRoundControl.ucIndividualTrips1 != null)
+                {
+                    // Pass the departure date to ucIndividualTrips1
+                    searchRoundControl.ucIndividualTrips1.InitializeWithDate(departDate);
+
+                    // Debug: Confirm the date is passed correctly
+                    Console.WriteLine($"Departure Date Passed to IndividualTrips1: {departDate.ToShortDateString()}");
+                }
+                else
+                {
+                    MessageBox.Show("ucIndividualTrips1 control is not initialized in ucSearchRoundTrip.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
                 if (!int.TryParse(txtPassengers.Text, out passengers) || passengers <= 0)
                 {

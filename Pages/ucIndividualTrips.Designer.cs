@@ -76,10 +76,10 @@
             // 
             this.lblTo.AutoSize = true;
             this.lblTo.BackColor = System.Drawing.Color.Transparent;
-            this.lblTo.Font = new System.Drawing.Font("SF Pro Display", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTo.Location = new System.Drawing.Point(143, 0);
             this.lblTo.Name = "lblTo";
-            this.lblTo.Size = new System.Drawing.Size(68, 27);
+            this.lblTo.Size = new System.Drawing.Size(76, 29);
             this.lblTo.TabIndex = 0;
             this.lblTo.Text = "Code";
             // 
@@ -87,10 +87,10 @@
             // 
             this.lblFrom.AutoSize = true;
             this.lblFrom.BackColor = System.Drawing.Color.Transparent;
-            this.lblFrom.Font = new System.Drawing.Font("SF Pro Display", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFrom.Location = new System.Drawing.Point(25, 0);
             this.lblFrom.Name = "lblFrom";
-            this.lblFrom.Size = new System.Drawing.Size(68, 27);
+            this.lblFrom.Size = new System.Drawing.Size(76, 29);
             this.lblFrom.TabIndex = 0;
             this.lblFrom.Text = "Code";
             // 
@@ -263,7 +263,7 @@
             this.btnDate1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDate1.Location = new System.Drawing.Point(47, 1);
             this.btnDate1.Name = "btnDate1";
-            this.btnDate1.Size = new System.Drawing.Size(50, 50);
+            this.btnDate1.Size = new System.Drawing.Size(47, 50);
             this.btnDate1.TabIndex = 0;
             this.btnDate1.Text = "D\r\nDay,M\r\n";
             this.btnDate1.UseVisualStyleBackColor = true;
@@ -310,10 +310,10 @@
             // 
             this.lblPrice.AutoSize = true;
             this.lblPrice.BackColor = System.Drawing.Color.Transparent;
-            this.lblPrice.Font = new System.Drawing.Font("SF Pro Display", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrice.Location = new System.Drawing.Point(289, 150);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(71, 14);
+            this.lblPrice.Size = new System.Drawing.Size(82, 15);
             this.lblPrice.TabIndex = 2;
             this.lblPrice.Text = "Ticket Price";
             // 
@@ -321,10 +321,10 @@
             // 
             this.lblTicketPrice.AutoSize = true;
             this.lblTicketPrice.BackColor = System.Drawing.Color.Transparent;
-            this.lblTicketPrice.Font = new System.Drawing.Font("SF Pro Display", 16F, System.Drawing.FontStyle.Bold);
+            this.lblTicketPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
             this.lblTicketPrice.Location = new System.Drawing.Point(287, 118);
             this.lblTicketPrice.Name = "lblTicketPrice";
-            this.lblTicketPrice.Size = new System.Drawing.Size(76, 26);
+            this.lblTicketPrice.Size = new System.Drawing.Size(80, 26);
             this.lblTicketPrice.TabIndex = 2;
             this.lblTicketPrice.Text = "Pprice";
             // 
@@ -342,11 +342,11 @@
             // 
             this.cmbBoxAccommodation.BackColor = System.Drawing.Color.White;
             this.cmbBoxAccommodation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbBoxAccommodation.Font = new System.Drawing.Font("SF Pro Display", 22F, System.Drawing.FontStyle.Bold);
+            this.cmbBoxAccommodation.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
             this.cmbBoxAccommodation.FormattingEnabled = true;
             this.cmbBoxAccommodation.Location = new System.Drawing.Point(7, 3);
             this.cmbBoxAccommodation.Name = "cmbBoxAccommodation";
-            this.cmbBoxAccommodation.Size = new System.Drawing.Size(203, 43);
+            this.cmbBoxAccommodation.Size = new System.Drawing.Size(203, 41);
             this.cmbBoxAccommodation.TabIndex = 0;
             // 
             // pnlIndividualTripsHeader
@@ -376,20 +376,20 @@
             // lblVesselName
             // 
             this.lblVesselName.AutoSize = true;
-            this.lblVesselName.Font = new System.Drawing.Font("SF Pro Display", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVesselName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVesselName.Location = new System.Drawing.Point(174, 38);
             this.lblVesselName.Name = "lblVesselName";
-            this.lblVesselName.Size = new System.Drawing.Size(78, 14);
+            this.lblVesselName.Size = new System.Drawing.Size(91, 15);
             this.lblVesselName.TabIndex = 1;
             this.lblVesselName.Text = "Vessel Name";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("SF Pro Display", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(155, 20);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(117, 16);
+            this.label15.Size = new System.Drawing.Size(137, 16);
             this.label15.TabIndex = 1;
             this.label15.Text = "Aerian Star Ferries";
             // 
@@ -427,11 +427,11 @@
             // 
             this.lblTravelTime.AutoSize = true;
             this.lblTravelTime.BackColor = System.Drawing.Color.Transparent;
-            this.lblTravelTime.Font = new System.Drawing.Font("SF Pro Display", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTravelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTravelTime.ForeColor = System.Drawing.Color.White;
             this.lblTravelTime.Location = new System.Drawing.Point(74, 43);
             this.lblTravelTime.Name = "lblTravelTime";
-            this.lblTravelTime.Size = new System.Drawing.Size(96, 20);
+            this.lblTravelTime.Size = new System.Drawing.Size(108, 20);
             this.lblTravelTime.TabIndex = 0;
             this.lblTravelTime.Text = "Travel Time";
             // 
@@ -439,11 +439,11 @@
             // 
             this.lblDTime.AutoSize = true;
             this.lblDTime.BackColor = System.Drawing.Color.Transparent;
-            this.lblDTime.Font = new System.Drawing.Font("SF Pro Display", 16.75F, System.Drawing.FontStyle.Bold);
+            this.lblDTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.75F, System.Drawing.FontStyle.Bold);
             this.lblDTime.ForeColor = System.Drawing.Color.White;
             this.lblDTime.Location = new System.Drawing.Point(90, 8);
             this.lblDTime.Name = "lblDTime";
-            this.lblDTime.Size = new System.Drawing.Size(64, 27);
+            this.lblDTime.Size = new System.Drawing.Size(73, 29);
             this.lblDTime.TabIndex = 0;
             this.lblDTime.Text = "Time";
             // 

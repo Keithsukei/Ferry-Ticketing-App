@@ -30,8 +30,6 @@
         {
             this.pnlSearchRoundTrip = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
-            this.ucIndividualTrips2 = new Ferry_Ticketing_App.Pages.ucIndividualTrips();
-            this.ucIndividualTrips1 = new Ferry_Ticketing_App.Pages.ucIndividualTrips();
             this.pnlSummary = new System.Windows.Forms.Panel();
             this.btnSummaryContinue = new System.Windows.Forms.Button();
             this.pblblSummary = new System.Windows.Forms.PictureBox();
@@ -49,6 +47,8 @@
             this.lblDepartureDate = new System.Windows.Forms.Label();
             this.lblNoOfPassengers = new System.Windows.Forms.Label();
             this.lblFromCode = new System.Windows.Forms.Label();
+            this.ucIndividualTrips2 = new Ferry_Ticketing_App.Pages.ucIndividualTrips();
+            this.ucIndividualTrips1 = new Ferry_Ticketing_App.Pages.ucIndividualTrips();
             this.pnlSearchRoundTrip.SuspendLayout();
             this.pnlSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pblblSummary)).BeginInit();
@@ -85,22 +85,6 @@
             this.button1.Size = new System.Drawing.Size(50, 50);
             this.button1.TabIndex = 6;
             this.button1.UseVisualStyleBackColor = false;
-            // 
-            // ucIndividualTrips2
-            // 
-            this.ucIndividualTrips2.BackColor = System.Drawing.Color.Transparent;
-            this.ucIndividualTrips2.Location = new System.Drawing.Point(15, 612);
-            this.ucIndividualTrips2.Name = "ucIndividualTrips2";
-            this.ucIndividualTrips2.Size = new System.Drawing.Size(602, 318);
-            this.ucIndividualTrips2.TabIndex = 5;
-            // 
-            // ucIndividualTrips1
-            // 
-            this.ucIndividualTrips1.BackColor = System.Drawing.Color.Transparent;
-            this.ucIndividualTrips1.Location = new System.Drawing.Point(15, 248);
-            this.ucIndividualTrips1.Name = "ucIndividualTrips1";
-            this.ucIndividualTrips1.Size = new System.Drawing.Size(602, 318);
-            this.ucIndividualTrips1.TabIndex = 5;
             // 
             // pnlSummary
             // 
@@ -191,7 +175,7 @@
             // lblArrival
             // 
             this.lblArrival.AutoSize = true;
-            this.lblArrival.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArrival.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArrival.Location = new System.Drawing.Point(693, 59);
             this.lblArrival.Name = "lblArrival";
             this.lblArrival.Size = new System.Drawing.Size(48, 18);
@@ -201,7 +185,7 @@
             // lblDeparture
             // 
             this.lblDeparture.AutoSize = true;
-            this.lblDeparture.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDeparture.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDeparture.Location = new System.Drawing.Point(494, 60);
             this.lblDeparture.Name = "lblDeparture";
             this.lblDeparture.Size = new System.Drawing.Size(73, 18);
@@ -211,17 +195,17 @@
             // lblPassenger
             // 
             this.lblPassenger.AutoSize = true;
-            this.lblPassenger.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPassenger.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPassenger.Location = new System.Drawing.Point(320, 60);
             this.lblPassenger.Name = "lblPassenger";
-            this.lblPassenger.Size = new System.Drawing.Size(75, 18);
+            this.lblPassenger.Size = new System.Drawing.Size(79, 18);
             this.lblPassenger.TabIndex = 0;
             this.lblPassenger.Text = "Passenger";
             // 
             // lblToCity
             // 
             this.lblToCity.AutoEllipsis = true;
-            this.lblToCity.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblToCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblToCity.Location = new System.Drawing.Point(181, 59);
             this.lblToCity.Name = "lblToCity";
             this.lblToCity.Size = new System.Drawing.Size(79, 18);
@@ -232,7 +216,7 @@
             // lblFromCity
             // 
             this.lblFromCity.AutoEllipsis = true;
-            this.lblFromCity.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFromCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFromCity.Location = new System.Drawing.Point(22, 60);
             this.lblFromCity.Name = "lblFromCity";
             this.lblFromCity.Size = new System.Drawing.Size(74, 18);
@@ -243,16 +227,16 @@
             // lblToCode
             // 
             this.lblToCode.AutoSize = true;
-            this.lblToCode.Font = new System.Drawing.Font("SF Pro Display", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblToCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblToCode.Location = new System.Drawing.Point(191, 25);
             this.lblToCode.Name = "lblToCode";
-            this.lblToCode.Size = new System.Drawing.Size(68, 27);
+            this.lblToCode.Size = new System.Drawing.Size(76, 29);
             this.lblToCode.TabIndex = 0;
             this.lblToCode.Text = "Code";
             // 
             // lblArrivalDate
             // 
-            this.lblArrivalDate.Font = new System.Drawing.Font("SF Pro Display", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArrivalDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArrivalDate.Location = new System.Drawing.Point(634, 25);
             this.lblArrivalDate.Name = "lblArrivalDate";
             this.lblArrivalDate.Size = new System.Drawing.Size(166, 27);
@@ -262,7 +246,7 @@
             // 
             // lblDepartureDate
             // 
-            this.lblDepartureDate.Font = new System.Drawing.Font("SF Pro Display", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDepartureDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDepartureDate.Location = new System.Drawing.Point(448, 25);
             this.lblDepartureDate.Name = "lblDepartureDate";
             this.lblDepartureDate.Size = new System.Drawing.Size(166, 27);
@@ -272,7 +256,7 @@
             // 
             // lblNoOfPassengers
             // 
-            this.lblNoOfPassengers.Font = new System.Drawing.Font("SF Pro Display", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoOfPassengers.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoOfPassengers.Location = new System.Drawing.Point(300, 25);
             this.lblNoOfPassengers.Name = "lblNoOfPassengers";
             this.lblNoOfPassengers.Size = new System.Drawing.Size(117, 27);
@@ -283,12 +267,28 @@
             // lblFromCode
             // 
             this.lblFromCode.AutoSize = true;
-            this.lblFromCode.Font = new System.Drawing.Font("SF Pro Display", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFromCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFromCode.Location = new System.Drawing.Point(30, 25);
             this.lblFromCode.Name = "lblFromCode";
-            this.lblFromCode.Size = new System.Drawing.Size(68, 27);
+            this.lblFromCode.Size = new System.Drawing.Size(76, 29);
             this.lblFromCode.TabIndex = 0;
             this.lblFromCode.Text = "Code";
+            // 
+            // ucIndividualTrips2
+            // 
+            this.ucIndividualTrips2.BackColor = System.Drawing.Color.Transparent;
+            this.ucIndividualTrips2.Location = new System.Drawing.Point(15, 612);
+            this.ucIndividualTrips2.Name = "ucIndividualTrips2";
+            this.ucIndividualTrips2.Size = new System.Drawing.Size(602, 318);
+            this.ucIndividualTrips2.TabIndex = 5;
+            // 
+            // ucIndividualTrips1
+            // 
+            this.ucIndividualTrips1.BackColor = System.Drawing.Color.Transparent;
+            this.ucIndividualTrips1.Location = new System.Drawing.Point(15, 248);
+            this.ucIndividualTrips1.Name = "ucIndividualTrips1";
+            this.ucIndividualTrips1.Size = new System.Drawing.Size(602, 318);
+            this.ucIndividualTrips1.TabIndex = 5;
             // 
             // ucSearchRoundTrip
             // 
@@ -298,7 +298,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pnlSearchRoundTrip);
             this.Name = "ucSearchRoundTrip";
-            this.Size = new System.Drawing.Size(1026, 720);
+            this.Size = new System.Drawing.Size(1009, 720);
             this.pnlSearchRoundTrip.ResumeLayout(false);
             this.pnlSummary.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pblblSummary)).EndInit();
@@ -313,8 +313,8 @@
         #endregion
 
         private System.Windows.Forms.Panel pnlSearchRoundTrip;
-        private ucIndividualTrips ucIndividualTrips2;
-        private ucIndividualTrips ucIndividualTrips1;
+        public ucIndividualTrips ucIndividualTrips2;
+        public ucIndividualTrips ucIndividualTrips1;
         private System.Windows.Forms.Panel pnlSummary;
         private System.Windows.Forms.Button btnSummaryContinue;
         private System.Windows.Forms.PictureBox pblblSummary;

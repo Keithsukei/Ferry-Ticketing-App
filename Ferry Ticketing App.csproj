@@ -50,8 +50,13 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Classes\Ferryline.cs" />
+    <Compile Include="Classes\Passenger.cs" />
+    <Compile Include="Classes\Payment.cs" />
     <Compile Include="Classes\Ports.cs" />
     <Compile Include="Classes\Routes.cs" />
+    <Compile Include="Classes\Schedule.cs" />
+    <Compile Include="Classes\Seat.cs" />
+    <Compile Include="Classes\Ticket.cs" />
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>

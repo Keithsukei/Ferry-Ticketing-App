@@ -36,6 +36,5 @@ namespace Ferry_Ticketing_App
             login.Show();
             this.Hide();
         }
-
     }
 }
