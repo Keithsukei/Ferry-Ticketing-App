@@ -55,14 +55,22 @@ namespace Ferry_Ticketing_App.Pages
         private void btnModifyItinerary_Click(object sender, EventArgs e)
         {
             var findTrips = this.Parent.Controls.OfType<ucFindTrips>().FirstOrDefault();
-            var modifyItinerary = this.Parent.Controls.OfType<ucIndividualTrips>().FirstOrDefault();
 
-            // Bring the 'FindTrips' control to the front
-            findTrips.BringToFront();
-            findTrips.Visible = true;
+            if (findTrips != null)
+            {
+                findTrips.BringToFront();
+                findTrips.Visible = true;
 
-            // Trigger the recalculation when switching to the Modify Itinerary page
-            modifyItinerary.ClearTripDetails(); // Pass the appropriate selected date
+                // Update the number of passengers based on the input field (if available)
+                int passengers = int.TryParse(findTrips.txtPassengers.Text, out int result) ? result : 1;
+
+                foreach (var tripControl in this.Parent.Controls.OfType<ucIndividualTrips>())
+                {
+                    // Update trip details for all instances
+                    lblNoOfPassengers.Text = passengers.ToString();
+                    tripControl.RecalculateTripDetails(DateTime.Now); // Replace DateTime.Now with the appropriate date
+                }
+            }
         }
     }
 }

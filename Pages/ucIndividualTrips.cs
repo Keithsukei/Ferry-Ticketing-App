@@ -151,7 +151,7 @@ namespace Ferry_Ticketing_App.Pages
                     switch (label.Name)
                     {
                         case "lblDTime":
-                            label.Text = departureTime.ToString("h:mm tt").ToUpper();
+                            label.Text = departureTime.ToString("h:00 tt").ToUpper();
                             break;
                         case "lblTravelTime":
                             label.Text = $"{travelTime.Hours} Hours";
@@ -167,6 +167,37 @@ namespace Ferry_Ticketing_App.Pages
                     label.Text = vesselName;
                     break;
                 }
+            }
+            foreach (Control ctrl in pnlCodeToCode.Controls)
+            {
+                if (ctrl is Label label)
+                {
+                    switch (label.Name)
+                    {
+                        case "lblFrom":
+                            label.Text = sourcePort;
+                            AdjustLabelAndArrow(lblFrom, pbArrowRight);
+                            break;
+                        case "lblTo":
+                            label.Text = destinationPort;
+                            AdjustLabelAndArrow(lblTo, pbArrowRight, true);
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void AdjustLabelAndArrow(Label label, PictureBox arrow, bool isDestination = false)
+        {
+            int padding = 10; // Gap between the label and the arrow
+            if (isDestination)
+            {
+                label.Left = arrow.Right + padding; // Position destination label to the right of the arrow
+            }
+            else
+            {
+                label.Left = 10; // Reset 'From' label to its starting position
+                arrow.Left = label.Right + padding; // Adjust arrow position
             }
         }
 
@@ -229,6 +260,45 @@ namespace Ferry_Ticketing_App.Pages
             {
                 HighlightDate(selectedDate);
                 UpdateTripDetails(selectedDate);
+            }
+        }
+        public void RecalculateTripDetails(DateTime selectedDate)
+        {
+            // Ensure source and destination ports are set
+            if (string.IsNullOrEmpty(sourcePort) || string.IsNullOrEmpty(destinationPort))
+                return;
+
+            var departurePort = ports.FirstOrDefault(p => p.PortName == sourcePort);
+            var arrivalPort = ports.FirstOrDefault(p => p.PortName == destinationPort);
+
+            if (departurePort != null && arrivalPort != null)
+            {
+                // Calculate distance using GeoUtils
+                double distance = Utilities.GeoUtils.GetDistance(
+                    departurePort.Latitude, departurePort.Longitude,
+                    arrivalPort.Latitude, arrivalPort.Longitude
+                );
+
+                // Calculate travel time (assuming ferry speed is 30 km/h)
+                TimeSpan travelTime = Utilities.GeoUtils.CalculateTravelTime(distance, 30);
+
+                // Generate a random departure time
+                DateTime departureTime = Utilities.GeoUtils.GetRandomDepartureTime();
+
+                // Update UI with ferry details
+                UpdateUIWithFerryDetails("Ferry Name", departureTime, travelTime); // Replace with actual ferry name
+
+                // Calculate price based on distance
+                decimal basePricePerKm = 10m; // Example: ₱10 per km
+                decimal serviceCharge = 50m;  // Example: ₱50 service charge
+                Price price = new Price((decimal)distance * basePricePerKm, serviceCharge);
+
+                // Update price label
+                lblTicketPrice.Text = price.CalculateFinalPrice().ToString("₱0.00");
+            }
+            else
+            {
+                ClearTripDetails();
             }
         }
 

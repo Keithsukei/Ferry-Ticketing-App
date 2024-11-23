@@ -31,6 +31,7 @@
             this.lblTo = new System.Windows.Forms.Label();
             this.lblFrom = new System.Windows.Forms.Label();
             this.pnlCodeToCode = new System.Windows.Forms.Panel();
+            this.pbArrowRight = new System.Windows.Forms.PictureBox();
             this.pnlDateSliderButtons = new System.Windows.Forms.Panel();
             this.btnRight = new System.Windows.Forms.Button();
             this.btnDate10 = new System.Windows.Forms.Button();
@@ -44,7 +45,6 @@
             this.btnDate2 = new System.Windows.Forms.Button();
             this.btnDate1 = new System.Windows.Forms.Button();
             this.btnLeft = new System.Windows.Forms.Button();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pnlIndividualTripsPH = new System.Windows.Forms.Panel();
             this.btnSelect = new System.Windows.Forms.Button();
             this.lblPrice = new System.Windows.Forms.Label();
@@ -61,8 +61,8 @@
             this.lblTravelTime = new System.Windows.Forms.Label();
             this.lblDTime = new System.Windows.Forms.Label();
             this.pnlCodeToCode.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbArrowRight)).BeginInit();
             this.pnlDateSliderButtons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.pnlIndividualTripsPH.SuspendLayout();
             this.pnlAccommodationPH.SuspendLayout();
             this.pnlIndividualTripsHeader.SuspendLayout();
@@ -77,7 +77,7 @@
             this.lblTo.AutoSize = true;
             this.lblTo.BackColor = System.Drawing.Color.Transparent;
             this.lblTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTo.Location = new System.Drawing.Point(143, 0);
+            this.lblTo.Location = new System.Drawing.Point(278, 0);
             this.lblTo.Name = "lblTo";
             this.lblTo.Size = new System.Drawing.Size(76, 29);
             this.lblTo.TabIndex = 0;
@@ -88,7 +88,7 @@
             this.lblFrom.AutoSize = true;
             this.lblFrom.BackColor = System.Drawing.Color.Transparent;
             this.lblFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFrom.Location = new System.Drawing.Point(25, 0);
+            this.lblFrom.Location = new System.Drawing.Point(63, 0);
             this.lblFrom.Name = "lblFrom";
             this.lblFrom.Size = new System.Drawing.Size(76, 29);
             this.lblFrom.TabIndex = 0;
@@ -98,12 +98,22 @@
             // 
             this.pnlCodeToCode.BackColor = System.Drawing.Color.Transparent;
             this.pnlCodeToCode.Controls.Add(this.lblFrom);
-            this.pnlCodeToCode.Controls.Add(this.pictureBox3);
+            this.pnlCodeToCode.Controls.Add(this.pbArrowRight);
             this.pnlCodeToCode.Controls.Add(this.lblTo);
             this.pnlCodeToCode.Location = new System.Drawing.Point(0, 0);
             this.pnlCodeToCode.Name = "pnlCodeToCode";
-            this.pnlCodeToCode.Size = new System.Drawing.Size(602, 27);
+            this.pnlCodeToCode.Size = new System.Drawing.Size(602, 29);
             this.pnlCodeToCode.TabIndex = 9;
+            // 
+            // pbArrowRight
+            // 
+            this.pbArrowRight.BackColor = System.Drawing.Color.Transparent;
+            this.pbArrowRight.Image = global::Ferry_Ticketing_App.Properties.Resources.arrowright1;
+            this.pbArrowRight.Location = new System.Drawing.Point(194, 0);
+            this.pbArrowRight.Name = "pbArrowRight";
+            this.pbArrowRight.Size = new System.Drawing.Size(24, 24);
+            this.pbArrowRight.TabIndex = 2;
+            this.pbArrowRight.TabStop = false;
             // 
             // pnlDateSliderButtons
             // 
@@ -269,16 +279,6 @@
             this.btnLeft.Size = new System.Drawing.Size(46, 50);
             this.btnLeft.TabIndex = 0;
             this.btnLeft.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Image = global::Ferry_Ticketing_App.Properties.Resources.arrowright1;
-            this.pictureBox3.Location = new System.Drawing.Point(103, 0);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox3.TabIndex = 2;
-            this.pictureBox3.TabStop = false;
             // 
             // pnlIndividualTripsPH
             // 
@@ -459,8 +459,8 @@
             this.Size = new System.Drawing.Size(602, 318);
             this.pnlCodeToCode.ResumeLayout(false);
             this.pnlCodeToCode.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbArrowRight)).EndInit();
             this.pnlDateSliderButtons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.pnlIndividualTripsPH.ResumeLayout(false);
             this.pnlIndividualTripsPH.PerformLayout();
             this.pnlAccommodationPH.ResumeLayout(false);
@@ -492,7 +492,7 @@
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.Panel pnlIndividualTripsPH;
         private System.Windows.Forms.Label lblTo;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pbArrowRight;
         private System.Windows.Forms.Label lblFrom;
         private System.Windows.Forms.Panel pnlCodeToCode;
         private System.Windows.Forms.Panel pnlDateSliderButtons;

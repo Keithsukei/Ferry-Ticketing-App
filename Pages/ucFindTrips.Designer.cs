@@ -383,7 +383,7 @@
         private System.Windows.Forms.RadioButton rbRoundTrip;
         private System.Windows.Forms.PictureBox pblblFindTrips;
         private System.Windows.Forms.PictureBox pblblPopularRoutes;
-        private System.Windows.Forms.TextBox txtPassengers;
+        public System.Windows.Forms.TextBox txtPassengers;
         private System.Windows.Forms.TextBox txtTo;
         private System.Windows.Forms.TextBox txtFrom;
         private Classes.CustomDateTimePicker dtpDepart;

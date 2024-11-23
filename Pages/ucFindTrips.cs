@@ -143,6 +143,8 @@ namespace Ferry_Ticketing_App.Pages
 
         private void btnSearchTrips_Click(object sender, EventArgs e)
         {
+            string sourcePort = txtFrom.Text.Trim();
+            string destinationPort = txtTo.Text.Trim();
             DateTime departDate = dtpDepart.Value;
             DateTime returnDate = dtpReturn.Value;
             var searchRoundControl = this.Parent.Controls.OfType<ucSearchRoundTrip>().FirstOrDefault();
@@ -163,21 +165,32 @@ namespace Ferry_Ticketing_App.Pages
                         return;
                     }
 
+                    // Validate passenger input
+                    if (!int.TryParse(txtPassengers.Text, out int passengers) || passengers <= 0)
+                    {
+                        MessageBox.Show("Please enter a valid number of passengers.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     // Initialize trips in ucIndividualTrips1 with route and date
                     searchRoundControl.ucIndividualTrips1.InitializeWithRouteAndDate(
                         fromPort, toPort, departDate, Ferryline.AllTrips, portsList);
+
+                    // Immediately recalculate price and update trip details
+                    searchRoundControl.ucIndividualTrips1.RecalculateTripDetails(departDate);
 
                     if (rbRoundTrip.Checked)
                     {
                         // If it's a round trip, initialize the return trip as well
                         searchRoundControl.ucIndividualTrips2.InitializeWithRouteAndDate(
                             toPort, fromPort, returnDate, Ferryline.AllTrips, portsList);
+
+                        searchRoundControl.ucIndividualTrips2.RecalculateTripDetails(returnDate);
                     }
 
                     // Update the itinerary labels
                     string fromCode = portsList.FirstOrDefault(p => p.City == fromCity)?.Code ?? "";
                     string toCode = portsList.FirstOrDefault(p => p.City == toCity)?.Code ?? "";
-                    int passengers = 1;
 
                     searchRoundControl.UpdateItinerary(fromCode, fromCity, toCode, toCity,
                         passengers, departDate, returnDate);
@@ -190,6 +203,7 @@ namespace Ferry_Ticketing_App.Pages
 
                 searchRoundControl.Visible = true;
                 searchRoundControl.BringToFront();
+
             }
             else
             {

@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.pnlSearchRoundTrip = new System.Windows.Forms.Panel();
-            this.ucIndividualTrips2 = new Ferry_Ticketing_App.Pages.ucIndividualTrips();
-            this.ucIndividualTrips1 = new Ferry_Ticketing_App.Pages.ucIndividualTrips();
             this.button1 = new System.Windows.Forms.Button();
             this.pnlSummary = new System.Windows.Forms.Panel();
             this.btnSummaryContinue = new System.Windows.Forms.Button();
@@ -49,6 +47,9 @@
             this.lblDepartureDate = new System.Windows.Forms.Label();
             this.lblNoOfPassengers = new System.Windows.Forms.Label();
             this.lblFromCode = new System.Windows.Forms.Label();
+            this.ucIndividualTrips2 = new Ferry_Ticketing_App.Pages.ucIndividualTrips();
+            this.ucIndividualTrips1 = new Ferry_Ticketing_App.Pages.ucIndividualTrips();
+            this.ucDepartureSummary1 = new Ferry_Ticketing_App.Pages.ucDepartureSummary();
             this.pnlSearchRoundTrip.SuspendLayout();
             this.pnlSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pblblSummary)).BeginInit();
@@ -70,24 +71,8 @@
             this.pnlSearchRoundTrip.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlSearchRoundTrip.Location = new System.Drawing.Point(0, 0);
             this.pnlSearchRoundTrip.Name = "pnlSearchRoundTrip";
-            this.pnlSearchRoundTrip.Size = new System.Drawing.Size(1009, 1330);
+            this.pnlSearchRoundTrip.Size = new System.Drawing.Size(1026, 1330);
             this.pnlSearchRoundTrip.TabIndex = 1;
-            // 
-            // ucIndividualTrips2
-            // 
-            this.ucIndividualTrips2.BackColor = System.Drawing.Color.Transparent;
-            this.ucIndividualTrips2.Location = new System.Drawing.Point(12, 641);
-            this.ucIndividualTrips2.Name = "ucIndividualTrips2";
-            this.ucIndividualTrips2.Size = new System.Drawing.Size(602, 318);
-            this.ucIndividualTrips2.TabIndex = 8;
-            // 
-            // ucIndividualTrips1
-            // 
-            this.ucIndividualTrips1.BackColor = System.Drawing.Color.Transparent;
-            this.ucIndividualTrips1.Location = new System.Drawing.Point(12, 248);
-            this.ucIndividualTrips1.Name = "ucIndividualTrips1";
-            this.ucIndividualTrips1.Size = new System.Drawing.Size(602, 318);
-            this.ucIndividualTrips1.TabIndex = 7;
             // 
             // button1
             // 
@@ -107,6 +92,7 @@
             this.pnlSummary.BackColor = System.Drawing.Color.Transparent;
             this.pnlSummary.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.stateroundbg;
             this.pnlSummary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlSummary.Controls.Add(this.ucDepartureSummary1);
             this.pnlSummary.Controls.Add(this.btnSummaryContinue);
             this.pnlSummary.Controls.Add(this.pblblSummary);
             this.pnlSummary.Location = new System.Drawing.Point(630, 230);
@@ -290,6 +276,30 @@
             this.lblFromCode.TabIndex = 0;
             this.lblFromCode.Text = "Code";
             // 
+            // ucIndividualTrips2
+            // 
+            this.ucIndividualTrips2.BackColor = System.Drawing.Color.Transparent;
+            this.ucIndividualTrips2.Location = new System.Drawing.Point(12, 641);
+            this.ucIndividualTrips2.Name = "ucIndividualTrips2";
+            this.ucIndividualTrips2.Size = new System.Drawing.Size(602, 318);
+            this.ucIndividualTrips2.TabIndex = 8;
+            // 
+            // ucIndividualTrips1
+            // 
+            this.ucIndividualTrips1.BackColor = System.Drawing.Color.Transparent;
+            this.ucIndividualTrips1.Location = new System.Drawing.Point(12, 248);
+            this.ucIndividualTrips1.Name = "ucIndividualTrips1";
+            this.ucIndividualTrips1.Size = new System.Drawing.Size(602, 318);
+            this.ucIndividualTrips1.TabIndex = 7;
+            // 
+            // ucDepartureSummary1
+            // 
+            this.ucDepartureSummary1.BackColor = System.Drawing.Color.Transparent;
+            this.ucDepartureSummary1.Location = new System.Drawing.Point(14, 65);
+            this.ucDepartureSummary1.Name = "ucDepartureSummary1";
+            this.ucDepartureSummary1.Size = new System.Drawing.Size(348, 601);
+            this.ucDepartureSummary1.TabIndex = 3;
+            // 
             // ucSearchRoundTrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,7 +308,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pnlSearchRoundTrip);
             this.Name = "ucSearchRoundTrip";
-            this.Size = new System.Drawing.Size(1009, 720);
+            this.Size = new System.Drawing.Size(1026, 720);
             this.pnlSearchRoundTrip.ResumeLayout(false);
             this.pnlSummary.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pblblSummary)).EndInit();
@@ -333,5 +343,6 @@
         private System.Windows.Forms.Button button1;
         public ucIndividualTrips ucIndividualTrips2;
         public ucIndividualTrips ucIndividualTrips1;
+        private ucDepartureSummary ucDepartureSummary1;
     }
 }
