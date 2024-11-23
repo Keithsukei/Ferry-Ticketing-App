@@ -53,10 +53,12 @@
     <Compile Include="Classes\Passenger.cs" />
     <Compile Include="Classes\Payment.cs" />
     <Compile Include="Classes\Ports.cs" />
+    <Compile Include="Classes\Price.cs" />
     <Compile Include="Classes\Routes.cs" />
     <Compile Include="Classes\Schedule.cs" />
     <Compile Include="Classes\Seat.cs" />
     <Compile Include="Classes\Ticket.cs" />
+    <Compile Include="Classes\Time.cs" />
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -586,6 +588,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\departureDetails3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\completePageHeader2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

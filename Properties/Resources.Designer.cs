@@ -333,6 +333,16 @@ namespace Ferry_Ticketing_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap completePageHeader2 {
+            get {
+                object obj = ResourceManager.GetObject("completePageHeader2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap contactInfoPH {
             get {
                 object obj = ResourceManager.GetObject("contactInfoPH", resourceCulture);

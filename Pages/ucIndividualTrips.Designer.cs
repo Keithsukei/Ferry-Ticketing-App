@@ -31,7 +31,6 @@
             this.lblTo = new System.Windows.Forms.Label();
             this.lblFrom = new System.Windows.Forms.Label();
             this.pnlCodeToCode = new System.Windows.Forms.Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pnlDateSliderButtons = new System.Windows.Forms.Panel();
             this.btnRight = new System.Windows.Forms.Button();
             this.btnDate10 = new System.Windows.Forms.Button();
@@ -45,12 +44,13 @@
             this.btnDate2 = new System.Windows.Forms.Button();
             this.btnDate1 = new System.Windows.Forms.Button();
             this.btnLeft = new System.Windows.Forms.Button();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pnlIndividualTripsPH = new System.Windows.Forms.Panel();
             this.btnSelect = new System.Windows.Forms.Button();
             this.lblPrice = new System.Windows.Forms.Label();
             this.lblTicketPrice = new System.Windows.Forms.Label();
             this.pnlAccommodationPH = new System.Windows.Forms.Panel();
-            this.cmbBoxAccommodation = new System.Windows.Forms.ComboBox();
+            this.cmbBoxSeatType = new System.Windows.Forms.ComboBox();
             this.pnlIndividualTripsHeader = new System.Windows.Forms.Panel();
             this.pnlLogoNamePH = new System.Windows.Forms.Panel();
             this.lblVesselName = new System.Windows.Forms.Label();
@@ -61,8 +61,8 @@
             this.lblTravelTime = new System.Windows.Forms.Label();
             this.lblDTime = new System.Windows.Forms.Label();
             this.pnlCodeToCode.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.pnlDateSliderButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.pnlIndividualTripsPH.SuspendLayout();
             this.pnlAccommodationPH.SuspendLayout();
             this.pnlIndividualTripsHeader.SuspendLayout();
@@ -104,16 +104,6 @@
             this.pnlCodeToCode.Name = "pnlCodeToCode";
             this.pnlCodeToCode.Size = new System.Drawing.Size(602, 27);
             this.pnlCodeToCode.TabIndex = 9;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Image = global::Ferry_Ticketing_App.Properties.Resources.arrowright1;
-            this.pictureBox3.Location = new System.Drawing.Point(103, 0);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox3.TabIndex = 2;
-            this.pictureBox3.TabStop = false;
             // 
             // pnlDateSliderButtons
             // 
@@ -249,7 +239,7 @@
             this.btnDate2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDate2.FlatAppearance.BorderSize = 0;
             this.btnDate2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDate2.Location = new System.Drawing.Point(96, 1);
+            this.btnDate2.Location = new System.Drawing.Point(93, 1);
             this.btnDate2.Name = "btnDate2";
             this.btnDate2.Size = new System.Drawing.Size(50, 50);
             this.btnDate2.TabIndex = 0;
@@ -261,7 +251,7 @@
             this.btnDate1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDate1.FlatAppearance.BorderSize = 0;
             this.btnDate1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDate1.Location = new System.Drawing.Point(47, 1);
+            this.btnDate1.Location = new System.Drawing.Point(45, 1);
             this.btnDate1.Name = "btnDate1";
             this.btnDate1.Size = new System.Drawing.Size(47, 50);
             this.btnDate1.TabIndex = 0;
@@ -279,6 +269,16 @@
             this.btnLeft.Size = new System.Drawing.Size(46, 50);
             this.btnLeft.TabIndex = 0;
             this.btnLeft.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Image = global::Ferry_Ticketing_App.Properties.Resources.arrowright1;
+            this.pictureBox3.Location = new System.Drawing.Point(103, 0);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox3.TabIndex = 2;
+            this.pictureBox3.TabStop = false;
             // 
             // pnlIndividualTripsPH
             // 
@@ -332,22 +332,22 @@
             // 
             this.pnlAccommodationPH.BackColor = System.Drawing.Color.Transparent;
             this.pnlAccommodationPH.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.individualTripsDropdownBG;
-            this.pnlAccommodationPH.Controls.Add(this.cmbBoxAccommodation);
+            this.pnlAccommodationPH.Controls.Add(this.cmbBoxSeatType);
             this.pnlAccommodationPH.Location = new System.Drawing.Point(27, 120);
             this.pnlAccommodationPH.Name = "pnlAccommodationPH";
             this.pnlAccommodationPH.Size = new System.Drawing.Size(214, 49);
             this.pnlAccommodationPH.TabIndex = 1;
             // 
-            // cmbBoxAccommodation
+            // cmbBoxSeatType
             // 
-            this.cmbBoxAccommodation.BackColor = System.Drawing.Color.White;
-            this.cmbBoxAccommodation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbBoxAccommodation.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
-            this.cmbBoxAccommodation.FormattingEnabled = true;
-            this.cmbBoxAccommodation.Location = new System.Drawing.Point(7, 3);
-            this.cmbBoxAccommodation.Name = "cmbBoxAccommodation";
-            this.cmbBoxAccommodation.Size = new System.Drawing.Size(203, 41);
-            this.cmbBoxAccommodation.TabIndex = 0;
+            this.cmbBoxSeatType.BackColor = System.Drawing.Color.White;
+            this.cmbBoxSeatType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbBoxSeatType.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.cmbBoxSeatType.FormattingEnabled = true;
+            this.cmbBoxSeatType.Location = new System.Drawing.Point(6, 6);
+            this.cmbBoxSeatType.Name = "cmbBoxSeatType";
+            this.cmbBoxSeatType.Size = new System.Drawing.Size(203, 37);
+            this.cmbBoxSeatType.TabIndex = 0;
             // 
             // pnlIndividualTripsHeader
             // 
@@ -375,19 +375,19 @@
             // 
             // lblVesselName
             // 
-            this.lblVesselName.AutoSize = true;
             this.lblVesselName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVesselName.Location = new System.Drawing.Point(174, 38);
+            this.lblVesselName.Location = new System.Drawing.Point(125, 39);
             this.lblVesselName.Name = "lblVesselName";
-            this.lblVesselName.Size = new System.Drawing.Size(91, 15);
+            this.lblVesselName.Size = new System.Drawing.Size(186, 15);
             this.lblVesselName.TabIndex = 1;
             this.lblVesselName.Text = "Vessel Name";
+            this.lblVesselName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(155, 20);
+            this.label15.Location = new System.Drawing.Point(150, 20);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(137, 16);
             this.label15.TabIndex = 1;
@@ -425,27 +425,27 @@
             // 
             // lblTravelTime
             // 
-            this.lblTravelTime.AutoSize = true;
             this.lblTravelTime.BackColor = System.Drawing.Color.Transparent;
             this.lblTravelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTravelTime.ForeColor = System.Drawing.Color.White;
-            this.lblTravelTime.Location = new System.Drawing.Point(74, 43);
+            this.lblTravelTime.Location = new System.Drawing.Point(68, 43);
             this.lblTravelTime.Name = "lblTravelTime";
             this.lblTravelTime.Size = new System.Drawing.Size(108, 20);
             this.lblTravelTime.TabIndex = 0;
             this.lblTravelTime.Text = "Travel Time";
+            this.lblTravelTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblDTime
             // 
-            this.lblDTime.AutoSize = true;
             this.lblDTime.BackColor = System.Drawing.Color.Transparent;
             this.lblDTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.75F, System.Drawing.FontStyle.Bold);
             this.lblDTime.ForeColor = System.Drawing.Color.White;
-            this.lblDTime.Location = new System.Drawing.Point(90, 8);
+            this.lblDTime.Location = new System.Drawing.Point(35, 8);
             this.lblDTime.Name = "lblDTime";
-            this.lblDTime.Size = new System.Drawing.Size(73, 29);
+            this.lblDTime.Size = new System.Drawing.Size(180, 29);
             this.lblDTime.TabIndex = 0;
             this.lblDTime.Text = "Time";
+            this.lblDTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ucIndividualTrips
             // 
@@ -459,8 +459,8 @@
             this.Size = new System.Drawing.Size(602, 318);
             this.pnlCodeToCode.ResumeLayout(false);
             this.pnlCodeToCode.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.pnlDateSliderButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.pnlIndividualTripsPH.ResumeLayout(false);
             this.pnlIndividualTripsPH.PerformLayout();
             this.pnlAccommodationPH.ResumeLayout(false);
@@ -469,7 +469,6 @@
             this.pnlLogoNamePH.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.pnlTimePH.ResumeLayout(false);
-            this.pnlTimePH.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
 
@@ -487,7 +486,7 @@
         private System.Windows.Forms.Label lblTravelTime;
         private System.Windows.Forms.Label lblDTime;
         private System.Windows.Forms.Panel pnlAccommodationPH;
-        private System.Windows.Forms.ComboBox cmbBoxAccommodation;
+        private System.Windows.Forms.ComboBox cmbBoxSeatType;
         private System.Windows.Forms.Label lblTicketPrice;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Button btnSelect;

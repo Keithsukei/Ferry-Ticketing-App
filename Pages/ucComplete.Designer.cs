@@ -618,7 +618,7 @@
             // 
             // pbCompleteHeader
             // 
-            this.pbCompleteHeader.Image = global::Ferry_Ticketing_App.Properties.Resources.completepageHeader;
+            this.pbCompleteHeader.Image = global::Ferry_Ticketing_App.Properties.Resources.completePageHeader2;
             this.pbCompleteHeader.Location = new System.Drawing.Point(23, 24);
             this.pbCompleteHeader.Name = "pbCompleteHeader";
             this.pbCompleteHeader.Size = new System.Drawing.Size(954, 127);
@@ -633,7 +633,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pnlComplete);
             this.Name = "ucComplete";
-            this.Size = new System.Drawing.Size(1009, 720);
+            this.Size = new System.Drawing.Size(1026, 720);
             this.pnlComplete.ResumeLayout(false);
             this.pnlTicketPH.ResumeLayout(false);
             this.pnlTicketPH.PerformLayout();

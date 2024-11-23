@@ -29,26 +29,26 @@
         private void InitializeComponent()
         {
             this.pnlSearchRoundTrip = new System.Windows.Forms.Panel();
+            this.ucIndividualTrips2 = new Ferry_Ticketing_App.Pages.ucIndividualTrips();
+            this.ucIndividualTrips1 = new Ferry_Ticketing_App.Pages.ucIndividualTrips();
             this.button1 = new System.Windows.Forms.Button();
             this.pnlSummary = new System.Windows.Forms.Panel();
             this.btnSummaryContinue = new System.Windows.Forms.Button();
             this.pblblSummary = new System.Windows.Forms.PictureBox();
             this.pbProgress = new System.Windows.Forms.PictureBox();
             this.pnlItineraryPH = new System.Windows.Forms.Panel();
-            this.btnModifyItenerary = new System.Windows.Forms.Button();
+            this.btnModifyItinerary = new System.Windows.Forms.Button();
             this.pbArrowLR2 = new System.Windows.Forms.PictureBox();
-            this.lblArrival = new System.Windows.Forms.Label();
+            this.lblReturn = new System.Windows.Forms.Label();
             this.lblDeparture = new System.Windows.Forms.Label();
             this.lblPassenger = new System.Windows.Forms.Label();
             this.lblToCity = new System.Windows.Forms.Label();
             this.lblFromCity = new System.Windows.Forms.Label();
             this.lblToCode = new System.Windows.Forms.Label();
-            this.lblArrivalDate = new System.Windows.Forms.Label();
+            this.lblReturnDate = new System.Windows.Forms.Label();
             this.lblDepartureDate = new System.Windows.Forms.Label();
             this.lblNoOfPassengers = new System.Windows.Forms.Label();
             this.lblFromCode = new System.Windows.Forms.Label();
-            this.ucIndividualTrips2 = new Ferry_Ticketing_App.Pages.ucIndividualTrips();
-            this.ucIndividualTrips1 = new Ferry_Ticketing_App.Pages.ucIndividualTrips();
             this.pnlSearchRoundTrip.SuspendLayout();
             this.pnlSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pblblSummary)).BeginInit();
@@ -61,9 +61,9 @@
             // 
             this.pnlSearchRoundTrip.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.pnlFindTripsbg1;
             this.pnlSearchRoundTrip.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlSearchRoundTrip.Controls.Add(this.button1);
             this.pnlSearchRoundTrip.Controls.Add(this.ucIndividualTrips2);
             this.pnlSearchRoundTrip.Controls.Add(this.ucIndividualTrips1);
+            this.pnlSearchRoundTrip.Controls.Add(this.button1);
             this.pnlSearchRoundTrip.Controls.Add(this.pnlSummary);
             this.pnlSearchRoundTrip.Controls.Add(this.pbProgress);
             this.pnlSearchRoundTrip.Controls.Add(this.pnlItineraryPH);
@@ -72,6 +72,22 @@
             this.pnlSearchRoundTrip.Name = "pnlSearchRoundTrip";
             this.pnlSearchRoundTrip.Size = new System.Drawing.Size(1009, 1330);
             this.pnlSearchRoundTrip.TabIndex = 1;
+            // 
+            // ucIndividualTrips2
+            // 
+            this.ucIndividualTrips2.BackColor = System.Drawing.Color.Transparent;
+            this.ucIndividualTrips2.Location = new System.Drawing.Point(12, 641);
+            this.ucIndividualTrips2.Name = "ucIndividualTrips2";
+            this.ucIndividualTrips2.Size = new System.Drawing.Size(602, 318);
+            this.ucIndividualTrips2.TabIndex = 8;
+            // 
+            // ucIndividualTrips1
+            // 
+            this.ucIndividualTrips1.BackColor = System.Drawing.Color.Transparent;
+            this.ucIndividualTrips1.Location = new System.Drawing.Point(12, 248);
+            this.ucIndividualTrips1.Name = "ucIndividualTrips1";
+            this.ucIndividualTrips1.Size = new System.Drawing.Size(602, 318);
+            this.ucIndividualTrips1.TabIndex = 7;
             // 
             // button1
             // 
@@ -133,15 +149,15 @@
             this.pnlItineraryPH.BackColor = System.Drawing.Color.Transparent;
             this.pnlItineraryPH.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.iteneraryPH;
             this.pnlItineraryPH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlItineraryPH.Controls.Add(this.btnModifyItenerary);
+            this.pnlItineraryPH.Controls.Add(this.btnModifyItinerary);
             this.pnlItineraryPH.Controls.Add(this.pbArrowLR2);
-            this.pnlItineraryPH.Controls.Add(this.lblArrival);
+            this.pnlItineraryPH.Controls.Add(this.lblReturn);
             this.pnlItineraryPH.Controls.Add(this.lblDeparture);
             this.pnlItineraryPH.Controls.Add(this.lblPassenger);
             this.pnlItineraryPH.Controls.Add(this.lblToCity);
             this.pnlItineraryPH.Controls.Add(this.lblFromCity);
             this.pnlItineraryPH.Controls.Add(this.lblToCode);
-            this.pnlItineraryPH.Controls.Add(this.lblArrivalDate);
+            this.pnlItineraryPH.Controls.Add(this.lblReturnDate);
             this.pnlItineraryPH.Controls.Add(this.lblDepartureDate);
             this.pnlItineraryPH.Controls.Add(this.lblNoOfPassengers);
             this.pnlItineraryPH.Controls.Add(this.lblFromCode);
@@ -150,17 +166,17 @@
             this.pnlItineraryPH.Size = new System.Drawing.Size(986, 104);
             this.pnlItineraryPH.TabIndex = 0;
             // 
-            // btnModifyItenerary
+            // btnModifyItinerary
             // 
-            this.btnModifyItenerary.FlatAppearance.BorderSize = 0;
-            this.btnModifyItenerary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModifyItenerary.Image = global::Ferry_Ticketing_App.Properties.Resources.modifyitinerary;
-            this.btnModifyItenerary.Location = new System.Drawing.Point(807, 0);
-            this.btnModifyItenerary.Name = "btnModifyItenerary";
-            this.btnModifyItenerary.Size = new System.Drawing.Size(173, 94);
-            this.btnModifyItenerary.TabIndex = 2;
-            this.btnModifyItenerary.UseVisualStyleBackColor = true;
-            this.btnModifyItenerary.Click += new System.EventHandler(this.btnModifyItenerary_Click);
+            this.btnModifyItinerary.FlatAppearance.BorderSize = 0;
+            this.btnModifyItinerary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModifyItinerary.Image = global::Ferry_Ticketing_App.Properties.Resources.modifyitinerary;
+            this.btnModifyItinerary.Location = new System.Drawing.Point(807, 0);
+            this.btnModifyItinerary.Name = "btnModifyItinerary";
+            this.btnModifyItinerary.Size = new System.Drawing.Size(173, 94);
+            this.btnModifyItinerary.TabIndex = 2;
+            this.btnModifyItinerary.UseVisualStyleBackColor = true;
+            this.btnModifyItinerary.Click += new System.EventHandler(this.btnModifyItinerary_Click);
             // 
             // pbArrowLR2
             // 
@@ -172,15 +188,15 @@
             this.pbArrowLR2.TabIndex = 1;
             this.pbArrowLR2.TabStop = false;
             // 
-            // lblArrival
+            // lblReturn
             // 
-            this.lblArrival.AutoSize = true;
-            this.lblArrival.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArrival.Location = new System.Drawing.Point(693, 59);
-            this.lblArrival.Name = "lblArrival";
-            this.lblArrival.Size = new System.Drawing.Size(48, 18);
-            this.lblArrival.TabIndex = 0;
-            this.lblArrival.Text = "Arrival";
+            this.lblReturn.AutoSize = true;
+            this.lblReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReturn.Location = new System.Drawing.Point(691, 59);
+            this.lblReturn.Name = "lblReturn";
+            this.lblReturn.Size = new System.Drawing.Size(52, 18);
+            this.lblReturn.TabIndex = 0;
+            this.lblReturn.Text = "Return";
             // 
             // lblDeparture
             // 
@@ -234,15 +250,15 @@
             this.lblToCode.TabIndex = 0;
             this.lblToCode.Text = "Code";
             // 
-            // lblArrivalDate
+            // lblReturnDate
             // 
-            this.lblArrivalDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArrivalDate.Location = new System.Drawing.Point(634, 25);
-            this.lblArrivalDate.Name = "lblArrivalDate";
-            this.lblArrivalDate.Size = new System.Drawing.Size(166, 27);
-            this.lblArrivalDate.TabIndex = 0;
-            this.lblArrivalDate.Text = "ADate";
-            this.lblArrivalDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblReturnDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReturnDate.Location = new System.Drawing.Point(634, 25);
+            this.lblReturnDate.Name = "lblReturnDate";
+            this.lblReturnDate.Size = new System.Drawing.Size(166, 27);
+            this.lblReturnDate.TabIndex = 0;
+            this.lblReturnDate.Text = "RDate";
+            this.lblReturnDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblDepartureDate
             // 
@@ -274,22 +290,6 @@
             this.lblFromCode.TabIndex = 0;
             this.lblFromCode.Text = "Code";
             // 
-            // ucIndividualTrips2
-            // 
-            this.ucIndividualTrips2.BackColor = System.Drawing.Color.Transparent;
-            this.ucIndividualTrips2.Location = new System.Drawing.Point(15, 612);
-            this.ucIndividualTrips2.Name = "ucIndividualTrips2";
-            this.ucIndividualTrips2.Size = new System.Drawing.Size(602, 318);
-            this.ucIndividualTrips2.TabIndex = 5;
-            // 
-            // ucIndividualTrips1
-            // 
-            this.ucIndividualTrips1.BackColor = System.Drawing.Color.Transparent;
-            this.ucIndividualTrips1.Location = new System.Drawing.Point(15, 248);
-            this.ucIndividualTrips1.Name = "ucIndividualTrips1";
-            this.ucIndividualTrips1.Size = new System.Drawing.Size(602, 318);
-            this.ucIndividualTrips1.TabIndex = 5;
-            // 
             // ucSearchRoundTrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -313,25 +313,25 @@
         #endregion
 
         private System.Windows.Forms.Panel pnlSearchRoundTrip;
-        public ucIndividualTrips ucIndividualTrips2;
-        public ucIndividualTrips ucIndividualTrips1;
         private System.Windows.Forms.Panel pnlSummary;
         private System.Windows.Forms.Button btnSummaryContinue;
         private System.Windows.Forms.PictureBox pblblSummary;
         private System.Windows.Forms.Panel pnlItineraryPH;
-        private System.Windows.Forms.Button btnModifyItenerary;
+        private System.Windows.Forms.Button btnModifyItinerary;
         private System.Windows.Forms.PictureBox pbArrowLR2;
-        private System.Windows.Forms.Label lblArrival;
+        private System.Windows.Forms.Label lblReturn;
         private System.Windows.Forms.Label lblDeparture;
         private System.Windows.Forms.Label lblPassenger;
         private System.Windows.Forms.Label lblToCity;
         private System.Windows.Forms.Label lblFromCity;
         private System.Windows.Forms.Label lblToCode;
-        private System.Windows.Forms.Label lblArrivalDate;
+        private System.Windows.Forms.Label lblReturnDate;
         private System.Windows.Forms.Label lblDepartureDate;
         private System.Windows.Forms.Label lblNoOfPassengers;
         private System.Windows.Forms.Label lblFromCode;
         private System.Windows.Forms.PictureBox pbProgress;
         private System.Windows.Forms.Button button1;
+        public ucIndividualTrips ucIndividualTrips2;
+        public ucIndividualTrips ucIndividualTrips1;
     }
 }

@@ -56,7 +56,6 @@ namespace Ferry_Ticketing_App.Pages
                 dtpReturn.Visible = true;
             }
         }
-
         private void rbOneWay_CheckedChanged(object sender, EventArgs e)
         {
             if (rbOneWay.Checked)
@@ -132,6 +131,7 @@ namespace Ferry_Ticketing_App.Pages
             }
         }
 
+
         private void SelectSuggestion(TextBox textBox, ListBox suggestionBox)
         {
             if (suggestionBox.SelectedItem != null)
@@ -143,70 +143,59 @@ namespace Ferry_Ticketing_App.Pages
 
         private void btnSearchTrips_Click(object sender, EventArgs e)
         {
-            DateTime selectedDate = dtpDepart.Value;
+            DateTime departDate = dtpDepart.Value;
+            DateTime returnDate = dtpReturn.Value;
             var searchRoundControl = this.Parent.Controls.OfType<ucSearchRoundTrip>().FirstOrDefault();
+
             if (searchRoundControl != null)
             {
-                string fromPort = txtFrom.Text.Trim();
-                string toPort = txtTo.Text.Trim();
-                DateTime departDate = dtpDepart.Value;
-                DateTime returnDate = dtpReturn.Value;
-                int passengers;
-                var individualTrips = searchRoundControl.Controls.OfType<ucIndividualTrips>().FirstOrDefault();
-
                 if (searchRoundControl.ucIndividualTrips1 != null)
                 {
-                    // Pass the departure date to ucIndividualTrips1
-                    searchRoundControl.ucIndividualTrips1.InitializeWithDate(departDate);
+                    string fromCity = txtFrom.Text;
+                    string toCity = txtTo.Text;
 
-                    // Debug: Confirm the date is passed correctly
-                    Console.WriteLine($"Departure Date Passed to IndividualTrips1: {departDate.ToShortDateString()}");
+                    var fromPort = portsList.FirstOrDefault(p => p.City == fromCity)?.PortName;
+                    var toPort = portsList.FirstOrDefault(p => p.City == toCity)?.PortName;
+
+                    if (fromPort == null || toPort == null)
+                    {
+                        MessageBox.Show("Invalid port selection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Initialize trips in ucIndividualTrips1 with route and date
+                    searchRoundControl.ucIndividualTrips1.InitializeWithRouteAndDate(
+                        fromPort, toPort, departDate, Ferryline.AllTrips, portsList);
+
+                    if (rbRoundTrip.Checked)
+                    {
+                        // If it's a round trip, initialize the return trip as well
+                        searchRoundControl.ucIndividualTrips2.InitializeWithRouteAndDate(
+                            toPort, fromPort, returnDate, Ferryline.AllTrips, portsList);
+                    }
+
+                    // Update the itinerary labels
+                    string fromCode = portsList.FirstOrDefault(p => p.City == fromCity)?.Code ?? "";
+                    string toCode = portsList.FirstOrDefault(p => p.City == toCity)?.Code ?? "";
+                    int passengers = 1;
+
+                    searchRoundControl.UpdateItinerary(fromCode, fromCity, toCode, toCity,
+                        passengers, departDate, returnDate);
                 }
                 else
                 {
-                    MessageBox.Show("ucIndividualTrips1 control is not initialized in ucSearchRoundTrip.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("ucIndividualTrips1 control is not initialized in ucSearchRoundTrip.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-                if (!int.TryParse(txtPassengers.Text, out passengers) || passengers <= 0)
-                {
-                    MessageBox.Show("Please enter a valid number of passengers.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                var fromPortData = portsList.FirstOrDefault(p =>
-                    p.PortName.Equals(fromPort, StringComparison.OrdinalIgnoreCase) ||
-                    p.City.Equals(fromPort, StringComparison.OrdinalIgnoreCase));
-                var toPortData = portsList.FirstOrDefault(p =>
-                    p.PortName.Equals(toPort, StringComparison.OrdinalIgnoreCase) ||
-                    p.City.Equals(toPort, StringComparison.OrdinalIgnoreCase));
-
-                if (fromPortData == null || toPortData == null)
-                {
-                    MessageBox.Show("Invalid ports selected.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                searchRoundControl.UpdateItinerary(
-                    fromPortData.Code,
-                    fromPortData.City,
-                    toPortData.Code,
-                    toPortData.City,
-                    passengers,
-                    departDate,
-                    returnDate
-                );
 
                 searchRoundControl.Visible = true;
                 searchRoundControl.BringToFront();
-
-                // Pass the selected departure date to the slider
-                searchRoundControl.LoadInitialDates(departDate);
             }
             else
             {
-                MessageBox.Show("Could not find the ucSearchRound control.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not find the ucSearchRound control.",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 }

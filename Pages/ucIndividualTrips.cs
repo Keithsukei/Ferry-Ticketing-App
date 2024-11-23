@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ferry_Ticketing_App.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +17,11 @@ namespace Ferry_Ticketing_App.Pages
     {
         private DateTime currentDateStart;
         private List<Button> dateButtons;
+        private List<Time> availableTrips;
+        private string sourcePort;
+        private string destinationPort;
+        private List<Ferryline> ferrylines;
+        private List<Ports> ports;
 
         public ucIndividualTrips()
         {
@@ -25,56 +31,169 @@ namespace Ferry_Ticketing_App.Pages
                 btnDate1, btnDate2, btnDate3, btnDate4, btnDate5,
                 btnDate6, btnDate7, btnDate8, btnDate9, btnDate10
             };
-            
 
             // Hook up navigation button events
             btnLeft.Click += (s, e) => UpdateDates(-10);
             btnRight.Click += (s, e) => UpdateDates(10);
+            PopulateSeatTypes();
         }
+        private void PopulateSeatTypes()
+        {
+            cmbBoxSeatType.Items.Clear();
+
+            foreach (var seat in Seat.SeatDictionary.Keys)
+            {
+                cmbBoxSeatType.Items.Add(seat);
+            }
+
+            if (cmbBoxSeatType.Items.Count > 0)
+            {
+                cmbBoxSeatType.SelectedIndex = 0;
+            }
+        }
+
         private void HighlightDate(DateTime dateToHighlight)
         {
             foreach (var button in dateButtons)
             {
-                if (button.Tag is DateTime buttonDate && buttonDate.Date == dateToHighlight.Date) // Match only the date part
+                if (button.Tag is DateTime buttonDate && buttonDate.Date == dateToHighlight.Date)
                 {
                     button.FlatStyle = FlatStyle.Flat;
-                    button.FlatAppearance.BorderSize = 1;
-                    button.FlatAppearance.BorderColor = Color.Black; // Set a border color
-                    button.BackColor = Color.LightBlue;                 // Optional: highlight background
-                    button.ForeColor = Color.Black;                    // Optional: change text color
+                    button.FlatAppearance.BorderColor = Color.Black;
+                    button.BackColor = Color.LightBlue;
+                    button.ForeColor = Color.Black;
                 }
                 else
                 {
                     button.FlatStyle = FlatStyle.Flat;
-                    button.FlatAppearance.BorderSize = 0;
                     button.BackColor = Color.White;
                     button.ForeColor = Color.Black;
                 }
             }
         }
 
-        public void SetStartDate(DateTime startDate)
+        internal void InitializeWithRouteAndDate(string from, string to, DateTime startDate, List<Ferryline> ferryLines, List<Ports> portsList)
         {
-            currentDateStart = startDate;
+            sourcePort = from;
+            destinationPort = to;
+            ferrylines = ferryLines;
+            ports = portsList;
 
-            int dayOffset = 0;
-            foreach (Control control in pnlDateSliderButtons.Controls)
+            currentDateStart = startDate;
+            UpdateDateButtons();
+            HighlightDate(startDate);
+            UpdateTripDetails(startDate);
+        }
+
+        private Dictionary<DateTime, (string VesselName, DateTime DepartureTime, TimeSpan TravelTime)> tripDetailsCache
+        = new Dictionary<DateTime, (string VesselName, DateTime DepartureTime, TimeSpan TravelTime)>();
+
+        public void UpdateTripDetails(DateTime selectedDate)
+        {
+            // Check if the ferry and departure time are already stored for this date
+            if (tripDetailsCache.ContainsKey(selectedDate))
             {
-                if (control is Button button)
+                // Use the cached ferry and time
+                var cachedDetails = tripDetailsCache[selectedDate];
+                UpdateUIWithFerryDetails(cachedDetails.VesselName, cachedDetails.DepartureTime, cachedDetails.TravelTime);
+            }
+            else
+            {
+                // Randomly pick a ferry if not already cached
+                var availableFerries = Ferryline.AllTrips.ToList();
+                var random = new Random();
+                var randomFerry = availableFerries[random.Next(availableFerries.Count)];
+
+                // Get the departure and arrival ports
+                var departurePort = ports.FirstOrDefault(p => p.PortName == sourcePort);
+                var arrivalPort = ports.FirstOrDefault(p => p.PortName == destinationPort);
+
+                if (departurePort != null && arrivalPort != null)
                 {
-                    DateTime date = currentDateStart.AddDays(dayOffset);
-                    button.Text = date.ToString("dd\nMMM");
-                    button.Tag = date;
-                    dayOffset++;
+                    // Calculate the distance using GeoUtils
+                    double distance = Utilities.GeoUtils.GetDistance(departurePort.Latitude, departurePort.Longitude,
+                                                                     arrivalPort.Latitude, arrivalPort.Longitude);
+
+                    // Calculate travel time (assuming ferry speed is 30 km/h)
+                    TimeSpan travelTime = Utilities.GeoUtils.CalculateTravelTime(distance, 30);
+
+                    // Generate a random departure hour (between 6:00 AM and 10:00 PM)
+                    int randomHour = random.Next(6, 22);
+                    DateTime roundedDepartureTime = selectedDate.Date.AddHours(randomHour);
+
+                    // Store the selected ferry and its details
+                    tripDetailsCache[selectedDate] = (randomFerry.VesselName, roundedDepartureTime, travelTime);
+
+                    // Update UI with ferry details
+                    UpdateUIWithFerryDetails(randomFerry.VesselName, roundedDepartureTime, travelTime);
+
+                    // Now calculate the price based on the distance
+                    decimal basePricePerKm = 10m; // Example base price per kilometer in PHP
+                    decimal serviceCharge = 50m;  // Example service charge
+
+                    // Update the ticket price label
+                    decimal distanceInDecimal = (decimal)distance;
+                    Price price = new Price(distanceInDecimal * basePricePerKm, serviceCharge);
+                    lblTicketPrice.Text = price.CalculateFinalPrice().ToString("₱0.00"); // Display price in PHP
+                }
+                else
+                {
+                    ClearTripDetails();
                 }
             }
         }
-        public void InitializeWithDate(DateTime startDate)
+        private void UpdateUIWithFerryDetails(string vesselName, DateTime departureTime, TimeSpan travelTime)
         {
-            currentDateStart = startDate; // Set the starting date
-            HighlightDate(startDate);
-            UpdateDateButtons();
+            foreach (Control ctrl in pnlTimePH.Controls)
+            {
+                if (ctrl is Label label)
+                {
+                    switch (label.Name)
+                    {
+                        case "lblDTime":
+                            label.Text = departureTime.ToString("h:mm tt").ToUpper();
+                            break;
+                        case "lblTravelTime":
+                            label.Text = $"{travelTime.Hours} Hours";
+                            break;
+                    }
+                }
+            }
+
+            foreach (Control ctrl in pnlLogoNamePH.Controls)
+            {
+                if (ctrl is Label label && label.Name == "lblVesselName")
+                {
+                    label.Text = vesselName;
+                    break;
+                }
+            }
         }
+
+        public void ClearTripDetails()
+        {
+            foreach (Control ctrl in pnlTimePH.Controls)
+            {
+                if (ctrl is Label label)
+                {
+                    if (label.Name == "lblDTime" || label.Name == "lblTravelTime")
+                    {
+                        label.Text = "--:--";
+                    }
+                }
+            }
+
+            foreach (Control ctrl in pnlLogoNamePH.Controls)
+            {
+                if (ctrl is Label label && label.Name == "lblVesselName")
+                {
+                    label.Text = "No vessel available";
+                    break;
+                }
+            }
+        }
+
+
         private void UpdateDateButtons()
         {
             for (int i = 0; i < dateButtons.Count; i++)
@@ -83,16 +202,24 @@ namespace Ferry_Ticketing_App.Pages
                 dateButtons[i].Text = $"{date.Day}\n{date:ddd}\n{date:MMM}";
                 dateButtons[i].Tag = date;
 
+                // Ensure all buttons hook up the click event
                 dateButtons[i].Click -= DateButton_Click; // Avoid duplicate event handlers
                 dateButtons[i].Click += DateButton_Click;
             }
-
             HighlightDate(currentDateStart);
         }
 
         private void UpdateDates(int offset)
         {
-            currentDateStart = currentDateStart.AddDays(offset);
+            DateTime newDate = currentDateStart.AddDays(offset);
+
+            if (newDate < DateTime.MinValue || newDate > DateTime.MaxValue)
+            {
+                MessageBox.Show("The selected date range is invalid. Please adjust your navigation.", "Date Range Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            currentDateStart = newDate;
             UpdateDateButtons();
         }
 
@@ -101,6 +228,7 @@ namespace Ferry_Ticketing_App.Pages
             if (sender is Button selectedButton && selectedButton.Tag is DateTime selectedDate)
             {
                 HighlightDate(selectedDate);
+                UpdateTripDetails(selectedDate);
             }
         }
 

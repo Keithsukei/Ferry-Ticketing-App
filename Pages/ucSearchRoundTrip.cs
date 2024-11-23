@@ -12,28 +12,18 @@ namespace Ferry_Ticketing_App.Pages
 {
     public partial class ucSearchRoundTrip : UserControl
     {
-        private DateTime startingDate;
 
         public ucSearchRoundTrip()
         {
             InitializeComponent();
         }
-        public void LoadInitialDates(DateTime selectedDate)
-        {
-            var individualTripsControl = this.Controls.OfType<ucIndividualTrips>().FirstOrDefault();
-            if (individualTripsControl != null)
-            {
-                individualTripsControl.SetStartDate(selectedDate); // Ensure this method works
-            }
-        }
+
         public void UpdateItinerary(string fromCode, string fromCity, string toCode, string toCity, int passengers, DateTime departDate, DateTime returnDate)
         {
             foreach (Control ctrl in pnlItineraryPH.Controls)
             {
-                if (ctrl is Label)
+                if (ctrl is Label label)
                 {
-                    var label = (Label)ctrl;
-
                     switch (label.Name)
                     {
                         case "lblFromCode":
@@ -54,7 +44,7 @@ namespace Ferry_Ticketing_App.Pages
                         case "lblDepartureDate":
                             label.Text = departDate.ToString("yyyy-MM-dd");
                             break;
-                        case "lblArrivalDate":
+                        case "lblReturnDate":
                             label.Text = returnDate.ToString("yyyy-MM-dd");
                             break;
                     }
@@ -62,13 +52,17 @@ namespace Ferry_Ticketing_App.Pages
             }
         }
 
-        private void btnModifyItenerary_Click(object sender, EventArgs e)
+        private void btnModifyItinerary_Click(object sender, EventArgs e)
         {
             var findTrips = this.Parent.Controls.OfType<ucFindTrips>().FirstOrDefault();
+            var modifyItinerary = this.Parent.Controls.OfType<ucIndividualTrips>().FirstOrDefault();
 
+            // Bring the 'FindTrips' control to the front
             findTrips.BringToFront();
             findTrips.Visible = true;
-            
+
+            // Trigger the recalculation when switching to the Modify Itinerary page
+            modifyItinerary.ClearTripDetails(); // Pass the appropriate selected date
         }
     }
 }

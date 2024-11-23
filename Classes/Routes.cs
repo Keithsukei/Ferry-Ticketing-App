@@ -10,7 +10,6 @@ namespace Ferry_Ticketing_App.Classes
     {
         private List<(string sourcePort, string destinationPort, string[] ferryLines)> routes;
         private List<Ports> allPorts;
-
         public Routes(List<Ports> portsFromPortsClass)
         {
             this.allPorts = portsFromPortsClass;

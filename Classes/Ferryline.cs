@@ -10,16 +10,16 @@ namespace Ferry_Ticketing_App.Classes
     {
         public int Id { get; set; }
         public string Company { get; set; }
-        public string Vessel { get; set; }
+        public string VesselName { get; set; }
 
-        public Ferryline(int id, string company, string vessel)
+        public Ferryline(int id, string company, string vesselName)
         {
             Id = id;
             Company = company;
-            Vessel = vessel;
+            VesselName = vesselName;
         }
 
-        List<Ferryline> allTrips = new List<Ferryline>
+        public static List<Ferryline> AllTrips { get; } = new List<Ferryline>
         {
             new Ferryline(1, "Aerian Ferries Co.", "MV Queen of the Seas"),
             new Ferryline(2, "Aerian Ferries Co.", "MV Island Voyager"),
@@ -35,7 +35,7 @@ namespace Ferry_Ticketing_App.Classes
             new Ferryline(12, "Aerian Ferries Co.", "MV Pacific Spirit"),
             new Ferryline(13, "Aerian Ferries Co.", "MV Ocean Odyssey"),
             new Ferryline(14, "Aerian Ferries Co.", "MV Island Hopper"),
-            new Ferryline   (15, "Aerian Ferries Co.", "MV Coral Voyager"),
+            new Ferryline(15, "Aerian Ferries Co.", "MV Coral Voyager"),
         };
     }
 }
