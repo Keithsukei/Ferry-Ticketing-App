@@ -121,9 +121,6 @@
   <data name="departureopen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\departureopen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btnDeleteReturnTrip" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btnDeleteReturnTrip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="btnPaymentPalawan" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btnPaymentPalawan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -148,9 +145,6 @@
   <data name="btngrabPay" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btngrabPay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="editItenerary" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\editItenerary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ticketPH" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ticketPH.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -172,6 +166,9 @@
   <data name="btnBackPassengerInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btnBackPassengerInfo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="departureSummaryNoSelected" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\departureSummaryNoSelected.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="separator2Dash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\separator2Dash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -183,12 +180,6 @@
   </data>
   <data name="individualTripsBGTime" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\individualTripsBGTime.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Passengerdetails" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Passengerdetails.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btnPaymentMaya" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btnPaymentMaya.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="minimize" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\minimize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -208,11 +199,11 @@
   <data name="txtFrom" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\txtFrom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="loginpanelbgw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\loginpanelbgw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="headerCheckout" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\headerCheckout.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ticketPH2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ticketPH2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="txtReturn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\txtReturn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -228,6 +219,9 @@
   </data>
   <data name="ticketPlaceholder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ticketPlaceholder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="paymentMaya" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\paymentMaya.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="paymentBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\paymentBG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -249,6 +243,9 @@
   </data>
   <data name="txtPassengers" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\txtPassengers.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="progressPayment" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\progressPayment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrowLR2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrowLR2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -274,23 +271,20 @@
   <data name="returnDetails" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\returnDetails.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btnSummaryContinue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btnSummaryContinue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="returnclosed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\returnclosed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Summary" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Summary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="btnSelect" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btnSelect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="roundtTripSummaryPHFinal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\roundtTripSummaryPHFinal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="departureclosed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\departureclosed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="yourealmostthereheader" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\yourealmostthereheader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="stateroundbg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\stateroundbg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="roundtTripSummaryPH3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\roundtTripSummaryPH3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -313,11 +307,8 @@
   <data name="loginpanelplaceholder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\loginpanelplaceholder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="arrowright3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arrowright3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btnContinuePassengerInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btnContinuePassengerInfo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="editItenerary" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\editItenerary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DateTimePicker" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DateTimePicker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -325,8 +316,8 @@
   <data name="popManila" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\popManila.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="checkoutbtnContinue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\checkoutbtnContinue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btnContinuePassengerInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnContinuePassengerInfo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="btnPaymentGcash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btnPaymentGcash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -340,14 +331,17 @@
   <data name="paymentGcash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\paymentGcash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="departureSummaryNoSelected" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\departureSummaryNoSelected.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btnDeleteReturnTrip" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnDeleteReturnTrip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="arrowright1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arrowright1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="stateroundbg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stateroundbg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pnlPassengerFillUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pnlPassengerFillUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ordersummary" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ordersummary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="modifyitinerary" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\modifyitinerary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -355,11 +349,14 @@
   <data name="popCeb2Mnl" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\popCeb2Mnl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ticketPHFinal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ticketPHFinal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="paymentPassengerInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\paymentPassengerInfo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ordersummary" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ordersummary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btnPaymentMaya" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnPaymentMaya.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pnlFindTripsbg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pnlFindTripsbg1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -376,8 +373,14 @@
   <data name="datePlaceholder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\datePlaceholder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="arrowright1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrowright1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="paymentSummaryBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\paymentSummaryBG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="completePageHeader2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\completePageHeader2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="returnopen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\returnopen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -388,8 +391,8 @@
   <data name="passengerInfoHeader" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\passengerInfoHeader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Passenger Details" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Passenger Details.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arrowright3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrowright3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="btnSearchTrip" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btnSearchTrip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -397,14 +400,14 @@
   <data name="btnCompleteDownload" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btnCompleteDownload.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="departureclosed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\departureclosed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="checkoutbtnContinue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\checkoutbtnContinue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrowLR" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrowLR.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="paymentMaya" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\paymentMaya.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="roundtTripSummaryPHFinal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\roundtTripSummaryPHFinal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pnlPassengerFillUp2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pnlPassengerFillUp2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -418,11 +421,11 @@
   <data name="arrowback" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrowback.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ticketPH2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ticketPH2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btnSummaryContinue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnSummaryContinue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Summary" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Summary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Passenger Details" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Passenger Details.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="roundTripSummaryPH" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\roundTripSummaryPH.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -430,8 +433,8 @@
   <data name="ticketPH4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ticketPH4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ticketPHFinal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ticketPHFinal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="loginpanelbgw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\loginpanelbgw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="contactInfoPH" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\contactInfoPH.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -448,10 +451,10 @@
   <data name="txtDepart" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\txtDepart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="progressPayment" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\progressPayment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Passengerdetails" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Passengerdetails.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="completePageHeader2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\completePageHeader2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="pnlDDSelectedBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pnlDDSelectedBG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -15,6 +15,9 @@ namespace Ferry_Ticketing_App.Pages
 {
     public partial class ucIndividualTrips : UserControl
     {
+        public event Action<TripDetails> TripSelected;
+        public event Action<ReturnTripDetails> ReturnTripSelected;
+        private ucSearchRoundTrip searchRoundTrip;
         private DateTime currentDateStart;
         private List<Button> dateButtons;
         private List<Time> availableTrips;
@@ -93,55 +96,63 @@ namespace Ferry_Ticketing_App.Pages
             // Check if the ferry and departure time are already stored for this date
             if (tripDetailsCache.ContainsKey(selectedDate))
             {
-                // Use the cached ferry and time
                 var cachedDetails = tripDetailsCache[selectedDate];
                 UpdateUIWithFerryDetails(cachedDetails.VesselName, cachedDetails.DepartureTime, cachedDetails.TravelTime);
+                return;
+            }
+
+            // Ensure available ferries exist
+            var availableFerries = Ferryline.AllTrips?.ToList();
+            if (availableFerries == null || !availableFerries.Any())
+            {
+                MessageBox.Show("No available ferries found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ClearTripDetails();
+                return;
+            }
+
+            // Randomly pick a ferry
+            var random = new Random();
+            var randomFerry = availableFerries[random.Next(availableFerries.Count)];
+
+            if (randomFerry == null)
+            {
+                MessageBox.Show("Failed to select a ferry.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ClearTripDetails();
+                return;
+            }
+
+            var departurePort = ports.FirstOrDefault(p => p.PortName == sourcePort);
+            var arrivalPort = ports.FirstOrDefault(p => p.PortName == destinationPort);
+
+            if (departurePort != null && arrivalPort != null)
+            {
+                double distance = Utilities.GeoUtils.GetDistance(
+                    departurePort.Latitude, departurePort.Longitude,
+                    arrivalPort.Latitude, arrivalPort.Longitude
+                );
+
+                TimeSpan travelTime = Utilities.GeoUtils.CalculateTravelTime(distance, 30);
+                int randomHour = random.Next(6, 22);
+                DateTime roundedDepartureTime = selectedDate.Date.AddHours(randomHour);
+
+                tripDetailsCache[selectedDate] = (randomFerry.VesselName, roundedDepartureTime, travelTime);
+
+                // Update the UI
+                UpdateUIWithFerryDetails(randomFerry.VesselName, roundedDepartureTime, travelTime);
+
+                decimal basePricePerKm = 10m;
+                decimal serviceCharge = 50m;
+                decimal distanceInDecimal = (decimal)distance;
+                Price price = new Price(distanceInDecimal * basePricePerKm, serviceCharge);
+                lblTicketPrice.Text = price.CalculateFinalPrice().ToString("₱0.00");
             }
             else
             {
-                // Randomly pick a ferry if not already cached
-                var availableFerries = Ferryline.AllTrips.ToList();
-                var random = new Random();
-                var randomFerry = availableFerries[random.Next(availableFerries.Count)];
-
-                // Get the departure and arrival ports
-                var departurePort = ports.FirstOrDefault(p => p.PortName == sourcePort);
-                var arrivalPort = ports.FirstOrDefault(p => p.PortName == destinationPort);
-
-                if (departurePort != null && arrivalPort != null)
-                {
-                    // Calculate the distance using GeoUtils
-                    double distance = Utilities.GeoUtils.GetDistance(departurePort.Latitude, departurePort.Longitude,
-                                                                     arrivalPort.Latitude, arrivalPort.Longitude);
-
-                    // Calculate travel time (assuming ferry speed is 30 km/h)
-                    TimeSpan travelTime = Utilities.GeoUtils.CalculateTravelTime(distance, 30);
-
-                    // Generate a random departure hour (between 6:00 AM and 10:00 PM)
-                    int randomHour = random.Next(6, 22);
-                    DateTime roundedDepartureTime = selectedDate.Date.AddHours(randomHour);
-
-                    // Store the selected ferry and its details
-                    tripDetailsCache[selectedDate] = (randomFerry.VesselName, roundedDepartureTime, travelTime);
-
-                    // Update UI with ferry details
-                    UpdateUIWithFerryDetails(randomFerry.VesselName, roundedDepartureTime, travelTime);
-
-                    // Now calculate the price based on the distance
-                    decimal basePricePerKm = 10m; // Example base price per kilometer in PHP
-                    decimal serviceCharge = 50m;  // Example service charge
-
-                    // Update the ticket price label
-                    decimal distanceInDecimal = (decimal)distance;
-                    Price price = new Price(distanceInDecimal * basePricePerKm, serviceCharge);
-                    lblTicketPrice.Text = price.CalculateFinalPrice().ToString("₱0.00"); // Display price in PHP
-                }
-                else
-                {
-                    ClearTripDetails();
-                }
+                ClearTripDetails();
+                MessageBox.Show("Unable to find route details or available ferries.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void UpdateUIWithFerryDetails(string vesselName, DateTime departureTime, TimeSpan travelTime)
         {
             foreach (Control ctrl in pnlTimePH.Controls)
@@ -233,8 +244,7 @@ namespace Ferry_Ticketing_App.Pages
                 dateButtons[i].Text = $"{date.Day}\n{date:ddd}\n{date:MMM}";
                 dateButtons[i].Tag = date;
 
-                // Ensure all buttons hook up the click event
-                dateButtons[i].Click -= DateButton_Click; // Avoid duplicate event handlers
+                dateButtons[i].Click -= DateButton_Click;
                 dateButtons[i].Click += DateButton_Click;
             }
             HighlightDate(currentDateStart);
@@ -260,47 +270,147 @@ namespace Ferry_Ticketing_App.Pages
             {
                 HighlightDate(selectedDate);
                 UpdateTripDetails(selectedDate);
+
+                if (this.Name == "ucIndividualTrips1")
+                {
+                    searchRoundTrip.lblDepartureDate.Text = selectedDate.ToString("yyyy-MM-dd");
+                }
+                else if (this.Name == "ucIndividualTrips2")
+                {
+                    searchRoundTrip.lblReturnDate.Text = selectedDate.ToString("yyyy-MM-dd");
+                }
             }
         }
         public void RecalculateTripDetails(DateTime selectedDate)
         {
-            // Ensure source and destination ports are set
             if (string.IsNullOrEmpty(sourcePort) || string.IsNullOrEmpty(destinationPort))
                 return;
+
+            if (tripDetailsCache.ContainsKey(selectedDate))
+            {
+                var cachedDetails = tripDetailsCache[selectedDate];
+                UpdateUIWithFerryDetails(cachedDetails.VesselName, cachedDetails.DepartureTime, cachedDetails.TravelTime);
+                return;
+            }
+
+            var availableFerries = Ferryline.AllTrips?.ToList();
+            if (availableFerries == null || !availableFerries.Any())
+            {
+                MessageBox.Show("No available ferries found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ClearTripDetails();
+                return;
+            }
 
             var departurePort = ports.FirstOrDefault(p => p.PortName == sourcePort);
             var arrivalPort = ports.FirstOrDefault(p => p.PortName == destinationPort);
 
             if (departurePort != null && arrivalPort != null)
             {
-                // Calculate distance using GeoUtils
                 double distance = Utilities.GeoUtils.GetDistance(
                     departurePort.Latitude, departurePort.Longitude,
                     arrivalPort.Latitude, arrivalPort.Longitude
                 );
 
-                // Calculate travel time (assuming ferry speed is 30 km/h)
                 TimeSpan travelTime = Utilities.GeoUtils.CalculateTravelTime(distance, 30);
 
-                // Generate a random departure time
-                DateTime departureTime = Utilities.GeoUtils.GetRandomDepartureTime();
+                var random = new Random();
+                var randomFerry = availableFerries[random.Next(availableFerries.Count)];
 
-                // Update UI with ferry details
-                UpdateUIWithFerryDetails("Ferry Name", departureTime, travelTime); // Replace with actual ferry name
+                if (randomFerry == null)
+                {
+                    MessageBox.Show("Failed to select a ferry.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ClearTripDetails();
+                    return;
+                }
 
-                // Calculate price based on distance
-                decimal basePricePerKm = 10m; // Example: ₱10 per km
-                decimal serviceCharge = 50m;  // Example: ₱50 service charge
-                Price price = new Price((decimal)distance * basePricePerKm, serviceCharge);
+                int randomHour = random.Next(6, 22);
+                DateTime departureTime = selectedDate.Date.AddHours(randomHour);
 
-                // Update price label
+                tripDetailsCache[selectedDate] = (randomFerry.VesselName, departureTime, travelTime);
+
+                UpdateUIWithFerryDetails(randomFerry.VesselName, departureTime, travelTime);
+
+                decimal basePricePerKm = 10m;
+                decimal serviceCharge = 50m;
+                decimal distanceInDecimal = (decimal)distance;
+                Price price = new Price(distanceInDecimal * basePricePerKm, serviceCharge);
                 lblTicketPrice.Text = price.CalculateFinalPrice().ToString("₱0.00");
             }
             else
             {
                 ClearTripDetails();
+                MessageBox.Show("Unable to find route details or available ferries.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+        public class TripDetails
+        {
+            public string FromPortName { get; set; }
+            public string ToPortName { get; set; }
+            public string VesselName { get; set; }
+            public string SeatType { get; set; }
+            public DateTime DepartureDate { get; set; }
+            public string DepartTo { get; set; }
+            public string DepartFrom { get; set; }
+            public string Price { get; set; }
+        }
 
+        public class ReturnTripDetails
+        {
+            public string FromPortName { get; set; }
+            public string ToPortName { get; set; }
+            public string RVesselName { get; set; }
+        }
+
+        public void SetSearchRoundTripReference(ucSearchRoundTrip searchRoundTrip)
+        {
+            this.searchRoundTrip = searchRoundTrip;
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            if (cmbBoxSeatType.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a seat type.");
+                return;
+            }
+
+            string seatType = cmbBoxSeatType.SelectedItem.ToString();
+
+            if (lblFrom == null || lblTo == null || lblVesselName == null || searchRoundTrip == null)
+            {
+                MessageBox.Show("Required controls are not properly initialized.");
+                return;
+            }
+
+            if (searchRoundTrip.lblDepartureDate == null || searchRoundTrip.lblToCity == null || searchRoundTrip.lblFromCity == null)
+            {
+                MessageBox.Show("Search round trip labels are not properly initialized.");
+                return;
+            }
+
+            string vesselName = lblVesselName.Text;
+
+            var tripDetails = new TripDetails
+            {
+                FromPortName = lblFrom.Text,
+                ToPortName = lblTo.Text,
+                VesselName = vesselName,
+                SeatType = seatType,
+                DepartureDate = DateTime.Parse(searchRoundTrip.lblDepartureDate.Text),
+                DepartTo = searchRoundTrip.lblToCity.Text,
+                DepartFrom = searchRoundTrip.lblFromCity.Text,
+                Price = lblTicketPrice.Text
+            };
+
+            var returnTripDetails = new ReturnTripDetails
+            {
+                FromPortName = searchRoundTrip.lblToCity.Text,
+                ToPortName = searchRoundTrip.lblFromCity.Text,
+                RVesselName = vesselName
+            };
+
+            TripSelected?.Invoke(tripDetails);
+            ReturnTripSelected?.Invoke(returnTripDetails);
+        }
     }
 }

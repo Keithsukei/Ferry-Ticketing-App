@@ -305,6 +305,7 @@
             this.btnSelect.Size = new System.Drawing.Size(135, 44);
             this.btnSelect.TabIndex = 3;
             this.btnSelect.UseVisualStyleBackColor = false;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // lblPrice
             // 
@@ -478,7 +479,7 @@
 
         private System.Windows.Forms.Panel pnlIndividualTripsHeader;
         private System.Windows.Forms.Panel pnlLogoNamePH;
-        private System.Windows.Forms.Label lblVesselName;
+        public System.Windows.Forms.Label lblVesselName;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.Panel pnlTimePH;
@@ -486,9 +487,9 @@
         private System.Windows.Forms.Label lblTravelTime;
         private System.Windows.Forms.Label lblDTime;
         private System.Windows.Forms.Panel pnlAccommodationPH;
-        private System.Windows.Forms.ComboBox cmbBoxSeatType;
+        public System.Windows.Forms.ComboBox cmbBoxSeatType;
         private System.Windows.Forms.Label lblTicketPrice;
-        private System.Windows.Forms.Label lblPrice;
+        public System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.Panel pnlIndividualTripsPH;
         private System.Windows.Forms.Label lblTo;

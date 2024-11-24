@@ -149,11 +149,11 @@
     <Compile Include="Pages\ucPaymentPassengerInfo.Designer.cs">
       <DependentUpon>ucPaymentPassengerInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ucReturnDetails.cs">
+    <Compile Include="Pages\ucReturnSummary.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pages\ucReturnDetails.Designer.cs">
-      <DependentUpon>ucReturnDetails.cs</DependentUpon>
+    <Compile Include="Pages\ucReturnSummary.Designer.cs">
+      <DependentUpon>ucReturnSummary.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\ucRoundTripPayment.cs">
       <SubType>UserControl</SubType>
@@ -227,8 +227,8 @@
     <EmbeddedResource Include="Pages\ucPaymentPassengerInfo.resx">
       <DependentUpon>ucPaymentPassengerInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\ucReturnDetails.resx">
-      <DependentUpon>ucReturnDetails.cs</DependentUpon>
+    <EmbeddedResource Include="Pages\ucReturnSummary.resx">
+      <DependentUpon>ucReturnSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ucRoundTripPayment.resx">
       <DependentUpon>ucRoundTripPayment.cs</DependentUpon>
@@ -591,6 +591,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\completePageHeader2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pnlDDSelectedBG.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

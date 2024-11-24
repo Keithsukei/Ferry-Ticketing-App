@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucRoundTripPayment));
             this.pnlPayment = new System.Windows.Forms.Panel();
+            this.ucPaymentPassengerInfo1 = new Ferry_Ticketing_App.Pages.ucPaymentPassengerInfo();
+            this.ucRoundTripTripSummary1 = new Ferry_Ticketing_App.Pages.ucRoundTripTripSummary();
             this.btnPaymentContinue = new System.Windows.Forms.Button();
             this.btnPaymentBack = new System.Windows.Forms.Button();
             this.pnlContactInfo = new System.Windows.Forms.Panel();
@@ -42,14 +44,17 @@
             this.btnGcash = new System.Windows.Forms.Button();
             this.btnCard = new System.Windows.Forms.Button();
             this.pnlPaymentSummary = new System.Windows.Forms.Panel();
+            this.lblTotalPrice = new System.Windows.Forms.Label();
+            this.lblTerminalFee = new System.Windows.Forms.Label();
+            this.lblServiceCharge = new System.Windows.Forms.Label();
+            this.lblNoOfPassengers = new System.Windows.Forms.Label();
             this.pbPaymentOptionsHeader = new System.Windows.Forms.PictureBox();
             this.pbYoureAlmostThere = new System.Windows.Forms.PictureBox();
             this.pbProgress = new System.Windows.Forms.PictureBox();
-            this.ucPaymentPassengerInfo1 = new Ferry_Ticketing_App.Pages.ucPaymentPassengerInfo();
-            this.ucRoundTripTripSummary1 = new Ferry_Ticketing_App.Pages.ucRoundTripTripSummary();
             this.pnlPayment.SuspendLayout();
             this.pnlContactInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPassengerGuidelines)).BeginInit();
+            this.pnlPaymentSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPaymentOptionsHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbYoureAlmostThere)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProgress)).BeginInit();
@@ -77,6 +82,24 @@
             this.pnlPayment.Name = "pnlPayment";
             this.pnlPayment.Size = new System.Drawing.Size(1009, 2000);
             this.pnlPayment.TabIndex = 1;
+            // 
+            // ucPaymentPassengerInfo1
+            // 
+            this.ucPaymentPassengerInfo1.BackColor = System.Drawing.Color.Transparent;
+            this.ucPaymentPassengerInfo1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucPaymentPassengerInfo1.BackgroundImage")));
+            this.ucPaymentPassengerInfo1.Location = new System.Drawing.Point(38, 1614);
+            this.ucPaymentPassengerInfo1.Name = "ucPaymentPassengerInfo1";
+            this.ucPaymentPassengerInfo1.Size = new System.Drawing.Size(545, 155);
+            this.ucPaymentPassengerInfo1.TabIndex = 13;
+            // 
+            // ucRoundTripTripSummary1
+            // 
+            this.ucRoundTripTripSummary1.BackColor = System.Drawing.Color.Transparent;
+            this.ucRoundTripTripSummary1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucRoundTripTripSummary1.BackgroundImage")));
+            this.ucRoundTripTripSummary1.Location = new System.Drawing.Point(38, 875);
+            this.ucRoundTripTripSummary1.Name = "ucRoundTripTripSummary1";
+            this.ucRoundTripTripSummary1.Size = new System.Drawing.Size(545, 562);
+            this.ucRoundTripTripSummary1.TabIndex = 12;
             // 
             // btnPaymentContinue
             // 
@@ -212,10 +235,58 @@
             this.pnlPaymentSummary.BackColor = System.Drawing.Color.Transparent;
             this.pnlPaymentSummary.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.paymentSummaryBG;
             this.pnlPaymentSummary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pnlPaymentSummary.Controls.Add(this.lblTotalPrice);
+            this.pnlPaymentSummary.Controls.Add(this.lblTerminalFee);
+            this.pnlPaymentSummary.Controls.Add(this.lblServiceCharge);
+            this.pnlPaymentSummary.Controls.Add(this.lblNoOfPassengers);
             this.pnlPaymentSummary.Location = new System.Drawing.Point(609, 319);
             this.pnlPaymentSummary.Name = "pnlPaymentSummary";
             this.pnlPaymentSummary.Size = new System.Drawing.Size(382, 358);
             this.pnlPaymentSummary.TabIndex = 5;
+            // 
+            // lblTotalPrice
+            // 
+            this.lblTotalPrice.Font = new System.Drawing.Font("SF Pro Display", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalPrice.ForeColor = System.Drawing.Color.White;
+            this.lblTotalPrice.Location = new System.Drawing.Point(188, 295);
+            this.lblTotalPrice.Name = "lblTotalPrice";
+            this.lblTotalPrice.Size = new System.Drawing.Size(179, 35);
+            this.lblTotalPrice.TabIndex = 0;
+            this.lblTotalPrice.Text = "#";
+            this.lblTotalPrice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTerminalFee
+            // 
+            this.lblTerminalFee.Font = new System.Drawing.Font("SF Pro Display", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTerminalFee.ForeColor = System.Drawing.Color.White;
+            this.lblTerminalFee.Location = new System.Drawing.Point(289, 115);
+            this.lblTerminalFee.Name = "lblTerminalFee";
+            this.lblTerminalFee.Size = new System.Drawing.Size(78, 23);
+            this.lblTerminalFee.TabIndex = 0;
+            this.lblTerminalFee.Text = "#";
+            this.lblTerminalFee.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblServiceCharge
+            // 
+            this.lblServiceCharge.Font = new System.Drawing.Font("SF Pro Display", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblServiceCharge.ForeColor = System.Drawing.Color.White;
+            this.lblServiceCharge.Location = new System.Drawing.Point(289, 53);
+            this.lblServiceCharge.Name = "lblServiceCharge";
+            this.lblServiceCharge.Size = new System.Drawing.Size(78, 23);
+            this.lblServiceCharge.TabIndex = 0;
+            this.lblServiceCharge.Text = "#";
+            this.lblServiceCharge.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblNoOfPassengers
+            // 
+            this.lblNoOfPassengers.AutoSize = true;
+            this.lblNoOfPassengers.Font = new System.Drawing.Font("SF Pro Display", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoOfPassengers.ForeColor = System.Drawing.Color.White;
+            this.lblNoOfPassengers.Location = new System.Drawing.Point(36, 21);
+            this.lblNoOfPassengers.Name = "lblNoOfPassengers";
+            this.lblNoOfPassengers.Size = new System.Drawing.Size(21, 23);
+            this.lblNoOfPassengers.TabIndex = 0;
+            this.lblNoOfPassengers.Text = "#";
             // 
             // pbPaymentOptionsHeader
             // 
@@ -249,24 +320,6 @@
             this.pbProgress.TabIndex = 2;
             this.pbProgress.TabStop = false;
             // 
-            // ucPaymentPassengerInfo1
-            // 
-            this.ucPaymentPassengerInfo1.BackColor = System.Drawing.Color.Transparent;
-            this.ucPaymentPassengerInfo1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucPaymentPassengerInfo1.BackgroundImage")));
-            this.ucPaymentPassengerInfo1.Location = new System.Drawing.Point(38, 1614);
-            this.ucPaymentPassengerInfo1.Name = "ucPaymentPassengerInfo1";
-            this.ucPaymentPassengerInfo1.Size = new System.Drawing.Size(545, 155);
-            this.ucPaymentPassengerInfo1.TabIndex = 13;
-            // 
-            // ucRoundTripTripSummary1
-            // 
-            this.ucRoundTripTripSummary1.BackColor = System.Drawing.Color.Transparent;
-            this.ucRoundTripTripSummary1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucRoundTripTripSummary1.BackgroundImage")));
-            this.ucRoundTripTripSummary1.Location = new System.Drawing.Point(38, 875);
-            this.ucRoundTripTripSummary1.Name = "ucRoundTripTripSummary1";
-            this.ucRoundTripTripSummary1.Size = new System.Drawing.Size(545, 562);
-            this.ucRoundTripTripSummary1.TabIndex = 12;
-            // 
             // ucRoundTripPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -279,6 +332,8 @@
             this.pnlContactInfo.ResumeLayout(false);
             this.pnlContactInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPassengerGuidelines)).EndInit();
+            this.pnlPaymentSummary.ResumeLayout(false);
+            this.pnlPaymentSummary.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPaymentOptionsHeader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbYoureAlmostThere)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProgress)).EndInit();
@@ -298,12 +353,16 @@
         private System.Windows.Forms.Button btnMaya;
         private System.Windows.Forms.Button btnGcash;
         private System.Windows.Forms.Button btnCard;
-        private System.Windows.Forms.Panel pnlPaymentSummary;
+        public System.Windows.Forms.Panel pnlPaymentSummary;
         private System.Windows.Forms.PictureBox pbPaymentOptionsHeader;
         private System.Windows.Forms.PictureBox pbYoureAlmostThere;
         private System.Windows.Forms.PictureBox pbProgress;
         private System.Windows.Forms.Panel pnlPayment;
         private ucRoundTripTripSummary ucRoundTripTripSummary1;
         private ucPaymentPassengerInfo ucPaymentPassengerInfo1;
+        public System.Windows.Forms.Label lblNoOfPassengers;
+        public System.Windows.Forms.Label lblServiceCharge;
+        public System.Windows.Forms.Label lblTotalPrice;
+        public System.Windows.Forms.Label lblTerminalFee;
     }
 }

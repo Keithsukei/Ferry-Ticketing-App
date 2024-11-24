@@ -36,8 +36,6 @@
             this.btnCeb2Bohol = new System.Windows.Forms.Button();
             this.pbSeparator = new System.Windows.Forms.PictureBox();
             this.pnlFindTripsPlaceholder = new System.Windows.Forms.Panel();
-            this.dtpReturn = new Ferry_Ticketing_App.Classes.CustomDateTimePicker();
-            this.dtpDepart = new Ferry_Ticketing_App.Classes.CustomDateTimePicker();
             this.txtPassengers = new System.Windows.Forms.TextBox();
             this.txtTo = new System.Windows.Forms.TextBox();
             this.txtFrom = new System.Windows.Forms.TextBox();
@@ -52,6 +50,8 @@
             this.rbRoundTrip = new System.Windows.Forms.RadioButton();
             this.pblblFindTrips = new System.Windows.Forms.PictureBox();
             this.pblblPopularRoutes = new System.Windows.Forms.PictureBox();
+            this.dtpReturn = new Ferry_Ticketing_App.Classes.CustomDateTimePicker();
+            this.dtpDepart = new Ferry_Ticketing_App.Classes.CustomDateTimePicker();
             this.pnlFindTripsAS.SuspendLayout();
             this.pnlFindTrips.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSeparator)).BeginInit();
@@ -91,9 +91,10 @@
             this.pnlFindTrips.Controls.Add(this.pbSeparator);
             this.pnlFindTrips.Controls.Add(this.pnlFindTripsPlaceholder);
             this.pnlFindTrips.Controls.Add(this.pblblPopularRoutes);
-            this.pnlFindTrips.Location = new System.Drawing.Point(0, 1);
+            this.pnlFindTrips.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlFindTrips.Location = new System.Drawing.Point(0, 0);
             this.pnlFindTrips.Name = "pnlFindTrips";
-            this.pnlFindTrips.Size = new System.Drawing.Size(1026, 1364);
+            this.pnlFindTrips.Size = new System.Drawing.Size(1009, 1364);
             this.pnlFindTrips.TabIndex = 5;
             // 
             // btnMnl2Puerto
@@ -176,49 +177,31 @@
             this.pnlFindTripsPlaceholder.Size = new System.Drawing.Size(939, 270);
             this.pnlFindTripsPlaceholder.TabIndex = 0;
             // 
-            // dtpReturn
-            // 
-            this.dtpReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.dtpReturn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpReturn.Location = new System.Drawing.Point(391, 192);
-            this.dtpReturn.Name = "dtpReturn";
-            this.dtpReturn.Size = new System.Drawing.Size(149, 38);
-            this.dtpReturn.TabIndex = 11;
-            // 
-            // dtpDepart
-            // 
-            this.dtpDepart.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpDepart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDepart.Location = new System.Drawing.Point(141, 192);
-            this.dtpDepart.Name = "dtpDepart";
-            this.dtpDepart.Size = new System.Drawing.Size(147, 38);
-            this.dtpDepart.TabIndex = 10;
-            // 
             // txtPassengers
             // 
             this.txtPassengers.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPassengers.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.txtPassengers.Font = new System.Drawing.Font("SF Pro Display", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassengers.Location = new System.Drawing.Point(690, 196);
             this.txtPassengers.Name = "txtPassengers";
-            this.txtPassengers.Size = new System.Drawing.Size(59, 31);
+            this.txtPassengers.Size = new System.Drawing.Size(59, 33);
             this.txtPassengers.TabIndex = 9;
             // 
             // txtTo
             // 
             this.txtTo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.txtTo.Font = new System.Drawing.Font("SF Pro Display", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTo.Location = new System.Drawing.Point(576, 127);
             this.txtTo.Name = "txtTo";
-            this.txtTo.Size = new System.Drawing.Size(301, 31);
+            this.txtTo.Size = new System.Drawing.Size(301, 33);
             this.txtTo.TabIndex = 6;
             // 
             // txtFrom
             // 
             this.txtFrom.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.txtFrom.Font = new System.Drawing.Font("SF Pro Display", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFrom.Location = new System.Drawing.Point(121, 127);
             this.txtFrom.Name = "txtFrom";
-            this.txtFrom.Size = new System.Drawing.Size(301, 31);
+            this.txtFrom.Size = new System.Drawing.Size(301, 33);
             this.txtFrom.TabIndex = 5;
             // 
             // btnSearchTrips
@@ -337,6 +320,24 @@
             this.pblblPopularRoutes.Size = new System.Drawing.Size(170, 31);
             this.pblblPopularRoutes.TabIndex = 0;
             this.pblblPopularRoutes.TabStop = false;
+            // 
+            // dtpReturn
+            // 
+            this.dtpReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
+            this.dtpReturn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpReturn.Location = new System.Drawing.Point(391, 192);
+            this.dtpReturn.Name = "dtpReturn";
+            this.dtpReturn.Size = new System.Drawing.Size(149, 38);
+            this.dtpReturn.TabIndex = 11;
+            // 
+            // dtpDepart
+            // 
+            this.dtpDepart.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDepart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDepart.Location = new System.Drawing.Point(141, 192);
+            this.dtpDepart.Name = "dtpDepart";
+            this.dtpDepart.Size = new System.Drawing.Size(147, 38);
+            this.dtpDepart.TabIndex = 10;
             // 
             // ucFindTrips
             // 

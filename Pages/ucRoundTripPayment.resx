@@ -121,7 +121,7 @@
   <data name="ucPaymentPassengerInfo1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAiEAAACbCAYAAAC02Uu9AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DwAACw8BkvkDpQAAJq9JREFUeF7tnV2sZtV53xmYgTAfCsRgGBUlKKZJipQmMakSNTTlopV6a0tcRm3V
+        DAAACwwBP0AiyAAAJq9JREFUeF7tnV2sZtV53xmYgTAfCsRgGBUlKKZJipQmMakSNTTlopV6a0tcRm3V
         q/Qq6kWkSLkgbVQpN4nJFW4s4yqyAYnEFVAHqCyBcdKpLGdAsWZwPNiJwSHBCngwsmeGQafPb73rv86z
         17ve95xh3s18nP9Pes7e6+tZa6/9sf5n7Y/3mp3Y2trCbg77jbDPh30rzBhjjDEmgz5AJ/z7KiHeP+Fk
         X11+LOytMGOMMcaY3YAg+Q9hTU/sCmVmGfaJMGOMMcaY98MDISnQE8XQFytJmVg+EGaMMcYY87557733
@@ -292,7 +292,7 @@
   <data name="ucRoundTripTripSummary1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAiEAAAI0CAYAAADLDPmvAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DgAACw4BQL7hQQAAbIJJREFUeF7tvW+MLcd53knal5LNP3EcUxGZBIl2oz+2AW+wyyziTbwJ8yn7bb0L
+        DAAACwwBP0AiyAAAbIJJREFUeF7tvW+MLcd53knal5LNP3EcUxGZBIl2oz+2AW+wyyziTbwJ8yn7bb0L
         OPmQBaTFQgF2gUCbRew4RgLRjhUEkCNe2pJNO2teIjIlSqbEmKQtmrZBkQaVa3HFK5oKRUmXvjJJJRJl
         8YoSJZG0k7PvU6eenvfUVJ9zZu50z1zO7we801VvvVXdp0+f7meqqrsv2cRisbjkB37+tu9+08/+6v/9
         pp/74J1v/NkPnnvjz/7qAsMwDMMwbMc+eK7ohHff8eYqIfZPiI9LtXzjTR/8X6Lx87tXhmEYhmEY1rVz

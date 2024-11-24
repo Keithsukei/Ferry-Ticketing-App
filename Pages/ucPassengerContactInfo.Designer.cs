@@ -1,6 +1,6 @@
 ﻿namespace Ferry_Ticketing_App.Pages
 {
-    partial class ucPassenger_ContactInfo
+    partial class ucPassengerContactInfo
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucPassenger_ContactInfo));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucPassengerContactInfo));
             this.pnlPassengerControlInfo = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnContinue = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             this.pnlPassengerDetailsPH = new System.Windows.Forms.Panel();
             this.pnlContactInfoPH = new System.Windows.Forms.Panel();
             this.cbAgreement = new System.Windows.Forms.CheckBox();
@@ -42,16 +42,16 @@
             this.txtContactPerson = new System.Windows.Forms.TextBox();
             this.pbContactInfoHeader = new System.Windows.Forms.PictureBox();
             this.pbProgress = new System.Windows.Forms.PictureBox();
-            this.pnlIteneraryPH = new System.Windows.Forms.Panel();
+            this.pnlItineraryPH = new System.Windows.Forms.Panel();
             this.btnModifyItenerary = new System.Windows.Forms.Button();
             this.pbArrowLR2 = new System.Windows.Forms.PictureBox();
-            this.lblArrival = new System.Windows.Forms.Label();
+            this.lblReturn = new System.Windows.Forms.Label();
             this.lblDeparture = new System.Windows.Forms.Label();
             this.lblPassenger = new System.Windows.Forms.Label();
             this.lblTCity = new System.Windows.Forms.Label();
             this.lblFCity = new System.Windows.Forms.Label();
             this.lblTCityCode = new System.Windows.Forms.Label();
-            this.lblArrivalDate = new System.Windows.Forms.Label();
+            this.lblReturnDate = new System.Windows.Forms.Label();
             this.lblDepartureDate = new System.Windows.Forms.Label();
             this.lblNoOfPassengers = new System.Windows.Forms.Label();
             this.lblFCityCode = new System.Windows.Forms.Label();
@@ -60,7 +60,7 @@
             this.pnlContactInfoPH.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbContactInfoHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProgress)).BeginInit();
-            this.pnlIteneraryPH.SuspendLayout();
+            this.pnlItineraryPH.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbArrowLR2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,42 +69,44 @@
             this.pnlPassengerControlInfo.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.pnlFindTripsbg;
             this.pnlPassengerControlInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlPassengerControlInfo.Controls.Add(this.ucPassengerDetails1);
-            this.pnlPassengerControlInfo.Controls.Add(this.button2);
-            this.pnlPassengerControlInfo.Controls.Add(this.button1);
+            this.pnlPassengerControlInfo.Controls.Add(this.btnContinue);
+            this.pnlPassengerControlInfo.Controls.Add(this.btnBack);
             this.pnlPassengerControlInfo.Controls.Add(this.pnlPassengerDetailsPH);
             this.pnlPassengerControlInfo.Controls.Add(this.pnlContactInfoPH);
             this.pnlPassengerControlInfo.Controls.Add(this.pbContactInfoHeader);
             this.pnlPassengerControlInfo.Controls.Add(this.pbProgress);
-            this.pnlPassengerControlInfo.Controls.Add(this.pnlIteneraryPH);
+            this.pnlPassengerControlInfo.Controls.Add(this.pnlItineraryPH);
             this.pnlPassengerControlInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlPassengerControlInfo.Location = new System.Drawing.Point(0, 0);
             this.pnlPassengerControlInfo.Name = "pnlPassengerControlInfo";
             this.pnlPassengerControlInfo.Size = new System.Drawing.Size(1009, 1499);
             this.pnlPassengerControlInfo.TabIndex = 0;
             // 
-            // button2
+            // btnContinue
             // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.btnContinuePassengerInfo;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(755, 1390);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(198, 71);
-            this.button2.TabIndex = 6;
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnContinue.BackColor = System.Drawing.Color.Transparent;
+            this.btnContinue.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.btnContinuePassengerInfo;
+            this.btnContinue.FlatAppearance.BorderSize = 0;
+            this.btnContinue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnContinue.Location = new System.Drawing.Point(755, 1390);
+            this.btnContinue.Name = "btnContinue";
+            this.btnContinue.Size = new System.Drawing.Size(198, 71);
+            this.btnContinue.TabIndex = 6;
+            this.btnContinue.UseVisualStyleBackColor = false;
+            this.btnContinue.Click += new System.EventHandler(this.btnContinue_Click);
             // 
-            // button1
+            // btnBack
             // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::Ferry_Ticketing_App.Properties.Resources.btnBackPassengerInfo;
-            this.button1.Location = new System.Drawing.Point(67, 1390);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(198, 71);
-            this.button1.TabIndex = 6;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnBack.BackColor = System.Drawing.Color.Transparent;
+            this.btnBack.FlatAppearance.BorderSize = 0;
+            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBack.Image = global::Ferry_Ticketing_App.Properties.Resources.btnBackPassengerInfo;
+            this.btnBack.Location = new System.Drawing.Point(67, 1390);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(198, 71);
+            this.btnBack.TabIndex = 6;
+            this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // pnlPassengerDetailsPH
             // 
@@ -144,46 +146,46 @@
             // txtAddress
             // 
             this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAddress.Font = new System.Drawing.Font("SF Pro Display", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddress.Location = new System.Drawing.Point(60, 294);
+            this.txtAddress.Font = new System.Drawing.Font("SF Pro Display", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAddress.Location = new System.Drawing.Point(60, 297);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(793, 39);
+            this.txtAddress.Size = new System.Drawing.Size(793, 33);
             this.txtAddress.TabIndex = 7;
             // 
             // txtConfirmEmailAdd
             // 
             this.txtConfirmEmailAdd.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtConfirmEmailAdd.Font = new System.Drawing.Font("SF Pro Display", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConfirmEmailAdd.Location = new System.Drawing.Point(494, 184);
+            this.txtConfirmEmailAdd.Font = new System.Drawing.Font("SF Pro Display", 20.25F);
+            this.txtConfirmEmailAdd.Location = new System.Drawing.Point(494, 186);
             this.txtConfirmEmailAdd.Name = "txtConfirmEmailAdd";
-            this.txtConfirmEmailAdd.Size = new System.Drawing.Size(358, 39);
+            this.txtConfirmEmailAdd.Size = new System.Drawing.Size(358, 33);
             this.txtConfirmEmailAdd.TabIndex = 7;
             // 
             // txtEmailAdd
             // 
             this.txtEmailAdd.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtEmailAdd.Font = new System.Drawing.Font("SF Pro Display", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmailAdd.Location = new System.Drawing.Point(59, 183);
+            this.txtEmailAdd.Font = new System.Drawing.Font("SF Pro Display", 20.25F);
+            this.txtEmailAdd.Location = new System.Drawing.Point(59, 186);
             this.txtEmailAdd.Name = "txtEmailAdd";
-            this.txtEmailAdd.Size = new System.Drawing.Size(358, 39);
+            this.txtEmailAdd.Size = new System.Drawing.Size(358, 33);
             this.txtEmailAdd.TabIndex = 7;
             // 
             // txtMobileNo
             // 
             this.txtMobileNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtMobileNo.Font = new System.Drawing.Font("SF Pro Display", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMobileNo.Location = new System.Drawing.Point(580, 71);
+            this.txtMobileNo.Font = new System.Drawing.Font("SF Pro Display", 20.25F);
+            this.txtMobileNo.Location = new System.Drawing.Point(580, 75);
             this.txtMobileNo.Name = "txtMobileNo";
-            this.txtMobileNo.Size = new System.Drawing.Size(272, 39);
+            this.txtMobileNo.Size = new System.Drawing.Size(272, 33);
             this.txtMobileNo.TabIndex = 7;
             // 
             // txtContactPerson
             // 
             this.txtContactPerson.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtContactPerson.Font = new System.Drawing.Font("SF Pro Display", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContactPerson.Location = new System.Drawing.Point(59, 71);
+            this.txtContactPerson.Font = new System.Drawing.Font("SF Pro Display", 20.25F);
+            this.txtContactPerson.Location = new System.Drawing.Point(59, 75);
             this.txtContactPerson.Name = "txtContactPerson";
-            this.txtContactPerson.Size = new System.Drawing.Size(358, 39);
+            this.txtContactPerson.Size = new System.Drawing.Size(358, 33);
             this.txtContactPerson.TabIndex = 7;
             // 
             // pbContactInfoHeader
@@ -207,27 +209,27 @@
             this.pbProgress.TabIndex = 2;
             this.pbProgress.TabStop = false;
             // 
-            // pnlIteneraryPH
+            // pnlItineraryPH
             // 
-            this.pnlIteneraryPH.BackColor = System.Drawing.Color.Transparent;
-            this.pnlIteneraryPH.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.iteneraryPH;
-            this.pnlIteneraryPH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlIteneraryPH.Controls.Add(this.btnModifyItenerary);
-            this.pnlIteneraryPH.Controls.Add(this.pbArrowLR2);
-            this.pnlIteneraryPH.Controls.Add(this.lblArrival);
-            this.pnlIteneraryPH.Controls.Add(this.lblDeparture);
-            this.pnlIteneraryPH.Controls.Add(this.lblPassenger);
-            this.pnlIteneraryPH.Controls.Add(this.lblTCity);
-            this.pnlIteneraryPH.Controls.Add(this.lblFCity);
-            this.pnlIteneraryPH.Controls.Add(this.lblTCityCode);
-            this.pnlIteneraryPH.Controls.Add(this.lblArrivalDate);
-            this.pnlIteneraryPH.Controls.Add(this.lblDepartureDate);
-            this.pnlIteneraryPH.Controls.Add(this.lblNoOfPassengers);
-            this.pnlIteneraryPH.Controls.Add(this.lblFCityCode);
-            this.pnlIteneraryPH.Location = new System.Drawing.Point(12, 18);
-            this.pnlIteneraryPH.Name = "pnlIteneraryPH";
-            this.pnlIteneraryPH.Size = new System.Drawing.Size(986, 104);
-            this.pnlIteneraryPH.TabIndex = 1;
+            this.pnlItineraryPH.BackColor = System.Drawing.Color.Transparent;
+            this.pnlItineraryPH.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.iteneraryPH;
+            this.pnlItineraryPH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlItineraryPH.Controls.Add(this.btnModifyItenerary);
+            this.pnlItineraryPH.Controls.Add(this.pbArrowLR2);
+            this.pnlItineraryPH.Controls.Add(this.lblReturn);
+            this.pnlItineraryPH.Controls.Add(this.lblDeparture);
+            this.pnlItineraryPH.Controls.Add(this.lblPassenger);
+            this.pnlItineraryPH.Controls.Add(this.lblTCity);
+            this.pnlItineraryPH.Controls.Add(this.lblFCity);
+            this.pnlItineraryPH.Controls.Add(this.lblTCityCode);
+            this.pnlItineraryPH.Controls.Add(this.lblReturnDate);
+            this.pnlItineraryPH.Controls.Add(this.lblDepartureDate);
+            this.pnlItineraryPH.Controls.Add(this.lblNoOfPassengers);
+            this.pnlItineraryPH.Controls.Add(this.lblFCityCode);
+            this.pnlItineraryPH.Location = new System.Drawing.Point(12, 18);
+            this.pnlItineraryPH.Name = "pnlItineraryPH";
+            this.pnlItineraryPH.Size = new System.Drawing.Size(986, 104);
+            this.pnlItineraryPH.TabIndex = 1;
             // 
             // btnModifyItenerary
             // 
@@ -239,6 +241,7 @@
             this.btnModifyItenerary.Size = new System.Drawing.Size(173, 94);
             this.btnModifyItenerary.TabIndex = 2;
             this.btnModifyItenerary.UseVisualStyleBackColor = true;
+            this.btnModifyItenerary.Click += new System.EventHandler(this.btnModifyItenerary_Click);
             // 
             // pbArrowLR2
             // 
@@ -250,21 +253,21 @@
             this.pbArrowLR2.TabIndex = 1;
             this.pbArrowLR2.TabStop = false;
             // 
-            // lblArrival
+            // lblReturn
             // 
-            this.lblArrival.AutoSize = true;
-            this.lblArrival.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArrival.Location = new System.Drawing.Point(693, 59);
-            this.lblArrival.Name = "lblArrival";
-            this.lblArrival.Size = new System.Drawing.Size(48, 18);
-            this.lblArrival.TabIndex = 0;
-            this.lblArrival.Text = "Arrival";
+            this.lblReturn.AutoSize = true;
+            this.lblReturn.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReturn.Location = new System.Drawing.Point(688, 59);
+            this.lblReturn.Name = "lblReturn";
+            this.lblReturn.Size = new System.Drawing.Size(51, 18);
+            this.lblReturn.TabIndex = 0;
+            this.lblReturn.Text = "Return";
             // 
             // lblDeparture
             // 
             this.lblDeparture.AutoSize = true;
             this.lblDeparture.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDeparture.Location = new System.Drawing.Point(494, 60);
+            this.lblDeparture.Location = new System.Drawing.Point(493, 60);
             this.lblDeparture.Name = "lblDeparture";
             this.lblDeparture.Size = new System.Drawing.Size(73, 18);
             this.lblDeparture.TabIndex = 0;
@@ -274,7 +277,7 @@
             // 
             this.lblPassenger.AutoSize = true;
             this.lblPassenger.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassenger.Location = new System.Drawing.Point(320, 60);
+            this.lblPassenger.Location = new System.Drawing.Point(321, 60);
             this.lblPassenger.Name = "lblPassenger";
             this.lblPassenger.Size = new System.Drawing.Size(75, 18);
             this.lblPassenger.TabIndex = 0;
@@ -284,7 +287,7 @@
             // 
             this.lblTCity.AutoSize = true;
             this.lblTCity.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTCity.Location = new System.Drawing.Point(195, 60);
+            this.lblTCity.Location = new System.Drawing.Point(194, 60);
             this.lblTCity.Name = "lblTCity";
             this.lblTCity.Size = new System.Drawing.Size(33, 18);
             this.lblTCity.TabIndex = 0;
@@ -294,7 +297,7 @@
             // 
             this.lblFCity.AutoSize = true;
             this.lblFCity.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFCity.Location = new System.Drawing.Point(34, 60);
+            this.lblFCity.Location = new System.Drawing.Point(31, 60);
             this.lblFCity.Name = "lblFCity";
             this.lblFCity.Size = new System.Drawing.Size(33, 18);
             this.lblFCity.TabIndex = 0;
@@ -311,35 +314,35 @@
             this.lblTCityCode.TabIndex = 0;
             this.lblTCityCode.Text = "Code";
             // 
-            // lblArrivalDate
+            // lblReturnDate
             // 
-            this.lblArrivalDate.AutoSize = true;
-            this.lblArrivalDate.Font = new System.Drawing.Font("SF Pro Display", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArrivalDate.Location = new System.Drawing.Point(681, 24);
-            this.lblArrivalDate.Name = "lblArrivalDate";
-            this.lblArrivalDate.Size = new System.Drawing.Size(78, 27);
-            this.lblArrivalDate.TabIndex = 0;
-            this.lblArrivalDate.Text = "ADate";
+            this.lblReturnDate.Font = new System.Drawing.Font("SF Pro Display", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReturnDate.Location = new System.Drawing.Point(633, 24);
+            this.lblReturnDate.Name = "lblReturnDate";
+            this.lblReturnDate.Size = new System.Drawing.Size(166, 27);
+            this.lblReturnDate.TabIndex = 0;
+            this.lblReturnDate.Text = "RDate";
+            this.lblReturnDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblDepartureDate
             // 
-            this.lblDepartureDate.AutoSize = true;
             this.lblDepartureDate.Font = new System.Drawing.Font("SF Pro Display", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDepartureDate.Location = new System.Drawing.Point(492, 25);
+            this.lblDepartureDate.Location = new System.Drawing.Point(448, 25);
             this.lblDepartureDate.Name = "lblDepartureDate";
-            this.lblDepartureDate.Size = new System.Drawing.Size(78, 27);
+            this.lblDepartureDate.Size = new System.Drawing.Size(166, 27);
             this.lblDepartureDate.TabIndex = 0;
             this.lblDepartureDate.Text = "DDate";
+            this.lblDepartureDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblNoOfPassengers
             // 
-            this.lblNoOfPassengers.AutoSize = true;
             this.lblNoOfPassengers.Font = new System.Drawing.Font("SF Pro Display", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoOfPassengers.Location = new System.Drawing.Point(341, 25);
+            this.lblNoOfPassengers.Location = new System.Drawing.Point(300, 25);
             this.lblNoOfPassengers.Name = "lblNoOfPassengers";
-            this.lblNoOfPassengers.Size = new System.Drawing.Size(27, 27);
+            this.lblNoOfPassengers.Size = new System.Drawing.Size(117, 27);
             this.lblNoOfPassengers.TabIndex = 0;
             this.lblNoOfPassengers.Text = "#";
+            this.lblNoOfPassengers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblFCityCode
             // 
@@ -360,7 +363,7 @@
             this.ucPassengerDetails1.Size = new System.Drawing.Size(913, 302);
             this.ucPassengerDetails1.TabIndex = 7;
             // 
-            // ucPassenger_ContactInfo
+            // ucPassengerContactInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -370,15 +373,15 @@
             this.Controls.Add(this.pnlPassengerControlInfo);
             this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "ucPassenger_ContactInfo";
-            this.Size = new System.Drawing.Size(1026, 679);
+            this.Name = "ucPassengerContactInfo";
+            this.Size = new System.Drawing.Size(1009, 720);
             this.pnlPassengerControlInfo.ResumeLayout(false);
             this.pnlContactInfoPH.ResumeLayout(false);
             this.pnlContactInfoPH.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbContactInfoHeader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProgress)).EndInit();
-            this.pnlIteneraryPH.ResumeLayout(false);
-            this.pnlIteneraryPH.PerformLayout();
+            this.pnlItineraryPH.ResumeLayout(false);
+            this.pnlItineraryPH.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbArrowLR2)).EndInit();
             this.ResumeLayout(false);
 
@@ -387,31 +390,31 @@
         #endregion
 
         private System.Windows.Forms.Panel pnlPassengerControlInfo;
-        private System.Windows.Forms.Panel pnlIteneraryPH;
+        private System.Windows.Forms.Panel pnlItineraryPH;
         private System.Windows.Forms.Button btnModifyItenerary;
         private System.Windows.Forms.PictureBox pbArrowLR2;
-        private System.Windows.Forms.Label lblArrival;
+        private System.Windows.Forms.Label lblReturn;
         private System.Windows.Forms.Label lblDeparture;
         private System.Windows.Forms.Label lblPassenger;
-        private System.Windows.Forms.Label lblTCity;
-        private System.Windows.Forms.Label lblFCity;
-        private System.Windows.Forms.Label lblTCityCode;
-        private System.Windows.Forms.Label lblArrivalDate;
-        private System.Windows.Forms.Label lblDepartureDate;
-        private System.Windows.Forms.Label lblNoOfPassengers;
-        private System.Windows.Forms.Label lblFCityCode;
+        public System.Windows.Forms.Label lblTCity;
+        public System.Windows.Forms.Label lblFCity;
+        public System.Windows.Forms.Label lblTCityCode;
+        public System.Windows.Forms.Label lblReturnDate;
+        public System.Windows.Forms.Label lblDepartureDate;
+        public System.Windows.Forms.Label lblNoOfPassengers;
+        public System.Windows.Forms.Label lblFCityCode;
         private System.Windows.Forms.PictureBox pbProgress;
         private System.Windows.Forms.PictureBox pbContactInfoHeader;
         private System.Windows.Forms.Panel pnlContactInfoPH;
         private System.Windows.Forms.Panel pnlPassengerDetailsPH;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.TextBox txtContactPerson;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtConfirmEmailAdd;
         private System.Windows.Forms.TextBox txtEmailAdd;
         private System.Windows.Forms.TextBox txtMobileNo;
         private System.Windows.Forms.CheckBox cbAgreement;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnContinue;
         private ucPassengerDetails ucPassengerDetails1;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Ferry_Ticketing_App.Pages
 {
-    partial class ucReturnDetails
+    partial class ucReturnSummary
     {
         /// <summary> 
         /// Required designer variable.
@@ -31,11 +31,11 @@
             this.pnlReturn = new System.Windows.Forms.Panel();
             this.btnReturnOpen = new System.Windows.Forms.Button();
             this.btnReturnClosed = new System.Windows.Forms.Button();
-            this.pnlRetDropdownSelected = new System.Windows.Forms.Panel();
-            this.lblRVesselName = new System.Windows.Forms.Label();
             this.pnlRetDropdownNoSelected = new System.Windows.Forms.Panel();
+            this.pnlRetDropdownSelected = new System.Windows.Forms.Panel();
             this.lblReturnTo = new System.Windows.Forms.Label();
             this.lblReturnFrom = new System.Windows.Forms.Label();
+            this.lblRVesselName = new System.Windows.Forms.Label();
             this.pnlReturn.SuspendLayout();
             this.pnlRetDropdownSelected.SuspendLayout();
             this.SuspendLayout();
@@ -44,8 +44,8 @@
             // 
             this.pnlReturn.Controls.Add(this.btnReturnOpen);
             this.pnlReturn.Controls.Add(this.btnReturnClosed);
-            this.pnlReturn.Controls.Add(this.pnlRetDropdownSelected);
             this.pnlReturn.Controls.Add(this.pnlRetDropdownNoSelected);
+            this.pnlReturn.Controls.Add(this.pnlRetDropdownSelected);
             this.pnlReturn.Location = new System.Drawing.Point(3, 3);
             this.pnlReturn.Name = "pnlReturn";
             this.pnlReturn.Size = new System.Drawing.Size(335, 247);
@@ -62,6 +62,7 @@
             this.btnReturnOpen.Size = new System.Drawing.Size(334, 45);
             this.btnReturnOpen.TabIndex = 0;
             this.btnReturnOpen.UseVisualStyleBackColor = true;
+            this.btnReturnOpen.Click += new System.EventHandler(this.btnReturnOpen_Click);
             // 
             // btnReturnClosed
             // 
@@ -74,6 +75,16 @@
             this.btnReturnClosed.Size = new System.Drawing.Size(326, 45);
             this.btnReturnClosed.TabIndex = 0;
             this.btnReturnClosed.UseVisualStyleBackColor = true;
+            this.btnReturnClosed.Click += new System.EventHandler(this.btnReturnClosed_Click);
+            // 
+            // pnlRetDropdownNoSelected
+            // 
+            this.pnlRetDropdownNoSelected.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.returnSummaryNoSelectedd;
+            this.pnlRetDropdownNoSelected.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pnlRetDropdownNoSelected.Location = new System.Drawing.Point(0, 40);
+            this.pnlRetDropdownNoSelected.Name = "pnlRetDropdownNoSelected";
+            this.pnlRetDropdownNoSelected.Size = new System.Drawing.Size(334, 199);
+            this.pnlRetDropdownNoSelected.TabIndex = 1;
             // 
             // pnlRetDropdownSelected
             // 
@@ -82,29 +93,10 @@
             this.pnlRetDropdownSelected.Controls.Add(this.lblReturnTo);
             this.pnlRetDropdownSelected.Controls.Add(this.lblReturnFrom);
             this.pnlRetDropdownSelected.Controls.Add(this.lblRVesselName);
-            this.pnlRetDropdownSelected.Location = new System.Drawing.Point(0, 45);
+            this.pnlRetDropdownSelected.Location = new System.Drawing.Point(0, 41);
             this.pnlRetDropdownSelected.Name = "pnlRetDropdownSelected";
             this.pnlRetDropdownSelected.Size = new System.Drawing.Size(334, 199);
             this.pnlRetDropdownSelected.TabIndex = 4;
-            // 
-            // lblRVesselName
-            // 
-            this.lblRVesselName.AutoSize = true;
-            this.lblRVesselName.Font = new System.Drawing.Font("SF Pro Display", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRVesselName.Location = new System.Drawing.Point(84, 17);
-            this.lblRVesselName.Name = "lblRVesselName";
-            this.lblRVesselName.Size = new System.Drawing.Size(75, 27);
-            this.lblRVesselName.TabIndex = 1;
-            this.lblRVesselName.Text = "label1";
-            // 
-            // pnlRetDropdownNoSelected
-            // 
-            this.pnlRetDropdownNoSelected.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.returnSummaryNoSelectedd;
-            this.pnlRetDropdownNoSelected.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pnlRetDropdownNoSelected.Location = new System.Drawing.Point(0, 45);
-            this.pnlRetDropdownNoSelected.Name = "pnlRetDropdownNoSelected";
-            this.pnlRetDropdownNoSelected.Size = new System.Drawing.Size(334, 199);
-            this.pnlRetDropdownNoSelected.TabIndex = 1;
             // 
             // lblReturnTo
             // 
@@ -126,14 +118,24 @@
             this.lblReturnFrom.TabIndex = 3;
             this.lblReturnFrom.Text = "label1";
             // 
-            // ucReturnDetails
+            // lblRVesselName
+            // 
+            this.lblRVesselName.AutoSize = true;
+            this.lblRVesselName.Font = new System.Drawing.Font("SF Pro Display", 12.5F, System.Drawing.FontStyle.Bold);
+            this.lblRVesselName.Location = new System.Drawing.Point(84, 17);
+            this.lblRVesselName.Name = "lblRVesselName";
+            this.lblRVesselName.Size = new System.Drawing.Size(53, 20);
+            this.lblRVesselName.TabIndex = 1;
+            this.lblRVesselName.Text = "label1";
+            // 
+            // ucReturnSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.pnlReturn);
-            this.Name = "ucReturnDetails";
-            this.Size = new System.Drawing.Size(393, 262);
+            this.Name = "ucReturnSummary";
+            this.Size = new System.Drawing.Size(340, 254);
             this.pnlReturn.ResumeLayout(false);
             this.pnlRetDropdownSelected.ResumeLayout(false);
             this.pnlRetDropdownSelected.PerformLayout();
@@ -144,12 +146,12 @@
         #endregion
 
         private System.Windows.Forms.Panel pnlReturn;
-        private System.Windows.Forms.Panel pnlRetDropdownNoSelected;
+        public System.Windows.Forms.Panel pnlRetDropdownNoSelected;
         private System.Windows.Forms.Button btnReturnOpen;
         private System.Windows.Forms.Button btnReturnClosed;
-        private System.Windows.Forms.Panel pnlRetDropdownSelected;
-        private System.Windows.Forms.Label lblRVesselName;
-        private System.Windows.Forms.Label lblReturnTo;
-        private System.Windows.Forms.Label lblReturnFrom;
+        public System.Windows.Forms.Panel pnlRetDropdownSelected;
+        public System.Windows.Forms.Label lblRVesselName;
+        public System.Windows.Forms.Label lblReturnTo;
+        public System.Windows.Forms.Label lblReturnFrom;
     }
 }
