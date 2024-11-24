@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ferry_Ticketing_App.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace Ferry_Ticketing_App.Classes
         public decimal BasePrice { get; set; }
         public decimal ServiceCharge { get; set; }
 
+
         public Price(decimal basePrice, decimal serviceCharge)
         {
             BasePrice = basePrice;
@@ -19,8 +21,8 @@ namespace Ferry_Ticketing_App.Classes
 
         public decimal CalculateFinalPrice()
         {
+
             return BasePrice + ServiceCharge;
         }
-
     }
 }

@@ -15,7 +15,7 @@ namespace Ferry_Ticketing_App.Pages
     public partial class ucSearchRoundTrip : UserControl
     {
         private const int DEPCOLLAPSED_HEIGHT = 249;
-        private const int DEPEXPANDED_HEIGHT = 601;
+        private const int DEPEXPANDED_HEIGHT = 673;
         private const int RETCOLLAPSED_HEIGHT = 254;  // Adjust based on your panel's collapsed height
         private const int RETEXPANDED_HEIGHT = 255;
         private const int BUTTON_HEIGHT = 71;

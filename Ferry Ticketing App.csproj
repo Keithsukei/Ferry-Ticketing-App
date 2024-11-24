@@ -56,7 +56,7 @@
     <Compile Include="Classes\Price.cs" />
     <Compile Include="Classes\Routes.cs" />
     <Compile Include="Classes\Schedule.cs" />
-    <Compile Include="Classes\Seat.cs" />
+    <Compile Include="Classes\Accommodation.cs" />
     <Compile Include="Classes\Ticket.cs" />
     <Compile Include="Classes\Time.cs" />
     <Compile Include="frmLogin.cs">
@@ -594,6 +594,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\pnlDDSelectedBG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pnlDropDownSelected2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pnlDropDownSelected3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pnlDropDownSelected4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

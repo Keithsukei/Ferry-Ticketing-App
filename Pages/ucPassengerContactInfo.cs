@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ferry_Ticketing_App.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -188,7 +189,8 @@ namespace Ferry_Ticketing_App.Pages
         {
             var searchRoundTrip = this.Parent.Controls.OfType<ucSearchRoundTrip>().FirstOrDefault();
             var roundTripPayment = this.Parent.Controls.OfType<ucRoundTripPayment>().FirstOrDefault();
-            
+            string selectedAccommodationType = searchRoundTrip.ucIndividualTrips2.cmbBoxAccommodationType.SelectedItem?.ToString();
+
             decimal departurePrice = decimal.Parse(searchRoundTrip.ucDepartureSummary1.lblDPrice.Text.Replace("₱", ""));
 
             int numberOfPassengers = int.Parse(lblNoOfPassengers.Text);
@@ -200,10 +202,39 @@ namespace Ferry_Ticketing_App.Pages
             roundTripPayment.lblNoOfPassengers.Text = numberOfPassengers.ToString();
             roundTripPayment.lblServiceCharge.Text = "₱" + serviceCharge.ToString("N2");
             roundTripPayment.lblTerminalFee.Text = "₱" + terminalFee.ToString("N2");
-
             decimal totalPrice = (departurePrice * numberOfPassengers) + serviceCharge + terminalFee;
-
             roundTripPayment.lblTotalPrice.Text = "₱" + totalPrice.ToString("N2");
+
+            if (roundTripPayment.ucRoundTripTripSummary1 != null)
+            {
+                // Departure Summary
+                roundTripPayment.ucRoundTripTripSummary1.lblDepVesselName.Text = searchRoundTrip.ucDepartureSummary1.lblDVesselName.Text;
+                roundTripPayment.ucRoundTripTripSummary1.lblDepFromPort.Text = searchRoundTrip.ucDepartureSummary1.lblDepartFrom.Text;
+                roundTripPayment.ucRoundTripTripSummary1.lblDepToPort.Text = searchRoundTrip.ucDepartureSummary1.lblDepartTo.Text;
+                roundTripPayment.ucRoundTripTripSummary1.lblDepPort.Text = searchRoundTrip.ucDepartureSummary1.lblFromPortName.Text;
+                roundTripPayment.ucRoundTripTripSummary1.lblDepDepartureDate.Text = searchRoundTrip.ucDepartureSummary1.lblDepartureDate.Text;
+                roundTripPayment.ucRoundTripTripSummary1.lblDepAccommodation.Text = searchRoundTrip.ucDepartureSummary1.lblDAccommodation.Text;
+                roundTripPayment.ucRoundTripTripSummary1.lblDepSeatType.Text = searchRoundTrip.ucDepartureSummary1.lblDSeatType.Text;
+                roundTripPayment.ucRoundTripTripSummary1.lblDepAircon.Text = searchRoundTrip.ucDepartureSummary1.lblDAircon.Text;
+                roundTripPayment.ucRoundTripTripSummary1.lblDepDepartureTime.Text = searchRoundTrip.ucIndividualTrips1.lblDTime.Text;
+
+                // Return Summary
+                roundTripPayment.ucRoundTripTripSummary1.lblRetVesselName.Text = searchRoundTrip.ucReturnSummary1.lblRVesselName.Text;
+                roundTripPayment.ucRoundTripTripSummary1.lblRetFromPort.Text = searchRoundTrip.ucReturnSummary1.lblReturnFrom.Text;
+                roundTripPayment.ucRoundTripTripSummary1.lblRetToPort.Text = searchRoundTrip.ucReturnSummary1.lblReturnTo.Text;
+                roundTripPayment.ucRoundTripTripSummary1.lblRetPort.Text = searchRoundTrip.ucIndividualTrips2.lblFrom.Text;
+                roundTripPayment.ucRoundTripTripSummary1.lblRetDepartureDate.Text = searchRoundTrip.lblReturnDate.Text;
+                roundTripPayment.ucRoundTripTripSummary1.lblRetAccommodation.Text = searchRoundTrip.ucIndividualTrips2.cmbBoxAccommodationType.SelectedItem.ToString();
+                roundTripPayment.ucRoundTripTripSummary1.lblRetSeatType.Text = Accommodation.AccommodationDictionary[selectedAccommodationType].SeatType;
+                roundTripPayment.ucRoundTripTripSummary1.lblRetAircon.Text = searchRoundTrip.ucDepartureSummary1.lblDAircon.Text;
+                roundTripPayment.ucRoundTripTripSummary1.lblRetDepartureTime.Text = searchRoundTrip.ucIndividualTrips2.lblDTime.Text;
+
+                // Contact Info
+                roundTripPayment.lblCIName.Text = txtContactPerson.Text;
+                roundTripPayment.lblCIEmailAdd.Text = txtEmailAdd.Text;
+                roundTripPayment.lblCIMobileNo.Text = txtMobileNo.Text;
+                roundTripPayment.lblCIAddress.Text = txtAddress.Text;
+            }
 
             roundTripPayment.Visible = true;
             roundTripPayment.BringToFront();

@@ -803,6 +803,36 @@ namespace Ferry_Ticketing_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pnlDropDownSelected2 {
+            get {
+                object obj = ResourceManager.GetObject("pnlDropDownSelected2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pnlDropDownSelected3 {
+            get {
+                object obj = ResourceManager.GetObject("pnlDropDownSelected3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pnlDropDownSelected4 {
+            get {
+                object obj = ResourceManager.GetObject("pnlDropDownSelected4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pnlFindTripsbg {
             get {
                 object obj = ResourceManager.GetObject("pnlFindTripsbg", resourceCulture);

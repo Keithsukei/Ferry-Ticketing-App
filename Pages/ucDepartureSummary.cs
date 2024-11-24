@@ -44,24 +44,19 @@ namespace Ferry_Ticketing_App.Pages
                 }
                     
                 lblDVesselName.Text = tripDetails.VesselName;
+                lblDAccommodation.Text = tripDetails.Accommodation;
                 lblDSeatType.Text = tripDetails.SeatType;
-                lblDepartureDate.Text = tripDetails.DepartureDate.ToString("yyyy-MM-dd HH:mm");
+                lblDepartureDate.Text = tripDetails.DepartureDate.ToString("yyyy-MM-dd");
                 lblDepartTo.Text = tripDetails.DepartTo;
                 lblDepartFrom.Text = tripDetails.DepartFrom;
-                lblDAircon.Text = "Yes"; // Always "Yes"
+                lblDAircon.Text = "Yes";
                 lblDPrice.Text = tripDetails.Price.ToString();
 
-                // Show the selected dropdown panel and hide the no-selected panel
                 pnlDepDropDownSelected.Visible = true;
                 pnlDepDropDownNoSelected.Visible = false;
 
                 isTripSelected = true;
             }
-        }
-
-        public void ClearSummary()
-        {
-            pnlDepDropDownNoSelected.Visible = true;
         }
 
         private void AdjustLabelAndArrow(Label label, PictureBox arrow, bool isDestination = false)

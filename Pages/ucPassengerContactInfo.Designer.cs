@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucPassengerContactInfo));
             this.pnlPassengerControlInfo = new System.Windows.Forms.Panel();
+            this.ucPassengerDetails1 = new Ferry_Ticketing_App.Pages.ucPassengerDetails();
             this.btnContinue = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.pnlPassengerDetailsPH = new System.Windows.Forms.Panel();
@@ -55,7 +56,6 @@
             this.lblDepartureDate = new System.Windows.Forms.Label();
             this.lblNoOfPassengers = new System.Windows.Forms.Label();
             this.lblFCityCode = new System.Windows.Forms.Label();
-            this.ucPassengerDetails1 = new Ferry_Ticketing_App.Pages.ucPassengerDetails();
             this.pnlPassengerControlInfo.SuspendLayout();
             this.pnlContactInfoPH.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbContactInfoHeader)).BeginInit();
@@ -81,6 +81,15 @@
             this.pnlPassengerControlInfo.Name = "pnlPassengerControlInfo";
             this.pnlPassengerControlInfo.Size = new System.Drawing.Size(1009, 1499);
             this.pnlPassengerControlInfo.TabIndex = 0;
+            // 
+            // ucPassengerDetails1
+            // 
+            this.ucPassengerDetails1.BackColor = System.Drawing.Color.Transparent;
+            this.ucPassengerDetails1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucPassengerDetails1.BackgroundImage")));
+            this.ucPassengerDetails1.Location = new System.Drawing.Point(54, 1042);
+            this.ucPassengerDetails1.Name = "ucPassengerDetails1";
+            this.ucPassengerDetails1.Size = new System.Drawing.Size(913, 302);
+            this.ucPassengerDetails1.TabIndex = 7;
             // 
             // btnContinue
             // 
@@ -354,15 +363,6 @@
             this.lblFCityCode.TabIndex = 0;
             this.lblFCityCode.Text = "Code";
             // 
-            // ucPassengerDetails1
-            // 
-            this.ucPassengerDetails1.BackColor = System.Drawing.Color.Transparent;
-            this.ucPassengerDetails1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucPassengerDetails1.BackgroundImage")));
-            this.ucPassengerDetails1.Location = new System.Drawing.Point(54, 1042);
-            this.ucPassengerDetails1.Name = "ucPassengerDetails1";
-            this.ucPassengerDetails1.Size = new System.Drawing.Size(913, 302);
-            this.ucPassengerDetails1.TabIndex = 7;
-            // 
             // ucPassengerContactInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -408,11 +408,11 @@
         private System.Windows.Forms.Panel pnlContactInfoPH;
         private System.Windows.Forms.Panel pnlPassengerDetailsPH;
         private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.TextBox txtContactPerson;
-        private System.Windows.Forms.TextBox txtAddress;
-        private System.Windows.Forms.TextBox txtConfirmEmailAdd;
-        private System.Windows.Forms.TextBox txtEmailAdd;
-        private System.Windows.Forms.TextBox txtMobileNo;
+        public System.Windows.Forms.TextBox txtContactPerson;
+        public System.Windows.Forms.TextBox txtAddress;
+        public System.Windows.Forms.TextBox txtConfirmEmailAdd;
+        public System.Windows.Forms.TextBox txtEmailAdd;
+        public System.Windows.Forms.TextBox txtMobileNo;
         private System.Windows.Forms.CheckBox cbAgreement;
         private System.Windows.Forms.Button btnContinue;
         private ucPassengerDetails ucPassengerDetails1;

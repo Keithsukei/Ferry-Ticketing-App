@@ -50,7 +50,7 @@
             this.lblPrice = new System.Windows.Forms.Label();
             this.lblTicketPrice = new System.Windows.Forms.Label();
             this.pnlAccommodationPH = new System.Windows.Forms.Panel();
-            this.cmbBoxSeatType = new System.Windows.Forms.ComboBox();
+            this.cmbBoxAccommodationType = new System.Windows.Forms.ComboBox();
             this.pnlIndividualTripsHeader = new System.Windows.Forms.Panel();
             this.pnlLogoNamePH = new System.Windows.Forms.Panel();
             this.lblVesselName = new System.Windows.Forms.Label();
@@ -333,22 +333,22 @@
             // 
             this.pnlAccommodationPH.BackColor = System.Drawing.Color.Transparent;
             this.pnlAccommodationPH.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.individualTripsDropdownBG;
-            this.pnlAccommodationPH.Controls.Add(this.cmbBoxSeatType);
+            this.pnlAccommodationPH.Controls.Add(this.cmbBoxAccommodationType);
             this.pnlAccommodationPH.Location = new System.Drawing.Point(27, 120);
             this.pnlAccommodationPH.Name = "pnlAccommodationPH";
             this.pnlAccommodationPH.Size = new System.Drawing.Size(214, 49);
             this.pnlAccommodationPH.TabIndex = 1;
             // 
-            // cmbBoxSeatType
+            // cmbBoxAccommodationType
             // 
-            this.cmbBoxSeatType.BackColor = System.Drawing.Color.White;
-            this.cmbBoxSeatType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbBoxSeatType.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.cmbBoxSeatType.FormattingEnabled = true;
-            this.cmbBoxSeatType.Location = new System.Drawing.Point(6, 6);
-            this.cmbBoxSeatType.Name = "cmbBoxSeatType";
-            this.cmbBoxSeatType.Size = new System.Drawing.Size(203, 37);
-            this.cmbBoxSeatType.TabIndex = 0;
+            this.cmbBoxAccommodationType.BackColor = System.Drawing.Color.White;
+            this.cmbBoxAccommodationType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbBoxAccommodationType.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.cmbBoxAccommodationType.FormattingEnabled = true;
+            this.cmbBoxAccommodationType.Location = new System.Drawing.Point(6, 6);
+            this.cmbBoxAccommodationType.Name = "cmbBoxAccommodationType";
+            this.cmbBoxAccommodationType.Size = new System.Drawing.Size(203, 37);
+            this.cmbBoxAccommodationType.TabIndex = 0;
             // 
             // pnlIndividualTripsHeader
             // 
@@ -485,16 +485,16 @@
         private System.Windows.Forms.Panel pnlTimePH;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label lblTravelTime;
-        private System.Windows.Forms.Label lblDTime;
+        public System.Windows.Forms.Label lblDTime;
         private System.Windows.Forms.Panel pnlAccommodationPH;
-        public System.Windows.Forms.ComboBox cmbBoxSeatType;
+        public System.Windows.Forms.ComboBox cmbBoxAccommodationType;
         private System.Windows.Forms.Label lblTicketPrice;
         public System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.Panel pnlIndividualTripsPH;
         private System.Windows.Forms.Label lblTo;
         private System.Windows.Forms.PictureBox pbArrowRight;
-        private System.Windows.Forms.Label lblFrom;
+        public System.Windows.Forms.Label lblFrom;
         private System.Windows.Forms.Panel pnlCodeToCode;
         private System.Windows.Forms.Panel pnlDateSliderButtons;
         private System.Windows.Forms.Button btnLeft;

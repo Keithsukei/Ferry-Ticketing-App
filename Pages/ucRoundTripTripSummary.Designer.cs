@@ -309,23 +309,23 @@
 
         private System.Windows.Forms.PictureBox pbRetArrowRight;
         private System.Windows.Forms.PictureBox pbDepArrowRight;
-        private System.Windows.Forms.Label lblRetAccommodation;
-        private System.Windows.Forms.Label lblDepAccommodation;
-        private System.Windows.Forms.Label lblRetAircon;
-        private System.Windows.Forms.Label lblDepAircon;
-        private System.Windows.Forms.Label lblRetVesselName;
-        private System.Windows.Forms.Label lblRetPort;
-        private System.Windows.Forms.Label lblDepVesselName;
-        private System.Windows.Forms.Label lblRetSeatType;
-        private System.Windows.Forms.Label lblDepPort;
-        private System.Windows.Forms.Label lblRetDepartureTime;
-        private System.Windows.Forms.Label lblDepSeatType;
-        private System.Windows.Forms.Label lblRetDepartureDate;
-        private System.Windows.Forms.Label lblDepDepartureTime;
-        private System.Windows.Forms.Label lblDepDepartureDate;
-        private System.Windows.Forms.Label lblRetToPort;
-        private System.Windows.Forms.Label lblRetFromPort;
-        private System.Windows.Forms.Label lblDepToPort;
-        private System.Windows.Forms.Label lblDepFromPort;
+        public System.Windows.Forms.Label lblRetAccommodation;
+        public System.Windows.Forms.Label lblDepAccommodation;
+        public System.Windows.Forms.Label lblRetAircon;
+        public System.Windows.Forms.Label lblDepAircon;
+        public System.Windows.Forms.Label lblRetVesselName;
+        public System.Windows.Forms.Label lblRetPort;
+        public System.Windows.Forms.Label lblDepVesselName;
+        public System.Windows.Forms.Label lblRetSeatType;
+        public System.Windows.Forms.Label lblDepPort;
+        public System.Windows.Forms.Label lblRetDepartureTime;
+        public System.Windows.Forms.Label lblDepSeatType;
+        public System.Windows.Forms.Label lblRetDepartureDate;
+        public System.Windows.Forms.Label lblDepDepartureTime;
+        public System.Windows.Forms.Label lblDepDepartureDate;
+        public System.Windows.Forms.Label lblRetToPort;
+        public System.Windows.Forms.Label lblRetFromPort;
+        public System.Windows.Forms.Label lblDepToPort;
+        public System.Windows.Forms.Label lblDepFromPort;
     }
 }

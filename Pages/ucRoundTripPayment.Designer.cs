@@ -80,7 +80,7 @@
             this.pnlPayment.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlPayment.Location = new System.Drawing.Point(0, 0);
             this.pnlPayment.Name = "pnlPayment";
-            this.pnlPayment.Size = new System.Drawing.Size(1009, 2000);
+            this.pnlPayment.Size = new System.Drawing.Size(992, 2000);
             this.pnlPayment.TabIndex = 1;
             // 
             // ucPaymentPassengerInfo1
@@ -327,7 +327,7 @@
             this.AutoScroll = true;
             this.Controls.Add(this.pnlPayment);
             this.Name = "ucRoundTripPayment";
-            this.Size = new System.Drawing.Size(1009, 720);
+            this.Size = new System.Drawing.Size(992, 720);
             this.pnlPayment.ResumeLayout(false);
             this.pnlContactInfo.ResumeLayout(false);
             this.pnlContactInfo.PerformLayout();
@@ -345,10 +345,10 @@
         private System.Windows.Forms.Button btnPaymentContinue;
         private System.Windows.Forms.Button btnPaymentBack;
         private System.Windows.Forms.Panel pnlContactInfo;
-        private System.Windows.Forms.Label lblCIMobileNo;
-        private System.Windows.Forms.Label lblCIAddress;
-        private System.Windows.Forms.Label lblCIEmailAdd;
-        private System.Windows.Forms.Label lblCIName;
+        public System.Windows.Forms.Label lblCIMobileNo;
+        public System.Windows.Forms.Label lblCIAddress;
+        public System.Windows.Forms.Label lblCIEmailAdd;
+        public System.Windows.Forms.Label lblCIName;
         private System.Windows.Forms.PictureBox pbPassengerGuidelines;
         private System.Windows.Forms.Button btnMaya;
         private System.Windows.Forms.Button btnGcash;
@@ -358,8 +358,8 @@
         private System.Windows.Forms.PictureBox pbYoureAlmostThere;
         private System.Windows.Forms.PictureBox pbProgress;
         private System.Windows.Forms.Panel pnlPayment;
-        private ucRoundTripTripSummary ucRoundTripTripSummary1;
-        private ucPaymentPassengerInfo ucPaymentPassengerInfo1;
+        public ucRoundTripTripSummary ucRoundTripTripSummary1;
+        public ucPaymentPassengerInfo ucPaymentPassengerInfo1;
         public System.Windows.Forms.Label lblNoOfPassengers;
         public System.Windows.Forms.Label lblServiceCharge;
         public System.Windows.Forms.Label lblTotalPrice;

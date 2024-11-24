@@ -33,6 +33,7 @@
             this.btnDepartureClosed = new System.Windows.Forms.Button();
             this.pnlDepDropDownNoSelected = new System.Windows.Forms.Panel();
             this.pnlDepDropDownSelected = new System.Windows.Forms.Panel();
+            this.pbArrowRight = new System.Windows.Forms.PictureBox();
             this.lblDSeatType = new System.Windows.Forms.Label();
             this.lblDAircon = new System.Windows.Forms.Label();
             this.lblDPrice = new System.Windows.Forms.Label();
@@ -42,7 +43,7 @@
             this.lblDepartFrom = new System.Windows.Forms.Label();
             this.lblDepartureDate = new System.Windows.Forms.Label();
             this.lblDVesselName = new System.Windows.Forms.Label();
-            this.pbArrowRight = new System.Windows.Forms.PictureBox();
+            this.lblDAccommodation = new System.Windows.Forms.Label();
             this.pnlDeparture.SuspendLayout();
             this.pnlDepDropDownSelected.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbArrowRight)).BeginInit();
@@ -56,7 +57,7 @@
             this.pnlDeparture.Controls.Add(this.pnlDepDropDownSelected);
             this.pnlDeparture.Location = new System.Drawing.Point(8, 8);
             this.pnlDeparture.Name = "pnlDeparture";
-            this.pnlDeparture.Size = new System.Drawing.Size(335, 584);
+            this.pnlDeparture.Size = new System.Drawing.Size(335, 663);
             this.pnlDeparture.TabIndex = 1;
             // 
             // btnDepartureOpen
@@ -96,9 +97,10 @@
             // 
             // pnlDepDropDownSelected
             // 
-            this.pnlDepDropDownSelected.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.pnlDDSelectedBG;
+            this.pnlDepDropDownSelected.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.pnlDropDownSelected4;
             this.pnlDepDropDownSelected.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pnlDepDropDownSelected.Controls.Add(this.pbArrowRight);
+            this.pnlDepDropDownSelected.Controls.Add(this.lblDAccommodation);
             this.pnlDepDropDownSelected.Controls.Add(this.lblDSeatType);
             this.pnlDepDropDownSelected.Controls.Add(this.lblDAircon);
             this.pnlDepDropDownSelected.Controls.Add(this.lblDPrice);
@@ -110,14 +112,24 @@
             this.pnlDepDropDownSelected.Controls.Add(this.lblDVesselName);
             this.pnlDepDropDownSelected.Location = new System.Drawing.Point(0, 42);
             this.pnlDepDropDownSelected.Name = "pnlDepDropDownSelected";
-            this.pnlDepDropDownSelected.Size = new System.Drawing.Size(334, 539);
+            this.pnlDepDropDownSelected.Size = new System.Drawing.Size(334, 620);
             this.pnlDepDropDownSelected.TabIndex = 3;
+            // 
+            // pbArrowRight
+            // 
+            this.pbArrowRight.Image = global::Ferry_Ticketing_App.Properties.Resources.arrowright1;
+            this.pbArrowRight.Location = new System.Drawing.Point(115, 295);
+            this.pbArrowRight.Name = "pbArrowRight";
+            this.pbArrowRight.Size = new System.Drawing.Size(30, 32);
+            this.pbArrowRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbArrowRight.TabIndex = 1;
+            this.pbArrowRight.TabStop = false;
             // 
             // lblDSeatType
             // 
             this.lblDSeatType.AutoSize = true;
             this.lblDSeatType.Font = new System.Drawing.Font("SF Pro Display", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDSeatType.Location = new System.Drawing.Point(22, 369);
+            this.lblDSeatType.Location = new System.Drawing.Point(22, 436);
             this.lblDSeatType.Name = "lblDSeatType";
             this.lblDSeatType.Size = new System.Drawing.Size(53, 19);
             this.lblDSeatType.TabIndex = 0;
@@ -127,7 +139,7 @@
             // 
             this.lblDAircon.AutoSize = true;
             this.lblDAircon.Font = new System.Drawing.Font("SF Pro Display", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDAircon.Location = new System.Drawing.Point(22, 435);
+            this.lblDAircon.Location = new System.Drawing.Point(22, 502);
             this.lblDAircon.Name = "lblDAircon";
             this.lblDAircon.Size = new System.Drawing.Size(53, 19);
             this.lblDAircon.TabIndex = 0;
@@ -137,7 +149,7 @@
             // 
             this.lblDPrice.AutoSize = true;
             this.lblDPrice.Font = new System.Drawing.Font("SF Pro Display", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDPrice.Location = new System.Drawing.Point(22, 501);
+            this.lblDPrice.Location = new System.Drawing.Point(22, 568);
             this.lblDPrice.Name = "lblDPrice";
             this.lblDPrice.Size = new System.Drawing.Size(53, 19);
             this.lblDPrice.TabIndex = 0;
@@ -203,15 +215,15 @@
             this.lblDVesselName.TabIndex = 0;
             this.lblDVesselName.Text = "label1";
             // 
-            // pbArrowRight
+            // lblDAccommodation
             // 
-            this.pbArrowRight.Image = global::Ferry_Ticketing_App.Properties.Resources.arrowright1;
-            this.pbArrowRight.Location = new System.Drawing.Point(115, 295);
-            this.pbArrowRight.Name = "pbArrowRight";
-            this.pbArrowRight.Size = new System.Drawing.Size(30, 32);
-            this.pbArrowRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbArrowRight.TabIndex = 1;
-            this.pbArrowRight.TabStop = false;
+            this.lblDAccommodation.AutoSize = true;
+            this.lblDAccommodation.Font = new System.Drawing.Font("SF Pro Display", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDAccommodation.Location = new System.Drawing.Point(22, 369);
+            this.lblDAccommodation.Name = "lblDAccommodation";
+            this.lblDAccommodation.Size = new System.Drawing.Size(53, 19);
+            this.lblDAccommodation.TabIndex = 0;
+            this.lblDAccommodation.Text = "label1";
             // 
             // ucDepartureSummary
             // 
@@ -220,7 +232,7 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.pnlDeparture);
             this.Name = "ucDepartureSummary";
-            this.Size = new System.Drawing.Size(348, 601);
+            this.Size = new System.Drawing.Size(348, 675);
             this.pnlDeparture.ResumeLayout(false);
             this.pnlDepDropDownSelected.ResumeLayout(false);
             this.pnlDepDropDownSelected.PerformLayout();
@@ -238,13 +250,14 @@
         private System.Windows.Forms.Button btnDepartureClosed;
         public System.Windows.Forms.Label lblDVesselName;
         public System.Windows.Forms.Label lblDPrice;
-        private System.Windows.Forms.Label lblToPortName;
-        private System.Windows.Forms.Label lblFromPortName;
-        private System.Windows.Forms.Label lblDepartureDate;
-        private System.Windows.Forms.Label lblDSeatType;
-        private System.Windows.Forms.Label lblDAircon;
-        private System.Windows.Forms.Label lblDepartTo;
-        private System.Windows.Forms.Label lblDepartFrom;
+        public System.Windows.Forms.Label lblToPortName;
+        public System.Windows.Forms.Label lblFromPortName;
+        public System.Windows.Forms.Label lblDepartureDate;
+        public System.Windows.Forms.Label lblDSeatType;
+        public System.Windows.Forms.Label lblDAircon;
+        public System.Windows.Forms.Label lblDepartTo;
+        public System.Windows.Forms.Label lblDepartFrom;
         private System.Windows.Forms.PictureBox pbArrowRight;
+        public System.Windows.Forms.Label lblDAccommodation;
     }
 }

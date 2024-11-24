@@ -73,7 +73,7 @@
             this.pnlSearchRoundTrip.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlSearchRoundTrip.Location = new System.Drawing.Point(0, 0);
             this.pnlSearchRoundTrip.Name = "pnlSearchRoundTrip";
-            this.pnlSearchRoundTrip.Size = new System.Drawing.Size(1009, 1323);
+            this.pnlSearchRoundTrip.Size = new System.Drawing.Size(1009, 1400);
             this.pnlSearchRoundTrip.TabIndex = 1;
             // 
             // button1
@@ -100,7 +100,7 @@
             this.pnlSummary.Controls.Add(this.pblblSummary);
             this.pnlSummary.Location = new System.Drawing.Point(630, 230);
             this.pnlSummary.Name = "pnlSummary";
-            this.pnlSummary.Size = new System.Drawing.Size(374, 1038);
+            this.pnlSummary.Size = new System.Drawing.Size(374, 1128);
             this.pnlSummary.TabIndex = 4;
             // 
             // btnSummaryContinue
@@ -108,7 +108,7 @@
             this.btnSummaryContinue.FlatAppearance.BorderSize = 0;
             this.btnSummaryContinue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSummaryContinue.Image = global::Ferry_Ticketing_App.Properties.Resources.btnSummaryContinue;
-            this.btnSummaryContinue.Location = new System.Drawing.Point(28, 916);
+            this.btnSummaryContinue.Location = new System.Drawing.Point(25, 1015);
             this.btnSummaryContinue.Name = "btnSummaryContinue";
             this.btnSummaryContinue.Size = new System.Drawing.Size(326, 71);
             this.btnSummaryContinue.TabIndex = 2;
@@ -299,7 +299,7 @@
             // ucReturnSummary1
             // 
             this.ucReturnSummary1.BackColor = System.Drawing.Color.Transparent;
-            this.ucReturnSummary1.Location = new System.Drawing.Point(19, 656);
+            this.ucReturnSummary1.Location = new System.Drawing.Point(19, 744);
             this.ucReturnSummary1.Name = "ucReturnSummary1";
             this.ucReturnSummary1.Size = new System.Drawing.Size(340, 254);
             this.ucReturnSummary1.TabIndex = 4;
@@ -309,7 +309,7 @@
             this.ucDepartureSummary1.BackColor = System.Drawing.Color.Transparent;
             this.ucDepartureSummary1.Location = new System.Drawing.Point(14, 65);
             this.ucDepartureSummary1.Name = "ucDepartureSummary1";
-            this.ucDepartureSummary1.Size = new System.Drawing.Size(348, 601);
+            this.ucDepartureSummary1.Size = new System.Drawing.Size(348, 673);
             this.ucDepartureSummary1.TabIndex = 3;
             // 
             // ucSearchRoundTrip
@@ -320,7 +320,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pnlSearchRoundTrip);
             this.Name = "ucSearchRoundTrip";
-            this.Size = new System.Drawing.Size(1026, 720);
+            this.Size = new System.Drawing.Size(1009, 720);
             this.pnlSearchRoundTrip.ResumeLayout(false);
             this.pnlSummary.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pblblSummary)).EndInit();
@@ -349,7 +349,7 @@
         private System.Windows.Forms.Label lblToCode;
         public System.Windows.Forms.Label lblReturnDate;
         public System.Windows.Forms.Label lblDepartureDate;
-        private System.Windows.Forms.Label lblNoOfPassengers;
+        public System.Windows.Forms.Label lblNoOfPassengers;
         private System.Windows.Forms.Label lblFromCode;
         private System.Windows.Forms.PictureBox pbProgress;
         private System.Windows.Forms.Button button1;
