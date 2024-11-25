@@ -34,6 +34,7 @@
             this.lblPINationality = new System.Windows.Forms.Label();
             this.lblPIBirthdate = new System.Windows.Forms.Label();
             this.lblPIFName = new System.Windows.Forms.Label();
+            this.lblPassengerNo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblPIGender
@@ -102,12 +103,24 @@
             this.lblPIFName.TabIndex = 24;
             this.lblPIFName.Text = "label3";
             // 
+            // lblPassengerNo
+            // 
+            this.lblPassengerNo.AutoSize = true;
+            this.lblPassengerNo.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPassengerNo.ForeColor = System.Drawing.Color.Gray;
+            this.lblPassengerNo.Location = new System.Drawing.Point(479, 17);
+            this.lblPassengerNo.Name = "lblPassengerNo";
+            this.lblPassengerNo.Size = new System.Drawing.Size(39, 13);
+            this.lblPassengerNo.TabIndex = 19;
+            this.lblPassengerNo.Text = "label3";
+            // 
             // ucPaymentPassengerInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.paymentPassengerInfo;
+            this.Controls.Add(this.lblPassengerNo);
             this.Controls.Add(this.lblPIGender);
             this.Controls.Add(this.lblPILName);
             this.Controls.Add(this.lblPIMiddleInitial);
@@ -123,11 +136,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblPIGender;
-        private System.Windows.Forms.Label lblPILName;
-        private System.Windows.Forms.Label lblPIMiddleInitial;
-        private System.Windows.Forms.Label lblPINationality;
-        private System.Windows.Forms.Label lblPIBirthdate;
-        private System.Windows.Forms.Label lblPIFName;
+        public System.Windows.Forms.Label lblPIGender;
+        public System.Windows.Forms.Label lblPILName;
+        public System.Windows.Forms.Label lblPIMiddleInitial;
+        public System.Windows.Forms.Label lblPINationality;
+        public System.Windows.Forms.Label lblPIBirthdate;
+        public System.Windows.Forms.Label lblPIFName;
+        public System.Windows.Forms.Label lblPassengerNo;
     }
 }

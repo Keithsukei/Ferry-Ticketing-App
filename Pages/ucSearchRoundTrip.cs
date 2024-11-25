@@ -338,6 +338,22 @@ namespace Ferry_Ticketing_App.Pages
 
                 passengerContactInfo.SetupPassengerDetails(numberOfPassengers);
 
+                // Update passenger numbers in ucPassengerDetails instances within ucPassengerContactInfo
+                int passengerIndex = 1;
+                foreach (ucPassengerDetails passengerControl in passengerContactInfo.pnlPassengerControlInfo.Controls.OfType<ucPassengerDetails>())
+                {
+                    // Find lblPassengerNo and set its Text property
+                    var lblPassengerNo = passengerControl.Controls.OfType<Label>()
+                        .FirstOrDefault(lbl => lbl.Name == "lblPassengerNo");
+
+                    if (lblPassengerNo != null)
+                    {
+                        lblPassengerNo.Text = passengerIndex.ToString(); // Directly set Text property
+                    }
+
+                    passengerIndex++;
+                }
+
                 this.Visible = false;
                 passengerContactInfo.Visible = true;
                 passengerContactInfo.BringToFront();

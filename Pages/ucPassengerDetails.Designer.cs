@@ -31,7 +31,7 @@
             this.cmbBoxNationality = new System.Windows.Forms.ComboBox();
             this.cmbBoxGender = new System.Windows.Forms.ComboBox();
             this.cmbBType = new System.Windows.Forms.ComboBox();
-            this.lblPassengerPHNo = new System.Windows.Forms.Label();
+            this.lblPassengerNo = new System.Windows.Forms.Label();
             this.dtpDateOfBirth = new System.Windows.Forms.DateTimePicker();
             this.txtMI = new System.Windows.Forms.TextBox();
             this.txtLName = new System.Windows.Forms.TextBox();
@@ -65,17 +65,17 @@
             this.cmbBType.Size = new System.Drawing.Size(123, 40);
             this.cmbBType.TabIndex = 19;
             // 
-            // lblPassengerPHNo
+            // lblPassengerNo
             // 
-            this.lblPassengerPHNo.AutoSize = true;
-            this.lblPassengerPHNo.Font = new System.Drawing.Font("SF Pro Display", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassengerPHNo.ForeColor = System.Drawing.Color.Gray;
-            this.lblPassengerPHNo.Location = new System.Drawing.Point(153, 16);
-            this.lblPassengerPHNo.Name = "lblPassengerPHNo";
-            this.lblPassengerPHNo.Size = new System.Drawing.Size(31, 32);
-            this.lblPassengerPHNo.TabIndex = 16;
-            this.lblPassengerPHNo.Text = "#";
-            this.lblPassengerPHNo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPassengerNo.AutoSize = true;
+            this.lblPassengerNo.Font = new System.Drawing.Font("SF Pro Display", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPassengerNo.ForeColor = System.Drawing.Color.Gray;
+            this.lblPassengerNo.Location = new System.Drawing.Point(149, 15);
+            this.lblPassengerNo.Name = "lblPassengerNo";
+            this.lblPassengerNo.Size = new System.Drawing.Size(30, 32);
+            this.lblPassengerNo.TabIndex = 16;
+            this.lblPassengerNo.Text = "#";
+            this.lblPassengerNo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dtpDateOfBirth
             // 
@@ -129,7 +129,7 @@
             this.Controls.Add(this.cmbBoxNationality);
             this.Controls.Add(this.cmbBoxGender);
             this.Controls.Add(this.cmbBType);
-            this.Controls.Add(this.lblPassengerPHNo);
+            this.Controls.Add(this.lblPassengerNo);
             this.Controls.Add(this.dtpDateOfBirth);
             this.Controls.Add(this.txtMI);
             this.Controls.Add(this.txtLName);
@@ -146,7 +146,7 @@
         private System.Windows.Forms.ComboBox cmbBoxNationality;
         private System.Windows.Forms.ComboBox cmbBoxGender;
         private System.Windows.Forms.ComboBox cmbBType;
-        private System.Windows.Forms.Label lblPassengerPHNo;
+        private System.Windows.Forms.Label lblPassengerNo;
         private System.Windows.Forms.DateTimePicker dtpDateOfBirth;
         private System.Windows.Forms.TextBox txtMI;
         private System.Windows.Forms.TextBox txtLName;

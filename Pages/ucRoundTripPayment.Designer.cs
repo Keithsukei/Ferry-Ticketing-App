@@ -80,7 +80,7 @@
             this.pnlPayment.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlPayment.Location = new System.Drawing.Point(0, 0);
             this.pnlPayment.Name = "pnlPayment";
-            this.pnlPayment.Size = new System.Drawing.Size(992, 2000);
+            this.pnlPayment.Size = new System.Drawing.Size(1009, 2000);
             this.pnlPayment.TabIndex = 1;
             // 
             // ucPaymentPassengerInfo1
@@ -112,6 +112,7 @@
             this.btnPaymentContinue.Size = new System.Drawing.Size(198, 71);
             this.btnPaymentContinue.TabIndex = 11;
             this.btnPaymentContinue.UseVisualStyleBackColor = false;
+            this.btnPaymentContinue.Click += new System.EventHandler(this.btnPaymentContinue_Click);
             // 
             // btnPaymentBack
             // 
@@ -205,6 +206,7 @@
             this.btnMaya.Size = new System.Drawing.Size(162, 153);
             this.btnMaya.TabIndex = 6;
             this.btnMaya.UseVisualStyleBackColor = false;
+            this.btnMaya.Click += new System.EventHandler(this.btnMaya_Click);
             // 
             // btnGcash
             // 
@@ -217,6 +219,7 @@
             this.btnGcash.Size = new System.Drawing.Size(162, 153);
             this.btnGcash.TabIndex = 6;
             this.btnGcash.UseVisualStyleBackColor = false;
+            this.btnGcash.Click += new System.EventHandler(this.btnGcash_Click);
             // 
             // btnCard
             // 
@@ -229,6 +232,7 @@
             this.btnCard.Size = new System.Drawing.Size(162, 153);
             this.btnCard.TabIndex = 6;
             this.btnCard.UseVisualStyleBackColor = false;
+            this.btnCard.Click += new System.EventHandler(this.btnCard_Click);
             // 
             // pnlPaymentSummary
             // 
@@ -270,11 +274,11 @@
             // 
             this.lblServiceCharge.Font = new System.Drawing.Font("SF Pro Display", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblServiceCharge.ForeColor = System.Drawing.Color.White;
-            this.lblServiceCharge.Location = new System.Drawing.Point(289, 53);
+            this.lblServiceCharge.Location = new System.Drawing.Point(284, 53);
             this.lblServiceCharge.Name = "lblServiceCharge";
-            this.lblServiceCharge.Size = new System.Drawing.Size(78, 23);
+            this.lblServiceCharge.Size = new System.Drawing.Size(85, 23);
             this.lblServiceCharge.TabIndex = 0;
-            this.lblServiceCharge.Text = "#";
+            this.lblServiceCharge.Text = "PM";
             this.lblServiceCharge.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblNoOfPassengers
@@ -327,7 +331,7 @@
             this.AutoScroll = true;
             this.Controls.Add(this.pnlPayment);
             this.Name = "ucRoundTripPayment";
-            this.Size = new System.Drawing.Size(992, 720);
+            this.Size = new System.Drawing.Size(1009, 720);
             this.pnlPayment.ResumeLayout(false);
             this.pnlContactInfo.ResumeLayout(false);
             this.pnlContactInfo.PerformLayout();

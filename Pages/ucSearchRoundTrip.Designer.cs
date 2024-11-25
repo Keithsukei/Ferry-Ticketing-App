@@ -320,7 +320,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pnlSearchRoundTrip);
             this.Name = "ucSearchRoundTrip";
-            this.Size = new System.Drawing.Size(1009, 720);
+            this.Size = new System.Drawing.Size(1026, 720);
             this.pnlSearchRoundTrip.ResumeLayout(false);
             this.pnlSummary.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pblblSummary)).EndInit();

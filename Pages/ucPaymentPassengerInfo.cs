@@ -16,5 +16,6 @@ namespace Ferry_Ticketing_App.Pages
         {
             InitializeComponent();
         }
+
     }
 }

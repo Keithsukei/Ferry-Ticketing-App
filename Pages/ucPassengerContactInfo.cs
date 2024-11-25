@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,6 +14,7 @@ namespace Ferry_Ticketing_App.Pages
 {
     public partial class ucPassengerContactInfo : UserControl
     {
+
         public ucPassengerContactInfo()
         {
             InitializeComponent();
@@ -114,9 +116,26 @@ namespace Ferry_Ticketing_App.Pages
             pnlPassengerControlInfo.Refresh();
         }
 
+
         private void btnModifyItenerary_Click(object sender, EventArgs e)
         {
+            var findTrips = this.Parent.Controls.OfType<ucFindTrips>().FirstOrDefault();
 
+            if (findTrips != null)
+            {
+                findTrips.BringToFront();
+                findTrips.Visible = true;
+
+                // Update the number of passengers based on the input field (if available)
+                int passengers = int.TryParse(findTrips.txtPassengers.Text, out int result) ? result : 1;
+
+                // Update trip details for all instances of ucIndividualTrips
+                foreach (var tripControl in this.Parent.Controls.OfType<ucIndividualTrips>())
+                {
+                    lblNoOfPassengers.Text = passengers.ToString();
+                    tripControl.RecalculateTripDetails(DateTime.Now);
+                }
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -185,25 +204,130 @@ namespace Ferry_Ticketing_App.Pages
             pnlPassengerControlInfo.Height = 1499;
         }
 
+        // Method to validate contact information
+        public bool ValidateContactInfo()
+        {
+            // Extract values from controls inside pnlContactInfoPH
+            string email = txtEmailAdd.Text.Trim();
+            string confirmEmail = txtConfirmEmailAdd.Text.Trim();
+            string mobileNo = txtMobileNo.Text.Trim();
+
+            // Validate email address
+            if (!IsValidEmail(email))
+            {
+                MessageBox.Show("Please enter a valid email address.",
+                    "Validation Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Check if email and confirm email match
+            if (!email.Equals(confirmEmail, StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Email address and confirmation email must match.",
+                    "Validation Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Validate mobile number
+            if (string.IsNullOrWhiteSpace(mobileNo) || !Regex.IsMatch(mobileNo, @"^\d{10,11}$"))
+            {
+                MessageBox.Show("Please enter a valid mobile number (10-11 digits).",
+                    "Validation Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        // Helper method for email validation
+        private bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         private void btnContinue_Click(object sender, EventArgs e)
         {
             var searchRoundTrip = this.Parent.Controls.OfType<ucSearchRoundTrip>().FirstOrDefault();
             var roundTripPayment = this.Parent.Controls.OfType<ucRoundTripPayment>().FirstOrDefault();
             string selectedAccommodationType = searchRoundTrip.ucIndividualTrips2.cmbBoxAccommodationType.SelectedItem?.ToString();
-
             decimal departurePrice = decimal.Parse(searchRoundTrip.ucDepartureSummary1.lblDPrice.Text.Replace("₱", ""));
-
             int numberOfPassengers = int.Parse(lblNoOfPassengers.Text);
 
-            decimal serviceCharge = 25;
-            decimal terminalFee = 25;
+            // Collect passenger details from all ucPassengerDetails controls
+            List<Passenger> passengers = new List<Passenger>();
 
-                
+            foreach (ucPassengerDetails passengerControl in pnlPassengerControlInfo.Controls.OfType<ucPassengerDetails>())
+            {
+                Passenger passenger = passengerControl.GetPassengerDetails();
+                if (passenger != null)
+                {
+                    Console.WriteLine($"Passenger: {passenger.FirstName}, {passenger.MiddleInitial}, {passenger.LastName}");
+                    passengers.Add(passenger);
+                }
+                else
+                {
+                    Console.WriteLine("No passenger details found for this control.");
+                }
+            }
+
+            // Setup passenger info in the payment page
+            if (roundTripPayment.ucPaymentPassengerInfo1 != null)
+            {
+                // Clear existing controls if needed
+                roundTripPayment.ucPaymentPassengerInfo1.Controls.Clear();
+
+                // Create passenger info controls based on number of passengers
+                for (int i = 0; i < passengers.Count; i++) // Loop through the list of passengers
+                {
+                    ucPaymentPassengerInfo passengerInfoControl = new ucPaymentPassengerInfo();
+                    passengerInfoControl.Name = $"ucPaymentPassengerInfo{i + 1}"; // Set unique control name
+
+                    // Get the passenger data from the list
+                    Passenger passenger = passengers[i];
+
+                    // Populate the ucPaymentPassengerInfo control with passenger details
+                    passengerInfoControl.lblPIFName.Text = passenger.FirstName;
+                    passengerInfoControl.lblPIMiddleInitial.Text = passenger.MiddleInitial;
+                    passengerInfoControl.lblPILName.Text = passenger.LastName;
+                    passengerInfoControl.lblPIGender.Text = passenger.Gender;
+                    passengerInfoControl.lblPIBirthdate.Text = passenger.DateOfBirth.ToShortDateString();
+                    passengerInfoControl.lblPINationality.Text = passenger.Nationality;
+
+                    // Log the data being assigned to ensure it’s correct
+                    Console.WriteLine($"Assigned {passenger.FirstName} {passenger.MiddleInitial} {passenger.LastName} to ucPaymentPassengerInfo {i + 1}");
+
+                    // Update passenger number label (1-based index)
+                    passengerInfoControl.lblPassengerNo.Text = (i + 1).ToString();  // 1-based index
+
+                    // Add the control to the parent container
+                    roundTripPayment.ucPaymentPassengerInfo1.Controls.Add(passengerInfoControl);
+                }
+
+                // Refresh the parent container to update the UI
+                roundTripPayment.ucPaymentPassengerInfo1.Refresh();  // Force UI to update and reflect changes
+            }
+
+            // Set the number of passengers and total price
             roundTripPayment.lblNoOfPassengers.Text = numberOfPassengers.ToString();
-            roundTripPayment.lblServiceCharge.Text = "₱" + serviceCharge.ToString("N2");
-            roundTripPayment.lblTerminalFee.Text = "₱" + terminalFee.ToString("N2");
-            decimal totalPrice = (departurePrice * numberOfPassengers) + serviceCharge + terminalFee;
-            roundTripPayment.lblTotalPrice.Text = "₱" + totalPrice.ToString("N2");
+            decimal totalPrice = departurePrice * numberOfPassengers;
+            roundTripPayment.SetBasePrice(totalPrice);
 
             if (roundTripPayment.ucRoundTripTripSummary1 != null)
             {
@@ -236,9 +360,24 @@ namespace Ferry_Ticketing_App.Pages
                 roundTripPayment.lblCIAddress.Text = txtAddress.Text;
             }
 
+            if (!ValidateContactInfo())
+            {
+                return;
+            }
+
+            // Switch to passenger details page and hide current page
+            var passengerDetails = this.Parent.Controls.OfType<ucPassengerDetails>().FirstOrDefault();
+            if (passengerDetails != null)
+            {
+                this.Visible = false;
+                passengerDetails.Visible = true;
+                passengerDetails.BringToFront();
+            }
+
+            // Show round trip payment page
             roundTripPayment.Visible = true;
             roundTripPayment.BringToFront();
-            
+            roundTripPayment.SetupPassengerInfo(numberOfPassengers, passengers);
         }
     }
 }

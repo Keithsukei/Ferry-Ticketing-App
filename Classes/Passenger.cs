@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ferry_Ticketing_App.Classes
 {
-    internal class Passenger
+    public class Passenger
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
