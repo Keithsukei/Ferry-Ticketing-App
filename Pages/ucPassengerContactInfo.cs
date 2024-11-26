@@ -20,7 +20,6 @@ namespace Ferry_Ticketing_App.Pages
             InitializeComponent();
         }
 
-        // Keep the existing UpdateItinerary2 method exactly as it was
         public void UpdateItinerary2(string fromCode, string fromCity, string toCode, string toCity, int passengers, DateTime departDate, DateTime returnDate)
         {
             foreach (Control ctrl in pnlItineraryPH.Controls)
@@ -126,7 +125,6 @@ namespace Ferry_Ticketing_App.Pages
                 findTrips.BringToFront();
                 findTrips.Visible = true;
 
-                // Update the number of passengers based on the input field (if available)
                 int passengers = int.TryParse(findTrips.txtPassengers.Text, out int result) ? result : 1;
 
                 // Update trip details for all instances of ucIndividualTrips
@@ -310,8 +308,6 @@ namespace Ferry_Ticketing_App.Pages
                     passengerInfoControl.lblPIBirthdate.Text = passenger.DateOfBirth.ToShortDateString();
                     passengerInfoControl.lblPINationality.Text = passenger.Nationality;
 
-                    // Log the data being assigned to ensure it’s correct
-                    Console.WriteLine($"Assigned {passenger.FirstName} {passenger.MiddleInitial} {passenger.LastName} to ucPaymentPassengerInfo {i + 1}");
 
                     // Update passenger number label (1-based index)
                     passengerInfoControl.lblPassengerNo.Text = (i + 1).ToString();  // 1-based index

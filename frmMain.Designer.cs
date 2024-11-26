@@ -38,6 +38,8 @@ namespace Ferry_Ticketing_App
             this.ucSearchRoundTrip1 = new Ferry_Ticketing_App.Pages.ucSearchRoundTrip();
             this.ucPassengerContactInfo1 = new Ferry_Ticketing_App.Pages.ucPassengerContactInfo();
             this.ucRoundTripPayment1 = new Ferry_Ticketing_App.Pages.ucRoundTripPayment();
+            this.ucCheckout1 = new Ferry_Ticketing_App.Pages.ucCheckout();
+            this.ucComplete1 = new Ferry_Ticketing_App.Pages.ucComplete();
             this.pnlSidePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,6 +127,24 @@ namespace Ferry_Ticketing_App
             this.ucRoundTripPayment1.Size = new System.Drawing.Size(1026, 720);
             this.ucRoundTripPayment1.TabIndex = 13;
             // 
+            // ucCheckout1
+            // 
+            this.ucCheckout1.AutoScroll = true;
+            this.ucCheckout1.BackColor = System.Drawing.Color.White;
+            this.ucCheckout1.Location = new System.Drawing.Point(254, 36);
+            this.ucCheckout1.Name = "ucCheckout1";
+            this.ucCheckout1.Size = new System.Drawing.Size(1026, 720);
+            this.ucCheckout1.TabIndex = 14;
+            // 
+            // ucComplete1
+            // 
+            this.ucComplete1.AutoScroll = true;
+            this.ucComplete1.BackColor = System.Drawing.Color.White;
+            this.ucComplete1.Location = new System.Drawing.Point(254, 37);
+            this.ucComplete1.Name = "ucComplete1";
+            this.ucComplete1.Size = new System.Drawing.Size(1026, 720);
+            this.ucComplete1.TabIndex = 15;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -138,6 +158,8 @@ namespace Ferry_Ticketing_App
             this.Controls.Add(this.ucSearchRoundTrip1);
             this.Controls.Add(this.ucPassengerContactInfo1);
             this.Controls.Add(this.ucRoundTripPayment1);
+            this.Controls.Add(this.ucCheckout1);
+            this.Controls.Add(this.ucComplete1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -157,6 +179,8 @@ namespace Ferry_Ticketing_App
         private ucFindTrips ucFindTrips1;
         private ucPassengerContactInfo ucPassengerContactInfo1;
         private ucRoundTripPayment ucRoundTripPayment1;
+        private ucCheckout ucCheckout1;
+        private ucComplete ucComplete1;
     }
 }
 

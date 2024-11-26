@@ -30,8 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucRoundTripPayment));
             this.pnlPayment = new System.Windows.Forms.Panel();
-            this.ucPaymentPassengerInfo1 = new Ferry_Ticketing_App.Pages.ucPaymentPassengerInfo();
-            this.ucRoundTripTripSummary1 = new Ferry_Ticketing_App.Pages.ucRoundTripTripSummary();
             this.btnPaymentContinue = new System.Windows.Forms.Button();
             this.btnPaymentBack = new System.Windows.Forms.Button();
             this.pnlContactInfo = new System.Windows.Forms.Panel();
@@ -51,6 +49,8 @@
             this.pbPaymentOptionsHeader = new System.Windows.Forms.PictureBox();
             this.pbYoureAlmostThere = new System.Windows.Forms.PictureBox();
             this.pbProgress = new System.Windows.Forms.PictureBox();
+            this.ucPaymentPassengerInfo1 = new Ferry_Ticketing_App.Pages.ucPaymentPassengerInfo();
+            this.ucRoundTripTripSummary1 = new Ferry_Ticketing_App.Pages.ucRoundTripTripSummary();
             this.pnlPayment.SuspendLayout();
             this.pnlContactInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPassengerGuidelines)).BeginInit();
@@ -80,26 +80,8 @@
             this.pnlPayment.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlPayment.Location = new System.Drawing.Point(0, 0);
             this.pnlPayment.Name = "pnlPayment";
-            this.pnlPayment.Size = new System.Drawing.Size(1009, 2000);
+            this.pnlPayment.Size = new System.Drawing.Size(992, 2000);
             this.pnlPayment.TabIndex = 1;
-            // 
-            // ucPaymentPassengerInfo1
-            // 
-            this.ucPaymentPassengerInfo1.BackColor = System.Drawing.Color.Transparent;
-            this.ucPaymentPassengerInfo1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucPaymentPassengerInfo1.BackgroundImage")));
-            this.ucPaymentPassengerInfo1.Location = new System.Drawing.Point(38, 1614);
-            this.ucPaymentPassengerInfo1.Name = "ucPaymentPassengerInfo1";
-            this.ucPaymentPassengerInfo1.Size = new System.Drawing.Size(545, 155);
-            this.ucPaymentPassengerInfo1.TabIndex = 13;
-            // 
-            // ucRoundTripTripSummary1
-            // 
-            this.ucRoundTripTripSummary1.BackColor = System.Drawing.Color.Transparent;
-            this.ucRoundTripTripSummary1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucRoundTripTripSummary1.BackgroundImage")));
-            this.ucRoundTripTripSummary1.Location = new System.Drawing.Point(38, 875);
-            this.ucRoundTripTripSummary1.Name = "ucRoundTripTripSummary1";
-            this.ucRoundTripTripSummary1.Size = new System.Drawing.Size(545, 562);
-            this.ucRoundTripTripSummary1.TabIndex = 12;
             // 
             // btnPaymentContinue
             // 
@@ -324,6 +306,24 @@
             this.pbProgress.TabIndex = 2;
             this.pbProgress.TabStop = false;
             // 
+            // ucPaymentPassengerInfo1
+            // 
+            this.ucPaymentPassengerInfo1.BackColor = System.Drawing.Color.Transparent;
+            this.ucPaymentPassengerInfo1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucPaymentPassengerInfo1.BackgroundImage")));
+            this.ucPaymentPassengerInfo1.Location = new System.Drawing.Point(38, 1614);
+            this.ucPaymentPassengerInfo1.Name = "ucPaymentPassengerInfo1";
+            this.ucPaymentPassengerInfo1.Size = new System.Drawing.Size(545, 155);
+            this.ucPaymentPassengerInfo1.TabIndex = 13;
+            // 
+            // ucRoundTripTripSummary1
+            // 
+            this.ucRoundTripTripSummary1.BackColor = System.Drawing.Color.Transparent;
+            this.ucRoundTripTripSummary1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucRoundTripTripSummary1.BackgroundImage")));
+            this.ucRoundTripTripSummary1.Location = new System.Drawing.Point(38, 875);
+            this.ucRoundTripTripSummary1.Name = "ucRoundTripTripSummary1";
+            this.ucRoundTripTripSummary1.Size = new System.Drawing.Size(545, 562);
+            this.ucRoundTripTripSummary1.TabIndex = 12;
+            // 
             // ucRoundTripPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -331,7 +331,7 @@
             this.AutoScroll = true;
             this.Controls.Add(this.pnlPayment);
             this.Name = "ucRoundTripPayment";
-            this.Size = new System.Drawing.Size(1009, 720);
+            this.Size = new System.Drawing.Size(992, 720);
             this.pnlPayment.ResumeLayout(false);
             this.pnlContactInfo.ResumeLayout(false);
             this.pnlContactInfo.PerformLayout();

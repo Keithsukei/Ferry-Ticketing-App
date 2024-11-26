@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnCompleteOrder = new System.Windows.Forms.Button();
             this.txtPaymentCardFName = new System.Windows.Forms.TextBox();
             this.txtPaymentCardLName = new System.Windows.Forms.TextBox();
             this.txtPaymentCardNo = new System.Windows.Forms.TextBox();
@@ -36,17 +35,6 @@
             this.txtPaymentCardCVV = new System.Windows.Forms.TextBox();
             this.cbImNotARobot = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
-            // btnCompleteOrder
-            // 
-            this.btnCompleteOrder.FlatAppearance.BorderSize = 0;
-            this.btnCompleteOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCompleteOrder.Image = global::Ferry_Ticketing_App.Properties.Resources.checkoutbtnContinue;
-            this.btnCompleteOrder.Location = new System.Drawing.Point(278, 395);
-            this.btnCompleteOrder.Name = "btnCompleteOrder";
-            this.btnCompleteOrder.Size = new System.Drawing.Size(194, 50);
-            this.btnCompleteOrder.TabIndex = 0;
-            this.btnCompleteOrder.UseVisualStyleBackColor = true;
             // 
             // txtPaymentCardFName
             // 
@@ -120,7 +108,6 @@
             this.Controls.Add(this.txtPaymentCardCVV);
             this.Controls.Add(this.txtPaymentCardExpDate);
             this.Controls.Add(this.txtPaymentCardFName);
-            this.Controls.Add(this.btnCompleteOrder);
             this.ForeColor = System.Drawing.Color.Transparent;
             this.Name = "ucPaymentCard";
             this.Size = new System.Drawing.Size(511, 477);
@@ -130,13 +117,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnCompleteOrder;
-        private System.Windows.Forms.TextBox txtPaymentCardFName;
-        private System.Windows.Forms.TextBox txtPaymentCardLName;
-        private System.Windows.Forms.TextBox txtPaymentCardNo;
-        private System.Windows.Forms.TextBox txtPaymentCardExpDate;
-        private System.Windows.Forms.TextBox txtPaymentCardCVV;
+        public System.Windows.Forms.TextBox txtPaymentCardFName;
+        public System.Windows.Forms.TextBox txtPaymentCardLName;
+        public System.Windows.Forms.TextBox txtPaymentCardNo;
+        public System.Windows.Forms.TextBox txtPaymentCardExpDate;
+        public System.Windows.Forms.TextBox txtPaymentCardCVV;
         private System.Windows.Forms.CheckBox cbImNotARobot;
     }
 }

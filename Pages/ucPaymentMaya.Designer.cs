@@ -28,24 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtPaymentCardFName = new System.Windows.Forms.TextBox();
+            this.txtPaymentMayaFName = new System.Windows.Forms.TextBox();
             this.txtPaymentMayaLName = new System.Windows.Forms.TextBox();
             this.txtPaymentMayaAccountNo = new System.Windows.Forms.TextBox();
             this.txtPaymentMayaOTP = new System.Windows.Forms.TextBox();
             this.btnSendOTP = new System.Windows.Forms.Button();
-            this.btnCompleteOrder = new System.Windows.Forms.Button();
             this.cbImNotARobot = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // txtPaymentCardFName
+            // txtPaymentMayaFName
             // 
-            this.txtPaymentCardFName.BackColor = System.Drawing.Color.White;
-            this.txtPaymentCardFName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPaymentCardFName.Font = new System.Drawing.Font("SF Pro Display", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPaymentCardFName.Location = new System.Drawing.Point(65, 115);
-            this.txtPaymentCardFName.Name = "txtPaymentCardFName";
-            this.txtPaymentCardFName.Size = new System.Drawing.Size(168, 33);
-            this.txtPaymentCardFName.TabIndex = 2;
+            this.txtPaymentMayaFName.BackColor = System.Drawing.Color.White;
+            this.txtPaymentMayaFName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPaymentMayaFName.Font = new System.Drawing.Font("SF Pro Display", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPaymentMayaFName.Location = new System.Drawing.Point(65, 115);
+            this.txtPaymentMayaFName.Name = "txtPaymentMayaFName";
+            this.txtPaymentMayaFName.Size = new System.Drawing.Size(168, 33);
+            this.txtPaymentMayaFName.TabIndex = 2;
             // 
             // txtPaymentMayaLName
             // 
@@ -88,29 +87,19 @@
             this.btnSendOTP.Size = new System.Drawing.Size(133, 44);
             this.btnSendOTP.TabIndex = 3;
             this.btnSendOTP.UseVisualStyleBackColor = true;
-            // 
-            // btnCompleteOrder
-            // 
-            this.btnCompleteOrder.FlatAppearance.BorderSize = 0;
-            this.btnCompleteOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCompleteOrder.Image = global::Ferry_Ticketing_App.Properties.Resources.checkoutbtnContinue;
-            this.btnCompleteOrder.Location = new System.Drawing.Point(281, 403);
-            this.btnCompleteOrder.Name = "btnCompleteOrder";
-            this.btnCompleteOrder.Size = new System.Drawing.Size(194, 50);
-            this.btnCompleteOrder.TabIndex = 4;
-            this.btnCompleteOrder.UseVisualStyleBackColor = true;
+            this.btnSendOTP.Click += new System.EventHandler(this.btnSendOTP_Click);
             // 
             // cbImNotARobot
             // 
-            this.cbImNotARobot.AutoSize = true;
+            this.cbImNotARobot.BackColor = System.Drawing.Color.Transparent;
             this.cbImNotARobot.FlatAppearance.BorderSize = 0;
             this.cbImNotARobot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbImNotARobot.ForeColor = System.Drawing.Color.Transparent;
-            this.cbImNotARobot.Location = new System.Drawing.Point(56, 343);
+            this.cbImNotARobot.ForeColor = System.Drawing.Color.Black;
+            this.cbImNotARobot.Location = new System.Drawing.Point(57, 344);
             this.cbImNotARobot.Name = "cbImNotARobot";
-            this.cbImNotARobot.Size = new System.Drawing.Size(12, 11);
+            this.cbImNotARobot.Size = new System.Drawing.Size(10, 11);
             this.cbImNotARobot.TabIndex = 5;
-            this.cbImNotARobot.UseVisualStyleBackColor = true;
+            this.cbImNotARobot.UseVisualStyleBackColor = false;
             // 
             // ucPaymentMaya
             // 
@@ -120,12 +109,11 @@
             this.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.paymentMaya;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.Controls.Add(this.cbImNotARobot);
-            this.Controls.Add(this.btnCompleteOrder);
             this.Controls.Add(this.btnSendOTP);
             this.Controls.Add(this.txtPaymentMayaLName);
             this.Controls.Add(this.txtPaymentMayaAccountNo);
             this.Controls.Add(this.txtPaymentMayaOTP);
-            this.Controls.Add(this.txtPaymentCardFName);
+            this.Controls.Add(this.txtPaymentMayaFName);
             this.DoubleBuffered = true;
             this.Name = "ucPaymentMaya";
             this.Size = new System.Drawing.Size(512, 489);
@@ -136,12 +124,11 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtPaymentCardFName;
-        private System.Windows.Forms.TextBox txtPaymentMayaLName;
-        private System.Windows.Forms.TextBox txtPaymentMayaAccountNo;
-        private System.Windows.Forms.TextBox txtPaymentMayaOTP;
-        private System.Windows.Forms.Button btnSendOTP;
-        private System.Windows.Forms.Button btnCompleteOrder;
+        public System.Windows.Forms.TextBox txtPaymentMayaFName;
+        public System.Windows.Forms.TextBox txtPaymentMayaLName;
+        public System.Windows.Forms.TextBox txtPaymentMayaAccountNo;
+        public System.Windows.Forms.TextBox txtPaymentMayaOTP;
+        public System.Windows.Forms.Button btnSendOTP;
         private System.Windows.Forms.CheckBox cbImNotARobot;
     }
 }

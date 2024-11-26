@@ -71,6 +71,7 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="GetAllInfoForTicket.cs" />
     <Compile Include="Pages\ucCheckout.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -603,6 +604,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\pnlDropDownSelected4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loginformbgw2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -44,8 +44,8 @@
             this.lblPaymentTINBuyer = new System.Windows.Forms.Label();
             this.lblPPaymentMethod = new System.Windows.Forms.Label();
             this.lblPaymentDateReserved = new System.Windows.Forms.Label();
-            this.lblPaymentContactNo = new System.Windows.Forms.Label();
-            this.lblPaymentContactPerson = new System.Windows.Forms.Label();
+            this.lblPDContactNo = new System.Windows.Forms.Label();
+            this.lblPDContactPerson = new System.Windows.Forms.Label();
             this.lblBCType = new System.Windows.Forms.Label();
             this.lblVType = new System.Windows.Forms.Label();
             this.lblBCORNo = new System.Windows.Forms.Label();
@@ -96,7 +96,6 @@
             this.pnlComplete.Name = "pnlComplete";
             this.pnlComplete.Size = new System.Drawing.Size(1009, 1565);
             this.pnlComplete.TabIndex = 0;
-            this.pnlComplete.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnPrint
             // 
@@ -108,6 +107,7 @@
             this.btnPrint.Size = new System.Drawing.Size(210, 75);
             this.btnPrint.TabIndex = 4;
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnDownload
             // 
@@ -119,6 +119,7 @@
             this.btnDownload.Size = new System.Drawing.Size(202, 74);
             this.btnDownload.TabIndex = 4;
             this.btnDownload.UseVisualStyleBackColor = true;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
             // btnBackToHome
             // 
@@ -130,6 +131,7 @@
             this.btnBackToHome.Size = new System.Drawing.Size(219, 74);
             this.btnBackToHome.TabIndex = 4;
             this.btnBackToHome.UseVisualStyleBackColor = true;
+            this.btnBackToHome.Click += new System.EventHandler(this.btnBackToHome_Click);
             // 
             // pnlTicketPH
             // 
@@ -146,8 +148,8 @@
             this.pnlTicketPH.Controls.Add(this.lblPaymentTINBuyer);
             this.pnlTicketPH.Controls.Add(this.lblPPaymentMethod);
             this.pnlTicketPH.Controls.Add(this.lblPaymentDateReserved);
-            this.pnlTicketPH.Controls.Add(this.lblPaymentContactNo);
-            this.pnlTicketPH.Controls.Add(this.lblPaymentContactPerson);
+            this.pnlTicketPH.Controls.Add(this.lblPDContactNo);
+            this.pnlTicketPH.Controls.Add(this.lblPDContactPerson);
             this.pnlTicketPH.Controls.Add(this.lblBCType);
             this.pnlTicketPH.Controls.Add(this.lblVType);
             this.pnlTicketPH.Controls.Add(this.lblBCORNo);
@@ -250,9 +252,9 @@
             this.lblBIssuedBy.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBIssuedBy.Location = new System.Drawing.Point(367, 448);
             this.lblBIssuedBy.Name = "lblBIssuedBy";
-            this.lblBIssuedBy.Size = new System.Drawing.Size(48, 18);
+            this.lblBIssuedBy.Size = new System.Drawing.Size(126, 18);
             this.lblBIssuedBy.TabIndex = 0;
-            this.lblBIssuedBy.Text = "Name";
+            this.lblBIssuedBy.Text = "Christian Balibad";
             this.lblBIssuedBy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblBBookingDate
@@ -299,27 +301,27 @@
             this.lblPaymentDateReserved.Text = "Name";
             this.lblPaymentDateReserved.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblPaymentContactNo
+            // lblPDContactNo
             // 
-            this.lblPaymentContactNo.AutoSize = true;
-            this.lblPaymentContactNo.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaymentContactNo.Location = new System.Drawing.Point(540, 598);
-            this.lblPaymentContactNo.Name = "lblPaymentContactNo";
-            this.lblPaymentContactNo.Size = new System.Drawing.Size(48, 18);
-            this.lblPaymentContactNo.TabIndex = 0;
-            this.lblPaymentContactNo.Text = "Name";
-            this.lblPaymentContactNo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPDContactNo.AutoSize = true;
+            this.lblPDContactNo.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPDContactNo.Location = new System.Drawing.Point(540, 598);
+            this.lblPDContactNo.Name = "lblPDContactNo";
+            this.lblPDContactNo.Size = new System.Drawing.Size(48, 18);
+            this.lblPDContactNo.TabIndex = 0;
+            this.lblPDContactNo.Text = "Name";
+            this.lblPDContactNo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblPaymentContactPerson
+            // lblPDContactPerson
             // 
-            this.lblPaymentContactPerson.AutoSize = true;
-            this.lblPaymentContactPerson.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaymentContactPerson.Location = new System.Drawing.Point(566, 572);
-            this.lblPaymentContactPerson.Name = "lblPaymentContactPerson";
-            this.lblPaymentContactPerson.Size = new System.Drawing.Size(48, 18);
-            this.lblPaymentContactPerson.TabIndex = 0;
-            this.lblPaymentContactPerson.Text = "Name";
-            this.lblPaymentContactPerson.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPDContactPerson.AutoSize = true;
+            this.lblPDContactPerson.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPDContactPerson.Location = new System.Drawing.Point(566, 572);
+            this.lblPDContactPerson.Name = "lblPDContactPerson";
+            this.lblPDContactPerson.Size = new System.Drawing.Size(48, 18);
+            this.lblPDContactPerson.TabIndex = 0;
+            this.lblPDContactPerson.Text = "Name";
+            this.lblPDContactPerson.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblBCType
             // 
@@ -503,9 +505,9 @@
             this.lblPaymentAddress.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPaymentAddress.Location = new System.Drawing.Point(340, 572);
             this.lblPaymentAddress.Name = "lblPaymentAddress";
-            this.lblPaymentAddress.Size = new System.Drawing.Size(48, 18);
+            this.lblPaymentAddress.Size = new System.Drawing.Size(110, 18);
             this.lblPaymentAddress.TabIndex = 0;
-            this.lblPaymentAddress.Text = "Name";
+            this.lblPaymentAddress.Text = "Lapu-lapu City";
             this.lblPaymentAddress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblPaymentSoldTo
@@ -525,9 +527,9 @@
             this.lblPaymentIssueLoc.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPaymentIssueLoc.Location = new System.Drawing.Point(165, 572);
             this.lblPaymentIssueLoc.Name = "lblPaymentIssueLoc";
-            this.lblPaymentIssueLoc.Size = new System.Drawing.Size(48, 18);
+            this.lblPaymentIssueLoc.Size = new System.Drawing.Size(110, 18);
             this.lblPaymentIssueLoc.TabIndex = 0;
-            this.lblPaymentIssueLoc.Text = "Name";
+            this.lblPaymentIssueLoc.Text = "Lapu-lapu City";
             this.lblPaymentIssueLoc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblBTransactionNo
@@ -619,7 +621,7 @@
             // pbCompleteHeader
             // 
             this.pbCompleteHeader.Image = global::Ferry_Ticketing_App.Properties.Resources.completePageHeader2;
-            this.pbCompleteHeader.Location = new System.Drawing.Point(23, 24);
+            this.pbCompleteHeader.Location = new System.Drawing.Point(24, 24);
             this.pbCompleteHeader.Name = "pbCompleteHeader";
             this.pbCompleteHeader.Size = new System.Drawing.Size(954, 127);
             this.pbCompleteHeader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -633,7 +635,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pnlComplete);
             this.Name = "ucComplete";
-            this.Size = new System.Drawing.Size(1026, 720);
+            this.Size = new System.Drawing.Size(1009, 720);
             this.pnlComplete.ResumeLayout(false);
             this.pnlTicketPH.ResumeLayout(false);
             this.pnlTicketPH.PerformLayout();
@@ -670,8 +672,8 @@
         private System.Windows.Forms.Label lblPaymentTINBuyer;
         private System.Windows.Forms.Label lblPPaymentMethod;
         private System.Windows.Forms.Label lblPaymentDateReserved;
-        private System.Windows.Forms.Label lblPaymentContactNo;
-        private System.Windows.Forms.Label lblPaymentContactPerson;
+        private System.Windows.Forms.Label lblPDContactNo;
+        private System.Windows.Forms.Label lblPDContactPerson;
         private System.Windows.Forms.Label lblPaymentAddress;
         private System.Windows.Forms.Label lblPaymentSoldTo;
         private System.Windows.Forms.Label lblPaymentIssueLoc;

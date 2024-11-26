@@ -28,19 +28,15 @@ namespace Ferry_Ticketing_App.Pages
         {
             basePrice = price;
 
-            // Update the labels
             lblTerminalFee.Text = "₱25.00"; // Display fixed terminal fee
 
-            // Initialize total price (no service charge yet)
             UpdateTotalPrice(0);
         }
 
-        // Modify the UpdateTotalPrice method to use basePrice
         private void UpdateTotalPrice(decimal serviceCharge)
         {
             decimal terminalFee = 25; // Fixed terminal fee
 
-            // Calculate total price
             decimal totalPrice = basePrice + terminalFee + serviceCharge;
 
             // Update the labels
@@ -56,11 +52,9 @@ namespace Ferry_Ticketing_App.Pages
             // Highlight the selected button
             HighlightSelectedButton(method);
 
-            // Store the selected payment method (if needed)
             SelectedPaymentMethod = method;
             SelectedServiceCharge = charge;
 
-            // Update the total price (assuming other charges are calculated already)
             UpdateTotalPrice(charge);
         }
 
@@ -112,7 +106,6 @@ namespace Ferry_Ticketing_App.Pages
             btnGcash.FlatAppearance.BorderSize = 1;
         }
 
-        // Properties to store the selected method and service charge (if needed)
         public string SelectedPaymentMethod { get; private set; }
         public decimal SelectedServiceCharge { get; private set; }
 
@@ -128,7 +121,6 @@ namespace Ferry_Ticketing_App.Pages
                 info.Dispose();
             }
 
-            // Get the first passenger details control
             var firstPassengerInfo = pnlPayment.Controls["ucPaymentPassengerInfo1"] as ucPaymentPassengerInfo;
             if (firstPassengerInfo == null) return;
 
@@ -136,7 +128,6 @@ namespace Ferry_Ticketing_App.Pages
             int bottomPadding = 70; // Added extra padding for bottom
             int topPosition = firstPassengerInfo.Bottom + padding;
 
-            // Populate the first control with the first passenger's data
             if (passengers.Count > 0)
             {
                 Passenger firstPassenger = passengers[0];
@@ -213,19 +204,25 @@ namespace Ferry_Ticketing_App.Pages
 
         private void btnPaymentContinue_Click(object sender, EventArgs e)
         {
-            // Validate if a payment method is selected
+            var paymentRetriever = new GetAllInfoForTicket();
+
+            // Validate if a payment method has been selected
             if (string.IsNullOrEmpty(selectedPaymentMethod))
             {
                 MessageBox.Show("Please select a payment method before proceeding.", "Payment Method Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Proceed to checkout
+            // Get the checkout user control
             var checkOut = this.Parent.Controls.OfType<ucCheckout>().FirstOrDefault();
-            if (checkOut == null) return;
+            if (checkOut == null)
+            {
+                MessageBox.Show("Unable to navigate to the checkout page.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            // Replace the ucPaymentCard1 in ucCheckout with the appropriate control
-            Control paymentControl = null;
+            // Determine the payment method user control using a standard switch statement
+            UserControl paymentControl = null;
             switch (selectedPaymentMethod)
             {
                 case "Card":
@@ -237,28 +234,42 @@ namespace Ferry_Ticketing_App.Pages
                 case "Gcash":
                     paymentControl = new ucPaymentGcash();
                     break;
+                default:
+                    MessageBox.Show("Invalid payment method selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
             }
+            // Set the position and size of the new payment control
+            paymentControl.Location = new Point(22, 186);
+            paymentControl.Size = checkOut.ucPaymentCard1.Size; // Assuming all payment controls have the same size
+            paymentControl.Anchor = checkOut.ucPaymentCard1.Anchor;
 
-            if (paymentControl != null)
+            var pnlCheckout = checkOut.Controls.OfType<Panel>().FirstOrDefault(p => p.Name == "pnlCheckout");
+            if (pnlCheckout == null)
             {
-                paymentControl.Location = new Point(22, 186); // Set location
-                paymentControl.Size = checkOut.ucPaymentCard1.Size; // Match the size of the original control
-                paymentControl.Anchor = checkOut.ucPaymentCard1.Anchor;
-
-                // Remove the existing control and add the selected payment method control
-                checkOut.Controls.Remove(checkOut.ucPaymentCard1);
-                checkOut.ucPaymentCard1.Dispose(); // Ensure the old control is disposed of
-                checkOut.Controls.Add(paymentControl);
+                MessageBox.Show("Unable to find the checkout panel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-            // Generate Payment details
-            Random random = new Random();
-            int paymentId = random.Next(100000, 999999); // Generate random Payment ID
-            int ticketId = random.Next(100000, 999999);  // Generate random Ticket ID
-            decimal totalPrice = decimal.Parse(lblTotalPrice.Text.Replace("₱", "")); // Extract total price
-            DateTime paymentDate = DateTime.Now; // Set current date and time
+            // Remove the existing ucPaymentCard1 if it's there, and dispose it
+            pnlCheckout.Controls.Remove(checkOut.ucPaymentCard1);
+            checkOut.ucPaymentCard1.Dispose();
 
-            // Create Payment object
+            // Add the new payment control
+            pnlCheckout.Controls.Add(paymentControl);
+            paymentControl.Visible = true; // Ensure the control is visible
+            paymentControl.BringToFront(); // Bring the payment control to the front
+
+            // Bring the btnCompleteOrder button to the front so it's not covered by the new control
+            checkOut.btnCompleteOrder.BringToFront();
+
+            // Generate payment details
+            Random random = new Random();
+            int paymentId = random.Next(100000, 999999);
+            int ticketId = random.Next(100000, 999999);
+            decimal totalPrice = decimal.Parse(lblTotalPrice.Text.Replace("₱", ""));
+            DateTime paymentDate = DateTime.Now;
+
+            // Create and assign the payment object
             Payment payment = new Payment(
                 paymentId,
                 ticketId,
@@ -267,9 +278,16 @@ namespace Ferry_Ticketing_App.Pages
                 selectedPaymentMethod,
                 totalPrice
             );
+
+            // Update labels in the checkout control
             checkOut.lblPaymentID.Text = payment.PaymentId.ToString();
+            checkOut.lblTotalPrice.Text = "₱" + payment.TotalPrice.ToString("N2");
 
+            // Bind the `btnCompleteOrder_Click` event in the checkout control
+            checkOut.btnCompleteOrder.Click -= checkOut.btnCompleteOrder_Click; // Unsubscribe previous bindings
+            checkOut.btnCompleteOrder.Click += checkOut.btnCompleteOrder_Click; // Subscribe the correct event
 
+            // Navigate to the checkout page
             checkOut.Visible = true;
             checkOut.BringToFront();
         }

@@ -82,12 +82,10 @@ namespace Ferry_Ticketing_App.Pages
             // Calculate total height needed for pnlSummary
             pnlSummary.Height = btnSummaryContinue.Bottom + BUTTON_PADDING;
 
-            // Ensure pnlSummary.Parent adjusts as needed
             if (pnlSummary.Parent != null)
             {
                 pnlSummary.Parent.Height = Math.Max(pnlSummary.Bottom + BUTTON_PADDING, pnlSummary.Parent.Height);
 
-                // Optionally, refresh the layout
                 pnlSummary.Parent.Refresh();
             }
 

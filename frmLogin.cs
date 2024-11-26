@@ -25,6 +25,10 @@ namespace Ferry_Ticketing_App
                 main.Show();
                 this.Hide();
             }
+            else if (string.IsNullOrEmpty(txtUsername.Text) && string.IsNullOrEmpty(txtPassword.Text))
+            {
+                MessageBox.Show("Please enter a username and password.");
+            }
             else if (string.IsNullOrEmpty(txtUsername.Text))
             {
                 MessageBox.Show("Please enter a username.");

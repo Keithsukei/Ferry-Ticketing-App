@@ -48,7 +48,7 @@
             // pnlLoginBG
             // 
             this.pnlLoginBG.BackColor = System.Drawing.Color.Transparent;
-            this.pnlLoginBG.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.loginpanelbgw;
+            this.pnlLoginBG.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.loginformbgw2;
             this.pnlLoginBG.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlLoginBG.Controls.Add(this.pnlLoginPlaceholder);
             this.pnlLoginBG.Location = new System.Drawing.Point(28, 39);
