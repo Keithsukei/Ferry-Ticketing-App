@@ -15,7 +15,7 @@ namespace Ferry_Ticketing_App.Pages
     public partial class ucRoundTripPayment : UserControl
     {
         private decimal basePrice = 0;
-        private string selectedPaymentMethod = null; // Tracks the selected payment method
+        private string selectedPaymentMethod;
 
         public ucRoundTripPayment()
         {
@@ -28,28 +28,25 @@ namespace Ferry_Ticketing_App.Pages
         {
             basePrice = price;
 
-            lblTerminalFee.Text = "₱25.00"; // Display fixed terminal fee
+            lblTerminalFee.Text = "₱25.00";
 
             UpdateTotalPrice(0);
         }
 
         private void UpdateTotalPrice(decimal serviceCharge)
         {
-            decimal terminalFee = 25; // Fixed terminal fee
+            decimal terminalFee = 25;
 
             decimal totalPrice = basePrice + terminalFee + serviceCharge;
 
-            // Update the labels
             lblTerminalFee.Text = "₱" + terminalFee.ToString("N2");
             lblTotalPrice.Text = "₱" + totalPrice.ToString("N2");
         }
 
         private void SelectPaymentMethod(string method, decimal charge)
         {
-            // Update the service charge label
             lblServiceCharge.Text = "₱" + charge.ToString("N2");
 
-            // Highlight the selected button
             HighlightSelectedButton(method);
 
             SelectedPaymentMethod = method;
@@ -58,52 +55,48 @@ namespace Ferry_Ticketing_App.Pages
             UpdateTotalPrice(charge);
         }
 
-        // Method to highlight the selected payment button
         private void HighlightSelectedButton(string selectedMethod)
         {
-            // Reset button colors
             ResetButtonColors();
 
-            // Highlight the selected button
             switch (selectedMethod)
             {
                 case "Card":
-                    btnCard.BackColor = Color.LightBlue; // Highlight color
-                    btnCard.FlatAppearance.BorderColor = Color.Blue;
-                    btnCard.FlatAppearance.BorderSize = 2;
+                    HighlightButton(btnCard);
                     break;
 
                 case "Maya":
-                    btnMaya.BackColor = Color.LightBlue;
-                    btnMaya.FlatAppearance.BorderColor = Color.Blue;
-                    btnMaya.FlatAppearance.BorderSize = 2;
+                    HighlightButton(btnMaya);
                     break;
 
                 case "Gcash":
-                    btnGcash.BackColor = Color.LightBlue;
-                    btnGcash.FlatAppearance.BorderColor = Color.Blue;
-                    btnGcash.FlatAppearance.BorderSize = 2;
+                    HighlightButton(btnGcash);
                     break;
             }
         }
 
-        // Method to reset button colors to default
+        private void HighlightButton(Button button)
+        {
+            button.BackColor = Color.LightBlue;
+            button.FlatAppearance.BorderColor = Color.Blue;
+            button.FlatAppearance.BorderSize = 2;
+        }
+
         private void ResetButtonColors()
         {
             Color defaultBackColor = SystemColors.Control;
             Color defaultBorderColor = Color.Gray;
 
-            btnCard.BackColor = defaultBackColor;
-            btnCard.FlatAppearance.BorderColor = defaultBorderColor;
-            btnCard.FlatAppearance.BorderSize = 1;
+            ResetButtonColor(btnCard, defaultBackColor, defaultBorderColor);
+            ResetButtonColor(btnMaya, defaultBackColor, defaultBorderColor);
+            ResetButtonColor(btnGcash, defaultBackColor, defaultBorderColor);
+        }
 
-            btnMaya.BackColor = defaultBackColor;
-            btnMaya.FlatAppearance.BorderColor = defaultBorderColor;
-            btnMaya.FlatAppearance.BorderSize = 1;
-
-            btnGcash.BackColor = defaultBackColor;
-            btnGcash.FlatAppearance.BorderColor = defaultBorderColor;
-            btnGcash.FlatAppearance.BorderSize = 1;
+        private void ResetButtonColor(Button button, Color backColor, Color borderColor)
+        {
+            button.BackColor = backColor;
+            button.FlatAppearance.BorderColor = borderColor;
+            button.FlatAppearance.BorderSize = 1;
         }
 
         public string SelectedPaymentMethod { get; private set; }
@@ -124,20 +117,14 @@ namespace Ferry_Ticketing_App.Pages
             var firstPassengerInfo = pnlPayment.Controls["ucPaymentPassengerInfo1"] as ucPaymentPassengerInfo;
             if (firstPassengerInfo == null) return;
 
-            int padding = 10;
+            int padding = 20;
             int bottomPadding = 70; // Added extra padding for bottom
             int topPosition = firstPassengerInfo.Bottom + padding;
 
             if (passengers.Count > 0)
             {
                 Passenger firstPassenger = passengers[0];
-                firstPassengerInfo.lblPIFName.Text = firstPassenger.FirstName;
-                firstPassengerInfo.lblPIMiddleInitial.Text = firstPassenger.MiddleInitial;
-                firstPassengerInfo.lblPILName.Text = firstPassenger.LastName;
-                firstPassengerInfo.lblPIGender.Text = firstPassenger.Gender;
-                firstPassengerInfo.lblPIBirthdate.Text = firstPassenger.DateOfBirth.ToShortDateString();
-                firstPassengerInfo.lblPINationality.Text = firstPassenger.Nationality;
-                firstPassengerInfo.lblPassengerNo.Text = "1"; // First passenger
+                SetPassengerInfo(firstPassengerInfo, firstPassenger, 1);
             }
 
             // Create additional passenger info controls
@@ -154,13 +141,7 @@ namespace Ferry_Ticketing_App.Pages
                 if (i - 1 < passengers.Count)
                 {
                     Passenger passenger = passengers[i - 1];
-                    newPassengerInfo.lblPIFName.Text = passenger.FirstName;
-                    newPassengerInfo.lblPIMiddleInitial.Text = passenger.MiddleInitial;
-                    newPassengerInfo.lblPILName.Text = passenger.LastName;
-                    newPassengerInfo.lblPIGender.Text = passenger.Gender;
-                    newPassengerInfo.lblPIBirthdate.Text = passenger.DateOfBirth.ToShortDateString();
-                    newPassengerInfo.lblPINationality.Text = passenger.Nationality;
-                    newPassengerInfo.lblPassengerNo.Text = i.ToString();
+                    SetPassengerInfo(newPassengerInfo, passenger, i);
                 }
 
                 pnlPayment.Controls.Add(newPassengerInfo);
@@ -169,22 +150,31 @@ namespace Ferry_Ticketing_App.Pages
 
             if (btnPaymentBack != null && btnPaymentContinue != null)
             {
-                // Set both buttons to the same top position
                 int buttonY = topPosition + padding;
                 btnPaymentBack.Top = buttonY;
                 btnPaymentContinue.Top = buttonY;
 
-                // Make sure both buttons maintain their anchoring
                 btnPaymentBack.Anchor = AnchorStyles.Top | AnchorStyles.Left;
                 btnPaymentContinue.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             }
 
-            int totalContentHeight = btnPaymentBack.Bottom + bottomPadding;  // Added extra bottom padding
+            int totalContentHeight = btnPaymentBack.Bottom + bottomPadding;
             pnlPayment.Height = totalContentHeight;
 
             pnlPayment.AutoScroll = true;
             pnlPayment.PerformLayout();
             pnlPayment.Refresh();
+        }
+
+        private void SetPassengerInfo(ucPaymentPassengerInfo passengerInfo, Passenger passenger, int passengerNo)
+        {
+            passengerInfo.lblPIFName.Text = passenger.FirstName;
+            passengerInfo.lblPIMiddleInitial.Text = passenger.MiddleInitial;
+            passengerInfo.lblPILName.Text = passenger.LastName;
+            passengerInfo.lblPIGender.Text = passenger.Gender;
+            passengerInfo.lblPIBirthdate.Text = passenger.DateOfBirth.ToShortDateString();
+            passengerInfo.lblPINationality.Text = passenger.Nationality;
+            passengerInfo.lblPassengerNo.Text = passengerNo.ToString();
         }
 
         private void btnCard_Click(object sender, EventArgs e)
@@ -201,12 +191,15 @@ namespace Ferry_Ticketing_App.Pages
         {
             selectedPaymentMethod = "Gcash";
         }
+        public string GetSelectedPaymentMethod()
+        {
+            return selectedPaymentMethod;
+        }
 
         private void btnPaymentContinue_Click(object sender, EventArgs e)
         {
             var paymentRetriever = new GetAllInfoForTicket();
 
-            // Validate if a payment method has been selected
             if (string.IsNullOrEmpty(selectedPaymentMethod))
             {
                 MessageBox.Show("Please select a payment method before proceeding.", "Payment Method Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -221,7 +214,6 @@ namespace Ferry_Ticketing_App.Pages
                 return;
             }
 
-            // Determine the payment method user control using a standard switch statement
             UserControl paymentControl = null;
             switch (selectedPaymentMethod)
             {
@@ -238,9 +230,8 @@ namespace Ferry_Ticketing_App.Pages
                     MessageBox.Show("Invalid payment method selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
             }
-            // Set the position and size of the new payment control
             paymentControl.Location = new Point(22, 186);
-            paymentControl.Size = checkOut.ucPaymentCard1.Size; // Assuming all payment controls have the same size
+            paymentControl.Size = checkOut.ucPaymentCard1.Size;
             paymentControl.Anchor = checkOut.ucPaymentCard1.Anchor;
 
             var pnlCheckout = checkOut.Controls.OfType<Panel>().FirstOrDefault(p => p.Name == "pnlCheckout");
@@ -250,26 +241,21 @@ namespace Ferry_Ticketing_App.Pages
                 return;
             }
 
-            // Remove the existing ucPaymentCard1 if it's there, and dispose it
             pnlCheckout.Controls.Remove(checkOut.ucPaymentCard1);
             checkOut.ucPaymentCard1.Dispose();
 
-            // Add the new payment control
             pnlCheckout.Controls.Add(paymentControl);
-            paymentControl.Visible = true; // Ensure the control is visible
-            paymentControl.BringToFront(); // Bring the payment control to the front
+            paymentControl.Visible = true;
+            paymentControl.BringToFront();
 
-            // Bring the btnCompleteOrder button to the front so it's not covered by the new control
             checkOut.btnCompleteOrder.BringToFront();
 
-            // Generate payment details
             Random random = new Random();
             int paymentId = random.Next(100000, 999999);
             int ticketId = random.Next(100000, 999999);
             decimal totalPrice = decimal.Parse(lblTotalPrice.Text.Replace("₱", ""));
             DateTime paymentDate = DateTime.Now;
 
-            // Create and assign the payment object
             Payment payment = new Payment(
                 paymentId,
                 ticketId,
@@ -279,17 +265,36 @@ namespace Ferry_Ticketing_App.Pages
                 totalPrice
             );
 
-            // Update labels in the checkout control
             checkOut.lblPaymentID.Text = payment.PaymentId.ToString();
             checkOut.lblTotalPrice.Text = "₱" + payment.TotalPrice.ToString("N2");
 
-            // Bind the `btnCompleteOrder_Click` event in the checkout control
-            checkOut.btnCompleteOrder.Click -= checkOut.btnCompleteOrder_Click; // Unsubscribe previous bindings
-            checkOut.btnCompleteOrder.Click += checkOut.btnCompleteOrder_Click; // Subscribe the correct event
+            checkOut.btnCompleteOrder.Click -= checkOut.btnCompleteOrder_Click;
+            checkOut.btnCompleteOrder.Click += checkOut.btnCompleteOrder_Click;
 
-            // Navigate to the checkout page
             checkOut.Visible = true;
             checkOut.BringToFront();
+        }
+
+        private void btnPaymentBack_Click(object sender, EventArgs e)
+        {
+            var parentControl = this.Parent;
+
+            var passengerContactInfoControl = parentControl.Controls.OfType<ucPassengerContactInfo>().FirstOrDefault();
+
+            if (passengerContactInfoControl != null)
+            {
+                passengerContactInfoControl.Visible = true;
+                passengerContactInfoControl.BringToFront();
+            }
+
+            this.Visible = false;
+
+            lblServiceCharge.Text = "₱0.00";
+            lblTotalPrice.Text = "₱0.00";
+            lblTerminalFee.Text = "₱25.00";
+            selectedPaymentMethod = string.Empty;
+
+            ResetButtonColors();
         }
     }
 }

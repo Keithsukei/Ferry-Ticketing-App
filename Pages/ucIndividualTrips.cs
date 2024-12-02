@@ -264,6 +264,13 @@ namespace Ferry_Ticketing_App.Pages
         {
             if (sender is Button selectedButton && selectedButton.Tag is DateTime selectedDate)
             {
+                // Restrict selection to today or future dates
+                if (selectedDate.Date < DateTime.Today)
+                {
+                    MessageBox.Show("You cannot select a past date.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 HighlightDate(selectedDate);
                 UpdateTripDetails(selectedDate);
 
@@ -277,6 +284,7 @@ namespace Ferry_Ticketing_App.Pages
                 }
             }
         }
+
         public void RecalculateTripDetails(DateTime selectedDate)
         {
             if (string.IsNullOrEmpty(sourcePort) || string.IsNullOrEmpty(destinationPort))

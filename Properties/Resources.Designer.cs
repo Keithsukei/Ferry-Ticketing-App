@@ -473,6 +473,46 @@ namespace Ferry_Ticketing_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hide {
+            get {
+                object obj = ResourceManager.GetObject("hide", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hide1 {
+            get {
+                object obj = ResourceManager.GetObject("hide1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap history {
+            get {
+                object obj = ResourceManager.GetObject("history", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap history2 {
+            get {
+                object obj = ResourceManager.GetObject("history2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap individualPassengerDetails {
             get {
                 object obj = ResourceManager.GetObject("individualPassengerDetails", resourceCulture);
@@ -596,6 +636,16 @@ namespace Ferry_Ticketing_App.Properties {
         internal static System.Drawing.Bitmap loginpanelplaceholder {
             get {
                 object obj = ResourceManager.GetObject("loginpanelplaceholder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logo {
+            get {
+                object obj = ResourceManager.GetObject("logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1206,6 +1256,16 @@ namespace Ferry_Ticketing_App.Properties {
         internal static System.Drawing.Bitmap Username {
             get {
                 object obj = ResourceManager.GetObject("Username", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap view {
+            get {
+                object obj = ResourceManager.GetObject("view", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -33,6 +33,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>packages\BouncyCastle.Cryptography.2.5.0-beta.152\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -72,6 +81,12 @@
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="GetAllInfoForTicket.cs" />
+    <Compile Include="Pages\History.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\History.Designer.cs">
+      <DependentUpon>History.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ucCheckout.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -180,6 +195,12 @@
     <Compile Include="Pages\ucSearchRoundTrip.Designer.cs">
       <DependentUpon>ucSearchRoundTrip.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ucTicket.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\ucTicket.Designer.cs">
+      <DependentUpon>ucTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />
@@ -188,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\History.resx">
+      <DependentUpon>History.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ucCheckout.resx">
       <DependentUpon>ucCheckout.cs</DependentUpon>
@@ -243,6 +267,9 @@
     <EmbeddedResource Include="Pages\ucSearchRoundTrip.resx">
       <DependentUpon>ucSearchRoundTrip.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ucTicket.resx">
+      <DependentUpon>ucTicket.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -253,6 +280,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -607,6 +635,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\loginformbgw2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\history.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\history2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hide1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

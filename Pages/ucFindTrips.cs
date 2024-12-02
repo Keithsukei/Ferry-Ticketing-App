@@ -46,6 +46,11 @@ namespace Ferry_Ticketing_App.Pages
 
             suggestionBoxFrom.Click += (s, e) => SelectSuggestion(txtFrom, suggestionBoxFrom);
             suggestionBoxTo.Click += (s, e) => SelectSuggestion(txtTo, suggestionBoxTo);
+
+            dtpDepart.MinDate = DateTime.Now;
+            dtpDepart.MaxDate = new DateTime(2030, 12, 31);
+            dtpReturn.MinDate = DateTime.Now;
+            dtpReturn.MaxDate = new DateTime(2030, 12, 31);
         }
 
         private void rbRoundTrip_CheckedChanged(object sender, EventArgs e)

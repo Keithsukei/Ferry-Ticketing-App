@@ -1,6 +1,11 @@
 ﻿using Ferry_Ticketing_App.Pages;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,24 +15,19 @@ namespace Ferry_Ticketing_App
 {
     public class GetAllInfoForTicket
     {
-        // Nested class to represent departure ticket information
         public class DepartureTicketInfo
         {
             #region Properties
-            // Departure Details
             public string DepartureFromPort { get; set; }
             public string DepartureToPort { get; set; }
             public string DepartureDate { get; set; }
             public string VesselName { get; set; }
             public string Accommodation { get; set; }
 
-            // Passengers Information
             public List<PassengerDetails> Passengers { get; set; }
 
-            // Contact Person Details
             public ContactPersonDetails ContactPerson { get; set; }
 
-            // Nested class for Passenger Details
             public class PassengerDetails
             {
                 public string FirstName { get; set; }
@@ -37,7 +37,6 @@ namespace Ferry_Ticketing_App
                 public string Birthdate { get; set; }
             }
 
-            // Nested class for Contact Person Details
             public class ContactPersonDetails
             {
                 public string Name { get; set; }
@@ -47,31 +46,6 @@ namespace Ferry_Ticketing_App
             }
         }
 
-        // Method to retrieve Departure Ticket Information
-        public DepartureTicketInfo GetDepartureTicketInfo(
-            Control ucRoundTripPayment,
-            Control ucRoundTripTripSummary1,
-            Control ucPaymentPassengerInfo1)
-        {
-            var departureInfo = new DepartureTicketInfo();
-
-            // Retrieve Departure Details
-            departureInfo.DepartureFromPort = GetLabelText(ucRoundTripTripSummary1, "lblDepFromPort");
-            departureInfo.DepartureToPort = GetLabelText(ucRoundTripTripSummary1, "lblDepToPort");
-            departureInfo.DepartureDate = GetLabelText(ucRoundTripTripSummary1, "lblDepDepartureDate");
-            departureInfo.VesselName = GetLabelText(ucRoundTripTripSummary1, "lblDepVesselName");
-            departureInfo.Accommodation = GetLabelText(ucRoundTripTripSummary1, "lblDepAccommodation");
-
-            // Retrieve Passengers Information
-            departureInfo.Passengers = GetPassengersInfo(ucPaymentPassengerInfo1);
-
-            // Retrieve Contact Person Details
-            departureInfo.ContactPerson = GetContactPersonInfo(ucRoundTripPayment);
-
-            return departureInfo;
-        }
-
-        // Helper method to get label text
         private string GetLabelText(Control parentControl, string labelName)
         {
             try
@@ -81,22 +55,18 @@ namespace Ferry_Ticketing_App
             }
             catch (Exception ex)
             {
-                // Log or handle the exception as needed
                 Console.WriteLine($"Error retrieving label {labelName}: {ex.Message}");
                 return string.Empty;
             }
         }
 
-        // Method to retrieve Passengers Information
-        private List<DepartureTicketInfo.PassengerDetails> GetPassengersInfo(Control ucRoundTripPayment)
+        public List<DepartureTicketInfo.PassengerDetails> GetPassengersInfo(Control ucRoundTripPayment)
         {
             var passengersList = new List<DepartureTicketInfo.PassengerDetails>();
-
             var passengerControls = ucRoundTripPayment.Controls
                 .Cast<Control>()
                 .Where(c => c.Name.StartsWith("ucPaymentPassengerInfo"))
                 .ToList();
-
             foreach (var passengerPanel in passengerControls)
             {
                 var passenger = new DepartureTicketInfo.PassengerDetails
@@ -107,17 +77,13 @@ namespace Ferry_Ticketing_App
                     Gender = GetLabelText(passengerPanel, "lblPIGender"),
                     Birthdate = GetLabelText(passengerPanel, "lblPIBirthdate")
                 };
-
                 passengersList.Add(passenger);
             }
-
             return passengersList;
         }
 
-        // Method to retrieve Contact Person Information
         private DepartureTicketInfo.ContactPersonDetails GetContactPersonInfo(Control ucRoundTripPayment)
         {
-            // Find the contact info panel
             var contactInfoPanel = ucRoundTripPayment.Controls
                 .Find("pnlContactInfo", true)
                 .FirstOrDefault();
@@ -136,54 +102,31 @@ namespace Ferry_Ticketing_App
             };
         }
 
-        // Random number generator with cryptographic randomness
         private static readonly Random _random = new Random();
 
-        /// <summary>
-        /// Generates a random OR Number with combined string and integer components
-        /// </summary>
-        /// <returns>A unique OR Number</returns>
         public string GenerateORNo()
         {
-            // Generate a random string component (2-3 uppercase letters)
             string letterComponent = GenerateRandomLetters(2, 3);
 
-            // Generate a random numeric component (up to 7 digits)
             string numberComponent = GenerateRandomNumbers(7);
 
-            // Combine the components
             return $"{letterComponent}-{numberComponent}";
         }
 
-        /// <summary>
-        /// Generates a sequential Transaction Number with leading zeros
-        /// </summary>
-        /// <returns>A formatted Transaction Number</returns>
         public string GenerateTransactionNo(int currentTransactionCount)
         {
-            // Ensure the transaction count is within the 1-99999 range
             int sanitizedCount = Math.Max(1, Math.Min(currentTransactionCount, 99999));
 
-            // Format the number with leading zeros to ensure 5 digits
             return sanitizedCount.ToString("D5");
         }
 
-        /// <summary>
-        /// Generates a random string of uppercase letters
-        /// </summary>
-        /// <param name="minLength">Minimum length of the letter string</param>
-        /// <param name="maxLength">Maximum length of the letter string</param>
-        /// <returns>A random string of uppercase letters</returns>
         private string GenerateRandomLetters(int minLength, int maxLength)
         {
-            // Determine the length of the letter string
             int length = _random.Next(minLength, maxLength + 1);
 
-            // Generate the letter string
             StringBuilder letterBuilder = new StringBuilder(length);
             for (int i = 0; i < length; i++)
             {
-                // Generate a random uppercase letter (A-Z)
                 char randomLetter = (char)_random.Next('A', 'Z' + 1);
                 letterBuilder.Append(randomLetter);
             }
@@ -191,21 +134,13 @@ namespace Ferry_Ticketing_App
             return letterBuilder.ToString();
         }
 
-        /// <summary>
-        /// Generates a random numeric string with specified maximum length
-        /// </summary>
-        /// <param name="maxDigits">Maximum number of digits</param>
-        /// <returns>A random numeric string</returns>
         private string GenerateRandomNumbers(int maxDigits)
         {
-            // Ensure we don't exceed the maximum digits
             int digits = _random.Next(1, maxDigits + 1);
 
-            // Prevent leading zero by starting with a non-zero digit
             StringBuilder numberBuilder = new StringBuilder(digits);
-            numberBuilder.Append(_random.Next(1, 10)); // First digit 1-9
+            numberBuilder.Append(_random.Next(1, 10)); 
 
-            // Add remaining digits (0-9)
             for (int i = 1; i < digits; i++)
             {
                 numberBuilder.Append(_random.Next(0, 10));
@@ -213,94 +148,44 @@ namespace Ferry_Ticketing_App
 
             return numberBuilder.ToString();
         }
-        /// <summary>
-        /// Retrieves payment details (Total Price and Payment Method)
-        /// </summary>
-        /// <param name="ucCheckout">The checkout user control</param>
-        /// <returns>A tuple containing Total Price and Payment Method</returns>
-        public (decimal TotalPrice, string PaymentMethod) GetPaymentDetails(Control ucCheckout)
+        public (decimal TotalPrice, string PaymentMethod) GetPaymentDetails(Control ucCheckout, ucRoundTripPayment ucRoundTripPayment)
         {
             try
             {
-                // Find the total price label
                 var lblTotalPrice = ucCheckout.Controls.Find("lblTotalPrice", true).FirstOrDefault() as Label;
 
-                // Validate total price label
                 if (lblTotalPrice == null || string.IsNullOrEmpty(lblTotalPrice.Text))
                 {
                     throw new Exception("Unable to retrieve total price");
                 }
 
-                // Parse total price (remove currency symbol and trim)
                 decimal totalPrice = decimal.Parse(
                     lblTotalPrice.Text.Replace("₱", "").Trim(),
                     System.Globalization.CultureInfo.InvariantCulture
                 );
 
-                // Get the selected payment method
-                string paymentMethod = GetSelectedPaymentMethod(ucCheckout);
+                string paymentMethod = ucRoundTripPayment.GetSelectedPaymentMethod();
 
-                // Return the total price and payment method
                 return (totalPrice, paymentMethod);
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it appropriately
                 Console.WriteLine($"Error retrieving payment details: {ex.Message}");
                 return (0, string.Empty);
             }
-        }
-
-        /// <summary>
-        /// Determines the selected payment method
-        /// </summary>
-        /// <param name="ucCheckout">The checkout user control</param>
-        /// <returns>Selected payment method as a string</returns>
-        private string GetSelectedPaymentMethod(Control ucRoundTripPayment)
-        {
-            // List of possible payment methods
-            string[] paymentMethods = { "Card", "Maya", "Gcash" };
-
-            // Check for radio buttons or other selection controls
-            foreach (string method in paymentMethods)
-            {
-                // Look for a radio button or other selection indicator
-                var paymentMethodControl = ucRoundTripPayment.Controls.Find($"btn{method}", true).FirstOrDefault();
-
-                if (paymentMethodControl is Button btnMethod && btnMethod.Focused)
-                {
-                    return method;
-                }
-            }
-
-            // If no method is found, return an empty string
-            return string.Empty;
         }
         #endregion
 
 
 
         #region Departure Ticket Information
-        /// <summary>
-        /// Populates the ticket information in the ucComplete control
-        /// </summary>
-        /// <param name="ucComplete">The completion user control</param>
-        /// <param name="ucRoundTripTripSummary1">Trip summary user control</param>
-        /// <param name="ucSearchRoundTrip">Search round trip user control</param>
         public void PopulateTicketInformation(
             Control ucComplete,
             Control ucRoundTripTripSummary1,
-            Control ucSearchRoundTrip)
+            Control ucSearchRoundTrip,
+            Control ucTicket,
+            int passengerIndex = 1)
         {
-            // Find the ticket placeholder panel
-            var pnlTicketPH = ucComplete.Controls.Find("pnlTicketPH", true).FirstOrDefault();
-
-            if (pnlTicketPH == null)
-            {
-                MessageBox.Show("Unable to find ticket placeholder panel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             // Retrieve departure information
             string departureFromPort = GetLabelText(ucRoundTripTripSummary1, "lblDepFromPort");
             string departureToPort = GetLabelText(ucRoundTripTripSummary1, "lblDepToPort");
@@ -315,29 +200,26 @@ namespace Ferry_Ticketing_App
             string eta = CalculateETA(departureDate, departureTime, travelTime);
 
             // Populate labels in the ticket placeholder panel
-            SetLabelText(pnlTicketPH, "lblFrom", departureFromPort);
-            SetLabelText(pnlTicketPH, "lblTo", departureToPort);
-            SetLabelText(pnlTicketPH, "lblVesselName", vesselName);
-            SetLabelText(pnlTicketPH, "lblDepartureDate", $"{departureDate} {departureTime}");
-            SetLabelText(pnlTicketPH, "lblETA", eta);
+            SetLabelText(ucTicket, "lblFrom", departureFromPort);
+            SetLabelText(ucTicket, "lblTo", departureToPort);
+            SetLabelText(ucTicket, "lblVesselName", vesselName);
+            SetLabelText(ucTicket, "lblDepartureDate", $"{departureDate} {departureTime}");
+            SetLabelText(ucTicket, "lblETA", eta);
 
             // Vessel-specific information (assuming similar pattern)
-            SetLabelText(pnlTicketPH, "lblVVesselName", vesselName);
-            SetLabelText(pnlTicketPH, "lblBCVesselName", vesselName);
+            SetLabelText(ucTicket, "lblVVesselName", vesselName);
+            SetLabelText(ucTicket, "lblBCVesselName", vesselName);
 
             // From-To Code (you might need to modify this based on your specific implementation)
             string fromToCode = GenerateFromToCode(departureFromPort, departureToPort);
-            SetLabelText(pnlTicketPH, "lblBCFromToCode", fromToCode);
-            SetLabelText(pnlTicketPH, "lblVFromToCode", fromToCode);
+            SetLabelText(ucTicket, "lblBCFromToCode", fromToCode);
+            SetLabelText(ucTicket, "lblVFromToCode", fromToCode);
 
             // Departure Dates
-            SetLabelText(pnlTicketPH, "lblVDepartureDate", $"{departureDate} {departureTime}");
-            SetLabelText(pnlTicketPH, "lblBCDepartureDate", $"{departureDate} {departureTime}");
+            SetLabelText(ucTicket, "lblVDepartureDate", $"{departureDate} {departureTime}");
+            SetLabelText(ucTicket, "lblBCDepartureDate", $"{departureDate} {departureTime}");
         }
 
-        /// <summary>
-        /// Retrieves the departure time from the trip summary control
-        /// </summary>
         private string GetDepartureTime(Control ucRoundTripTripSummary1)
         {
             try
@@ -351,39 +233,27 @@ namespace Ferry_Ticketing_App
                 return "00:00";
             }
         }
-
-        /// <summary>
-        /// Calculates the Estimated Time of Arrival (ETA)
-        /// </summary>
+      
         private string CalculateETA(string departureDate, string departureTime, string travelTime)
         {
             try
             {
-                // Parse departure date and time
                 DateTime departure = DateTime.Parse($"{departureDate} {departureTime}");
 
-                // Parse travel time (assuming format like "5h 30m")
                 TimeSpan travelTimeSpan = ParseTravelTime(travelTime);
 
-                // Calculate ETA
                 DateTime eta = departure.Add(travelTimeSpan);
 
-                // Return formatted ETA
                 return eta.ToString("yyyy-MM-dd HH:mm");
             }
             catch
             {
-                // Fallback if calculation fails
                 return "N/A";
             }
         }
 
-        /// <summary>
-        /// Parses travel time string into a TimeSpan
-        /// </summary>
         private TimeSpan ParseTravelTime(string travelTime)
         {
-            // Example parsing of "5h 30m" or similar formats
             int hours = 0, minutes = 0;
 
             if (travelTime.Contains('h'))
@@ -399,18 +269,11 @@ namespace Ferry_Ticketing_App
             return new TimeSpan(hours, minutes, 0);
         }
 
-        /// <summary>
-        /// Generates a simple From-To Code based on port names
-        /// </summary>
         private string GenerateFromToCode(string fromPort, string toPort)
         {
-            // Create a simple code from the first letters of the ports
             return $"{fromPort}->{toPort}";
         }
 
-        /// <summary>
-        /// Sets the text of a label within a parent control
-        /// </summary>
         private void SetLabelText(Control parentControl, string labelName, string text)
         {
             try
@@ -429,30 +292,27 @@ namespace Ferry_Ticketing_App
         #endregion
 
         #region Passenger and Payment Information
-        /// <summary>
-        /// Populates passenger, contact person, and payment information labels
-        /// </summary>
-        /// <param name="ucComplete">The completion user control</param>
-        /// <param name="ucPaymentPassengerInfo1">Passenger info user control</param>
-        /// <param name="ucRoundTripPayment">Payment user control</param>
-        /// <param name="ucCheckout">Checkout user control</param>
+
         public void PopulatePassengerAndPaymentInfo(
-            Control ucComplete,
+            Control ucTicket, 
             Control ucPaymentPassengerInfo1,
             Control ucRoundTripPayment,
-            Control ucCheckout)
+            Control ucCheckout,
+            Control ucPassengerDetails1,
+            Control ucDepartureSummary,
+            int passengerIndex = 0)
         {
-            // Find the ticket placeholder panel
-            var pnlTicketPH = ucComplete.Controls.Find("pnlTicketPH", true).FirstOrDefault();
+            // Dynamically find the correct passenger info control
+            var specificPassengerInfoControl = ucRoundTripPayment.Controls
+                .OfType<Control>()
+                .FirstOrDefault(c => c.Name == $"ucPaymentPassengerInfo{passengerIndex}");
 
-            if (pnlTicketPH == null)
-            {
-                MessageBox.Show("Unable to find ticket placeholder panel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            // If specific passenger control not found, fall back to default
+            if (specificPassengerInfoControl == null)
+                specificPassengerInfoControl = ucPaymentPassengerInfo1;
 
-            // Retrieve Passengers Info
-            var passengers = GetPassengersInfo(ucPaymentPassengerInfo1);
+            // Retrieve Passengers Info using the specific passenger control
+            var passengers = GetPassengersInfo(specificPassengerInfoControl);
 
             // Populate Passenger Details
             if (passengers.Count > 0)
@@ -460,52 +320,62 @@ namespace Ferry_Ticketing_App
                 var firstPassenger = passengers[0];
 
                 // Full Name
-                SetLabelText(pnlTicketPH, "lblPDName", $"{firstPassenger.FirstName} {firstPassenger.LastName}");
+                SetLabelText(ucTicket, "lblPDName", $"{firstPassenger.FirstName} {firstPassenger.LastName}");
 
                 // Age and Gender
                 int age = CalculateAge(firstPassenger.Birthdate);
-                SetLabelText(pnlTicketPH, "lblPDAgeGender", $"{age} {firstPassenger.Gender}");
+                SetLabelText(ucTicket, "lblPDAgeGender", $"{age} {firstPassenger.Gender}");
 
                 // Get Accommodation and Discount Type from Passenger Info Controls
-                string accommodation = GetLabelText(ucPaymentPassengerInfo1, "lblDepAccommodation");
-                SetLabelText(pnlTicketPH, "lblPDAccommodation", accommodation);
+                string accommodation = GetLabelText(ucDepartureSummary, "lblDAccommodation");
+                SetLabelText(ucTicket, "lblPDAccommodation", accommodation);
 
-                string discountType = GetDiscountType(ucPaymentPassengerInfo1);
-                SetLabelText(pnlTicketPH, "lblPDDiscountType", discountType);
+                string discountType = GetDiscountType(ucPassengerDetails1);
+                SetLabelText(ucTicket, "lblPDDiscountType", discountType);
+                SetLabelText(ucTicket, "lblBCType", discountType);
+                SetLabelText(ucTicket, "lblVType", discountType);
 
                 // Populate various name labels
-                SetLabelText(pnlTicketPH, "lblVName", $"{firstPassenger.FirstName} {firstPassenger.LastName}");
-                SetLabelText(pnlTicketPH, "lblVAgeGender", $"{age} {firstPassenger.Gender}");
-                SetLabelText(pnlTicketPH, "lblBCName", $"{firstPassenger.FirstName} {firstPassenger.LastName}");
-                SetLabelText(pnlTicketPH, "lblBCAgeGender", $"{age} {firstPassenger.Gender}");
+                SetLabelText(ucTicket, "lblVName", $"{firstPassenger.FirstName} {firstPassenger.LastName}");
+                SetLabelText(ucTicket, "lblVAgeGender", $"{age} {firstPassenger.Gender}");
+                SetLabelText(ucTicket, "lblBCName", $"{firstPassenger.FirstName} {firstPassenger.LastName}");
+                SetLabelText(ucTicket, "lblBCAgeGender", $"{age} {firstPassenger.Gender}");
             }
 
-            // Retrieve and Populate Contact Person Info
             var contactPerson = GetContactPersonInfo(ucRoundTripPayment);
             if (contactPerson != null)
             {
-                SetLabelText(pnlTicketPH, "lblPDContactPerson", contactPerson.Name);
-                SetLabelText(pnlTicketPH, "lblPDContactNo", contactPerson.MobileNumber);
-                SetLabelText(pnlTicketPH, "lblPaymentSoldTo", contactPerson.Name);
+                SetLabelText(ucTicket, "lblPDContactPerson", contactPerson.Name);
+                SetLabelText(ucTicket, "lblPDContactNo", contactPerson.MobileNumber);
+                SetLabelText(ucTicket, "lblPaymentSoldTo", contactPerson.Name);
             }
 
-            // Retrieve and Populate Payment Details
-            var (totalPrice, paymentMethod) = GetPaymentDetails(ucCheckout);
+            var paymentControl = ucRoundTripPayment as ucRoundTripPayment; // Cast to specific type
 
-            // Generate OR Number and Transaction Number
+            var paymentDetails = GetPaymentDetails(ucCheckout, paymentControl);
+
+            decimal totalPrice = paymentDetails.TotalPrice;
+            string paymentMethod = paymentDetails.PaymentMethod;
+
+            DateTime paymentDateReserved = GetPaymentDateReserved();
+            SetLabelText(ucTicket, "lblPaymentDateReserved", paymentDateReserved.ToString("yyyy-MM-dd"));
+
             string orNumber = GenerateORNo();
-            string transactionNo = GenerateTransactionNo(1); // You might want to pass the current transaction count
+            string transactionNo = GenerateTransactionNo(1); 
 
-            // Populate Payment Labels
-            SetLabelText(pnlTicketPH, "lblPaymentTotalAmount", totalPrice.ToString("C"));
-            SetLabelText(pnlTicketPH, "lblPaymentORNo", orNumber);
-            SetLabelText(pnlTicketPH, "lblPPaymentMethod", paymentMethod);
-            SetLabelText(pnlTicketPH, "lblBTransactionNo", transactionNo);
+            SetLabelText(ucTicket   , "lblPaymentTotalAmmount", totalPrice.ToString("C"));
+            SetLabelText(ucTicket   , "lblVTotalAmmount", totalPrice.ToString("C"));
+            SetLabelText(   ucTicket, "lblBCTotalAmmount", totalPrice.ToString("C"));
+            SetLabelText(ucTicket, "lblPaymentORNo", orNumber);
+            SetLabelText(ucTicket, "lblVORNo", orNumber);
+            SetLabelText(ucTicket, "lblBCORNo", orNumber);
+            SetLabelText(ucTicket, "lblPPaymentMethod", paymentMethod);
+            SetLabelText(ucTicket, "lblBTransactionNo", transactionNo);
         }
-
-        /// <summary>
-        /// Calculates age based on birthdate
-        /// </summary>
+        public DateTime GetPaymentDateReserved()
+        {
+            return DateTime.Now;
+        }
         private int CalculateAge(string birthdate)
         {
             try
@@ -525,195 +395,132 @@ namespace Ferry_Ticketing_App
             }
         }
 
-        /// <summary>
-        /// Retrieves the discount type from passenger info control
-        /// </summary>
-        private string GetDiscountType(Control ucPaymentPassengerInfo1)
+        private string GetDiscountType(Control ucPassengerDetails1)
         {
             try
             {
-                // Adjust the control name as per your actual implementation
-                var discountComboBox = ucPaymentPassengerInfo1.Controls.Find("cmbBType", true).FirstOrDefault() as ComboBox;
+                var discountComboBox = ucPassengerDetails1.Controls.Find("cmbBType", true).FirstOrDefault() as ComboBox;
+
                 return discountComboBox?.SelectedItem?.ToString() ?? string.Empty;
             }
             catch
             {
-                return string.Empty;
+                return string.Empty; 
             }
         }
         #endregion
 
 
         #region Booking & Ticket Information
-        /// <summary>
-        /// Populates booking details and date-related information
-        /// </summary>
-        /// <param name="ucComplete">The completion user control</param>
-        public void PopulateBookingDetails(Control ucComplete)
+
+        public void PopulateBookingDetails(Control ucTicket)
         {
-            // Find the ticket placeholder panel
-            var pnlTicketPH = ucComplete.Controls.Find("pnlTicketPH", true).FirstOrDefault();
-
-            if (pnlTicketPH == null)
-            {
-                MessageBox.Show("Unable to find ticket placeholder panel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Set Booking Date (Current Date)
             string bookingDate = DateTime.Now.ToString("yyyy-MM-dd");
-            SetLabelText(pnlTicketPH, "lblBBookingDate", bookingDate);
+            SetLabelText(ucTicket, "lblBBookingDate", bookingDate);
 
-            // Set Valid Until Date (30 days from now)
             string validUntilDate = DateTime.Now.AddDays(30).ToString("yyyy-MM-dd");
-            SetLabelText(pnlTicketPH, "lblBValidUntil", validUntilDate);
+            SetLabelText(ucTicket, "lblBValidUntil", validUntilDate);
 
-            // Generate TIN for Buyer (Random 12-digit number)
             string tinBuyer = GenerateTINNumber();
-            SetLabelText(pnlTicketPH, "lblPaymentTINBuyer", tinBuyer);
+            SetLabelText(ucTicket, "lblPaymentTINBuyer", tinBuyer);
         }
 
-        /// <summary>
-        /// Generates a random TIN (Taxpayer Identification Number)
-        /// </summary>
-        /// <returns>A 12-digit random number as a string</returns>
         private string GenerateTINNumber()
         {
             return GenerateRandomNumbers(12);
         }
 
-        /// <summary>
-        /// Populates Return Trip Ticket Information
-        /// </summary>
-        /// <param name="ucComplete">Complete user control</param>
-        /// <param name="ucRoundTripTripSummary1">Trip summary user control</param>
-        /// <param name="ucSearchRoundTrip">Search round trip user control</param>
-        public void PopulateReturnTicketInformation(
-            Control ucComplete,
-            Control ucRoundTripTripSummary1,
-            Control ucSearchRoundTrip)
+        #endregion
+        public class ReturnTicketInformation
         {
-            // Find the existing ticket placeholder panel
-            var existingTicketPH = ucComplete.Controls.Find("pnlTicketPH", true).FirstOrDefault();
+            // Return Details
+            public string ReturnFromPort { get; set; }
+            public string ReturnToPort { get; set; }
+            public string ReturnDate { get; set; }
+            public string VesselName { get; set; }
+            public string Accommodation { get; set; }
 
-            if (existingTicketPH == null)
+            // Passengers Information (can reuse the same PassengerDetails from DepartureTicketInfo)
+            public List<DepartureTicketInfo.PassengerDetails> Passengers { get; set; }
+
+            // Contact Person Details (can reuse the same ContactPersonDetails from DepartureTicketInfo)
+            public DepartureTicketInfo.ContactPersonDetails ContactPerson { get; set; }
+        }
+        public void PopulateReturnTicketInformation(
+            Control ucTicket,
+            Control ucRoundTripTripSummary1,
+            Control ucSearchRoundTrip,
+            Control ucRoundTripTripSummary,
+            int passengerIndex = 1)
+        {
+            // Find the ticket placeholder panel inside the ucTicket user control
+            var pnlTicketPH = ucTicket.Controls.Find("pnlReturnTicketPH", true).FirstOrDefault();
+
+            if (pnlTicketPH == null)
             {
-                MessageBox.Show("Unable to find existing ticket placeholder", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unable to find return ticket placeholder panel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Clone the existing panel for return trip
-            var returnTicketPH = ClonePanel(existingTicketPH as Panel);
+            // Reuse existing methods with modifications
+            string returnFromPort = GetLabelText(ucRoundTripTripSummary, "lblReturnFromPort");
+            string returnToPort = GetLabelText(ucRoundTripTripSummary, "lblReturnToPort");
+            string vesselName = GetLabelText(ucRoundTripTripSummary, "lblReturnVesselName");
+            string returnDate = GetLabelText(ucRoundTripTripSummary, "lblReturnDepartureDate");
 
-            // Add the new panel to the parent control
-            ucComplete.Controls.Add(returnTicketPH);
+            // Reuse existing methods
+            string returnTime = GetDepartureTime(ucRoundTripTripSummary);
+            string travelTime = GetLabelText(ucSearchRoundTrip, "lblReturnTravelTime");
 
-            // Adjust position of the new panel
-            returnTicketPH.Top = existingTicketPH.Bottom + 20; // Add some spacing
-
-            // Retrieve return trip information
-            string returnFromPort = GetLabelText(ucRoundTripTripSummary1, "lblRetFromPort");
-            string returnToPort = GetLabelText(ucRoundTripTripSummary1, "lblRetToPort");
-            string vesselName = GetLabelText(ucRoundTripTripSummary1, "lblRetVesselName");
-            string returnDate = GetLabelText(ucRoundTripTripSummary1, "lblRetDepartureDate");
-            string returnTime = GetLabelText(ucRoundTripTripSummary1, "lblRetDepartureTime");
-
-            // Retrieve travel time
-            string travelTime = GetLabelText(ucSearchRoundTrip, "lblTravelTime");
-
-            // Calculate ETA
+            // Calculate ETA (reuse existing method)
             string eta = CalculateETA(returnDate, returnTime, travelTime);
 
-            // Populate return trip labels
-            SetLabelText(returnTicketPH, "lblFrom", returnFromPort);
-            SetLabelText(returnTicketPH, "lblTo", returnToPort);
-            SetLabelText(returnTicketPH, "lblVesselName", vesselName);
-            SetLabelText(returnTicketPH, "lblDepartureDate", $"{returnDate} {returnTime}");
-            SetLabelText(returnTicketPH, "lblETA", eta);
+            // Populate labels (similar to departure ticket method)
+            SetLabelText(ucTicket, "lblReturnFrom", returnFromPort);
+            SetLabelText(ucTicket, "lblReturnTo", returnToPort);
+            SetLabelText(ucTicket, "lblReturnVesselName", vesselName);
+            SetLabelText(ucTicket, "lblReturnDepartureDate", $"{returnDate} {returnTime}");
+            SetLabelText(ucTicket, "lblReturnETA", eta);
 
-            // Additional return trip specific labels
-            SetLabelText(returnTicketPH, "lblBCFromToCode", GenerateFromToCode(returnFromPort, returnToPort));
+            // Generate From-To Code (reuse existing method)
+            string returnFromToCode = GenerateFromToCode(returnFromPort, returnToPort);
+            SetLabelText(ucTicket, "lblReturnFromToCode", returnFromToCode);
         }
 
-        /// <summary>
-        /// Clones a panel with all its child controls
-        /// </summary>
-        /// <param name="originalPanel">The panel to clone</param>
-        /// <returns>A new panel with copied properties and controls</returns>
-        private Panel ClonePanel(Panel originalPanel)
-        {
-            // Create a new panel with the same properties
-            Panel clonedPanel = new Panel
-            {
-                Size = originalPanel.Size,
-                BackColor = originalPanel.BackColor,
-                Name = "pnlReturnTicketPH"
-            };
 
-            // Clone child controls
-            foreach (Control ctrl in originalPanel.Controls)
-            {
-                if (ctrl is Label labelCtrl)
-                {
-                    Label clonedLabel = new Label
-                    {
-                        Name = "Return" + labelCtrl.Name,
-                        Location = labelCtrl.Location,
-                        Size = labelCtrl.Size,
-                        Font = labelCtrl.Font,
-                        ForeColor = labelCtrl.ForeColor,
-                        BackColor = labelCtrl.BackColor,
-                        Text = "" // Clear the text for return trip
-                    };
-                    clonedPanel.Controls.Add(clonedLabel);
-                }
-            }
-
-            return clonedPanel;
-        }
-
-        /// <summary>
-        /// Handles Back to Home button click
-        /// </summary>
-        /// <param name="form">The main form</param>
-        /// <param name="ucComplete">Complete user control</param>
-        /// <param name="ucFindTrips">Find trips user control</param>
+        #region Event Handlers
         public void HandleBackToHome(Control form, Control ucComplete, Control ucFindTrips)
         {
-            DialogResult result = MessageBox.Show(
-                "Are you sure you want to go back to the home page? All current booking information will be lost.",
-                "Confirm",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
+            try
             {
-                // Hide current control
-                ucComplete.Visible = false;
+                DialogResult result = MessageBox.Show(
+                    "Thank you for Choosing Aerian Star Ferries. Do you want to book another trip?",
+                    "Confirm",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
 
-                // Show find trips control
-                ucFindTrips.Visible = true;
+                if (result == DialogResult.Yes)
+                {
+                    // Ensure ucFindTrips and ucComplete are in the same parent container
+                    if (ucComplete.Parent != null && ucFindTrips.Parent != null)
+                    {
+                        // Hide current control
+                        ucComplete.Visible = false;
 
-                // Reset any necessary state
-                ResetBookingState(ucComplete);
+                        // Show find trips control
+                        ucFindTrips.Visible = true;
+                        ucFindTrips.BringToFront();
+                    }
+                    else
+                    {
+                        Application.Exit();
+                    }
+                }
             }
-        }
-
-        /// <summary>
-        /// Resets the booking state
-        /// </summary>
-        /// <param name="ucComplete">Complete user control</param>
-        private void ResetBookingState(Control ucComplete)
-        {
-            // Clear ticket placeholder panels
-            var ticketPanels = ucComplete.Controls.Find("pnlTicketPH", true);
-            foreach (var panel in ticketPanels)
+            catch (Exception ex)
             {
-                ucComplete.Controls.Remove(panel);
-                panel.Dispose();
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            // Additional reset logic as needed
         }
 
         /// <summary>
@@ -724,26 +531,32 @@ namespace Ferry_Ticketing_App
         {
             try
             {
-                // Check for ticket panels
-                var ticketPanels = ucComplete.Controls.Find("pnlTicketPH", true);
-
-                if (ticketPanels.Length == 0)
+                // Find ucTicket control (itself, not nested in a panel)
+                var ucTicketPanels = ucComplete.Controls.Find("ucTicket1", true);
+                if (ucTicketPanels.Length == 0)
                 {
-                    MessageBox.Show("No tickets to download", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No ucTicket control found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
-                // Prompt for save location
+                var ucTicket = ucTicketPanels[0];
+
                 using (SaveFileDialog saveDialog = new SaveFileDialog())
                 {
-                    saveDialog.Filter = "PDF Files|*.pdf";
-                    saveDialog.Title = "Save Ticket as PDF";
-                    saveDialog.FileName = $"Ticket_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
+                    saveDialog.Filter = "PNG Files|*.png";
+                    saveDialog.Title = "Save Ticket as Image";
+                    saveDialog.FileName = $"Ticket_{DateTime.Now:yyyyMMdd_HHmmss}.png";
 
                     if (saveDialog.ShowDialog() == DialogResult.OK)
                     {
-                        // Note: Actual PDF generation would require a PDF library like iTextSharp or similar
-                        MessageBox.Show($"Ticket would be saved to {saveDialog.FileName}", "Download", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        string imagePath = saveDialog.FileName;
+
+                        Bitmap ticketBitmap = new Bitmap(ucTicket.Width, ucTicket.Height);
+                        ucTicket.DrawToBitmap(ticketBitmap, new System.Drawing.Rectangle(0, 0, ucTicket.Width, ucTicket.Height));
+
+                        ticketBitmap.Save(imagePath, System.Drawing.Imaging.ImageFormat.Png);
+
+                        MessageBox.Show($"Ticket saved to {imagePath}", "Download", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
@@ -761,22 +574,41 @@ namespace Ferry_Ticketing_App
         {
             try
             {
-                // Check for ticket panels
-                var ticketPanels = ucComplete.Controls.Find("pnlTicketPH", true);
-
-                if (ticketPanels.Length == 0)
+                // Find ucTicket control (itself, not nested in a panel)
+                var ucTicketPanels = ucComplete.Controls.Find("ucTicket1", true);
+                if (ucTicketPanels.Length == 0)
                 {
-                    MessageBox.Show("No tickets to print", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No ucTicket control found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
+
+                // Get the ucTicket control (it's directly the container now)
+                var ucTicket = ucTicketPanels[0];
 
                 // Open print dialog
                 using (PrintDialog printDialog = new PrintDialog())
                 {
                     if (printDialog.ShowDialog() == DialogResult.OK)
                     {
-                        // Note: Actual printing would require more complex implementation
-                        MessageBox.Show("Ticket would be sent to the selected printer", "Print", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        PrintDocument printDoc = new PrintDocument();
+                        printDoc.PrinterSettings = printDialog.PrinterSettings;
+
+                        // Print the ucTicket as an image
+                        printDoc.PrintPage += (sender, e) =>
+                        {
+                            // Capture ucTicket as a bitmap image
+                            Bitmap ticketBitmap = new Bitmap(ucTicket.Width, ucTicket.Height);
+                            ucTicket.DrawToBitmap(ticketBitmap, new System.Drawing.Rectangle(0, 0, ucTicket.Width, ucTicket.Height));
+
+                            // Draw the bitmap to the print page
+                            e.Graphics.DrawImage(ticketBitmap, 0, 0);
+
+                            // Optionally, scale or modify the image size to fit the page
+                            // e.Graphics.DrawImage(ticketBitmap, new Rectangle(0, 0, e.PageBounds.Width, e.PageBounds.Height));
+                        };
+
+                        // Start printing
+                        printDoc.Print();
                     }
                 }
             }
@@ -786,6 +618,5 @@ namespace Ferry_Ticketing_App
             }
         }
         #endregion
-
     }
 }

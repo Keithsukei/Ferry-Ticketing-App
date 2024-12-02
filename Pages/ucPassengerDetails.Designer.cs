@@ -143,13 +143,13 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cmbBoxNationality;
-        private System.Windows.Forms.ComboBox cmbBoxGender;
-        private System.Windows.Forms.ComboBox cmbBType;
-        private System.Windows.Forms.Label lblPassengerNo;
-        private System.Windows.Forms.DateTimePicker dtpDateOfBirth;
-        private System.Windows.Forms.TextBox txtMI;
-        private System.Windows.Forms.TextBox txtLName;
-        private System.Windows.Forms.TextBox txtFName;
+        public System.Windows.Forms.ComboBox cmbBoxNationality;
+        public System.Windows.Forms.ComboBox cmbBoxGender;
+        public System.Windows.Forms.ComboBox cmbBType;
+        public System.Windows.Forms.Label lblPassengerNo;
+        public System.Windows.Forms.DateTimePicker dtpDateOfBirth;
+        public System.Windows.Forms.TextBox txtMI;
+        public System.Windows.Forms.TextBox txtLName;
+        public System.Windows.Forms.TextBox txtFName;
     }
 }

@@ -34,5 +34,45 @@ namespace Ferry_Ticketing_App.Classes
             TotalPrice = totalPrice;
             IssueDate = issueDate;
         }
+
+        public interface ITicketDataManager
+        {
+            void AddTicketData(string transactionNo, string orNo, string contactPerson, string departureDate, string eta, string dateBooked);
+            List<TicketData> GetTicketData();
+        }
+
+        public class TicketData : ITicketDataManager
+        {
+            private string _transactionNo;
+            private string _orNo;
+            private string _contactPerson;
+            private string _departureDate;
+            private string _eta;
+            private string _dateBooked;
+
+            public string TransactionNo { get { return _transactionNo; } set { _transactionNo = value; } }
+            public string ORNo { get { return _orNo; } set { _orNo = value; } }
+            public string ContactPerson { get { return _contactPerson; } set { _contactPerson = value; } }
+            public string DepartureDate { get { return _departureDate; } set { _departureDate = value; } }
+            public string ETA { get { return _eta; } set { _eta = value; } }
+            public string DateBooked { get { return _dateBooked; } set { _dateBooked = value; } }
+
+            public void AddTicketData(string transactionNo, string orNo, string contactPerson, string departureDate, string eta, string dateBooked)
+            {
+                // Implement the logic to add a new ticket data
+                _transactionNo = transactionNo;
+                _orNo = orNo;
+                _contactPerson = contactPerson;
+                _departureDate = departureDate;
+                _eta = eta;
+                _dateBooked = dateBooked;
+            }
+
+            public List<TicketData> GetTicketData()
+            {
+                // Implement the logic to retrieve the ticket data
+                return new List<TicketData> { this };
+            }
+        }
     }
 }

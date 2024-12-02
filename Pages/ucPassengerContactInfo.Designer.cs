@@ -415,6 +415,6 @@
         public System.Windows.Forms.TextBox txtMobileNo;
         private System.Windows.Forms.CheckBox cbAgreement;
         private System.Windows.Forms.Button btnContinue;
-        private ucPassengerDetails ucPassengerDetails1;
+        public ucPassengerDetails ucPassengerDetails1;
     }
 }

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Ferry_Ticketing_App
@@ -15,39 +9,69 @@ namespace Ferry_Ticketing_App
         public frmLogin()
         {
             InitializeComponent();
+
+            // Ensure error labels are not visible at the start
+            lblErrorUser.Visible = false;
+            lblErrorPass.Visible = false;
+
+            // Set styles for error labels if not already configured in the designer
+            lblErrorUser.ForeColor = Color.Red;
+
+            lblErrorPass.ForeColor = Color.Red;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            frmMain main = new frmMain();
-            if (txtUsername.Text == "admin" && txtPassword.Text == "admin")
+            // Hide error labels initially
+            lblErrorUser.Visible = false;
+            lblErrorPass.Visible = false;
+
+            bool hasError = false;
+
+            // Check for empty username
+            if (string.IsNullOrEmpty(txtUsername.Text))
             {
-                main.Show();
-                this.Hide();
+                lblErrorUser.Text = "Please enter a username.";
+                lblErrorUser.Visible = true;
+                hasError = true;
             }
-            else if (string.IsNullOrEmpty(txtUsername.Text) && string.IsNullOrEmpty(txtPassword.Text))
+
+            // Check for empty password
+            if (string.IsNullOrEmpty(txtPassword.Text))
             {
-                MessageBox.Show("Please enter a username and password.");
+                lblErrorPass.Text = "Please enter a password.";
+                lblErrorPass.Visible = true;
+                hasError = true;
             }
-            else if (string.IsNullOrEmpty(txtUsername.Text))
+
+            // If there are no errors, proceed with login validation
+            if (!hasError)
             {
-                MessageBox.Show("Please enter a username.");
-            }
-            else if (string.IsNullOrEmpty(txtPassword.Text))
-            {
-                MessageBox.Show("Please enter a password.");
-            }
-            else if (txtUsername.Text == "admin" && txtPassword.Text != "admin")
-            {
-                MessageBox.Show("Incorrect Password, Please try again.");
-            }
-            else if (txtUsername.Text != "admin" && txtPassword.Text == "admin")
-            {
-                MessageBox.Show("Incorrect Username, Please try again.");
-            }
-            else
-            {
-                MessageBox.Show("Incorrect Username or Password, Please try again.");
+                // Check username and password
+                if (txtUsername.Text == "admin" && txtPassword.Text == "admin")
+                {
+                    frmMain main = new frmMain();
+                    main.Show();
+                    this.Hide();
+                }
+                else if (txtUsername.Text != "admin" && txtPassword.Text == "admin")
+                {
+                    lblErrorUser.Text = "Incorrect Username. Please try again.";
+                    lblErrorUser.Visible = true;
+                }
+                else if (txtUsername.Text == "admin" && txtPassword.Text != "admin")
+                {
+                    lblErrorPass.Text = "Incorrect Password. Please try again.";
+                    lblErrorPass.Visible = true;
+                }
+                else if (txtUsername.Text != "admin" && txtPassword.Text != "admin")
+                {
+                    lblErrorUser.Text = "Incorrect Username or Password.";
+                    lblErrorUser.Visible = true;
+
+                    lblErrorPass.Text = "Incorrect Username or Password.";
+                    lblErrorPass.Visible = true;
+                }
             }
         }
 
@@ -59,6 +83,20 @@ namespace Ferry_Ticketing_App
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void pbHide_Click(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = false;
+            pbHide.SendToBack();
+            pbView.BringToFront();
+        }
+
+        private void pbView_Click(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = true;
+            pbView.SendToBack();
+            pbHide.BringToFront();
         }
     }
 }

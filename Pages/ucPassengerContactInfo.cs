@@ -202,10 +202,8 @@ namespace Ferry_Ticketing_App.Pages
             pnlPassengerControlInfo.Height = 1499;
         }
 
-        // Method to validate contact information
         public bool ValidateContactInfo()
         {
-            // Extract values from controls inside pnlContactInfoPH
             string email = txtEmailAdd.Text.Trim();
             string confirmEmail = txtConfirmEmailAdd.Text.Trim();
             string mobileNo = txtMobileNo.Text.Trim();
@@ -220,7 +218,6 @@ namespace Ferry_Ticketing_App.Pages
                 return false;
             }
 
-            // Check if email and confirm email match
             if (!email.Equals(confirmEmail, StringComparison.OrdinalIgnoreCase))
             {
                 MessageBox.Show("Email address and confirmation email must match.",
@@ -230,7 +227,6 @@ namespace Ferry_Ticketing_App.Pages
                 return false;
             }
 
-            // Validate mobile number
             if (string.IsNullOrWhiteSpace(mobileNo) || !Regex.IsMatch(mobileNo, @"^\d{10,11}$"))
             {
                 MessageBox.Show("Please enter a valid mobile number (10-11 digits).",
@@ -243,7 +239,6 @@ namespace Ferry_Ticketing_App.Pages
             return true;
         }
 
-        // Helper method for email validation
         private bool IsValidEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
@@ -285,22 +280,17 @@ namespace Ferry_Ticketing_App.Pages
                 }
             }
 
-            // Setup passenger info in the payment page
             if (roundTripPayment.ucPaymentPassengerInfo1 != null)
             {
-                // Clear existing controls if needed
                 roundTripPayment.ucPaymentPassengerInfo1.Controls.Clear();
 
-                // Create passenger info controls based on number of passengers
-                for (int i = 0; i < passengers.Count; i++) // Loop through the list of passengers
+                for (int i = 0; i < passengers.Count; i++) 
                 {
                     ucPaymentPassengerInfo passengerInfoControl = new ucPaymentPassengerInfo();
-                    passengerInfoControl.Name = $"ucPaymentPassengerInfo{i + 1}"; // Set unique control name
+                    passengerInfoControl.Name = $"ucPaymentPassengerInfo{i + 1}"; 
 
-                    // Get the passenger data from the list
                     Passenger passenger = passengers[i];
 
-                    // Populate the ucPaymentPassengerInfo control with passenger details
                     passengerInfoControl.lblPIFName.Text = passenger.FirstName;
                     passengerInfoControl.lblPIMiddleInitial.Text = passenger.MiddleInitial;
                     passengerInfoControl.lblPILName.Text = passenger.LastName;
@@ -309,18 +299,14 @@ namespace Ferry_Ticketing_App.Pages
                     passengerInfoControl.lblPINationality.Text = passenger.Nationality;
 
 
-                    // Update passenger number label (1-based index)
-                    passengerInfoControl.lblPassengerNo.Text = (i + 1).ToString();  // 1-based index
+                    passengerInfoControl.lblPassengerNo.Text = (i + 1).ToString();  
 
-                    // Add the control to the parent container
                     roundTripPayment.ucPaymentPassengerInfo1.Controls.Add(passengerInfoControl);
                 }
 
-                // Refresh the parent container to update the UI
-                roundTripPayment.ucPaymentPassengerInfo1.Refresh();  // Force UI to update and reflect changes
+                roundTripPayment.ucPaymentPassengerInfo1.Refresh();  
             }
 
-            // Set the number of passengers and total price
             roundTripPayment.lblNoOfPassengers.Text = numberOfPassengers.ToString();
             decimal totalPrice = departurePrice * numberOfPassengers;
             roundTripPayment.SetBasePrice(totalPrice);

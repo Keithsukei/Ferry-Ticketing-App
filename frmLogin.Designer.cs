@@ -30,19 +30,25 @@
         {
             this.pnlLoginBG = new System.Windows.Forms.Panel();
             this.pnlLoginPlaceholder = new System.Windows.Forms.Panel();
+            this.pbView = new System.Windows.Forms.PictureBox();
+            this.lblErrorPass = new System.Windows.Forms.Label();
+            this.lblErrorUser = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.pblblPassword = new System.Windows.Forms.PictureBox();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.pblblUsername = new System.Windows.Forms.PictureBox();
             this.pblblLogin = new System.Windows.Forms.PictureBox();
+            this.pbHide = new System.Windows.Forms.PictureBox();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.pnlLoginBG.SuspendLayout();
             this.pnlLoginPlaceholder.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblblPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblblUsername)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblblLogin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHide)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlLoginBG
@@ -60,6 +66,10 @@
             // 
             this.pnlLoginPlaceholder.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.loginpanelplaceholder;
             this.pnlLoginPlaceholder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlLoginPlaceholder.Controls.Add(this.pbHide);
+            this.pnlLoginPlaceholder.Controls.Add(this.pbView);
+            this.pnlLoginPlaceholder.Controls.Add(this.lblErrorPass);
+            this.pnlLoginPlaceholder.Controls.Add(this.lblErrorUser);
             this.pnlLoginPlaceholder.Controls.Add(this.btnLogin);
             this.pnlLoginPlaceholder.Controls.Add(this.txtPassword);
             this.pnlLoginPlaceholder.Controls.Add(this.pblblPassword);
@@ -70,6 +80,44 @@
             this.pnlLoginPlaceholder.Name = "pnlLoginPlaceholder";
             this.pnlLoginPlaceholder.Size = new System.Drawing.Size(374, 437);
             this.pnlLoginPlaceholder.TabIndex = 0;
+            // 
+            // pbView
+            // 
+            this.pbView.BackColor = System.Drawing.Color.White;
+            this.pbView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbView.Image = global::Ferry_Ticketing_App.Properties.Resources.view;
+            this.pbView.Location = new System.Drawing.Point(289, 254);
+            this.pbView.Name = "pbView";
+            this.pbView.Size = new System.Drawing.Size(40, 44);
+            this.pbView.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbView.TabIndex = 0;
+            this.pbView.TabStop = false;
+            this.pbView.Click += new System.EventHandler(this.pbView_Click);
+            // 
+            // lblErrorPass
+            // 
+            this.lblErrorPass.AutoSize = true;
+            this.lblErrorPass.BackColor = System.Drawing.Color.Transparent;
+            this.lblErrorPass.Font = new System.Drawing.Font("SF Pro Display", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorPass.ForeColor = System.Drawing.Color.White;
+            this.lblErrorPass.Location = new System.Drawing.Point(135, 232);
+            this.lblErrorPass.Name = "lblErrorPass";
+            this.lblErrorPass.Size = new System.Drawing.Size(40, 19);
+            this.lblErrorPass.TabIndex = 3;
+            this.lblErrorPass.Tag = "";
+            this.lblErrorPass.Text = "label";
+            // 
+            // lblErrorUser
+            // 
+            this.lblErrorUser.AutoSize = true;
+            this.lblErrorUser.BackColor = System.Drawing.Color.Transparent;
+            this.lblErrorUser.Font = new System.Drawing.Font("SF Pro Display", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorUser.ForeColor = System.Drawing.Color.White;
+            this.lblErrorUser.Location = new System.Drawing.Point(135, 152);
+            this.lblErrorUser.Name = "lblErrorUser";
+            this.lblErrorUser.Size = new System.Drawing.Size(40, 19);
+            this.lblErrorUser.TabIndex = 3;
+            this.lblErrorUser.Text = "label";
             // 
             // btnLogin
             // 
@@ -89,13 +137,14 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtPassword.BackColor = System.Drawing.Color.White;
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPassword.Font = new System.Drawing.Font("SF Pro Display", 27.5F);
             this.txtPassword.Location = new System.Drawing.Point(41, 254);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(293, 44);
             this.txtPassword.TabIndex = 1;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // pblblPassword
             // 
@@ -109,7 +158,7 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtUsername.BackColor = System.Drawing.Color.White;
             this.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUsername.Font = new System.Drawing.Font("SF Pro Display", 27.5F);
             this.txtUsername.Location = new System.Drawing.Point(41, 175);
@@ -129,13 +178,26 @@
             // 
             // pblblLogin
             // 
-            this.pblblLogin.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.Login;
-            this.pblblLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pblblLogin.Location = new System.Drawing.Point(144, 77);
+            this.pblblLogin.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.logo;
+            this.pblblLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pblblLogin.Location = new System.Drawing.Point(145, 28);
             this.pblblLogin.Name = "pblblLogin";
-            this.pblblLogin.Size = new System.Drawing.Size(86, 41);
+            this.pblblLogin.Size = new System.Drawing.Size(96, 95);
             this.pblblLogin.TabIndex = 0;
             this.pblblLogin.TabStop = false;
+            // 
+            // pbHide
+            // 
+            this.pbHide.BackColor = System.Drawing.Color.White;
+            this.pbHide.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbHide.Image = global::Ferry_Ticketing_App.Properties.Resources.hide1;
+            this.pbHide.Location = new System.Drawing.Point(288, 254);
+            this.pbHide.Name = "pbHide";
+            this.pbHide.Size = new System.Drawing.Size(40, 44);
+            this.pbHide.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbHide.TabIndex = 0;
+            this.pbHide.TabStop = false;
+            this.pbHide.Click += new System.EventHandler(this.pbHide_Click);
             // 
             // btnMinimize
             // 
@@ -181,9 +243,11 @@
             this.pnlLoginBG.ResumeLayout(false);
             this.pnlLoginPlaceholder.ResumeLayout(false);
             this.pnlLoginPlaceholder.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblblPassword)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblblUsername)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblblLogin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHide)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -200,5 +264,9 @@
         private System.Windows.Forms.PictureBox pblblLogin;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label lblErrorUser;
+        private System.Windows.Forms.Label lblErrorPass;
+        private System.Windows.Forms.PictureBox pbHide;
+        private System.Windows.Forms.PictureBox pbView;
     }
 }

@@ -80,7 +80,7 @@
             this.pnlPayment.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlPayment.Location = new System.Drawing.Point(0, 0);
             this.pnlPayment.Name = "pnlPayment";
-            this.pnlPayment.Size = new System.Drawing.Size(992, 2000);
+            this.pnlPayment.Size = new System.Drawing.Size(1009, 2000);
             this.pnlPayment.TabIndex = 1;
             // 
             // btnPaymentContinue
@@ -107,6 +107,7 @@
             this.btnPaymentBack.Size = new System.Drawing.Size(198, 71);
             this.btnPaymentBack.TabIndex = 10;
             this.btnPaymentBack.UseVisualStyleBackColor = false;
+            this.btnPaymentBack.Click += new System.EventHandler(this.btnPaymentBack_Click);
             // 
             // pnlContactInfo
             // 
@@ -331,7 +332,7 @@
             this.AutoScroll = true;
             this.Controls.Add(this.pnlPayment);
             this.Name = "ucRoundTripPayment";
-            this.Size = new System.Drawing.Size(992, 720);
+            this.Size = new System.Drawing.Size(1009, 720);
             this.pnlPayment.ResumeLayout(false);
             this.pnlContactInfo.ResumeLayout(false);
             this.pnlContactInfo.PerformLayout();
@@ -361,12 +362,12 @@
         private System.Windows.Forms.PictureBox pbPaymentOptionsHeader;
         private System.Windows.Forms.PictureBox pbYoureAlmostThere;
         private System.Windows.Forms.PictureBox pbProgress;
-        private System.Windows.Forms.Panel pnlPayment;
         public ucRoundTripTripSummary ucRoundTripTripSummary1;
         public ucPaymentPassengerInfo ucPaymentPassengerInfo1;
         public System.Windows.Forms.Label lblNoOfPassengers;
         public System.Windows.Forms.Label lblServiceCharge;
         public System.Windows.Forms.Label lblTotalPrice;
         public System.Windows.Forms.Label lblTerminalFee;
+        public System.Windows.Forms.Panel pnlPayment;
     }
 }

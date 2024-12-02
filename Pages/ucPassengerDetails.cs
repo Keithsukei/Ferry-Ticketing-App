@@ -84,7 +84,6 @@ namespace Ferry_Ticketing_App.Pages
             cmbBoxNationality.SelectedIndex = 0;
         }
 
-        // Method to create a Passenger object from the form controls
         public Passenger GetPassengerDetails()
         {
             if (!ValidateInput())

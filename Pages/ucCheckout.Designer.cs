@@ -51,7 +51,7 @@
             this.pnlCheckout.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlCheckout.Location = new System.Drawing.Point(0, 0);
             this.pnlCheckout.Name = "pnlCheckout";
-            this.pnlCheckout.Size = new System.Drawing.Size(975, 753);
+            this.pnlCheckout.Size = new System.Drawing.Size(992, 753);
             this.pnlCheckout.TabIndex = 0;
             // 
             // btnCompleteOrder
@@ -128,7 +128,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pnlCheckout);
             this.Name = "ucCheckout";
-            this.Size = new System.Drawing.Size(975, 720);
+            this.Size = new System.Drawing.Size(992, 720);
             this.pnlCheckout.ResumeLayout(false);
             this.pnlOrderSummary.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbHeader)).EndInit();

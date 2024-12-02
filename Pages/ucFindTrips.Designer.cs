@@ -36,6 +36,8 @@
             this.btnCeb2Bohol = new System.Windows.Forms.Button();
             this.pbSeparator = new System.Windows.Forms.PictureBox();
             this.pnlFindTripsPlaceholder = new System.Windows.Forms.Panel();
+            this.dtpReturn = new Ferry_Ticketing_App.Classes.CustomDateTimePicker();
+            this.dtpDepart = new Ferry_Ticketing_App.Classes.CustomDateTimePicker();
             this.txtPassengers = new System.Windows.Forms.TextBox();
             this.txtTo = new System.Windows.Forms.TextBox();
             this.txtFrom = new System.Windows.Forms.TextBox();
@@ -50,8 +52,6 @@
             this.rbRoundTrip = new System.Windows.Forms.RadioButton();
             this.pblblFindTrips = new System.Windows.Forms.PictureBox();
             this.pblblPopularRoutes = new System.Windows.Forms.PictureBox();
-            this.dtpReturn = new Ferry_Ticketing_App.Classes.CustomDateTimePicker();
-            this.dtpDepart = new Ferry_Ticketing_App.Classes.CustomDateTimePicker();
             this.pnlFindTripsAS.SuspendLayout();
             this.pnlFindTrips.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSeparator)).BeginInit();
@@ -176,6 +176,27 @@
             this.pnlFindTripsPlaceholder.Name = "pnlFindTripsPlaceholder";
             this.pnlFindTripsPlaceholder.Size = new System.Drawing.Size(939, 270);
             this.pnlFindTripsPlaceholder.TabIndex = 0;
+            // 
+            // dtpReturn
+            // 
+            this.dtpReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
+            this.dtpReturn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpReturn.Location = new System.Drawing.Point(391, 192);
+            this.dtpReturn.Name = "dtpReturn";
+            this.dtpReturn.Size = new System.Drawing.Size(149, 38);
+            this.dtpReturn.TabIndex = 11;
+            // 
+            // dtpDepart
+            // 
+            this.dtpDepart.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDepart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDepart.Location = new System.Drawing.Point(141, 192);
+            this.dtpDepart.MaxDate = new System.DateTime(2030, 12, 31, 0, 0, 0, 0);
+            this.dtpDepart.MinDate = new System.DateTime(2024, 12, 3, 0, 0, 0, 0);
+            this.dtpDepart.Name = "dtpDepart";
+            this.dtpDepart.Size = new System.Drawing.Size(147, 38);
+            this.dtpDepart.TabIndex = 10;
+            this.dtpDepart.Value = new System.DateTime(2024, 12, 3, 3, 32, 24, 0);
             // 
             // txtPassengers
             // 
@@ -320,24 +341,6 @@
             this.pblblPopularRoutes.Size = new System.Drawing.Size(170, 31);
             this.pblblPopularRoutes.TabIndex = 0;
             this.pblblPopularRoutes.TabStop = false;
-            // 
-            // dtpReturn
-            // 
-            this.dtpReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.dtpReturn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpReturn.Location = new System.Drawing.Point(391, 192);
-            this.dtpReturn.Name = "dtpReturn";
-            this.dtpReturn.Size = new System.Drawing.Size(149, 38);
-            this.dtpReturn.TabIndex = 11;
-            // 
-            // dtpDepart
-            // 
-            this.dtpDepart.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpDepart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDepart.Location = new System.Drawing.Point(141, 192);
-            this.dtpDepart.Name = "dtpDepart";
-            this.dtpDepart.Size = new System.Drawing.Size(147, 38);
-            this.dtpDepart.TabIndex = 10;
             // 
             // ucFindTrips
             // 

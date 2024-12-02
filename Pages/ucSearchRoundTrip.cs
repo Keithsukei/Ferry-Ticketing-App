@@ -30,6 +30,8 @@ namespace Ferry_Ticketing_App.Pages
         private const int ANIMATION_STEPS = 5;      // Fewer steps for quicker animation (was using division by 4)
         private const int MIN_STEP_SIZE = 12;
         private bool isAnimating = false;
+        public bool IsRoundTrip { get; set; }
+
 
         public ucSearchRoundTrip()
         {
