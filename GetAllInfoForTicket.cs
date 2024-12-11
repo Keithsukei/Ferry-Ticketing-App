@@ -10,11 +10,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Ferry_Ticketing_App.Classes;
 
 namespace Ferry_Ticketing_App
 {
     public class GetAllInfoForTicket
     {
+        private string _tinBuyer;
+
+        public GetAllInfoForTicket()
+        {
+            _tinBuyer = GenerateRandomNumbers(12);
+        }
+
         public class DepartureTicketInfo
         {
             #region Properties
@@ -60,13 +68,21 @@ namespace Ferry_Ticketing_App
             }
         }
 
-        public List<DepartureTicketInfo.PassengerDetails> GetPassengersInfo(Control ucRoundTripPayment)
+        public List<DepartureTicketInfo.PassengerDetails> GetPassengersInfo(Control ucPaymentPassengerInfo)
         {
             var passengersList = new List<DepartureTicketInfo.PassengerDetails>();
-            var passengerControls = ucRoundTripPayment.Controls
-                .Cast<Control>()
+            
+            // Get the parent control that contains all passenger info controls
+            var parentControl = ucPaymentPassengerInfo.Parent;
+            if (parentControl == null) return passengersList;
+
+            // Get specific passenger control
+            var passengerControls = parentControl.Controls
+                .OfType<Control>()
                 .Where(c => c.Name.StartsWith("ucPaymentPassengerInfo"))
+                .OrderBy(c => c.Name)
                 .ToList();
+
             foreach (var passengerPanel in passengerControls)
             {
                 var passenger = new DepartureTicketInfo.PassengerDetails
@@ -108,7 +124,7 @@ namespace Ferry_Ticketing_App
         {
             string letterComponent = GenerateRandomLetters(2, 3);
 
-            string numberComponent = GenerateRandomNumbers(7);
+            string numberComponent = GenerateRandomNumbers(9);
 
             return $"{letterComponent}-{numberComponent}";
         }
@@ -136,96 +152,100 @@ namespace Ferry_Ticketing_App
 
         private string GenerateRandomNumbers(int maxDigits)
         {
-            int digits = _random.Next(1, maxDigits + 1);
+            if (maxDigits < 9)
+                throw new ArgumentException("maxDigits must be at least 9 for TIN format.");
 
-            StringBuilder numberBuilder = new StringBuilder(digits);
-            numberBuilder.Append(_random.Next(1, 10)); 
-
-            for (int i = 1; i < digits; i++)
+            // Generate 9 random digits
+            StringBuilder numberBuilder = new StringBuilder(9);
+            for (int i = 0; i < 9; i++)
             {
                 numberBuilder.Append(_random.Next(0, 10));
             }
 
-            return numberBuilder.ToString();
+            // Format as 123-456-789
+            return $"{numberBuilder[0]}{numberBuilder[1]}{numberBuilder[2]}-" +
+                   $"{numberBuilder[3]}{numberBuilder[4]}{numberBuilder[5]}-" +
+                   $"{numberBuilder[6]}{numberBuilder[7]}{numberBuilder[8]}";
         }
-        public (decimal TotalPrice, string PaymentMethod) GetPaymentDetails(Control ucCheckout, ucRoundTripPayment ucRoundTripPayment)
+
+        public (decimal TotalPrice, string PaymentMethod) GetPaymentDetails(Control ucCheckout, object payment)
         {
             try
             {
                 var lblTotalPrice = ucCheckout.Controls.Find("lblTotalPrice", true).FirstOrDefault() as Label;
-
                 if (lblTotalPrice == null || string.IsNullOrEmpty(lblTotalPrice.Text))
                 {
                     throw new Exception("Unable to retrieve total price");
                 }
 
-                decimal totalPrice = decimal.Parse(
-                    lblTotalPrice.Text.Replace("₱", "").Trim(),
-                    System.Globalization.CultureInfo.InvariantCulture
-                );
+                string paymentMethod = "";
+                if (payment is ucRoundTripPayment roundTripPayment)
+                {
+                    paymentMethod = roundTripPayment.SelectedPaymentMethod;
+                }
+                else if (payment is ucOneWTripPayment oneWayPayment)
+                {
+                    paymentMethod = oneWayPayment.SelectedPaymentMethod;
+                }
 
-                string paymentMethod = ucRoundTripPayment.GetSelectedPaymentMethod();
-
+                decimal totalPrice = decimal.Parse(lblTotalPrice.Text.Replace("₱", ""));
                 return (totalPrice, paymentMethod);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error retrieving payment details: {ex.Message}");
+                MessageBox.Show($"Error getting payment details: {ex.Message}");
                 return (0, string.Empty);
             }
         }
-        #endregion
-
-
 
         #region Departure Ticket Information
         public void PopulateTicketInformation(
-            Control ucComplete,
-            Control ucRoundTripTripSummary1,
-            Control ucSearchRoundTrip,
             Control ucTicket,
+            Control tripSummary,
+            Control searchTrip,
             int passengerIndex = 1)
         {
-            // Retrieve departure information
-            string departureFromPort = GetLabelText(ucRoundTripTripSummary1, "lblDepFromPort");
-            string departureToPort = GetLabelText(ucRoundTripTripSummary1, "lblDepToPort");
-            string vesselName = GetLabelText(ucRoundTripTripSummary1, "lblDepVesselName");
-            string departureDate = GetLabelText(ucRoundTripTripSummary1, "lblDepDepartureDate");
+            try
+            {
+                string departureFromPort = GetLabelText(tripSummary, "lblDepFromPort");
+                string departureToPort = GetLabelText(tripSummary, "lblDepToPort");
+                string vesselName = GetLabelText(tripSummary, "lblDepVesselName");
+                string departureDate = GetLabelText(tripSummary, "lblDepDepartureDate");
+                string departureTime = GetDepartureTime(tripSummary);
+                string travelTime = GetLabelText(searchTrip, "lblTravelTime");
+                string eta = CalculateETA(departureDate, departureTime, travelTime);
 
-            // Retrieve departure time and travel time
-            string departureTime = GetDepartureTime(ucRoundTripTripSummary1);
-            string travelTime = GetLabelText(ucSearchRoundTrip, "lblTravelTime");
+                SetLabelText(ucTicket, "lblFrom", departureFromPort);
+                SetLabelText(ucTicket, "lblTo", departureToPort);
+                SetLabelText(ucTicket, "lblVesselName", vesselName);
+                SetLabelText(ucTicket, "lblDepartureDate", $"{departureDate} {departureTime}");
+                SetLabelText(ucTicket, "lblETA", eta);
 
-            // Calculate ETA
-            string eta = CalculateETA(departureDate, departureTime, travelTime);
+                SetLabelText(ucTicket, "lblVVesselName", vesselName);
+                SetLabelText(ucTicket, "lblBCVesselName", vesselName);
 
-            // Populate labels in the ticket placeholder panel
-            SetLabelText(ucTicket, "lblFrom", departureFromPort);
-            SetLabelText(ucTicket, "lblTo", departureToPort);
-            SetLabelText(ucTicket, "lblVesselName", vesselName);
-            SetLabelText(ucTicket, "lblDepartureDate", $"{departureDate} {departureTime}");
-            SetLabelText(ucTicket, "lblETA", eta);
+                string fromToCode = GenerateFromToCode(departureFromPort, departureToPort);
+                SetLabelText(ucTicket, "lblBCFromToCode", fromToCode);
+                SetLabelText(ucTicket, "lblVFromToCode", fromToCode);
 
-            // Vessel-specific information (assuming similar pattern)
-            SetLabelText(ucTicket, "lblVVesselName", vesselName);
-            SetLabelText(ucTicket, "lblBCVesselName", vesselName);
+                SetLabelText(ucTicket, "lblVDepartureDate", $"{departureDate} {departureTime}");
+                SetLabelText(ucTicket, "lblBCDepartureDate", $"{departureDate} {departureTime}");
 
-            // From-To Code (you might need to modify this based on your specific implementation)
-            string fromToCode = GenerateFromToCode(departureFromPort, departureToPort);
-            SetLabelText(ucTicket, "lblBCFromToCode", fromToCode);
-            SetLabelText(ucTicket, "lblVFromToCode", fromToCode);
-
-            // Departure Dates
-            SetLabelText(ucTicket, "lblVDepartureDate", $"{departureDate} {departureTime}");
-            SetLabelText(ucTicket, "lblBCDepartureDate", $"{departureDate} {departureTime}");
+                SetLabelText(ucTicket, "lblTicketType", "DEPARTURE TICKET");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error populating ticket information: {ex.Message}", "Error", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private string GetDepartureTime(Control ucRoundTripTripSummary1)
+        private string GetDepartureTime(Control tripSummary)
         {
             try
             {
                 // Adjust the label name as per your actual control
-                return GetLabelText(ucRoundTripTripSummary1, "lblDepDepartureTime");
+                return GetLabelText(tripSummary, "lblDepDepartureTime");
             }
             catch
             {
@@ -294,84 +314,125 @@ namespace Ferry_Ticketing_App
         #region Passenger and Payment Information
 
         public void PopulatePassengerAndPaymentInfo(
-            Control ucTicket, 
-            Control ucPaymentPassengerInfo1,
-            Control ucRoundTripPayment,
+            Control ucTicket,
+            Control ucPaymentPassengerInfo,
+            Control payment,
             Control ucCheckout,
             Control ucPassengerDetails1,
             Control ucDepartureSummary,
-            int passengerIndex = 0)
+            int passengerIndex)
         {
-            // Dynamically find the correct passenger info control
-            var specificPassengerInfoControl = ucRoundTripPayment.Controls
-                .OfType<Control>()
-                .FirstOrDefault(c => c.Name == $"ucPaymentPassengerInfo{passengerIndex}");
-
-            // If specific passenger control not found, fall back to default
-            if (specificPassengerInfoControl == null)
-                specificPassengerInfoControl = ucPaymentPassengerInfo1;
-
-            // Retrieve Passengers Info using the specific passenger control
-            var passengers = GetPassengersInfo(specificPassengerInfoControl);
-
-            // Populate Passenger Details
-            if (passengers.Count > 0)
+            try
             {
-                var firstPassenger = passengers[0];
+                var specificPassengerInfoControl = payment.Controls
+                    .OfType<Control>()
+                    .FirstOrDefault(c => c.Name == $"ucPaymentPassengerInfo{passengerIndex + 1}");
 
-                // Full Name
-                SetLabelText(ucTicket, "lblPDName", $"{firstPassenger.FirstName} {firstPassenger.LastName}");
+                if (specificPassengerInfoControl == null)
+                    specificPassengerInfoControl = ucPaymentPassengerInfo;
 
-                // Age and Gender
-                int age = CalculateAge(firstPassenger.Birthdate);
-                SetLabelText(ucTicket, "lblPDAgeGender", $"{age} {firstPassenger.Gender}");
+                decimal basePrice = decimal.Parse(GetLabelText(ucDepartureSummary, "lblDPrice").Replace("₱", ""));
+                string discountType = GetDiscountType(ucPassengerDetails1.Parent, passengerIndex);
+                string birthdate = GetLabelText(specificPassengerInfoControl, "lblPIBirthdate");
+                int age = CalculateAge(birthdate);
 
-                // Get Accommodation and Discount Type from Passenger Info Controls
-                string accommodation = GetLabelText(ucDepartureSummary, "lblDAccommodation");
-                SetLabelText(ucTicket, "lblPDAccommodation", accommodation);
+                Price price = new Price(basePrice, 0);
+                decimal individualPrice = price.ApplyDiscount(discountType, age);
 
-                string discountType = GetDiscountType(ucPassengerDetails1);
-                SetLabelText(ucTicket, "lblPDDiscountType", discountType);
-                SetLabelText(ucTicket, "lblBCType", discountType);
-                SetLabelText(ucTicket, "lblVType", discountType);
+                decimal serviceCharge = 0;
+                int passengerCount = GetPassengerCount(ucPaymentPassengerInfo);
+                bool isRoundTrip = payment is ucRoundTripPayment;
 
-                // Populate various name labels
-                SetLabelText(ucTicket, "lblVName", $"{firstPassenger.FirstName} {firstPassenger.LastName}");
-                SetLabelText(ucTicket, "lblVAgeGender", $"{age} {firstPassenger.Gender}");
-                SetLabelText(ucTicket, "lblBCName", $"{firstPassenger.FirstName} {firstPassenger.LastName}");
-                SetLabelText(ucTicket, "lblBCAgeGender", $"{age} {firstPassenger.Gender}");
+                if (isRoundTrip)
+                {
+                    var roundTrip = payment as ucRoundTripPayment;
+                    serviceCharge = decimal.Parse(roundTrip.lblServiceCharge.Text.Replace("₱", ""));
+                }
+                else if (payment is ucOneWTripPayment oneWayPayment)
+                {
+                    serviceCharge = decimal.Parse(oneWayPayment.lblServiceCharge.Text.Replace("₱", ""));
+                }
+
+                decimal terminalFee = 25m;
+
+                // Calculate service charge per passenger
+                decimal serviceChargePerPassenger;
+                if (isRoundTrip)
+                {
+                    // For round trip, divide by (passenger count * 2) since charge is split between departure and return
+                    serviceChargePerPassenger = passengerCount > 0 ? serviceCharge / (passengerCount * 2) : 0;
+                }
+                else
+                {
+                    // For one way, just divide by passenger count
+                    serviceChargePerPassenger = passengerCount > 0 ? serviceCharge / passengerCount : 0;
+                }
+
+                decimal totalIndividualPrice = individualPrice + serviceChargePerPassenger + terminalFee;
+
+                SetLabelText(ucTicket, "lblPaymentTotalAmmount", $"₱{totalIndividualPrice:N2}");
+                SetLabelText(ucTicket, "lblVTotalAmmount", $"₱{totalIndividualPrice:N2}");
+                SetLabelText(ucTicket, "lblBCTotalAmmount", $"₱{totalIndividualPrice:N2}");
+
+                var passengers = GetPassengersInfo(specificPassengerInfoControl);
+                if (passengers.Count > passengerIndex)
+                {
+                    var passenger = passengers[passengerIndex];
+                    PopulatePassengerDetails(ucTicket, passenger, ucDepartureSummary, ucPassengerDetails1, passengerIndex);
+                }
+
+                var contactPerson = GetContactPersonInfo(payment);
+                if (contactPerson != null)
+                {
+                    PopulateContactInfo(ucTicket, contactPerson);
+                }
+
+                var (_, paymentMethod) = GetPaymentDetails(ucCheckout, payment);
+                SetLabelText(ucTicket, "lblPPaymentMethod", paymentMethod);
             }
-
-            var contactPerson = GetContactPersonInfo(ucRoundTripPayment);
-            if (contactPerson != null)
+            catch (Exception ex)
             {
-                SetLabelText(ucTicket, "lblPDContactPerson", contactPerson.Name);
-                SetLabelText(ucTicket, "lblPDContactNo", contactPerson.MobileNumber);
-                SetLabelText(ucTicket, "lblPaymentSoldTo", contactPerson.Name);
+                MessageBox.Show($"Error calculating individual price: {ex.Message}", "Error", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            var paymentControl = ucRoundTripPayment as ucRoundTripPayment; // Cast to specific type
-
-            var paymentDetails = GetPaymentDetails(ucCheckout, paymentControl);
-
-            decimal totalPrice = paymentDetails.TotalPrice;
-            string paymentMethod = paymentDetails.PaymentMethod;
-
-            DateTime paymentDateReserved = GetPaymentDateReserved();
-            SetLabelText(ucTicket, "lblPaymentDateReserved", paymentDateReserved.ToString("yyyy-MM-dd"));
-
-            string orNumber = GenerateORNo();
-            string transactionNo = GenerateTransactionNo(1); 
-
-            SetLabelText(ucTicket   , "lblPaymentTotalAmmount", totalPrice.ToString("C"));
-            SetLabelText(ucTicket   , "lblVTotalAmmount", totalPrice.ToString("C"));
-            SetLabelText(   ucTicket, "lblBCTotalAmmount", totalPrice.ToString("C"));
-            SetLabelText(ucTicket, "lblPaymentORNo", orNumber);
-            SetLabelText(ucTicket, "lblVORNo", orNumber);
-            SetLabelText(ucTicket, "lblBCORNo", orNumber);
-            SetLabelText(ucTicket, "lblPPaymentMethod", paymentMethod);
-            SetLabelText(ucTicket, "lblBTransactionNo", transactionNo);
         }
+
+        private void PopulatePassengerDetails(Control ucTicket, DepartureTicketInfo.PassengerDetails passenger,
+            Control ucDepartureSummary, Control ucPassengerDetails1, int passengerIndex)
+        {
+            SetLabelText(ucTicket, "lblPDName", $"{passenger.FirstName} {passenger.LastName}");
+            int age = CalculateAge(passenger.Birthdate);
+            SetLabelText(ucTicket, "lblPDAgeGender", $"{age} {passenger.Gender}");
+            
+            string accommodation = GetLabelText(ucDepartureSummary, "lblDAccommodation");
+            SetLabelText(ucTicket, "lblPDAccommodation", accommodation);
+
+            string discountType = GetDiscountType(ucPassengerDetails1.Parent, passengerIndex);
+            SetLabelText(ucTicket, "lblPDDiscountType", discountType);
+            SetLabelText(ucTicket, "lblBCType", discountType);
+            SetLabelText(ucTicket, "lblVType", discountType);
+
+            SetLabelText(ucTicket, "lblVName", $"{passenger.FirstName} {passenger.LastName}");
+            SetLabelText(ucTicket, "lblVAgeGender", $"{age} {passenger.Gender}");
+            SetLabelText(ucTicket, "lblBCName", $"{passenger.FirstName} {passenger.LastName}");
+            SetLabelText(ucTicket, "lblBCAgeGender", $"{age} {passenger.Gender}");
+        }
+
+        private void PopulateContactInfo(Control ucTicket, DepartureTicketInfo.ContactPersonDetails contactPerson)
+        {
+            SetLabelText(ucTicket, "lblPDContactPerson", contactPerson.Name);
+            SetLabelText(ucTicket, "lblPDContactNo", contactPerson.MobileNumber);
+            SetLabelText(ucTicket, "lblPaymentSoldTo", contactPerson.Name);
+        }
+
+        private void PopulatePaymentInfo(Control ucTicket, decimal totalPrice, string paymentMethod)
+        {
+            SetLabelText(ucTicket, "lblPaymentTotalAmmount", totalPrice.ToString("C"));
+            SetLabelText(ucTicket, "lblVTotalAmmount", totalPrice.ToString("C"));
+            SetLabelText(ucTicket, "lblBCTotalAmmount", totalPrice.ToString("C"));
+            SetLabelText(ucTicket, "lblPPaymentMethod", paymentMethod);
+        }
+
         public DateTime GetPaymentDateReserved()
         {
             return DateTime.Now;
@@ -395,17 +456,29 @@ namespace Ferry_Ticketing_App
             }
         }
 
-        private string GetDiscountType(Control ucPassengerDetails1)
+        private string GetDiscountType(Control ucPassengerContactInfo, int passengerIndex)
         {
             try
             {
-                var discountComboBox = ucPassengerDetails1.Controls.Find("cmbBType", true).FirstOrDefault() as ComboBox;
+                // Find the specific passenger details control
+                var passengerDetails = ucPassengerContactInfo.Controls
+                    .OfType<ucPassengerDetails>()
+                    .FirstOrDefault(c => c.Name == $"ucPassengerDetails{passengerIndex + 1}");
 
-                return discountComboBox?.SelectedItem?.ToString() ?? string.Empty;
+                if (passengerDetails != null)
+                {
+                    var discountTypeComboBox = passengerDetails.Controls
+                        .Find("cmbBType", true)
+                        .FirstOrDefault() as ComboBox;
+
+                    return discountTypeComboBox?.SelectedItem?.ToString() ?? "Adult";
+                }
+
+                return "Adult"; // Default to Adult if control not found
             }
             catch
             {
-                return string.Empty; 
+                return "Adult"; // Default to Adult on error
             }
         }
         #endregion
@@ -417,17 +490,18 @@ namespace Ferry_Ticketing_App
         {
             string bookingDate = DateTime.Now.ToString("yyyy-MM-dd");
             SetLabelText(ucTicket, "lblBBookingDate", bookingDate);
+            SetLabelText(ucTicket, "lblPaymentDateReserved", bookingDate);
 
             string validUntilDate = DateTime.Now.AddDays(30).ToString("yyyy-MM-dd");
             SetLabelText(ucTicket, "lblBValidUntil", validUntilDate);
 
-            string tinBuyer = GenerateTINNumber();
-            SetLabelText(ucTicket, "lblPaymentTINBuyer", tinBuyer);
-        }
+            SetLabelText(ucTicket, "lblPaymentTINBuyer", _tinBuyer);
 
-        private string GenerateTINNumber()
-        {
-            return GenerateRandomNumbers(12);
+            // Generate and set OR number
+            string orNumber = GenerateORNo();
+            SetLabelText(ucTicket, "lblPaymentORNo", orNumber);
+            SetLabelText(ucTicket, "lblVORNo", orNumber);
+            SetLabelText(ucTicket, "lblBCORNo", orNumber);
         }
 
         #endregion
@@ -448,43 +522,45 @@ namespace Ferry_Ticketing_App
         }
         public void PopulateReturnTicketInformation(
             Control ucTicket,
-            Control ucRoundTripTripSummary1,
             Control ucSearchRoundTrip,
             Control ucRoundTripTripSummary,
             int passengerIndex = 1)
         {
-            // Find the ticket placeholder panel inside the ucTicket user control
-            var pnlTicketPH = ucTicket.Controls.Find("pnlReturnTicketPH", true).FirstOrDefault();
-
-            if (pnlTicketPH == null)
-            {
-                MessageBox.Show("Unable to find return ticket placeholder panel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             // Reuse existing methods with modifications
-            string returnFromPort = GetLabelText(ucRoundTripTripSummary, "lblReturnFromPort");
-            string returnToPort = GetLabelText(ucRoundTripTripSummary, "lblReturnToPort");
-            string vesselName = GetLabelText(ucRoundTripTripSummary, "lblReturnVesselName");
-            string returnDate = GetLabelText(ucRoundTripTripSummary, "lblReturnDepartureDate");
+            string returnFromPort = GetLabelText(ucRoundTripTripSummary, "lblRetFromPort");
+            string returnToPort = GetLabelText(ucRoundTripTripSummary, "lblRetToPort");
+            string vesselName = GetLabelText(ucRoundTripTripSummary, "lblRetVesselName");
+            string returnDate = GetLabelText(ucRoundTripTripSummary, "lblRetDepartureDate");
 
             // Reuse existing methods
             string returnTime = GetDepartureTime(ucRoundTripTripSummary);
-            string travelTime = GetLabelText(ucSearchRoundTrip, "lblReturnTravelTime");
+            string travelTime = GetLabelText(ucSearchRoundTrip, "lblTravelTime");
 
             // Calculate ETA (reuse existing method)
             string eta = CalculateETA(returnDate, returnTime, travelTime);
 
             // Populate labels (similar to departure ticket method)
-            SetLabelText(ucTicket, "lblReturnFrom", returnFromPort);
-            SetLabelText(ucTicket, "lblReturnTo", returnToPort);
-            SetLabelText(ucTicket, "lblReturnVesselName", vesselName);
-            SetLabelText(ucTicket, "lblReturnDepartureDate", $"{returnDate} {returnTime}");
-            SetLabelText(ucTicket, "lblReturnETA", eta);
+            SetLabelText(ucTicket, "lblFrom", returnFromPort);
+            SetLabelText(ucTicket, "lblTo", returnToPort);
+            SetLabelText(ucTicket, "lblVesselName", vesselName);
+            SetLabelText(ucTicket, "lblDepartureDate", $"{returnDate} {returnTime}");
+            SetLabelText(ucTicket, "lblETA", eta);
+
+              // Vessel-specific information (assuming similar pattern)
+            SetLabelText(ucTicket, "lblVVesselName", vesselName);
+            SetLabelText(ucTicket, "lblBCVesselName", vesselName);
 
             // Generate From-To Code (reuse existing method)
             string returnFromToCode = GenerateFromToCode(returnFromPort, returnToPort);
-            SetLabelText(ucTicket, "lblReturnFromToCode", returnFromToCode);
+            SetLabelText(ucTicket, "lblBCFromToCode", returnFromToCode);
+            SetLabelText(ucTicket, "lblVFromToCode", returnFromToCode);
+
+            // Return Dates
+            SetLabelText(ucTicket, "lblVDepartureDate", $"{returnDate} {returnTime}");
+            SetLabelText(ucTicket, "lblBCDepartureDate", $"{returnDate} {returnTime}");
+
+            // Update the ticket type label to indicate it's a return ticket
+            SetLabelText(ucTicket, "lblTicketType", "RETURN TICKET");
         }
 
 
@@ -618,5 +694,241 @@ namespace Ferry_Ticketing_App
             }
         }
         #endregion
+
+        public void PopulateReturnPassengerAndPaymentInfo(
+            Control ucTicket, 
+            Control ucPaymentPassengerInfo1,
+            Control ucRoundTripPayment,
+            Control ucCheckout,
+            Control ucPassengerDetails1,
+            Control ucDepartureSummary,
+            int passengerIndex)
+        {
+            try
+            {
+                // Get the specific passenger control for this ticket
+                var specificPassengerInfoControl = ucRoundTripPayment.Controls
+                    .OfType<Control>()
+                    .FirstOrDefault(c => c.Name == $"ucPaymentPassengerInfo{passengerIndex + 1}");
+
+                if (specificPassengerInfoControl == null)
+                    specificPassengerInfoControl = ucPaymentPassengerInfo1;
+
+                // Get base price for return trip
+                var searchRoundTrip = ucRoundTripPayment.Parent.Controls.OfType<ucSearchRoundTrip>().FirstOrDefault();
+                decimal basePrice = decimal.Parse(searchRoundTrip.ucIndividualTrips2.lblTicketPrice.Text.Replace("₱", ""));
+
+                // Retrieve Passengers Info using the specific passenger control
+                var passengers = GetPassengersInfo(specificPassengerInfoControl);
+
+                // Populate Passenger Details
+                if (passengers.Count > passengerIndex)
+                {
+                    var passenger = passengers[passengerIndex];
+
+                    // Full Name and Demographics
+                    SetLabelText(ucTicket, "lblPDName", $"{passenger.FirstName} {passenger.LastName}");
+                    int age = CalculateAge(passenger.Birthdate);
+                    SetLabelText(ucTicket, "lblPDAgeGender", $"{age} {passenger.Gender}");
+
+                    // Get Accommodation
+                    string accommodation = GetLabelText(ucDepartureSummary, "lblDAccommodation");
+                    SetLabelText(ucTicket, "lblPDAccommodation", accommodation);
+
+                    // Get and set discount type
+                    string discountType = GetDiscountType(ucPassengerDetails1.Parent, passengerIndex);
+                    SetLabelText(ucTicket, "lblPDDiscountType", discountType);
+                    SetLabelText(ucTicket, "lblBCType", discountType);
+                    SetLabelText(ucTicket, "lblVType", discountType);
+
+                    // Set passenger names on various labels
+                    SetLabelText(ucTicket, "lblVName", $"{passenger.FirstName} {passenger.LastName}");
+                    SetLabelText(ucTicket, "lblVAgeGender", $"{age} {passenger.Gender}");
+                    SetLabelText(ucTicket, "lblBCName", $"{passenger.FirstName} {passenger.LastName}");
+                    SetLabelText(ucTicket, "lblBCAgeGender", $"{age} {passenger.Gender}");
+
+                    // Calculate base price with discount
+                    Price price = new Price(basePrice, 0);
+                    decimal individualPrice = price.ApplyDiscount(discountType, age);
+
+                    // Get service charge and passenger count
+                    decimal serviceCharge = decimal.Parse(
+                        (ucRoundTripPayment as ucRoundTripPayment)?.lblServiceCharge.Text.Replace("₱", "") ?? "0");
+                    int passengerCount = GetPassengerCount(ucPaymentPassengerInfo1);
+
+                    decimal terminalFee = 25m;
+
+                    // Calculate service charge per passenger (divide by passenger count * 2 for round trip)
+                    decimal serviceChargePerPassenger = passengerCount > 0 ? serviceCharge / (passengerCount * 2) : 0;
+                    decimal totalIndividualPrice = individualPrice + serviceChargePerPassenger + terminalFee;
+
+                    // Set the prices on the ticket
+                    SetLabelText(ucTicket, "lblPaymentTotalAmmount", $"₱{totalIndividualPrice:N2}");
+                    SetLabelText(ucTicket, "lblVTotalAmmount", $"₱{totalIndividualPrice:N2}");
+                    SetLabelText(ucTicket, "lblBCTotalAmmount", $"₱{totalIndividualPrice:N2}");
+                }
+
+                // Set contact person information
+                var contactPerson = GetContactPersonInfo(ucRoundTripPayment);
+                if (contactPerson != null)
+                {
+                    SetLabelText(ucTicket, "lblPDContactPerson", contactPerson.Name);
+                    SetLabelText(ucTicket, "lblPDContactNo", contactPerson.MobileNumber);
+                    SetLabelText(ucTicket, "lblPaymentSoldTo", contactPerson.Name);
+                }
+
+                // Set payment method
+                var paymentControl = ucRoundTripPayment as ucRoundTripPayment;
+                SetLabelText(ucTicket, "lblPPaymentMethod", paymentControl?.SelectedPaymentMethod ?? string.Empty);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error calculating individual return price: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void PopulateReturnBookingDetails(Control ucTicket)
+        {
+            string bookingDate = DateTime.Now.ToString("yyyy-MM-dd");
+            SetLabelText(ucTicket, "lblBBookingDate", bookingDate);
+            SetLabelText(ucTicket, "lblPaymentDateReserved", bookingDate);
+
+            string validUntilDate = DateTime.Now.AddDays(30).ToString("yyyy-MM-dd");
+            SetLabelText(ucTicket, "lblBValidUntil", validUntilDate);
+
+            SetLabelText(ucTicket, "lblPaymentTINBuyer", _tinBuyer);
+
+            // Generate unique numbers for return ticket
+            string orNumber = $"{GenerateORNo()}-R";
+            string transactionNo = $"{GenerateTransactionNo(1)}-R";
+
+            SetLabelText(ucTicket, "lblPaymentORNo", orNumber);
+            SetLabelText(ucTicket, "lblVORNo", orNumber);
+            SetLabelText(ucTicket, "lblBCORNo", orNumber);
+            SetLabelText(ucTicket, "lblBTransactionNo", transactionNo);
+        }
+        #endregion
+
+        public static void ResetAllControls(Control parentControl)
+        {
+            try
+            {
+                // Find all relevant user controls
+                var findTrips = parentControl.Controls.OfType<ucFindTrips>().FirstOrDefault();
+                var searchRoundTrip = parentControl.Controls.OfType<ucSearchRoundTrip>().FirstOrDefault();
+                var searchOneWayTrip = parentControl.Controls.OfType<ucSearchOneWayTrip>().FirstOrDefault();
+                var passengerContactInfo = parentControl.Controls.OfType<ucPassengerContactInfo>().FirstOrDefault();
+                var roundTripPayment = parentControl.Controls.OfType<ucRoundTripPayment>().FirstOrDefault();
+                var oneWayPayment = parentControl.Controls.OfType<ucOneWTripPayment>().FirstOrDefault();
+                var checkout = parentControl.Controls.OfType<ucCheckout>().FirstOrDefault();
+                var complete = parentControl.Controls.OfType<ucComplete>().FirstOrDefault();
+                var history = parentControl.Controls.OfType<ucHistory>().FirstOrDefault();
+
+                // Reset FindTrips
+                if (findTrips != null)
+                {
+                    findTrips.txtPassengers.Text = "1";
+                    findTrips.rbOneWay.Checked = true;
+                    findTrips.dtpDepart.Value = DateTime.Now;
+                    findTrips.dtpReturn.Value = DateTime.Now.AddDays(1);
+                    findTrips.Visible = true;
+                    findTrips.BringToFront();
+                    findTrips.AutoScrollPosition = new Point(0, 0);
+                }
+
+                // Reset SearchRoundTrip
+                if (searchRoundTrip != null)
+                {
+                    searchRoundTrip.ucDepartureSummary1.pnlDepDropDownSelected.Visible = false;
+                    searchRoundTrip.ucDepartureSummary1.pnlDepDropDownNoSelected.Visible = true;
+                    searchRoundTrip.ucReturnSummary1.pnlRetDropdownSelected.Visible = false;
+                    searchRoundTrip.ucReturnSummary1.pnlRetDropdownNoSelected.Visible = true;
+                    searchRoundTrip.Visible = false;
+                    searchRoundTrip.AutoScrollPosition = new Point(0, 0);
+                    searchRoundTrip.ucDepartureSummary1.AutoScrollPosition = new Point(0, 0);
+                    searchRoundTrip.ucReturnSummary1.AutoScrollPosition = new Point(0, 0);
+                }
+
+                // Reset SearchOneWayTrip
+                if (searchOneWayTrip != null)
+                {
+                    searchOneWayTrip.ucDepartureSummary1.pnlDepDropDownSelected.Visible = false;
+                    searchOneWayTrip.ucDepartureSummary1.pnlDepDropDownNoSelected.Visible = true;
+                    searchOneWayTrip.Visible = false;
+                    searchOneWayTrip.AutoScrollPosition = new Point(0, 0);
+                    searchOneWayTrip.ucDepartureSummary1.AutoScrollPosition = new Point(0, 0);
+                }
+
+                // Reset PassengerContactInfo
+                if (passengerContactInfo != null)
+                {
+                    passengerContactInfo.txtContactPerson.Clear();
+                    passengerContactInfo.txtEmailAdd.Clear();
+                    passengerContactInfo.txtMobileNo.Clear();
+                    passengerContactInfo.txtAddress.Clear();
+                    passengerContactInfo.txtConfirmEmailAdd.Clear();
+                    passengerContactInfo.Visible = false;
+                    passengerContactInfo.AutoScrollPosition = new Point(0, 0);
+                    passengerContactInfo.pnlPassengerControlInfo.AutoScrollPosition = new Point(0, 0);
+                }
+
+                // Reset RoundTripPayment
+                if (roundTripPayment != null)
+                {
+                    roundTripPayment.selectedPaymentMethod = string.Empty;
+                    roundTripPayment.lblServiceCharge.Text = "₱0.00";
+                    roundTripPayment.lblTotalPrice.Text = "₱0.00";
+                    roundTripPayment.lblTerminalFee.Text = "₱25.00";
+                    roundTripPayment.Visible = false;
+                    roundTripPayment.AutoScrollPosition = new Point(0, 0);
+                }
+
+                // Reset OneWayPayment
+                if (oneWayPayment != null)
+                {
+                    oneWayPayment.selectedPaymentMethod = string.Empty;
+                    oneWayPayment.lblServiceCharge.Text = "₱0.00";
+                    oneWayPayment.lblTotalPrice.Text = "₱0.00";
+                    oneWayPayment.lblTerminalFee.Text = "₱25.00";
+                    oneWayPayment.Visible = false;
+                    oneWayPayment.AutoScrollPosition = new Point(0, 0);
+                }
+
+                // Reset Complete
+                if (complete != null)
+                {
+                    complete.ucTicket1?.Controls.Clear();
+                    complete.Visible = false;
+                    complete.AutoScrollPosition = new Point(0, 0);
+                    complete.pnlComplete.AutoScrollPosition = new Point(0, 0);
+                }
+
+                // Reset History
+                if (history != null)
+                {
+                    history.flpTicketContainer.AutoScrollPosition = new Point(0, 0);
+                    history.AutoScrollPosition = new Point(0, 0);
+                }
+
+                // Reset Checkout
+                if (checkout != null)
+                {
+                    checkout.Visible = false;
+                    checkout.AutoScrollPosition = new Point(0, 0);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error resetting controls: {ex.Message}", "Error", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private int GetPassengerCount(Control paymentControl)
+        {
+            return paymentControl.Controls
+                .OfType<Control>()
+                .Count(c => c.Name.StartsWith("ucPaymentPassengerInfo"));
+        }
     }
 }

@@ -48,14 +48,18 @@
             this.lblRetFromPort = new System.Windows.Forms.Label();
             this.lblDepToPort = new System.Windows.Forms.Label();
             this.lblDepFromPort = new System.Windows.Forms.Label();
+            this.pnlDepCodeToCode = new System.Windows.Forms.Panel();
+            this.pnlRetCodeToCode = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pbRetArrowRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDepArrowRight)).BeginInit();
+            this.pnlDepCodeToCode.SuspendLayout();
+            this.pnlRetCodeToCode.SuspendLayout();
             this.SuspendLayout();
             // 
             // pbRetArrowRight
             // 
             this.pbRetArrowRight.Image = global::Ferry_Ticketing_App.Properties.Resources.arrowright3;
-            this.pbRetArrowRight.Location = new System.Drawing.Point(102, 341);
+            this.pbRetArrowRight.Location = new System.Drawing.Point(73, 10);
             this.pbRetArrowRight.Name = "pbRetArrowRight";
             this.pbRetArrowRight.Size = new System.Drawing.Size(25, 24);
             this.pbRetArrowRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -65,7 +69,7 @@
             // pbDepArrowRight
             // 
             this.pbDepArrowRight.Image = global::Ferry_Ticketing_App.Properties.Resources.arrowright3;
-            this.pbDepArrowRight.Location = new System.Drawing.Point(102, 71);
+            this.pbDepArrowRight.Location = new System.Drawing.Point(73, 10);
             this.pbDepArrowRight.Name = "pbDepArrowRight";
             this.pbDepArrowRight.Size = new System.Drawing.Size(25, 24);
             this.pbDepArrowRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -231,7 +235,7 @@
             this.lblRetToPort.AutoSize = true;
             this.lblRetToPort.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRetToPort.ForeColor = System.Drawing.Color.Gray;
-            this.lblRetToPort.Location = new System.Drawing.Point(133, 344);
+            this.lblRetToPort.Location = new System.Drawing.Point(115, 13);
             this.lblRetToPort.Name = "lblRetToPort";
             this.lblRetToPort.Size = new System.Drawing.Size(53, 18);
             this.lblRetToPort.TabIndex = 10;
@@ -242,7 +246,7 @@
             this.lblRetFromPort.AutoSize = true;
             this.lblRetFromPort.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRetFromPort.ForeColor = System.Drawing.Color.Gray;
-            this.lblRetFromPort.Location = new System.Drawing.Point(48, 344);
+            this.lblRetFromPort.Location = new System.Drawing.Point(10, 13);
             this.lblRetFromPort.Name = "lblRetFromPort";
             this.lblRetFromPort.Size = new System.Drawing.Size(51, 18);
             this.lblRetFromPort.TabIndex = 9;
@@ -253,7 +257,7 @@
             this.lblDepToPort.AutoSize = true;
             this.lblDepToPort.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDepToPort.ForeColor = System.Drawing.Color.Gray;
-            this.lblDepToPort.Location = new System.Drawing.Point(133, 74);
+            this.lblDepToPort.Location = new System.Drawing.Point(115, 13);
             this.lblDepToPort.Name = "lblDepToPort";
             this.lblDepToPort.Size = new System.Drawing.Size(53, 18);
             this.lblDepToPort.TabIndex = 11;
@@ -264,20 +268,40 @@
             this.lblDepFromPort.AutoSize = true;
             this.lblDepFromPort.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDepFromPort.ForeColor = System.Drawing.Color.Gray;
-            this.lblDepFromPort.Location = new System.Drawing.Point(48, 74);
+            this.lblDepFromPort.Location = new System.Drawing.Point(10, 13);
             this.lblDepFromPort.Name = "lblDepFromPort";
             this.lblDepFromPort.Size = new System.Drawing.Size(51, 18);
             this.lblDepFromPort.TabIndex = 8;
             this.lblDepFromPort.Text = "Point1";
+            // 
+            // pnlDepCodeToCode
+            // 
+            this.pnlDepCodeToCode.Controls.Add(this.lblDepToPort);
+            this.pnlDepCodeToCode.Controls.Add(this.lblDepFromPort);
+            this.pnlDepCodeToCode.Controls.Add(this.pbDepArrowRight);
+            this.pnlDepCodeToCode.Location = new System.Drawing.Point(29, 64);
+            this.pnlDepCodeToCode.Name = "pnlDepCodeToCode";
+            this.pnlDepCodeToCode.Size = new System.Drawing.Size(486, 44);
+            this.pnlDepCodeToCode.TabIndex = 28;
+            // 
+            // pnlRetCodeToCode
+            // 
+            this.pnlRetCodeToCode.Controls.Add(this.lblRetToPort);
+            this.pnlRetCodeToCode.Controls.Add(this.lblRetFromPort);
+            this.pnlRetCodeToCode.Controls.Add(this.pbRetArrowRight);
+            this.pnlRetCodeToCode.Location = new System.Drawing.Point(29, 334);
+            this.pnlRetCodeToCode.Name = "pnlRetCodeToCode";
+            this.pnlRetCodeToCode.Size = new System.Drawing.Size(486, 44);
+            this.pnlRetCodeToCode.TabIndex = 29;
             // 
             // ucRoundTripTripSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.roundtTripSummaryPHFinal;
-            this.Controls.Add(this.pbRetArrowRight);
-            this.Controls.Add(this.pbDepArrowRight);
+            this.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.roundtriptripsummary3;
+            this.Controls.Add(this.pnlRetCodeToCode);
+            this.Controls.Add(this.pnlDepCodeToCode);
             this.Controls.Add(this.lblRetAccommodation);
             this.Controls.Add(this.lblDepAccommodation);
             this.Controls.Add(this.lblRetAircon);
@@ -292,14 +316,14 @@
             this.Controls.Add(this.lblRetDepartureDate);
             this.Controls.Add(this.lblDepDepartureTime);
             this.Controls.Add(this.lblDepDepartureDate);
-            this.Controls.Add(this.lblRetToPort);
-            this.Controls.Add(this.lblRetFromPort);
-            this.Controls.Add(this.lblDepToPort);
-            this.Controls.Add(this.lblDepFromPort);
             this.Name = "ucRoundTripTripSummary";
             this.Size = new System.Drawing.Size(545, 562);
             ((System.ComponentModel.ISupportInitialize)(this.pbRetArrowRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDepArrowRight)).EndInit();
+            this.pnlDepCodeToCode.ResumeLayout(false);
+            this.pnlDepCodeToCode.PerformLayout();
+            this.pnlRetCodeToCode.ResumeLayout(false);
+            this.pnlRetCodeToCode.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,5 +351,7 @@
         public System.Windows.Forms.Label lblRetFromPort;
         public System.Windows.Forms.Label lblDepToPort;
         public System.Windows.Forms.Label lblDepFromPort;
+        private System.Windows.Forms.Panel pnlDepCodeToCode;
+        private System.Windows.Forms.Panel pnlRetCodeToCode;
     }
 }

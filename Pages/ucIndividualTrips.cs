@@ -18,6 +18,7 @@ namespace Ferry_Ticketing_App.Pages
         public event Action<TripDetails> TripSelected;
         public event Action<ReturnTripDetails> ReturnTripSelected;
         private ucSearchRoundTrip searchRoundTrip;
+        private ucSearchOneWayTrip searchOneWayTrip;
         private DateTime currentDateStart;
         private List<Button> dateButtons;
         private List<Time> availableTrips;
@@ -39,6 +40,9 @@ namespace Ferry_Ticketing_App.Pages
             btnLeft.Click += (s, e) => UpdateDates(-10);
             btnRight.Click += (s, e) => UpdateDates(10);
             PopulateSeatTypes();
+            
+            // Add event handler for accommodation type changes
+            cmbBoxAccommodationType.SelectedIndexChanged += CmbBoxAccommodationType_SelectedIndexChanged;
         }
         private void PopulateSeatTypes()
         {
@@ -237,7 +241,7 @@ namespace Ferry_Ticketing_App.Pages
             for (int i = 0; i < dateButtons.Count; i++)
             {
                 DateTime date = currentDateStart.AddDays(i);
-                dateButtons[i].Text = $"{date.Day}\n{date:ddd}\n{date:MMM}";
+                dateButtons[i].Text = $"{date:dd}\n{date:ddd, MMM}";
                 dateButtons[i].Tag = date;
 
                 dateButtons[i].Click -= DateButton_Click;
@@ -264,7 +268,6 @@ namespace Ferry_Ticketing_App.Pages
         {
             if (sender is Button selectedButton && selectedButton.Tag is DateTime selectedDate)
             {
-                // Restrict selection to today or future dates
                 if (selectedDate.Date < DateTime.Today)
                 {
                     MessageBox.Show("You cannot select a past date.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -274,13 +277,22 @@ namespace Ferry_Ticketing_App.Pages
                 HighlightDate(selectedDate);
                 UpdateTripDetails(selectedDate);
 
-                if (this.Name == "ucIndividualTrips1")
+                // Check if we're in a one-way trip context
+                if (searchOneWayTrip != null)
                 {
-                    searchRoundTrip.lblDepartureDate.Text = selectedDate.ToString("yyyy-MM-dd");
+                    searchOneWayTrip.lblDepartureDate.Text = selectedDate.ToString("yyyy-MM-dd");
                 }
-                else if (this.Name == "ucIndividualTrips2")
+                // Check if we're in a round trip context
+                else if (searchRoundTrip != null)
                 {
-                    searchRoundTrip.lblReturnDate.Text = selectedDate.ToString("yyyy-MM-dd");
+                    if (this.Name == "ucIndividualTrips1")
+                    {
+                        searchRoundTrip.lblDepartureDate.Text = selectedDate.ToString("yyyy-MM-dd");
+                    }
+                    else if (this.Name == "ucIndividualTrips2")
+                    {
+                        searchRoundTrip.lblReturnDate.Text = selectedDate.ToString("yyyy-MM-dd");
+                    }
                 }
             }
         }
@@ -365,6 +377,11 @@ namespace Ferry_Ticketing_App.Pages
             public string RVesselName { get; set; }
         }
 
+        public void SetSearchOneWayTripReference(ucSearchOneWayTrip searchOneWayTrip)
+        {
+            this.searchOneWayTrip = searchOneWayTrip;
+        }
+
         public void SetSearchRoundTripReference(ucSearchRoundTrip searchRoundTrip)
         {
             this.searchRoundTrip = searchRoundTrip;
@@ -372,43 +389,107 @@ namespace Ferry_Ticketing_App.Pages
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            string accommodationType = cmbBoxAccommodationType.SelectedItem.ToString();
-            string seatType = Accommodation.AccommodationDictionary[accommodationType].SeatType;
-            string vesselName = lblVesselName.Text;
-
-            if (lblFrom == null || lblTo == null || lblVesselName == null || searchRoundTrip == null)
+            if (cmbBoxAccommodationType.SelectedItem == null || lblVesselName == null || 
+                lblFrom == null || lblTo == null || string.IsNullOrEmpty(lblTicketPrice?.Text))
             {
                 MessageBox.Show("Required controls are not properly initialized.");
                 return;
             }
-            if (searchRoundTrip.lblDepartureDate == null || searchRoundTrip.lblToCity == null || searchRoundTrip.lblFromCity == null)
+
+            string accommodationType = cmbBoxAccommodationType.SelectedItem.ToString();
+            string seatType = Accommodation.AccommodationDictionary[accommodationType].SeatType;
+            string vesselName = lblVesselName.Text;
+
+
+            var selectedDate = dateButtons.FirstOrDefault(b => b.BackColor == Color.LightBlue)?.Tag as DateTime?;
+            if (!selectedDate.HasValue)
             {
-                MessageBox.Show("Search round trip labels are not properly initialized.");
+                MessageBox.Show("Please select a departure date.");
                 return;
             }
 
-            var tripDetails = new TripDetails
+            if (searchOneWayTrip != null) // One-way trip
             {
-                FromPortName = lblFrom.Text,
-                ToPortName = lblTo.Text,
-                VesselName = vesselName,
-                Accommodation = accommodationType,
-                SeatType = seatType,
-                DepartureDate = DateTime.Parse(searchRoundTrip.lblDepartureDate.Text),
-                DepartTo = searchRoundTrip.lblToCity.Text,
-                DepartFrom = searchRoundTrip.lblFromCity.Text,
-                Price = lblTicketPrice.Text
-            };
-
-            var returnTripDetails = new ReturnTripDetails
+                var tripDetails = new TripDetails
+                {
+                    FromPortName = searchOneWayTrip.lblFromCity.Text,
+                    ToPortName = searchOneWayTrip.lblToCity.Text,
+                    VesselName = vesselName,
+                    Accommodation = accommodationType,
+                    SeatType = seatType,
+                    DepartureDate = selectedDate.Value,
+                    DepartTo = destinationPort,
+                    DepartFrom = sourcePort,
+                    Price = lblTicketPrice.Text
+                };
+                TripSelected?.Invoke(tripDetails);
+            }
+            else if (searchRoundTrip != null) // Round trip
             {
-                FromPortName = searchRoundTrip.lblToCity.Text,
-                ToPortName = searchRoundTrip.lblFromCity.Text,
-                RVesselName = vesselName
-            };
+                if (this.Name == "ucIndividualTrips1") // Departure trip
+                {
+                    var tripDetails = new TripDetails
+                    {
+                        FromPortName = searchRoundTrip.lblFromCity.Text,
+                        ToPortName = searchRoundTrip.lblToCity.Text,
+                        VesselName = vesselName,
+                        Accommodation = accommodationType,
+                        SeatType = seatType,
+                        DepartureDate = selectedDate.Value,
+                        DepartTo = destinationPort,
+                        DepartFrom = sourcePort,
+                        Price = lblTicketPrice.Text
+                    };
+                    TripSelected?.Invoke(tripDetails);
+                }
+                else if (this.Name == "ucIndividualTrips2") // Return trip
+                {
+                    var returnTripDetails = new ReturnTripDetails
+                    {
+                        FromPortName = searchRoundTrip.lblFromCity.Text,
+                        ToPortName = searchRoundTrip.lblToCity.Text,
+                        RVesselName = vesselName
+                    };
+                    ReturnTripSelected?.Invoke(returnTripDetails);
+                }
+            }
+        }
 
-            TripSelected?.Invoke(tripDetails);
-            ReturnTripSelected?.Invoke(returnTripDetails);
+        private void CmbBoxAccommodationType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the currently selected date from any highlighted button
+            DateTime? selectedDate = dateButtons.FirstOrDefault(b => b.BackColor == Color.LightBlue)?.Tag as DateTime?;
+            
+            if (selectedDate.HasValue)
+            {
+                var departurePort = ports.FirstOrDefault(p => p.PortName == sourcePort);
+                var arrivalPort = ports.FirstOrDefault(p => p.PortName == destinationPort);
+
+                if (departurePort != null && arrivalPort != null)
+                {
+                    double distance = Utilities.GeoUtils.GetDistance(
+                        departurePort.Latitude, departurePort.Longitude,
+                        arrivalPort.Latitude, arrivalPort.Longitude
+                    );
+
+                    decimal basePricePerKm = 10m;
+                    decimal serviceCharge = 50m;
+                    decimal distanceInDecimal = (decimal)distance;
+
+                    // Get accommodation price
+                    string selectedAccommodationType = cmbBoxAccommodationType.SelectedItem?.ToString();
+                    decimal accommodationPrice = 0m;
+                    if (!string.IsNullOrEmpty(selectedAccommodationType) &&
+                        Accommodation.AccommodationDictionary.ContainsKey(selectedAccommodationType))
+                    {
+                        accommodationPrice = Accommodation.AccommodationDictionary[selectedAccommodationType].BasePrice;
+                    }
+
+                    // Calculate final price including distance-based fare, accommodation price, and service charge
+                    Price price = new Price(distanceInDecimal * basePricePerKm + accommodationPrice, serviceCharge);
+                    lblTicketPrice.Text = price.CalculateFinalPrice().ToString("₱0.00");
+                }
+            }
         }
     }
 }

@@ -55,7 +55,7 @@
             this.pnlComplete.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlComplete.Location = new System.Drawing.Point(0, 0);
             this.pnlComplete.Name = "pnlComplete";
-            this.pnlComplete.Size = new System.Drawing.Size(992, 1565);
+            this.pnlComplete.Size = new System.Drawing.Size(1009, 1565);
             this.pnlComplete.TabIndex = 0;
             // 
             // ucTicket1
@@ -131,7 +131,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pnlComplete);
             this.Name = "ucComplete";
-            this.Size = new System.Drawing.Size(992, 720);
+            this.Size = new System.Drawing.Size(1026, 720);
             this.pnlComplete.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbCompleteProgress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCompleteHeader)).EndInit();
@@ -141,7 +141,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel pnlComplete;
+        public System.Windows.Forms.Panel pnlComplete;
         private System.Windows.Forms.PictureBox pbCompleteHeader;
         private System.Windows.Forms.PictureBox pbCompleteProgress;
         private System.Windows.Forms.Button btnDownload;

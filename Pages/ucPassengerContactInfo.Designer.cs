@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucPassengerContactInfo));
             this.pnlPassengerControlInfo = new System.Windows.Forms.Panel();
+            this.ucPassengerDetails1 = new Ferry_Ticketing_App.Pages.ucPassengerDetails();
             this.btnContinue = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.pnlPassengerDetailsPH = new System.Windows.Forms.Panel();
@@ -55,7 +56,8 @@
             this.lblDepartureDate = new System.Windows.Forms.Label();
             this.lblNoOfPassengers = new System.Windows.Forms.Label();
             this.lblFCityCode = new System.Windows.Forms.Label();
-            this.ucPassengerDetails1 = new Ferry_Ticketing_App.Pages.ucPassengerDetails();
+            this.lblArrival = new System.Windows.Forms.Label();
+            this.lblArrivalDate = new System.Windows.Forms.Label();
             this.pnlPassengerControlInfo.SuspendLayout();
             this.pnlContactInfoPH.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbContactInfoHeader)).BeginInit();
@@ -81,6 +83,17 @@
             this.pnlPassengerControlInfo.Name = "pnlPassengerControlInfo";
             this.pnlPassengerControlInfo.Size = new System.Drawing.Size(1009, 1499);
             this.pnlPassengerControlInfo.TabIndex = 0;
+            // 
+            // ucPassengerDetails1
+            // 
+            this.ucPassengerDetails1.BackColor = System.Drawing.Color.Transparent;
+            this.ucPassengerDetails1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucPassengerDetails1.BackgroundImage")));
+            this.ucPassengerDetails1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ucPassengerDetails1.InstanceName = null;
+            this.ucPassengerDetails1.Location = new System.Drawing.Point(54, 1042);
+            this.ucPassengerDetails1.Name = "ucPassengerDetails1";
+            this.ucPassengerDetails1.Size = new System.Drawing.Size(913, 302);
+            this.ucPassengerDetails1.TabIndex = 7;
             // 
             // btnContinue
             // 
@@ -150,7 +163,7 @@
             this.txtAddress.Location = new System.Drawing.Point(60, 297);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(793, 33);
-            this.txtAddress.TabIndex = 7;
+            this.txtAddress.TabIndex = 5;
             // 
             // txtConfirmEmailAdd
             // 
@@ -159,7 +172,7 @@
             this.txtConfirmEmailAdd.Location = new System.Drawing.Point(494, 186);
             this.txtConfirmEmailAdd.Name = "txtConfirmEmailAdd";
             this.txtConfirmEmailAdd.Size = new System.Drawing.Size(358, 33);
-            this.txtConfirmEmailAdd.TabIndex = 7;
+            this.txtConfirmEmailAdd.TabIndex = 4;
             // 
             // txtEmailAdd
             // 
@@ -168,7 +181,7 @@
             this.txtEmailAdd.Location = new System.Drawing.Point(59, 186);
             this.txtEmailAdd.Name = "txtEmailAdd";
             this.txtEmailAdd.Size = new System.Drawing.Size(358, 33);
-            this.txtEmailAdd.TabIndex = 7;
+            this.txtEmailAdd.TabIndex = 3;
             // 
             // txtMobileNo
             // 
@@ -177,7 +190,7 @@
             this.txtMobileNo.Location = new System.Drawing.Point(580, 75);
             this.txtMobileNo.Name = "txtMobileNo";
             this.txtMobileNo.Size = new System.Drawing.Size(272, 33);
-            this.txtMobileNo.TabIndex = 7;
+            this.txtMobileNo.TabIndex = 2;
             // 
             // txtContactPerson
             // 
@@ -186,7 +199,7 @@
             this.txtContactPerson.Location = new System.Drawing.Point(59, 75);
             this.txtContactPerson.Name = "txtContactPerson";
             this.txtContactPerson.Size = new System.Drawing.Size(358, 33);
-            this.txtContactPerson.TabIndex = 7;
+            this.txtContactPerson.TabIndex = 1;
             // 
             // pbContactInfoHeader
             // 
@@ -222,10 +235,12 @@
             this.pnlItineraryPH.Controls.Add(this.lblTCity);
             this.pnlItineraryPH.Controls.Add(this.lblFCity);
             this.pnlItineraryPH.Controls.Add(this.lblTCityCode);
-            this.pnlItineraryPH.Controls.Add(this.lblReturnDate);
             this.pnlItineraryPH.Controls.Add(this.lblDepartureDate);
             this.pnlItineraryPH.Controls.Add(this.lblNoOfPassengers);
             this.pnlItineraryPH.Controls.Add(this.lblFCityCode);
+            this.pnlItineraryPH.Controls.Add(this.lblArrival);
+            this.pnlItineraryPH.Controls.Add(this.lblReturnDate);
+            this.pnlItineraryPH.Controls.Add(this.lblArrivalDate);
             this.pnlItineraryPH.Location = new System.Drawing.Point(12, 18);
             this.pnlItineraryPH.Name = "pnlItineraryPH";
             this.pnlItineraryPH.Size = new System.Drawing.Size(986, 104);
@@ -241,7 +256,7 @@
             this.btnModifyItenerary.Size = new System.Drawing.Size(173, 94);
             this.btnModifyItenerary.TabIndex = 2;
             this.btnModifyItenerary.UseVisualStyleBackColor = true;
-            this.btnModifyItenerary.Click += new System.EventHandler(this.btnModifyItenerary_Click);
+            this.btnModifyItenerary.Click += new System.EventHandler(this.btnModifyItinerary_Click);
             // 
             // pbArrowLR2
             // 
@@ -354,14 +369,25 @@
             this.lblFCityCode.TabIndex = 0;
             this.lblFCityCode.Text = "Code";
             // 
-            // ucPassengerDetails1
+            // lblArrival
             // 
-            this.ucPassengerDetails1.BackColor = System.Drawing.Color.Transparent;
-            this.ucPassengerDetails1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucPassengerDetails1.BackgroundImage")));
-            this.ucPassengerDetails1.Location = new System.Drawing.Point(54, 1042);
-            this.ucPassengerDetails1.Name = "ucPassengerDetails1";
-            this.ucPassengerDetails1.Size = new System.Drawing.Size(913, 302);
-            this.ucPassengerDetails1.TabIndex = 7;
+            this.lblArrival.AutoSize = true;
+            this.lblArrival.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArrival.Location = new System.Drawing.Point(689, 59);
+            this.lblArrival.Name = "lblArrival";
+            this.lblArrival.Size = new System.Drawing.Size(48, 18);
+            this.lblArrival.TabIndex = 0;
+            this.lblArrival.Text = "Arrival";
+            // 
+            // lblArrivalDate
+            // 
+            this.lblArrivalDate.Font = new System.Drawing.Font("SF Pro Display", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArrivalDate.Location = new System.Drawing.Point(633, 24);
+            this.lblArrivalDate.Name = "lblArrivalDate";
+            this.lblArrivalDate.Size = new System.Drawing.Size(166, 27);
+            this.lblArrivalDate.TabIndex = 0;
+            this.lblArrivalDate.Text = "ADate";
+            this.lblArrivalDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ucPassengerContactInfo
             // 
@@ -416,5 +442,7 @@
         private System.Windows.Forms.CheckBox cbAgreement;
         private System.Windows.Forms.Button btnContinue;
         public ucPassengerDetails ucPassengerDetails1;
+        private System.Windows.Forms.Label lblArrival;
+        public System.Windows.Forms.Label lblArrivalDate;
     }
 }

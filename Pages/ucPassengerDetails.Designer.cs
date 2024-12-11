@@ -45,7 +45,7 @@
             this.cmbBoxNationality.Location = new System.Drawing.Point(493, 211);
             this.cmbBoxNationality.Name = "cmbBoxNationality";
             this.cmbBoxNationality.Size = new System.Drawing.Size(206, 40);
-            this.cmbBoxNationality.TabIndex = 17;
+            this.cmbBoxNationality.TabIndex = 7;
             // 
             // cmbBoxGender
             // 
@@ -54,7 +54,7 @@
             this.cmbBoxGender.Location = new System.Drawing.Point(710, 119);
             this.cmbBoxGender.Name = "cmbBoxGender";
             this.cmbBoxGender.Size = new System.Drawing.Size(145, 40);
-            this.cmbBoxGender.TabIndex = 18;
+            this.cmbBoxGender.TabIndex = 4;
             // 
             // cmbBType
             // 
@@ -63,7 +63,7 @@
             this.cmbBType.Location = new System.Drawing.Point(341, 211);
             this.cmbBType.Name = "cmbBType";
             this.cmbBType.Size = new System.Drawing.Size(123, 40);
-            this.cmbBType.TabIndex = 19;
+            this.cmbBType.TabIndex = 6;
             // 
             // lblPassengerNo
             // 
@@ -89,7 +89,7 @@
             this.dtpDateOfBirth.Location = new System.Drawing.Point(57, 211);
             this.dtpDateOfBirth.Name = "dtpDateOfBirth";
             this.dtpDateOfBirth.Size = new System.Drawing.Size(205, 40);
-            this.dtpDateOfBirth.TabIndex = 15;
+            this.dtpDateOfBirth.TabIndex = 5;
             this.dtpDateOfBirth.Value = new System.DateTime(2024, 11, 17, 20, 44, 40, 0);
             // 
             // txtMI
@@ -99,7 +99,7 @@
             this.txtMI.Location = new System.Drawing.Point(343, 123);
             this.txtMI.Name = "txtMI";
             this.txtMI.Size = new System.Drawing.Size(53, 33);
-            this.txtMI.TabIndex = 12;
+            this.txtMI.TabIndex = 2;
             this.txtMI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtLName
@@ -109,7 +109,7 @@
             this.txtLName.Location = new System.Drawing.Point(431, 123);
             this.txtLName.Name = "txtLName";
             this.txtLName.Size = new System.Drawing.Size(250, 33);
-            this.txtLName.TabIndex = 13;
+            this.txtLName.TabIndex = 3;
             // 
             // txtFName
             // 
@@ -118,7 +118,7 @@
             this.txtFName.Location = new System.Drawing.Point(58, 123);
             this.txtFName.Name = "txtFName";
             this.txtFName.Size = new System.Drawing.Size(250, 33);
-            this.txtFName.TabIndex = 14;
+            this.txtFName.TabIndex = 1;
             // 
             // ucPassengerDetails
             // 
@@ -126,6 +126,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.individualPassengerDetails;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.Controls.Add(this.cmbBoxNationality);
             this.Controls.Add(this.cmbBoxGender);
             this.Controls.Add(this.cmbBType);
@@ -134,6 +135,7 @@
             this.Controls.Add(this.txtMI);
             this.Controls.Add(this.txtLName);
             this.Controls.Add(this.txtFName);
+            this.DoubleBuffered = true;
             this.Name = "ucPassengerDetails";
             this.Size = new System.Drawing.Size(913, 302);
             this.ResumeLayout(false);

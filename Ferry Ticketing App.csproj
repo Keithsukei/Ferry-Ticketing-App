@@ -59,6 +59,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Classes\Ferryline.cs" />
+    <Compile Include="Classes\ITicket.cs" />
     <Compile Include="Classes\Passenger.cs" />
     <Compile Include="Classes\Payment.cs" />
     <Compile Include="Classes\Ports.cs" />
@@ -67,6 +68,8 @@
     <Compile Include="Classes\Schedule.cs" />
     <Compile Include="Classes\Accommodation.cs" />
     <Compile Include="Classes\Ticket.cs" />
+    <Compile Include="Classes\TicketGroup.cs" />
+    <Compile Include="Classes\TicketPdfGenerator.cs" />
     <Compile Include="Classes\Time.cs" />
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -81,11 +84,11 @@
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="GetAllInfoForTicket.cs" />
-    <Compile Include="Pages\History.cs">
+    <Compile Include="Pages\ucHistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pages\History.Designer.cs">
-      <DependentUpon>History.cs</DependentUpon>
+    <Compile Include="Pages\ucHistory.Designer.cs">
+      <DependentUpon>ucHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\ucCheckout.cs">
       <SubType>UserControl</SubType>
@@ -110,6 +113,12 @@
     </Compile>
     <Compile Include="Pages\ucFindTrips.Designer.cs">
       <DependentUpon>ucFindTrips.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ucHistoryTicket.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\ucHistoryTicket.Designer.cs">
+      <DependentUpon>ucHistoryTicket.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\ucIndividualTrips.cs">
       <SubType>UserControl</SubType>
@@ -201,6 +210,12 @@
     <Compile Include="Pages\ucTicket.Designer.cs">
       <DependentUpon>ucTicket.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ucViewTickets.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\ucViewTickets.Designer.cs">
+      <DependentUpon>ucViewTickets.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />
@@ -210,8 +225,8 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\History.resx">
-      <DependentUpon>History.cs</DependentUpon>
+    <EmbeddedResource Include="Pages\ucHistory.resx">
+      <DependentUpon>ucHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ucCheckout.resx">
       <DependentUpon>ucCheckout.cs</DependentUpon>
@@ -224,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ucFindTrips.resx">
       <DependentUpon>ucFindTrips.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ucHistoryTicket.resx">
+      <DependentUpon>ucHistoryTicket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ucIndividualTrips.resx">
       <DependentUpon>ucIndividualTrips.cs</DependentUpon>
@@ -269,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ucTicket.resx">
       <DependentUpon>ucTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ucViewTickets.resx">
+      <DependentUpon>ucViewTickets.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -653,6 +674,96 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\hide1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\historybg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tickethistorybg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tickethistorybg2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\viewbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\historydownloadbtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\historydeletebtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tickethistorybg3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnFindTrips1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnBookings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnFindTrips1clicked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnBookingsClicked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\frmSidepanel2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\historyticket4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\historyticket5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pnlLogoName2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pnlLogoName3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\depatureopen2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\departureopen3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\returnopen2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ticketPH5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roundtriptripsumarry2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roundtriptripsummary3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\onewaytripsummary2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\summaryPayment3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loginformbg2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loginbg3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnlogin2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loginbg4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loginbg5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnExit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

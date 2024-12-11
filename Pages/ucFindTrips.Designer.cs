@@ -106,7 +106,7 @@
             this.btnMnl2Puerto.Location = new System.Drawing.Point(529, 874);
             this.btnMnl2Puerto.Name = "btnMnl2Puerto";
             this.btnMnl2Puerto.Size = new System.Drawing.Size(458, 438);
-            this.btnMnl2Puerto.TabIndex = 2;
+            this.btnMnl2Puerto.TabIndex = 10;
             this.btnMnl2Puerto.UseVisualStyleBackColor = true;
             // 
             // btnMnl2Boracay
@@ -118,7 +118,7 @@
             this.btnMnl2Boracay.Location = new System.Drawing.Point(529, 395);
             this.btnMnl2Boracay.Name = "btnMnl2Boracay";
             this.btnMnl2Boracay.Size = new System.Drawing.Size(458, 438);
-            this.btnMnl2Boracay.TabIndex = 2;
+            this.btnMnl2Boracay.TabIndex = 8;
             this.btnMnl2Boracay.UseVisualStyleBackColor = true;
             // 
             // btnCeb2Manila
@@ -130,7 +130,7 @@
             this.btnCeb2Manila.Location = new System.Drawing.Point(38, 874);
             this.btnCeb2Manila.Name = "btnCeb2Manila";
             this.btnCeb2Manila.Size = new System.Drawing.Size(458, 438);
-            this.btnCeb2Manila.TabIndex = 2;
+            this.btnCeb2Manila.TabIndex = 9;
             this.btnCeb2Manila.UseVisualStyleBackColor = true;
             // 
             // btnCeb2Bohol
@@ -142,7 +142,7 @@
             this.btnCeb2Bohol.Location = new System.Drawing.Point(39, 395);
             this.btnCeb2Bohol.Name = "btnCeb2Bohol";
             this.btnCeb2Bohol.Size = new System.Drawing.Size(458, 438);
-            this.btnCeb2Bohol.TabIndex = 2;
+            this.btnCeb2Bohol.TabIndex = 7;
             this.btnCeb2Bohol.UseVisualStyleBackColor = true;
             // 
             // pbSeparator
@@ -184,7 +184,7 @@
             this.dtpReturn.Location = new System.Drawing.Point(391, 192);
             this.dtpReturn.Name = "dtpReturn";
             this.dtpReturn.Size = new System.Drawing.Size(149, 38);
-            this.dtpReturn.TabIndex = 11;
+            this.dtpReturn.TabIndex = 4;
             // 
             // dtpDepart
             // 
@@ -195,7 +195,7 @@
             this.dtpDepart.MinDate = new System.DateTime(2024, 12, 3, 0, 0, 0, 0);
             this.dtpDepart.Name = "dtpDepart";
             this.dtpDepart.Size = new System.Drawing.Size(147, 38);
-            this.dtpDepart.TabIndex = 10;
+            this.dtpDepart.TabIndex = 3;
             this.dtpDepart.Value = new System.DateTime(2024, 12, 3, 3, 32, 24, 0);
             // 
             // txtPassengers
@@ -205,7 +205,7 @@
             this.txtPassengers.Location = new System.Drawing.Point(690, 196);
             this.txtPassengers.Name = "txtPassengers";
             this.txtPassengers.Size = new System.Drawing.Size(59, 33);
-            this.txtPassengers.TabIndex = 9;
+            this.txtPassengers.TabIndex = 5;
             // 
             // txtTo
             // 
@@ -214,7 +214,7 @@
             this.txtTo.Location = new System.Drawing.Point(576, 127);
             this.txtTo.Name = "txtTo";
             this.txtTo.Size = new System.Drawing.Size(301, 33);
-            this.txtTo.TabIndex = 6;
+            this.txtTo.TabIndex = 2;
             // 
             // txtFrom
             // 
@@ -223,7 +223,7 @@
             this.txtFrom.Location = new System.Drawing.Point(121, 127);
             this.txtFrom.Name = "txtFrom";
             this.txtFrom.Size = new System.Drawing.Size(301, 33);
-            this.txtFrom.TabIndex = 5;
+            this.txtFrom.TabIndex = 1;
             // 
             // btnSearchTrips
             // 
@@ -235,7 +235,7 @@
             this.btnSearchTrips.Location = new System.Drawing.Point(774, 186);
             this.btnSearchTrips.Name = "btnSearchTrips";
             this.btnSearchTrips.Size = new System.Drawing.Size(155, 61);
-            this.btnSearchTrips.TabIndex = 3;
+            this.btnSearchTrips.TabIndex = 6;
             this.btnSearchTrips.UseVisualStyleBackColor = true;
             this.btnSearchTrips.Click += new System.EventHandler(this.btnSearchTrips_Click);
             // 
@@ -305,7 +305,7 @@
             this.rbOneWay.Location = new System.Drawing.Point(259, 69);
             this.rbOneWay.Name = "rbOneWay";
             this.rbOneWay.Size = new System.Drawing.Size(110, 27);
-            this.rbOneWay.TabIndex = 1;
+            this.rbOneWay.TabIndex = 0;
             this.rbOneWay.Text = "One Way";
             this.rbOneWay.UseVisualStyleBackColor = true;
             this.rbOneWay.CheckedChanged += new System.EventHandler(this.rbOneWay_CheckedChanged);
@@ -317,7 +317,7 @@
             this.rbRoundTrip.Location = new System.Drawing.Point(66, 69);
             this.rbRoundTrip.Name = "rbRoundTrip";
             this.rbRoundTrip.Size = new System.Drawing.Size(110, 27);
-            this.rbRoundTrip.TabIndex = 1;
+            this.rbRoundTrip.TabIndex = 0;
             this.rbRoundTrip.TabStop = true;
             this.rbRoundTrip.Text = "Round Trip";
             this.rbRoundTrip.UseVisualStyleBackColor = true;
@@ -383,14 +383,14 @@
         private System.Windows.Forms.PictureBox pbtxtReturn;
         private System.Windows.Forms.PictureBox pbtxtDepart;
         private System.Windows.Forms.PictureBox pbtxtFrom;
-        private System.Windows.Forms.RadioButton rbOneWay;
-        private System.Windows.Forms.RadioButton rbRoundTrip;
+        public System.Windows.Forms.RadioButton rbOneWay;
+        public System.Windows.Forms.RadioButton rbRoundTrip;
         private System.Windows.Forms.PictureBox pblblFindTrips;
         private System.Windows.Forms.PictureBox pblblPopularRoutes;
         public System.Windows.Forms.TextBox txtPassengers;
         private System.Windows.Forms.TextBox txtTo;
         private System.Windows.Forms.TextBox txtFrom;
-        private Classes.CustomDateTimePicker dtpDepart;
-        private Classes.CustomDateTimePicker dtpReturn;
+        public Classes.CustomDateTimePicker dtpDepart;
+        public Classes.CustomDateTimePicker dtpReturn;
     }
 }

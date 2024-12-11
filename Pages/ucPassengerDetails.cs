@@ -16,11 +16,42 @@ namespace Ferry_Ticketing_App.Pages
     {
         private List<Passenger> passengerList = new List<Passenger>();
         private static int passengerCounter = 1;
+        public string InstanceName { get; set; } 
 
         public ucPassengerDetails()
         {
             InitializeComponent();
             InitializeComboBoxes();
+
+            txtFName.KeyPress += ValidateLettersOnly;
+            txtLName.KeyPress += ValidateLettersOnly;
+            txtMI.KeyPress += ValidateLettersOnly;
+            txtMI.TextChanged += ValidateMiddleInitial;
+
+            // Set initial date range for adult (default type)
+            DateTime today = DateTime.Today;
+            dtpDateOfBirth.MinDate = DateTime.Today.AddYears(-120);
+            dtpDateOfBirth.MaxDate = today.AddYears(-18);
+            dtpDateOfBirth.Value = today.AddYears(-20); // Default to 20 years old
+
+            cmbBType.SelectedIndexChanged += cmbBType_SelectedIndexChanged;
+        }
+
+        private void ValidateLettersOnly(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ValidateMiddleInitial(object sender, EventArgs e)
+        {
+            if (txtMI.Text.Length > 1)
+            {
+                txtMI.Text = txtMI.Text.Substring(0, 1);
+                txtMI.SelectionStart = 1;
+            }
         }
 
         // Update the passenger number label
@@ -91,7 +122,7 @@ namespace Ferry_Ticketing_App.Pages
 
             try
             {
-                Passenger passenger = new Passenger(
+                return new Passenger(
                     passengerCounter++,
                     txtFName.Text.Trim(),
                     txtMI.Text.Trim(),
@@ -101,8 +132,6 @@ namespace Ferry_Ticketing_App.Pages
                     cmbBType.SelectedItem.ToString(),
                     cmbBoxNationality.SelectedItem.ToString()
                 );
-
-                return passenger;
             }
             catch (Exception ex)
             {
@@ -153,30 +182,164 @@ namespace Ferry_Ticketing_App.Pages
             }
         }
 
-        private bool ValidateInput()
+        private bool ValidateInput(bool showMessage = true)
         {
-            if (string.IsNullOrWhiteSpace(txtFName.Text) ||
-                string.IsNullOrWhiteSpace(txtLName.Text))
+            string instancePrefix = !string.IsNullOrEmpty(InstanceName) ? $"in {InstanceName}" : "";
+
+            // Validate First Name
+            if (string.IsNullOrWhiteSpace(txtFName.Text))
             {
-                MessageBox.Show("First and Last Name are required.",
+                if (showMessage)
+                {
+                    MessageBox.Show($"First Name is required {instancePrefix}.",
+                        "Validation Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    txtFName.Focus();
+                }
+                return false;
+            }
+
+            // Validate Last Name
+            if (string.IsNullOrWhiteSpace(txtLName.Text))
+            {
+                if (showMessage) {
+                MessageBox.Show($"Last Name is required {instancePrefix}.",
                     "Validation Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+                    txtLName.Focus();
+                }
+                return false;
+            }
+
+            // Validate Middle Initial length
+            if (!string.IsNullOrWhiteSpace(txtMI.Text) && txtMI.Text.Length > 1)
+            {
+                if (showMessage) {
+                MessageBox.Show($"Middle Initial should be a single character {instancePrefix}.",
+                    "Validation Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                    txtMI.Focus();
+                }
                 return false;
             }
 
             // Age validation
             int age = DateTime.Now.Year - dtpDateOfBirth.Value.Year;
-            if (dtpDateOfBirth.Value > DateTime.Now || age > 120)
+            if (DateTime.Now.Month < dtpDateOfBirth.Value.Month || 
+                (DateTime.Now.Month == dtpDateOfBirth.Value.Month && DateTime.Now.Day < dtpDateOfBirth.Value.Day))
             {
-                MessageBox.Show("Please enter a valid date of birth.",
+                age--;
+            }
+
+            if (age < 1)
+            {
+                if (showMessage) {
+                MessageBox.Show($"Passenger must be at least 1 year old {instancePrefix}.",
                     "Validation Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+                    dtpDateOfBirth.Focus();
+                }
+                return false;
+            }
+            else if (age > 120)
+            {
+                if (showMessage) {
+                MessageBox.Show($"Please enter a valid date of birth {instancePrefix}.",
+                    "Validation Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                    dtpDateOfBirth.Focus();
+                }
+                return false;
+            }
+
+            // Check if passenger is already booked
+            Passenger tempPassenger = new Passenger(
+                0,
+                txtFName.Text.Trim(),
+                txtMI.Text.Trim(),
+                txtLName.Text.Trim(),
+                cmbBoxGender.SelectedItem.ToString(),
+                dtpDateOfBirth.Value,
+                cmbBType.SelectedItem.ToString(),
+                cmbBoxNationality.SelectedItem.ToString()
+            );
+
+            if (tempPassenger.IsAlreadyBooked())
+            {
+                if (showMessage)
+                {
+                    MessageBox.Show(
+                        $"This passenger is already booked on another trip {instancePrefix}.",
+                        "Duplicate Passenger",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                    txtFName.Focus();
+                }
                 return false;
             }
 
             return true;
+        }
+
+        public bool ValidatePassengerDetails()
+        {
+            return ValidateInput(false);
+        }
+
+        private void cmbBType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbBType.SelectedItem == null) return;
+
+            string selectedType = cmbBType.SelectedItem.ToString().ToLower();
+            DateTime today = DateTime.Today;
+
+            dtpDateOfBirth.MinDate = DateTime.Today.AddYears(-120);
+            dtpDateOfBirth.MaxDate = DateTime.Today;
+
+            switch (selectedType)
+            {
+                case "adult":
+                    dtpDateOfBirth.Value = today.AddYears(-20);
+                    dtpDateOfBirth.MaxDate = today.AddYears(-18);
+                    break;
+
+                case "child":
+                    dtpDateOfBirth.Value = today.AddYears(-6);
+                    dtpDateOfBirth.MinDate = today.AddYears(-13);
+                    break;
+
+                case "senior citizen":
+                    dtpDateOfBirth.Value = today.AddYears(-65);
+                    dtpDateOfBirth.MaxDate = today.AddYears(-60);
+                    break;
+
+                case "student":
+                    dtpDateOfBirth.Value = today.AddYears(-18);
+                    dtpDateOfBirth.MinDate = today.AddYears(-24);
+                    dtpDateOfBirth.MaxDate = today.AddYears(-12);
+                    break;
+
+                case "pwd":
+                    dtpDateOfBirth.Value = today.AddYears(-30); // Default age
+                    break;
+            }
+        }
+
+        public void ResetControls()
+        {
+            cmbBType.SelectedIndex = 0;
+            cmbBoxGender.SelectedIndex = 0;
+            cmbBoxNationality.SelectedIndex = 0;
+            txtFName.Clear();
+            txtLName.Clear();
+            txtMI.Clear();
+            dtpDateOfBirth.Value = DateTime.Today.AddYears(-20);
         }
     }
 }

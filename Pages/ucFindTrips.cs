@@ -44,13 +44,72 @@ namespace Ferry_Ticketing_App.Pages
             txtTo.KeyUp += (s, e) => UpdateSuggestions(txtTo, suggestionBoxTo, portsList, isToField: true);
             txtTo.GotFocus += (s, e) => UpdateSuggestions(txtTo, suggestionBoxTo, portsList, isToField: true);
 
+            // Add leave focus events to hide suggestion boxes
+            txtFrom.LostFocus += (s, e) => {
+                // Add delay to allow click event to fire first
+                Timer timer = new Timer();
+                timer.Interval = 100;
+                timer.Tick += (sender, args) => {
+                    HideSuggestionBox(suggestionBoxFrom);
+                    timer.Stop();
+                };
+                timer.Start();
+            };
+            
+            txtTo.LostFocus += (s, e) => {
+                Timer timer = new Timer();
+                timer.Interval = 100;
+                timer.Tick += (sender, args) => {
+                    HideSuggestionBox(suggestionBoxTo);
+                    timer.Stop();
+                };
+                timer.Start();
+            };
+
+            // Add click event handler for the form to hide suggestion boxes
+            this.Click += (s, e) => {
+                HideSuggestionBox(suggestionBoxFrom);
+                HideSuggestionBox(suggestionBoxTo);
+            };
+
+            // Add scroll event handler for both the control and its parent
+            this.Scroll += (s, e) => {
+                HideSuggestionBox(suggestionBoxFrom);
+                HideSuggestionBox(suggestionBoxTo);
+            };
+
+            // Handle parent control scrolling
+            this.ParentChanged += (s, e) => {
+                if (this.Parent is ScrollableControl scrollable)
+                {
+                    scrollable.Scroll += (sender, args) => {
+                        HideSuggestionBox(suggestionBoxFrom);
+                        HideSuggestionBox(suggestionBoxTo);
+                    };
+                }
+            };
+
             suggestionBoxFrom.Click += (s, e) => SelectSuggestion(txtFrom, suggestionBoxFrom);
             suggestionBoxTo.Click += (s, e) => SelectSuggestion(txtTo, suggestionBoxTo);
 
-            dtpDepart.MinDate = DateTime.Now;
+            // Set default dates
+            dtpDepart.Value = DateTime.Today;
+            dtpReturn.Value = DateTime.Today.AddDays(1);
+            dtpDepart.MinDate = DateTime.Today;
+            dtpReturn.MinDate = DateTime.Today.AddDays(1);
             dtpDepart.MaxDate = new DateTime(2030, 12, 31);
-            dtpReturn.MinDate = DateTime.Now;
             dtpReturn.MaxDate = new DateTime(2030, 12, 31);
+
+            // Add date change handler
+            dtpDepart.ValueChanged += DtpDepart_ValueChanged;
+        }
+
+        private void HideSuggestionBox(ListBox suggestionBox)
+        {
+            if (suggestionBox != null && !suggestionBox.IsDisposed)
+            {
+                suggestionBox.Visible = false;
+            }
         }
 
         private void rbRoundTrip_CheckedChanged(object sender, EventArgs e)
@@ -115,7 +174,7 @@ namespace Ferry_Ticketing_App.Pages
             suggestionBox.Items.Clear();
             suggestionBox.Items.AddRange(closestMatches.ToArray());
 
-            if (suggestionBox.Items.Count > 0)
+            if (suggestionBox.Items.Count > 0 && textBox.Focused)
             {
                 var textBoxPosition = textBox.PointToScreen(Point.Empty);
                 var userControlPosition = this.PointToScreen(Point.Empty);
@@ -152,46 +211,74 @@ namespace Ferry_Ticketing_App.Pages
             string destinationPort = txtTo.Text.Trim();
             DateTime departDate = dtpDepart.Value;
             DateTime returnDate = dtpReturn.Value;
+
+            // Get references to both search controls
             var searchRoundControl = this.Parent.Controls.OfType<ucSearchRoundTrip>().FirstOrDefault();
+            var searchOneWayControl = this.Parent.Controls.OfType<ucSearchOneWayTrip>().FirstOrDefault();
 
-            if (searchRoundControl != null)
+            // Common validation
+            string fromCity = txtFrom.Text;
+            string toCity = txtTo.Text;
+
+            var fromPort = portsList.FirstOrDefault(p => p.City == fromCity)?.PortName;
+            var toPort = portsList.FirstOrDefault(p => p.City == toCity)?.PortName;
+
+            if (fromPort == null || toPort == null)
             {
-                if (searchRoundControl.ucIndividualTrips1 != null)
+                MessageBox.Show("Invalid port selection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Validate passenger input
+            if (!int.TryParse(txtPassengers.Text, out int passengers) || passengers <= 0 || passengers > 5)
+            {
+                MessageBox.Show("Please enter a valid number of passengers (1-5).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (rbOneWay.Checked)
+            {
+                if (searchOneWayControl != null)
                 {
-                    string fromCity = txtFrom.Text;
-                    string toCity = txtTo.Text;
+                    // Initialize one-way trip
+                    searchOneWayControl.ucIndividualTrips1.InitializeWithRouteAndDate(
+                        fromPort, toPort, departDate, Ferryline.AllTrips, portsList);
 
-                    var fromPort = portsList.FirstOrDefault(p => p.City == fromCity)?.PortName;
-                    var toPort = portsList.FirstOrDefault(p => p.City == toCity)?.PortName;
+                    // Recalculate price and update trip details
+                    searchOneWayControl.ucIndividualTrips1.RecalculateTripDetails(departDate);
 
-                    if (fromPort == null || toPort == null)
-                    {
-                        MessageBox.Show("Invalid port selection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                    // Update the itinerary labels
+                    string fromCode = portsList.FirstOrDefault(p => p.City == fromCity)?.Code ?? "";
+                    string toCode = portsList.FirstOrDefault(p => p.City == toCity)?.Code ?? "";
 
-                    // Validate passenger input
-                    if (!int.TryParse(txtPassengers.Text, out int passengers) || passengers <= 0)
-                    {
-                        MessageBox.Show("Please enter a valid number of passengers.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                    searchOneWayControl.UpdateItinerary(fromCode, fromCity, toCode, toCity,
+                        passengers, departDate);
 
-                    // Initialize trips in ucIndividualTrips1 with route and date
+                    searchOneWayControl.Visible = true;
+                    searchOneWayControl.BringToFront();
+                    searchRoundControl.Visible = false;
+                }
+                else
+                {
+                    MessageBox.Show("Could not find the ucSearchOneWay control.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (rbRoundTrip.Checked)
+            {
+                if (searchRoundControl != null)
+                {
+                    // Initialize round trip (departure)
                     searchRoundControl.ucIndividualTrips1.InitializeWithRouteAndDate(
                         fromPort, toPort, departDate, Ferryline.AllTrips, portsList);
 
-                    // Immediately recalculate price and update trip details
                     searchRoundControl.ucIndividualTrips1.RecalculateTripDetails(departDate);
 
-                    if (rbRoundTrip.Checked)
-                    {
-                        // If it's a round trip, initialize the return trip as well
-                        searchRoundControl.ucIndividualTrips2.InitializeWithRouteAndDate(
-                            toPort, fromPort, returnDate, Ferryline.AllTrips, portsList);
+                    // Initialize round trip (return)
+                    searchRoundControl.ucIndividualTrips2.InitializeWithRouteAndDate(
+                        toPort, fromPort, returnDate, Ferryline.AllTrips, portsList);
 
-                        searchRoundControl.ucIndividualTrips2.RecalculateTripDetails(returnDate);
-                    }
+                    searchRoundControl.ucIndividualTrips2.RecalculateTripDetails(returnDate);
 
                     // Update the itinerary labels
                     string fromCode = portsList.FirstOrDefault(p => p.City == fromCity)?.Code ?? "";
@@ -199,22 +286,24 @@ namespace Ferry_Ticketing_App.Pages
 
                     searchRoundControl.UpdateItinerary(fromCode, fromCity, toCode, toCity,
                         passengers, departDate, returnDate);
+
+                    searchRoundControl.Visible = true;
+                    searchRoundControl.BringToFront();
+                    searchOneWayControl.Visible = false;
                 }
                 else
                 {
-                    MessageBox.Show("ucIndividualTrips1 control is not initialized in ucSearchRoundTrip.",
+                    MessageBox.Show("Could not find the ucSearchRound control.",
                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-                searchRoundControl.Visible = true;
-                searchRoundControl.BringToFront();
-
             }
-            else
-            {
-                MessageBox.Show("Could not find the ucSearchRound control.",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        }
+
+        private void DtpDepart_ValueChanged(object sender, EventArgs e)
+        {
+            // Set return date to day after departure
+            dtpReturn.MinDate = dtpDepart.Value.AddDays(1);
+            dtpReturn.Value = dtpDepart.Value.AddDays(1);
         }
     }
 }

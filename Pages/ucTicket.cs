@@ -17,9 +17,5 @@ namespace Ferry_Ticketing_App.Pages
             InitializeComponent();
         }
 
-        private void ucTicket_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

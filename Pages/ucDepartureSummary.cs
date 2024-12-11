@@ -32,11 +32,11 @@ namespace Ferry_Ticketing_App.Pages
                         switch (label.Name)
                         {
                             case "lblFromPortName":
-                                label.Text = tripDetails.FromPortName;
+                                label.Text = tripDetails.DepartFrom;
                                 AdjustLabelAndArrow(lblFromPortName, pbArrowRight);
                                 break;
                             case "lblToPortName":
-                                label.Text = tripDetails.ToPortName;
+                                label.Text = tripDetails.DepartTo;
                                 AdjustLabelAndArrow(lblToPortName, pbArrowRight, true);
                                 break;
                         }
@@ -47,8 +47,8 @@ namespace Ferry_Ticketing_App.Pages
                 lblDAccommodation.Text = tripDetails.Accommodation;
                 lblDSeatType.Text = tripDetails.SeatType;
                 lblDepartureDate.Text = tripDetails.DepartureDate.ToString("yyyy-MM-dd");
-                lblDepartTo.Text = tripDetails.DepartTo;
-                lblDepartFrom.Text = tripDetails.DepartFrom;
+                lblDepartTo.Text = tripDetails.ToPortName;
+                lblDepartFrom.Text = tripDetails.FromPortName;
                 lblDAircon.Text = "Yes";
                 lblDPrice.Text = tripDetails.Price.ToString();
 

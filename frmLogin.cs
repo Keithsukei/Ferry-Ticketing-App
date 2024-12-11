@@ -9,29 +9,42 @@ namespace Ferry_Ticketing_App
         public frmLogin()
         {
             InitializeComponent();
-
-            // Ensure error labels are not visible at the start
-            lblErrorUser.Visible = false;
-            lblErrorPass.Visible = false;
-
-            // Set styles for error labels if not already configured in the designer
-            lblErrorUser.ForeColor = Color.Red;
-
-            lblErrorPass.ForeColor = Color.Red;
+            
         }
 
+        private void TxtUsername_Click(object sender, EventArgs e)
+        {
+            txtUsername.BackColor = Color.White;
+            lblErrorUser.Text = "Username";
+            lblErrorUser.ForeColor = Color.White;
+        }
+
+        private void TxtPassword_Click(object sender, EventArgs e)
+        {
+            txtPassword.BackColor = Color.White;
+            lblErrorPass.Text = "Password";
+            lblErrorPass.ForeColor = Color.White;
+            pbHide.Visible = true;
+            pbView.Visible = true;
+        }
+    
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            // Hide error labels initially
+            bool hasError = false;
+
+            // Reset colors first
+            txtUsername.BackColor = Color.White;
+            txtPassword.BackColor = Color.White;
             lblErrorUser.Visible = false;
             lblErrorPass.Visible = false;
-
-            bool hasError = false;
 
             // Check for empty username
             if (string.IsNullOrEmpty(txtUsername.Text))
             {
-                lblErrorUser.Text = "Please enter a username.";
+                txtUsername.Text = "";
+                txtUsername.BackColor = Color.FromArgb(255, 128, 128);
+                lblErrorUser.Text = "Please enter username";
+                lblErrorUser.ForeColor = Color.Red;
                 lblErrorUser.Visible = true;
                 hasError = true;
             }
@@ -39,9 +52,14 @@ namespace Ferry_Ticketing_App
             // Check for empty password
             if (string.IsNullOrEmpty(txtPassword.Text))
             {
-                lblErrorPass.Text = "Please enter a password.";
+                txtPassword.Text = "";
+                txtPassword.BackColor = Color.FromArgb(255, 128, 128);
+                lblErrorPass.Text = "Please enter password";
+                lblErrorPass.ForeColor = Color.Red;
                 lblErrorPass.Visible = true;
                 hasError = true;
+                pbHide.Visible = false;
+                pbView.Visible = false;
             }
 
             // If there are no errors, proceed with login validation
@@ -56,21 +74,38 @@ namespace Ferry_Ticketing_App
                 }
                 else if (txtUsername.Text != "admin" && txtPassword.Text == "admin")
                 {
-                    lblErrorUser.Text = "Incorrect Username. Please try again.";
+                    txtUsername.Text = "";
+                    txtUsername.BackColor = Color.IndianRed;
+                    lblErrorUser.Text = "Incorrect username";
+                    lblErrorUser.ForeColor = Color.Red;
                     lblErrorUser.Visible = true;
+                    pbHide.Visible = false;
+                    pbView.Visible = false;
                 }
                 else if (txtUsername.Text == "admin" && txtPassword.Text != "admin")
                 {
-                    lblErrorPass.Text = "Incorrect Password. Please try again.";
+                    txtPassword.Text = "";
+                    txtPassword.BackColor = Color.FromArgb(255, 128, 128);
+                    lblErrorPass.Text = "Incorrect password";
+                    lblErrorPass.ForeColor = Color.Red;
                     lblErrorPass.Visible = true;
+                    pbHide.Visible = false;
+                    pbView.Visible = false;
                 }
                 else if (txtUsername.Text != "admin" && txtPassword.Text != "admin")
                 {
-                    lblErrorUser.Text = "Incorrect Username or Password.";
+                    txtUsername.Text = "";
+                    txtPassword.Text = "";
+                    txtUsername.BackColor = Color.FromArgb(255, 128, 128);
+                    txtPassword.BackColor = Color.FromArgb(255, 128, 128);
+                    lblErrorUser.Text = "Incorrect username";
+                    lblErrorPass.Text = "Incorrect password";
+                    lblErrorUser.ForeColor = Color.Red;
+                    lblErrorPass.ForeColor = Color.Red;
                     lblErrorUser.Visible = true;
-
-                    lblErrorPass.Text = "Incorrect Username or Password.";
                     lblErrorPass.Visible = true;
+                    pbHide.Visible = false;
+                    pbView.Visible = false;
                 }
             }
         }

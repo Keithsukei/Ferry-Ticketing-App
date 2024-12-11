@@ -15,7 +15,8 @@ namespace Ferry_Ticketing_App.Pages
     public partial class ucRoundTripPayment : UserControl
     {
         private decimal basePrice = 0;
-        private string selectedPaymentMethod;
+        public string selectedPaymentMethod;
+        private decimal serviceCharge = 0;
 
         public ucRoundTripPayment()
         {
@@ -35,17 +36,58 @@ namespace Ferry_Ticketing_App.Pages
 
         private void UpdateTotalPrice(decimal serviceCharge)
         {
-            decimal terminalFee = 25;
+            try
+            {
+                decimal terminalFee = 25;
+                decimal totalPrice = 0;
 
-            decimal totalPrice = basePrice + terminalFee + serviceCharge;
+                var searchRoundTrip = this.Parent.Controls.OfType<ucSearchRoundTrip>().FirstOrDefault();
+                if (searchRoundTrip != null)
+                {
+                    decimal departurePrice = decimal.Parse(searchRoundTrip.ucDepartureSummary1.lblDPrice.Text.Replace("₱", ""));
+                    decimal returnPrice = decimal.Parse(searchRoundTrip.ucIndividualTrips2.lblTicketPrice.Text.Replace("₱", ""));
+                    
+                    var passengerContactInfo = this.Parent.Controls.OfType<ucPassengerContactInfo>().FirstOrDefault();
+                    if (passengerContactInfo != null)
+                    {
+                        var passengerDetails = passengerContactInfo.pnlPassengerControlInfo.Controls
+                            .OfType<ucPassengerDetails>()
+                            .OrderBy(c => int.Parse(c.Name.Replace("ucPassengerDetails", "")))
+                            .ToList();
 
-            lblTerminalFee.Text = "₱" + terminalFee.ToString("N2");
-            lblTotalPrice.Text = "₱" + totalPrice.ToString("N2");
+                        foreach (var passenger in passengerDetails)
+                        {
+                            string passengerType = passenger.cmbBType.SelectedItem?.ToString() ?? "Adult";
+                            DateTime birthDate = passenger.dtpDateOfBirth.Value;
+                            int age = DateTime.Today.Year - birthDate.Year;
+                            if (birthDate.Date > DateTime.Today.AddYears(-age)) age--;
+
+                            Price depPrice = new Price(departurePrice, 0);
+                            Price retPrice = new Price(returnPrice, 0);
+                            
+                            totalPrice += depPrice.ApplyDiscount(passengerType, age);
+                            totalPrice += retPrice.ApplyDiscount(passengerType, age);
+                        }
+                    }
+
+                    CalculateIndividualPrices(departurePrice, returnPrice);
+                }
+
+                totalPrice += (terminalFee + serviceCharge);
+                lblTerminalFee.Text = "₱" + terminalFee.ToString("N2");
+                lblTotalPrice.Text = "₱" + totalPrice.ToString("N2");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating total price: {ex.Message}", "Error", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void SelectPaymentMethod(string method, decimal charge)
         {
             lblServiceCharge.Text = "₱" + charge.ToString("N2");
+            serviceCharge = charge;
 
             HighlightSelectedButton(method);
 
@@ -79,7 +121,7 @@ namespace Ferry_Ticketing_App.Pages
         {
             button.BackColor = Color.LightBlue;
             button.FlatAppearance.BorderColor = Color.Blue;
-            button.FlatAppearance.BorderSize = 2;
+            button.FlatAppearance.BorderSize = 1;
         }
 
         private void ResetButtonColors()
@@ -96,7 +138,7 @@ namespace Ferry_Ticketing_App.Pages
         {
             button.BackColor = backColor;
             button.FlatAppearance.BorderColor = borderColor;
-            button.FlatAppearance.BorderSize = 1;
+            button.FlatAppearance.BorderSize = 0;
         }
 
         public string SelectedPaymentMethod { get; private set; }
@@ -118,7 +160,7 @@ namespace Ferry_Ticketing_App.Pages
             if (firstPassengerInfo == null) return;
 
             int padding = 20;
-            int bottomPadding = 70; // Added extra padding for bottom
+            int bottomPadding = 70; 
             int topPosition = firstPassengerInfo.Bottom + padding;
 
             if (passengers.Count > 0)
@@ -127,7 +169,6 @@ namespace Ferry_Ticketing_App.Pages
                 SetPassengerInfo(firstPassengerInfo, firstPassenger, 1);
             }
 
-            // Create additional passenger info controls
             for (int i = 2; i <= numberOfPassengers; i++)
             {
                 var newPassengerInfo = new ucPaymentPassengerInfo
@@ -260,9 +301,9 @@ namespace Ferry_Ticketing_App.Pages
                 paymentId,
                 ticketId,
                 totalPrice,
+                serviceCharge,
                 paymentDate,
-                selectedPaymentMethod,
-                totalPrice
+                selectedPaymentMethod
             );
 
             checkOut.lblPaymentID.Text = payment.PaymentId.ToString();
@@ -296,5 +337,65 @@ namespace Ferry_Ticketing_App.Pages
 
             ResetButtonColors();
         }
+
+        public void CalculateIndividualPrices(decimal departureBasePrice, decimal returnBasePrice)
+        {
+            try
+            {
+                var passengerContactInfo = this.Parent.Controls.OfType<ucPassengerContactInfo>().FirstOrDefault();
+                if (passengerContactInfo == null) return;
+
+                int students = 0, pwd = 0, senior = 0, child3_11 = 0, child0_2 = 0;
+                decimal totalDiscount = 0;
+                decimal totalBasePrice = departureBasePrice + returnBasePrice;
+
+                var passengerDetails = passengerContactInfo.pnlPassengerControlInfo.Controls
+                    .OfType<ucPassengerDetails>()
+                    .OrderBy(c => int.Parse(c.Name.Replace("ucPassengerDetails", "")))
+                    .ToList();
+
+                foreach (var passenger in passengerDetails)
+                {
+                    string passengerType = passenger.cmbBType.SelectedItem?.ToString() ?? "Adult";
+                    DateTime birthDate = passenger.dtpDateOfBirth.Value;
+                    int age = DateTime.Today.Year - birthDate.Year;
+                    if (birthDate.Date > DateTime.Today.AddYears(-age)) age--;
+
+                    switch (passengerType)
+                    {
+                        case "Student": students++; break;
+                        case "PWD": pwd++; break;
+                        case "Senior Citizen": senior++; break;
+                    }
+
+                    if (age >= 3 && age <= 11) child3_11++;
+                    else if (age >= 0 && age <= 2) child0_2++;
+
+                    // Calculate discounts for both departure and return
+                    Price departurePrice = new Price(departureBasePrice, 0);
+                    decimal departureDiscounted = departurePrice.ApplyDiscount(passengerType, age);
+                    totalDiscount += (departureBasePrice - departureDiscounted);
+
+                    Price returnPrice = new Price(returnBasePrice, 0);
+                    decimal returnDiscounted = returnPrice.ApplyDiscount(passengerType, age);
+                    totalDiscount += (returnBasePrice - returnDiscounted);
+                }
+
+                lblNoOfStudents.Text = students.ToString();
+                lblNoOfPWD.Text = pwd.ToString();
+                lblNoOfSenior.Text = senior.ToString();
+                lblNoOfChild3_11.Text = child3_11.ToString();
+                lblNoOfChild0_2.Text = child0_2.ToString();
+                
+                decimal discountPercentage = (totalDiscount / (totalBasePrice * passengerDetails.Count)) * 100;
+                lblDiscountPercentage.Text = $"{discountPercentage:N2}%";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error calculating prices: {ex.Message}", "Error", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

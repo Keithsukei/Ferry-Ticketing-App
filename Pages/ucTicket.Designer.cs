@@ -67,6 +67,7 @@
             this.lblPDName = new System.Windows.Forms.Label();
             this.lblVesselName = new System.Windows.Forms.Label();
             this.lblFrom = new System.Windows.Forms.Label();
+            this.lblTicketType = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTo
@@ -94,7 +95,7 @@
             // 
             this.lblDepartureDate.AutoSize = true;
             this.lblDepartureDate.Font = new System.Drawing.Font("SF Pro Display", 12.5F, System.Drawing.FontStyle.Bold);
-            this.lblDepartureDate.Location = new System.Drawing.Point(459, 165);
+            this.lblDepartureDate.Location = new System.Drawing.Point(459, 164);
             this.lblDepartureDate.Name = "lblDepartureDate";
             this.lblDepartureDate.Size = new System.Drawing.Size(53, 20);
             this.lblDepartureDate.TabIndex = 23;
@@ -493,15 +494,26 @@
             this.lblFrom.Text = "Point 1";
             this.lblFrom.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // lblTicketType
+            // 
+            this.lblTicketType.Font = new System.Drawing.Font("SF Pro Display", 12.5F, System.Drawing.FontStyle.Bold);
+            this.lblTicketType.Location = new System.Drawing.Point(775, 27);
+            this.lblTicketType.Name = "lblTicketType";
+            this.lblTicketType.Size = new System.Drawing.Size(154, 20);
+            this.lblTicketType.TabIndex = 23;
+            this.lblTicketType.Text = "Ticket Type";
+            this.lblTicketType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // ucTicket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.ticketPlaceholder;
+            this.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.ticketPH5;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.Controls.Add(this.lblTo);
             this.Controls.Add(this.lblETA);
+            this.Controls.Add(this.lblTicketType);
             this.Controls.Add(this.lblDepartureDate);
             this.Controls.Add(this.lblPDDiscountType);
             this.Controls.Add(this.lblPDAccommodation);
@@ -542,7 +554,6 @@
             this.DoubleBuffered = true;
             this.Name = "ucTicket";
             this.Size = new System.Drawing.Size(954, 1147);
-            this.Load += new System.EventHandler(this.ucTicket_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -589,5 +600,6 @@
         public System.Windows.Forms.Label lblPDName;
         public System.Windows.Forms.Label lblVesselName;
         public System.Windows.Forms.Label lblFrom;
+        public System.Windows.Forms.Label lblTicketType;
     }
 }

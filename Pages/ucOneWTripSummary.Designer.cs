@@ -28,163 +28,176 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pbArrowRight = new System.Windows.Forms.PictureBox();
-            this.lblPort = new System.Windows.Forms.Label();
-            this.lblAccommodation = new System.Windows.Forms.Label();
-            this.lblVesselName = new System.Windows.Forms.Label();
-            this.lblAircon = new System.Windows.Forms.Label();
-            this.lblSeatType = new System.Windows.Forms.Label();
-            this.lblDepartureTime = new System.Windows.Forms.Label();
-            this.lblDepartureDate = new System.Windows.Forms.Label();
-            this.lblToPort = new System.Windows.Forms.Label();
-            this.lblFromPort = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pbArrowRight)).BeginInit();
+            this.lblDepPort = new System.Windows.Forms.Label();
+            this.lblDepAccommodation = new System.Windows.Forms.Label();
+            this.lblDepVesselName = new System.Windows.Forms.Label();
+            this.lblDepAircon = new System.Windows.Forms.Label();
+            this.lblDepSeatType = new System.Windows.Forms.Label();
+            this.lblDepDepartureTime = new System.Windows.Forms.Label();
+            this.lblDepDepartureDate = new System.Windows.Forms.Label();
+            this.pnlDepCodeToCode = new System.Windows.Forms.Panel();
+            this.lblDepToPort = new System.Windows.Forms.Label();
+            this.lblDepFromPort = new System.Windows.Forms.Label();
+            this.pbDepArrowRight = new System.Windows.Forms.PictureBox();
+            this.pnlDepCodeToCode.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDepArrowRight)).BeginInit();
             this.SuspendLayout();
             // 
-            // pbArrowRight
+            // lblDepPort
             // 
-            this.pbArrowRight.Image = global::Ferry_Ticketing_App.Properties.Resources.arrowright3;
-            this.pbArrowRight.Location = new System.Drawing.Point(103, 71);
-            this.pbArrowRight.Name = "pbArrowRight";
-            this.pbArrowRight.Size = new System.Drawing.Size(25, 24);
-            this.pbArrowRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbArrowRight.TabIndex = 18;
-            this.pbArrowRight.TabStop = false;
+            this.lblDepPort.AutoSize = true;
+            this.lblDepPort.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDepPort.ForeColor = System.Drawing.Color.Gray;
+            this.lblDepPort.Location = new System.Drawing.Point(25, 240);
+            this.lblDepPort.Name = "lblDepPort";
+            this.lblDepPort.Size = new System.Drawing.Size(39, 13);
+            this.lblDepPort.TabIndex = 11;
+            this.lblDepPort.Text = "label3";
             // 
-            // lblPort
+            // lblDepAccommodation
             // 
-            this.lblPort.AutoSize = true;
-            this.lblPort.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPort.ForeColor = System.Drawing.Color.Gray;
-            this.lblPort.Location = new System.Drawing.Point(25, 240);
-            this.lblPort.Name = "lblPort";
-            this.lblPort.Size = new System.Drawing.Size(39, 13);
-            this.lblPort.TabIndex = 11;
-            this.lblPort.Text = "label3";
+            this.lblDepAccommodation.AutoSize = true;
+            this.lblDepAccommodation.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDepAccommodation.ForeColor = System.Drawing.Color.Gray;
+            this.lblDepAccommodation.Location = new System.Drawing.Point(25, 195);
+            this.lblDepAccommodation.Name = "lblDepAccommodation";
+            this.lblDepAccommodation.Size = new System.Drawing.Size(39, 13);
+            this.lblDepAccommodation.TabIndex = 12;
+            this.lblDepAccommodation.Text = "label3";
             // 
-            // lblAccommodation
+            // lblDepVesselName
             // 
-            this.lblAccommodation.AutoSize = true;
-            this.lblAccommodation.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAccommodation.ForeColor = System.Drawing.Color.Gray;
-            this.lblAccommodation.Location = new System.Drawing.Point(25, 195);
-            this.lblAccommodation.Name = "lblAccommodation";
-            this.lblAccommodation.Size = new System.Drawing.Size(39, 13);
-            this.lblAccommodation.TabIndex = 12;
-            this.lblAccommodation.Text = "label3";
+            this.lblDepVesselName.AutoSize = true;
+            this.lblDepVesselName.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDepVesselName.ForeColor = System.Drawing.Color.Gray;
+            this.lblDepVesselName.Location = new System.Drawing.Point(372, 150);
+            this.lblDepVesselName.Name = "lblDepVesselName";
+            this.lblDepVesselName.Size = new System.Drawing.Size(39, 13);
+            this.lblDepVesselName.TabIndex = 13;
+            this.lblDepVesselName.Text = "label3";
             // 
-            // lblVesselName
+            // lblDepAircon
             // 
-            this.lblVesselName.AutoSize = true;
-            this.lblVesselName.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVesselName.ForeColor = System.Drawing.Color.Gray;
-            this.lblVesselName.Location = new System.Drawing.Point(372, 150);
-            this.lblVesselName.Name = "lblVesselName";
-            this.lblVesselName.Size = new System.Drawing.Size(39, 13);
-            this.lblVesselName.TabIndex = 13;
-            this.lblVesselName.Text = "label3";
+            this.lblDepAircon.AutoSize = true;
+            this.lblDepAircon.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDepAircon.ForeColor = System.Drawing.Color.Gray;
+            this.lblDepAircon.Location = new System.Drawing.Point(342, 195);
+            this.lblDepAircon.Name = "lblDepAircon";
+            this.lblDepAircon.Size = new System.Drawing.Size(39, 13);
+            this.lblDepAircon.TabIndex = 14;
+            this.lblDepAircon.Text = "label3";
             // 
-            // lblAircon
+            // lblDepSeatType
             // 
-            this.lblAircon.AutoSize = true;
-            this.lblAircon.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAircon.ForeColor = System.Drawing.Color.Gray;
-            this.lblAircon.Location = new System.Drawing.Point(342, 195);
-            this.lblAircon.Name = "lblAircon";
-            this.lblAircon.Size = new System.Drawing.Size(39, 13);
-            this.lblAircon.TabIndex = 14;
-            this.lblAircon.Text = "label3";
+            this.lblDepSeatType.AutoSize = true;
+            this.lblDepSeatType.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDepSeatType.ForeColor = System.Drawing.Color.Gray;
+            this.lblDepSeatType.Location = new System.Drawing.Point(190, 195);
+            this.lblDepSeatType.Name = "lblDepSeatType";
+            this.lblDepSeatType.Size = new System.Drawing.Size(39, 13);
+            this.lblDepSeatType.TabIndex = 15;
+            this.lblDepSeatType.Text = "label3";
             // 
-            // lblSeatType
+            // lblDepDepartureTime
             // 
-            this.lblSeatType.AutoSize = true;
-            this.lblSeatType.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSeatType.ForeColor = System.Drawing.Color.Gray;
-            this.lblSeatType.Location = new System.Drawing.Point(190, 195);
-            this.lblSeatType.Name = "lblSeatType";
-            this.lblSeatType.Size = new System.Drawing.Size(39, 13);
-            this.lblSeatType.TabIndex = 15;
-            this.lblSeatType.Text = "label3";
+            this.lblDepDepartureTime.AutoSize = true;
+            this.lblDepDepartureTime.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDepDepartureTime.ForeColor = System.Drawing.Color.Gray;
+            this.lblDepDepartureTime.Location = new System.Drawing.Point(190, 150);
+            this.lblDepDepartureTime.Name = "lblDepDepartureTime";
+            this.lblDepDepartureTime.Size = new System.Drawing.Size(39, 13);
+            this.lblDepDepartureTime.TabIndex = 16;
+            this.lblDepDepartureTime.Text = "label3";
             // 
-            // lblDepartureTime
+            // lblDepDepartureDate
             // 
-            this.lblDepartureTime.AutoSize = true;
-            this.lblDepartureTime.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDepartureTime.ForeColor = System.Drawing.Color.Gray;
-            this.lblDepartureTime.Location = new System.Drawing.Point(190, 150);
-            this.lblDepartureTime.Name = "lblDepartureTime";
-            this.lblDepartureTime.Size = new System.Drawing.Size(39, 13);
-            this.lblDepartureTime.TabIndex = 16;
-            this.lblDepartureTime.Text = "label3";
+            this.lblDepDepartureDate.AutoSize = true;
+            this.lblDepDepartureDate.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDepDepartureDate.ForeColor = System.Drawing.Color.Gray;
+            this.lblDepDepartureDate.Location = new System.Drawing.Point(25, 150);
+            this.lblDepDepartureDate.Name = "lblDepDepartureDate";
+            this.lblDepDepartureDate.Size = new System.Drawing.Size(39, 13);
+            this.lblDepDepartureDate.TabIndex = 17;
+            this.lblDepDepartureDate.Text = "label3";
             // 
-            // lblDepartureDate
+            // pnlDepCodeToCode
             // 
-            this.lblDepartureDate.AutoSize = true;
-            this.lblDepartureDate.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDepartureDate.ForeColor = System.Drawing.Color.Gray;
-            this.lblDepartureDate.Location = new System.Drawing.Point(25, 150);
-            this.lblDepartureDate.Name = "lblDepartureDate";
-            this.lblDepartureDate.Size = new System.Drawing.Size(39, 13);
-            this.lblDepartureDate.TabIndex = 17;
-            this.lblDepartureDate.Text = "label3";
+            this.pnlDepCodeToCode.Controls.Add(this.lblDepToPort);
+            this.pnlDepCodeToCode.Controls.Add(this.lblDepFromPort);
+            this.pnlDepCodeToCode.Controls.Add(this.pbDepArrowRight);
+            this.pnlDepCodeToCode.Location = new System.Drawing.Point(29, 64);
+            this.pnlDepCodeToCode.Name = "pnlDepCodeToCode";
+            this.pnlDepCodeToCode.Size = new System.Drawing.Size(486, 44);
+            this.pnlDepCodeToCode.TabIndex = 29;
             // 
-            // lblToPort
+            // lblDepToPort
             // 
-            this.lblToPort.AutoSize = true;
-            this.lblToPort.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblToPort.ForeColor = System.Drawing.Color.Gray;
-            this.lblToPort.Location = new System.Drawing.Point(133, 74);
-            this.lblToPort.Name = "lblToPort";
-            this.lblToPort.Size = new System.Drawing.Size(51, 18);
-            this.lblToPort.TabIndex = 9;
-            this.lblToPort.Text = "Point1";
+            this.lblDepToPort.AutoSize = true;
+            this.lblDepToPort.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDepToPort.ForeColor = System.Drawing.Color.Gray;
+            this.lblDepToPort.Location = new System.Drawing.Point(115, 13);
+            this.lblDepToPort.Name = "lblDepToPort";
+            this.lblDepToPort.Size = new System.Drawing.Size(53, 18);
+            this.lblDepToPort.TabIndex = 11;
+            this.lblDepToPort.Text = "Point2";
             // 
-            // lblFromPort
+            // lblDepFromPort
             // 
-            this.lblFromPort.AutoSize = true;
-            this.lblFromPort.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFromPort.ForeColor = System.Drawing.Color.Gray;
-            this.lblFromPort.Location = new System.Drawing.Point(48, 74);
-            this.lblFromPort.Name = "lblFromPort";
-            this.lblFromPort.Size = new System.Drawing.Size(51, 18);
-            this.lblFromPort.TabIndex = 10;
-            this.lblFromPort.Text = "Point1";
+            this.lblDepFromPort.AutoSize = true;
+            this.lblDepFromPort.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDepFromPort.ForeColor = System.Drawing.Color.Gray;
+            this.lblDepFromPort.Location = new System.Drawing.Point(10, 13);
+            this.lblDepFromPort.Name = "lblDepFromPort";
+            this.lblDepFromPort.Size = new System.Drawing.Size(51, 18);
+            this.lblDepFromPort.TabIndex = 8;
+            this.lblDepFromPort.Text = "Point1";
             // 
-            // ucOneWayTripSummary
+            // pbDepArrowRight
+            // 
+            this.pbDepArrowRight.Image = global::Ferry_Ticketing_App.Properties.Resources.arrowright3;
+            this.pbDepArrowRight.Location = new System.Drawing.Point(73, 10);
+            this.pbDepArrowRight.Name = "pbDepArrowRight";
+            this.pbDepArrowRight.Size = new System.Drawing.Size(25, 24);
+            this.pbDepArrowRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbDepArrowRight.TabIndex = 26;
+            this.pbDepArrowRight.TabStop = false;
+            // 
+            // ucOneWTripSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.onewTripSummaryPH;
-            this.Controls.Add(this.pbArrowRight);
-            this.Controls.Add(this.lblPort);
-            this.Controls.Add(this.lblAccommodation);
-            this.Controls.Add(this.lblVesselName);
-            this.Controls.Add(this.lblAircon);
-            this.Controls.Add(this.lblSeatType);
-            this.Controls.Add(this.lblDepartureTime);
-            this.Controls.Add(this.lblDepartureDate);
-            this.Controls.Add(this.lblToPort);
-            this.Controls.Add(this.lblFromPort);
-            this.Name = "ucOneWayTripSummary";
+            this.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.onewaytripsummary2;
+            this.Controls.Add(this.pnlDepCodeToCode);
+            this.Controls.Add(this.lblDepPort);
+            this.Controls.Add(this.lblDepAccommodation);
+            this.Controls.Add(this.lblDepVesselName);
+            this.Controls.Add(this.lblDepAircon);
+            this.Controls.Add(this.lblDepSeatType);
+            this.Controls.Add(this.lblDepDepartureTime);
+            this.Controls.Add(this.lblDepDepartureDate);
+            this.Name = "ucOneWTripSummary";
             this.Size = new System.Drawing.Size(545, 285);
-            ((System.ComponentModel.ISupportInitialize)(this.pbArrowRight)).EndInit();
+            this.pnlDepCodeToCode.ResumeLayout(false);
+            this.pnlDepCodeToCode.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDepArrowRight)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pbArrowRight;
-        private System.Windows.Forms.Label lblPort;
-        private System.Windows.Forms.Label lblAccommodation;
-        private System.Windows.Forms.Label lblVesselName;
-        private System.Windows.Forms.Label lblAircon;
-        private System.Windows.Forms.Label lblSeatType;
-        private System.Windows.Forms.Label lblDepartureTime;
-        private System.Windows.Forms.Label lblDepartureDate;
-        private System.Windows.Forms.Label lblToPort;
-        private System.Windows.Forms.Label lblFromPort;
+        public System.Windows.Forms.Label lblDepPort;
+        public System.Windows.Forms.Label lblDepAccommodation;
+        public System.Windows.Forms.Label lblDepVesselName;
+        public System.Windows.Forms.Label lblDepAircon;
+        public System.Windows.Forms.Label lblDepSeatType;
+        public System.Windows.Forms.Label lblDepDepartureTime;
+        public System.Windows.Forms.Label lblDepDepartureDate;
+        public System.Windows.Forms.Panel pnlDepCodeToCode;
+        public System.Windows.Forms.Label lblDepToPort;
+        public System.Windows.Forms.Label lblDepFromPort;
+        public System.Windows.Forms.PictureBox pbDepArrowRight;
     }
 }
+

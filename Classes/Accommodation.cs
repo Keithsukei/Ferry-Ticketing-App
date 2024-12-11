@@ -12,10 +12,8 @@ namespace Ferry_Ticketing_App.Classes
         public string SeatType { get; set; }
         public decimal BasePrice { get; set; }
 
-        // Dictionary to hold seat type as key and corresponding Seat object as value
         public static Dictionary<string, Accommodation> AccommodationDictionary { get; set; }
 
-        // Static constructor without access modifier
         static Accommodation()
         {
             AccommodationDictionary = new Dictionary<string, Accommodation>
@@ -29,17 +27,17 @@ namespace Ferry_Ticketing_App.Classes
                     }
                 },
                 {
-                    "Economy Bed Bunk",
+                    "Economy",
                     new Accommodation {
-                        AccommodationType = "Economy Bed Bunk",
+                        AccommodationType = "Economy",
                         SeatType = "Bed Bunk",
                         BasePrice = 200.00m
                     }
                 },
                 {
-                    "Tourist Bed Bunk",
+                    "Tourist",
                     new Accommodation {
-                        AccommodationType = "Tourist Bed Bunk",
+                        AccommodationType = "Tourist",
                         SeatType = "Bed Bunk",
                         BasePrice = 300.00m
                     }
@@ -49,7 +47,7 @@ namespace Ferry_Ticketing_App.Classes
                     new Accommodation {
                         AccommodationType = "Business Class",
                         SeatType = "Premium Sitting",
-                        BasePrice = 300.00m
+                        BasePrice = 500.00m
                     }
                 }
             };

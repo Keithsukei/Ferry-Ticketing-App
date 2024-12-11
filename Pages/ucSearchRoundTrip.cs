@@ -288,18 +288,26 @@ namespace Ferry_Ticketing_App.Pages
 
             if (findTrips != null)
             {
+                // Reset all selections and summaries
+                ucDepartureSummary1.pnlDepDropDownSelected.Visible = false;
+                ucDepartureSummary1.pnlDepDropDownNoSelected.Visible = true;
+                ucReturnSummary1.pnlRetDropdownSelected.Visible = false;
+                ucReturnSummary1.pnlRetDropdownNoSelected.Visible = true;
+
+                // Reset heights to collapsed state
+                currentDepartureHeight = DEPCOLLAPSED_HEIGHT;
+                currentReturnHeight = RETCOLLAPSED_HEIGHT;
+                ucDepartureSummary1.Height = DEPCOLLAPSED_HEIGHT;
+                ucReturnSummary1.Height = RETCOLLAPSED_HEIGHT;
+
+                // Reset pnlSummary size
+                pnlSummary.Height = DEPCOLLAPSED_HEIGHT + RETCOLLAPSED_HEIGHT + BUTTON_HEIGHT + (PADDING * 3);
+                UpdatePanelSizes();
+
+                // Show Find Trips page
                 findTrips.BringToFront();
                 findTrips.Visible = true;
-
-                // Update the number of passengers based on the input field (if available)
-                int passengers = int.TryParse(findTrips.txtPassengers.Text, out int result) ? result : 1;
-
-                // Update trip details for all instances of ucIndividualTrips
-                foreach (var tripControl in this.Parent.Controls.OfType<ucIndividualTrips>())
-                {
-                    lblNoOfPassengers.Text = passengers.ToString();
-                    tripControl.RecalculateTripDetails(DateTime.Now);
-                }
+                this.Visible = false;
             }
         }
 
@@ -333,7 +341,8 @@ namespace Ferry_Ticketing_App.Pages
                     lblToCity.Text,
                     numberOfPassengers,
                     DateTime.Parse(lblDepartureDate.Text),
-                    DateTime.Parse(lblReturnDate.Text)
+                    DateTime.Parse(lblReturnDate.Text),
+                    true
                 );
 
                 passengerContactInfo.SetupPassengerDetails(numberOfPassengers);

@@ -18,9 +18,9 @@ namespace Ferry_Ticketing_App.Pages
             InitializeComponent();
 
             // Assuming you want to iterate over all labels in the UserControl
-            foreach (Control control in this.Controls)
+            foreach (Control ctrl in pnlDepCodeToCode.Controls)
             {
-                if (control is Label label)
+                if (ctrl is Label label)
                 {
                     switch (label.Name)
                     {
@@ -30,6 +30,15 @@ namespace Ferry_Ticketing_App.Pages
                         case "lblDepToPort":
                             AdjustLabelAndArrow(lblDepToPort, pbDepArrowRight, true);
                             break;
+                    }
+                }
+            }
+            foreach (Control ctrl in pnlRetCodeToCode.Controls)
+            {
+                if (ctrl is Label label)
+                {
+                    switch (label.Name)
+                    {
                         case "lblRetFromPort":
                             AdjustLabelAndArrow(lblRetFromPort, pbRetArrowRight);
                             break;
@@ -43,14 +52,14 @@ namespace Ferry_Ticketing_App.Pages
 
         private void AdjustLabelAndArrow(Label label, PictureBox arrow, bool isDestination = false)
         {
-            int padding = 15; // Gap between the label and the arrow
+            int padding = 10; // Gap between the label and the arrow
             if (isDestination)
             {
                 label.Left = arrow.Right + padding; // Position destination label to the right of the arrow
             }
             else
             {
-                label.Left = 50; // Reset 'From' label to its starting position
+                label.Left = 10; // Reset 'From' label to its starting position
                 arrow.Left = label.Right + padding; // Adjust arrow position
             }
         }

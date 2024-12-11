@@ -44,8 +44,8 @@
             // 
             this.pnlReturn.Controls.Add(this.btnReturnOpen);
             this.pnlReturn.Controls.Add(this.btnReturnClosed);
-            this.pnlReturn.Controls.Add(this.pnlRetDropdownNoSelected);
             this.pnlReturn.Controls.Add(this.pnlRetDropdownSelected);
+            this.pnlReturn.Controls.Add(this.pnlRetDropdownNoSelected);
             this.pnlReturn.Location = new System.Drawing.Point(3, 3);
             this.pnlReturn.Name = "pnlReturn";
             this.pnlReturn.Size = new System.Drawing.Size(335, 247);
@@ -88,7 +88,7 @@
             // 
             // pnlRetDropdownSelected
             // 
-            this.pnlRetDropdownSelected.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.returnDetails;
+            this.pnlRetDropdownSelected.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.returnopen2;
             this.pnlRetDropdownSelected.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pnlRetDropdownSelected.Controls.Add(this.lblReturnTo);
             this.pnlRetDropdownSelected.Controls.Add(this.lblReturnFrom);

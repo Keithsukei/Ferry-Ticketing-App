@@ -31,7 +31,6 @@
             this.lblTo = new System.Windows.Forms.Label();
             this.lblFrom = new System.Windows.Forms.Label();
             this.pnlCodeToCode = new System.Windows.Forms.Panel();
-            this.pbArrowRight = new System.Windows.Forms.PictureBox();
             this.pnlDateSliderButtons = new System.Windows.Forms.Panel();
             this.btnRight = new System.Windows.Forms.Button();
             this.btnDate10 = new System.Windows.Forms.Button();
@@ -45,6 +44,7 @@
             this.btnDate2 = new System.Windows.Forms.Button();
             this.btnDate1 = new System.Windows.Forms.Button();
             this.btnLeft = new System.Windows.Forms.Button();
+            this.pbArrowRight = new System.Windows.Forms.PictureBox();
             this.pnlIndividualTripsPH = new System.Windows.Forms.Panel();
             this.btnSelect = new System.Windows.Forms.Button();
             this.lblPrice = new System.Windows.Forms.Label();
@@ -54,20 +54,17 @@
             this.pnlIndividualTripsHeader = new System.Windows.Forms.Panel();
             this.pnlLogoNamePH = new System.Windows.Forms.Panel();
             this.lblVesselName = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.pbLogo = new System.Windows.Forms.PictureBox();
             this.pnlTimePH = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.lblTravelTime = new System.Windows.Forms.Label();
             this.lblDTime = new System.Windows.Forms.Label();
             this.pnlCodeToCode.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbArrowRight)).BeginInit();
             this.pnlDateSliderButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbArrowRight)).BeginInit();
             this.pnlIndividualTripsPH.SuspendLayout();
             this.pnlAccommodationPH.SuspendLayout();
             this.pnlIndividualTripsHeader.SuspendLayout();
             this.pnlLogoNamePH.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.pnlTimePH.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
@@ -105,20 +102,10 @@
             this.pnlCodeToCode.Size = new System.Drawing.Size(602, 29);
             this.pnlCodeToCode.TabIndex = 9;
             // 
-            // pbArrowRight
-            // 
-            this.pbArrowRight.BackColor = System.Drawing.Color.Transparent;
-            this.pbArrowRight.Image = global::Ferry_Ticketing_App.Properties.Resources.arrowright1;
-            this.pbArrowRight.Location = new System.Drawing.Point(194, 0);
-            this.pbArrowRight.Name = "pbArrowRight";
-            this.pbArrowRight.Size = new System.Drawing.Size(24, 24);
-            this.pbArrowRight.TabIndex = 2;
-            this.pbArrowRight.TabStop = false;
-            // 
             // pnlDateSliderButtons
             // 
             this.pnlDateSliderButtons.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.datePlaceholder;
-            this.pnlDateSliderButtons.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pnlDateSliderButtons.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlDateSliderButtons.Controls.Add(this.btnRight);
             this.pnlDateSliderButtons.Controls.Add(this.btnDate10);
             this.pnlDateSliderButtons.Controls.Add(this.btnDate9);
@@ -131,9 +118,9 @@
             this.pnlDateSliderButtons.Controls.Add(this.btnDate2);
             this.pnlDateSliderButtons.Controls.Add(this.btnDate1);
             this.pnlDateSliderButtons.Controls.Add(this.btnLeft);
-            this.pnlDateSliderButtons.Location = new System.Drawing.Point(7, 45);
+            this.pnlDateSliderButtons.Location = new System.Drawing.Point(0, 45);
             this.pnlDateSliderButtons.Name = "pnlDateSliderButtons";
-            this.pnlDateSliderButtons.Size = new System.Drawing.Size(590, 50);
+            this.pnlDateSliderButtons.Size = new System.Drawing.Size(602, 50);
             this.pnlDateSliderButtons.TabIndex = 11;
             // 
             // btnRight
@@ -142,7 +129,7 @@
             this.btnRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRight.FlatAppearance.BorderSize = 0;
             this.btnRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRight.Location = new System.Drawing.Point(545, 0);
+            this.btnRight.Location = new System.Drawing.Point(558, 0);
             this.btnRight.Name = "btnRight";
             this.btnRight.Size = new System.Drawing.Size(46, 50);
             this.btnRight.TabIndex = 0;
@@ -153,11 +140,12 @@
             this.btnDate10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDate10.FlatAppearance.BorderSize = 0;
             this.btnDate10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDate10.Location = new System.Drawing.Point(494, 1);
+            this.btnDate10.Font = new System.Drawing.Font("Microsoft Tai Le", 8F);
+            this.btnDate10.Location = new System.Drawing.Point(507, 1);
             this.btnDate10.Name = "btnDate10";
             this.btnDate10.Size = new System.Drawing.Size(50, 50);
             this.btnDate10.TabIndex = 0;
-            this.btnDate10.Text = "D\r\nDay,M\r\n";
+            this.btnDate10.Text = "D\r\nDay,M";
             this.btnDate10.UseVisualStyleBackColor = true;
             // 
             // btnDate9
@@ -165,11 +153,12 @@
             this.btnDate9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDate9.FlatAppearance.BorderSize = 0;
             this.btnDate9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDate9.Location = new System.Drawing.Point(443, 1);
+            this.btnDate9.Font = new System.Drawing.Font("Microsoft Tai Le", 8F);
+            this.btnDate9.Location = new System.Drawing.Point(455, 1);
             this.btnDate9.Name = "btnDate9";
             this.btnDate9.Size = new System.Drawing.Size(50, 50);
             this.btnDate9.TabIndex = 0;
-            this.btnDate9.Text = "D\r\nDay,M\r\n";
+            this.btnDate9.Text = "D\r\nDay,M";
             this.btnDate9.UseVisualStyleBackColor = true;
             // 
             // btnDate8
@@ -177,11 +166,12 @@
             this.btnDate8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDate8.FlatAppearance.BorderSize = 0;
             this.btnDate8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDate8.Location = new System.Drawing.Point(394, 1);
+            this.btnDate8.Font = new System.Drawing.Font("Microsoft Tai Le", 8F);
+            this.btnDate8.Location = new System.Drawing.Point(403, 1);
             this.btnDate8.Name = "btnDate8";
             this.btnDate8.Size = new System.Drawing.Size(50, 50);
             this.btnDate8.TabIndex = 0;
-            this.btnDate8.Text = "D\r\nDay,M\r\n";
+            this.btnDate8.Text = "D\r\nDay,M";
             this.btnDate8.UseVisualStyleBackColor = true;
             // 
             // btnDate7
@@ -189,11 +179,12 @@
             this.btnDate7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDate7.FlatAppearance.BorderSize = 0;
             this.btnDate7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDate7.Location = new System.Drawing.Point(344, 1);
+            this.btnDate7.Font = new System.Drawing.Font("Microsoft Tai Le", 8F);
+            this.btnDate7.Location = new System.Drawing.Point(353, 1);
             this.btnDate7.Name = "btnDate7";
             this.btnDate7.Size = new System.Drawing.Size(50, 50);
             this.btnDate7.TabIndex = 0;
-            this.btnDate7.Text = "D\r\nDay,M\r\n";
+            this.btnDate7.Text = "D\r\nDay,M";
             this.btnDate7.UseVisualStyleBackColor = true;
             // 
             // btnDate6
@@ -201,11 +192,12 @@
             this.btnDate6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDate6.FlatAppearance.BorderSize = 0;
             this.btnDate6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDate6.Location = new System.Drawing.Point(294, 1);
+            this.btnDate6.Font = new System.Drawing.Font("Microsoft Tai Le", 8F);
+            this.btnDate6.Location = new System.Drawing.Point(302, 1);
             this.btnDate6.Name = "btnDate6";
             this.btnDate6.Size = new System.Drawing.Size(50, 50);
             this.btnDate6.TabIndex = 0;
-            this.btnDate6.Text = "D\r\nDay,M\r\n";
+            this.btnDate6.Text = "D\r\nDay,M";
             this.btnDate6.UseVisualStyleBackColor = true;
             // 
             // btnDate5
@@ -213,11 +205,12 @@
             this.btnDate5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDate5.FlatAppearance.BorderSize = 0;
             this.btnDate5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDate5.Location = new System.Drawing.Point(244, 1);
+            this.btnDate5.Font = new System.Drawing.Font("Microsoft Tai Le", 8F);
+            this.btnDate5.Location = new System.Drawing.Point(251, 1);
             this.btnDate5.Name = "btnDate5";
             this.btnDate5.Size = new System.Drawing.Size(50, 50);
             this.btnDate5.TabIndex = 0;
-            this.btnDate5.Text = "D\r\nDay,M\r\n";
+            this.btnDate5.Text = "D\r\nDay,M";
             this.btnDate5.UseVisualStyleBackColor = true;
             // 
             // btnDate4
@@ -225,11 +218,12 @@
             this.btnDate4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDate4.FlatAppearance.BorderSize = 0;
             this.btnDate4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDate4.Location = new System.Drawing.Point(194, 1);
+            this.btnDate4.Font = new System.Drawing.Font("Microsoft Tai Le", 8F);
+            this.btnDate4.Location = new System.Drawing.Point(199, 1);
             this.btnDate4.Name = "btnDate4";
             this.btnDate4.Size = new System.Drawing.Size(50, 50);
             this.btnDate4.TabIndex = 0;
-            this.btnDate4.Text = "D\r\nDay,M\r\n";
+            this.btnDate4.Text = "D\r\nDay,M";
             this.btnDate4.UseVisualStyleBackColor = true;
             // 
             // btnDate3
@@ -237,11 +231,12 @@
             this.btnDate3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDate3.FlatAppearance.BorderSize = 0;
             this.btnDate3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDate3.Location = new System.Drawing.Point(143, 1);
+            this.btnDate3.Font = new System.Drawing.Font("Microsoft Tai Le", 8F);
+            this.btnDate3.Location = new System.Drawing.Point(148, 1);
             this.btnDate3.Name = "btnDate3";
             this.btnDate3.Size = new System.Drawing.Size(50, 50);
             this.btnDate3.TabIndex = 0;
-            this.btnDate3.Text = "D\r\nDay,M\r\n";
+            this.btnDate3.Text = "D\r\nDay,M";
             this.btnDate3.UseVisualStyleBackColor = true;
             // 
             // btnDate2
@@ -249,11 +244,12 @@
             this.btnDate2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDate2.FlatAppearance.BorderSize = 0;
             this.btnDate2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDate2.Location = new System.Drawing.Point(93, 1);
+            this.btnDate2.Font = new System.Drawing.Font("Microsoft Tai Le", 8F);
+            this.btnDate2.Location = new System.Drawing.Point(97, 1);
             this.btnDate2.Name = "btnDate2";
             this.btnDate2.Size = new System.Drawing.Size(50, 50);
             this.btnDate2.TabIndex = 0;
-            this.btnDate2.Text = "D\r\nDay,M\r\n";
+            this.btnDate2.Text = "D\r\nDay,M";
             this.btnDate2.UseVisualStyleBackColor = true;
             // 
             // btnDate1
@@ -261,11 +257,12 @@
             this.btnDate1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDate1.FlatAppearance.BorderSize = 0;
             this.btnDate1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDate1.Font = new System.Drawing.Font("Microsoft Tai Le", 8F);
             this.btnDate1.Location = new System.Drawing.Point(45, 1);
             this.btnDate1.Name = "btnDate1";
-            this.btnDate1.Size = new System.Drawing.Size(47, 50);
+            this.btnDate1.Size = new System.Drawing.Size(50, 50);
             this.btnDate1.TabIndex = 0;
-            this.btnDate1.Text = "D\r\nDay,M\r\n";
+            this.btnDate1.Text = "D\r\nDay,M";
             this.btnDate1.UseVisualStyleBackColor = true;
             // 
             // btnLeft
@@ -274,11 +271,21 @@
             this.btnLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnLeft.FlatAppearance.BorderSize = 0;
             this.btnLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLeft.Location = new System.Drawing.Point(1, 0);
+            this.btnLeft.Location = new System.Drawing.Point(0, 0);
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(46, 50);
             this.btnLeft.TabIndex = 0;
             this.btnLeft.UseVisualStyleBackColor = true;
+            // 
+            // pbArrowRight
+            // 
+            this.pbArrowRight.BackColor = System.Drawing.Color.Transparent;
+            this.pbArrowRight.Image = global::Ferry_Ticketing_App.Properties.Resources.arrowright1;
+            this.pbArrowRight.Location = new System.Drawing.Point(194, 0);
+            this.pbArrowRight.Name = "pbArrowRight";
+            this.pbArrowRight.Size = new System.Drawing.Size(24, 24);
+            this.pbArrowRight.TabIndex = 2;
+            this.pbArrowRight.TabStop = false;
             // 
             // pnlIndividualTripsPH
             // 
@@ -365,10 +372,8 @@
             // pnlLogoNamePH
             // 
             this.pnlLogoNamePH.BackColor = System.Drawing.Color.Transparent;
-            this.pnlLogoNamePH.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.logo_ferrlinenameBG;
+            this.pnlLogoNamePH.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.pnlLogoName3;
             this.pnlLogoNamePH.Controls.Add(this.lblVesselName);
-            this.pnlLogoNamePH.Controls.Add(this.label15);
-            this.pnlLogoNamePH.Controls.Add(this.pbLogo);
             this.pnlLogoNamePH.Location = new System.Drawing.Point(276, 7);
             this.pnlLogoNamePH.Name = "pnlLogoNamePH";
             this.pnlLogoNamePH.Size = new System.Drawing.Size(314, 69);
@@ -383,24 +388,6 @@
             this.lblVesselName.TabIndex = 1;
             this.lblVesselName.Text = "Vessel Name";
             this.lblVesselName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(150, 20);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(137, 16);
-            this.label15.TabIndex = 1;
-            this.label15.Text = "Aerian Star Ferries";
-            // 
-            // pbLogo
-            // 
-            this.pbLogo.Location = new System.Drawing.Point(3, 3);
-            this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(63, 63);
-            this.pbLogo.TabIndex = 0;
-            this.pbLogo.TabStop = false;
             // 
             // pnlTimePH
             // 
@@ -460,15 +447,13 @@
             this.Size = new System.Drawing.Size(602, 318);
             this.pnlCodeToCode.ResumeLayout(false);
             this.pnlCodeToCode.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbArrowRight)).EndInit();
             this.pnlDateSliderButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbArrowRight)).EndInit();
             this.pnlIndividualTripsPH.ResumeLayout(false);
             this.pnlIndividualTripsPH.PerformLayout();
             this.pnlAccommodationPH.ResumeLayout(false);
             this.pnlIndividualTripsHeader.ResumeLayout(false);
             this.pnlLogoNamePH.ResumeLayout(false);
-            this.pnlLogoNamePH.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.pnlTimePH.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
@@ -480,15 +465,13 @@
         private System.Windows.Forms.Panel pnlIndividualTripsHeader;
         private System.Windows.Forms.Panel pnlLogoNamePH;
         public System.Windows.Forms.Label lblVesselName;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.Panel pnlTimePH;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label lblTravelTime;
         public System.Windows.Forms.Label lblDTime;
         private System.Windows.Forms.Panel pnlAccommodationPH;
         public System.Windows.Forms.ComboBox cmbBoxAccommodationType;
-        private System.Windows.Forms.Label lblTicketPrice;
+        public System.Windows.Forms.Label lblTicketPrice;
         public System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.Panel pnlIndividualTripsPH;

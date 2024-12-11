@@ -34,6 +34,8 @@
             this.txtPaymentMayaOTP = new System.Windows.Forms.TextBox();
             this.btnSendOTP = new System.Windows.Forms.Button();
             this.cbImNotARobot = new System.Windows.Forms.CheckBox();
+            this.txtCaptchaAnswer = new System.Windows.Forms.TextBox();
+            this.lblCaptcha = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtPaymentMayaFName
@@ -91,15 +93,33 @@
             // 
             // cbImNotARobot
             // 
-            this.cbImNotARobot.BackColor = System.Drawing.Color.Transparent;
-            this.cbImNotARobot.FlatAppearance.BorderSize = 0;
-            this.cbImNotARobot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbImNotARobot.ForeColor = System.Drawing.Color.Black;
-            this.cbImNotARobot.Location = new System.Drawing.Point(57, 344);
+            this.cbImNotARobot.AutoSize = true;
+            this.cbImNotARobot.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F);
+            this.cbImNotARobot.Location = new System.Drawing.Point(56, 343);
             this.cbImNotARobot.Name = "cbImNotARobot";
-            this.cbImNotARobot.Size = new System.Drawing.Size(10, 11);
-            this.cbImNotARobot.TabIndex = 5;
-            this.cbImNotARobot.UseVisualStyleBackColor = false;
+            this.cbImNotARobot.Size = new System.Drawing.Size(15, 14);
+            this.cbImNotARobot.TabIndex = 12;
+            this.cbImNotARobot.UseVisualStyleBackColor = true;
+            // 
+            // txtCaptchaAnswer
+            // 
+            this.txtCaptchaAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCaptchaAnswer.Font = new System.Drawing.Font("SF Pro Display", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCaptchaAnswer.Location = new System.Drawing.Point(49, 390);
+            this.txtCaptchaAnswer.Name = "txtCaptchaAnswer";
+            this.txtCaptchaAnswer.Size = new System.Drawing.Size(50, 23);
+            this.txtCaptchaAnswer.TabIndex = 17;
+            // 
+            // lblCaptcha
+            // 
+            this.lblCaptcha.AutoSize = true;
+            this.lblCaptcha.Font = new System.Drawing.Font("SF Pro Display", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCaptcha.ForeColor = System.Drawing.Color.Black;
+            this.lblCaptcha.Location = new System.Drawing.Point(52, 368);
+            this.lblCaptcha.Name = "lblCaptcha";
+            this.lblCaptcha.Size = new System.Drawing.Size(47, 19);
+            this.lblCaptcha.TabIndex = 16;
+            this.lblCaptcha.Text = "label1";
             // 
             // ucPaymentMaya
             // 
@@ -108,6 +128,8 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.paymentMaya;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.Controls.Add(this.txtCaptchaAnswer);
+            this.Controls.Add(this.lblCaptcha);
             this.Controls.Add(this.cbImNotARobot);
             this.Controls.Add(this.btnSendOTP);
             this.Controls.Add(this.txtPaymentMayaLName);
@@ -130,5 +152,7 @@
         public System.Windows.Forms.TextBox txtPaymentMayaOTP;
         public System.Windows.Forms.Button btnSendOTP;
         private System.Windows.Forms.CheckBox cbImNotARobot;
+        private System.Windows.Forms.TextBox txtCaptchaAnswer;
+        private System.Windows.Forms.Label lblCaptcha;
     }
 }

@@ -6,23 +6,28 @@ using System.Threading.Tasks;
 
 namespace Ferry_Ticketing_App.Classes
 {
-    internal class Payment
+    public class Payment : Price
     {
-        public int PaymentId { get; set; }
-        public int TicketId { get; set; }
-        public decimal Price { get; set; }
-        public DateTime PaymentDate { get; set; }
-        public string PaymentMethod { get; set; }
-        public decimal TotalPrice { get; set; }
+        public int PaymentId { get; private set; }
+        public int TicketId { get; private set; }
+        public DateTime PaymentDate { get; private set; }
+        public string PaymentMethod { get; private set; }
+        public decimal TotalPrice { get; private set; }
 
-        public Payment(int paymentId, int ticketId, decimal amount, DateTime paymentDate, string paymentMethod, decimal totalPrice)
+        public Payment(int paymentId, int ticketId, decimal basePrice, decimal serviceCharge, 
+            DateTime paymentDate, string paymentMethod) 
+            : base(basePrice, serviceCharge)
         {
             PaymentId = paymentId;
             TicketId = ticketId;
-            Price = amount;
             PaymentDate = paymentDate;
             PaymentMethod = paymentMethod;
-            TotalPrice = totalPrice;
+            TotalPrice = CalculateFinalPrice();
+        }
+
+        public override decimal CalculateFinalPrice()
+        {
+            return base.CalculateFinalPrice();
         }
     }
 }

@@ -31,9 +31,9 @@
             this.pnlDeparture = new System.Windows.Forms.Panel();
             this.btnDepartureOpen = new System.Windows.Forms.Button();
             this.btnDepartureClosed = new System.Windows.Forms.Button();
-            this.pnlDepDropDownNoSelected = new System.Windows.Forms.Panel();
             this.pnlDepDropDownSelected = new System.Windows.Forms.Panel();
             this.pbArrowRight = new System.Windows.Forms.PictureBox();
+            this.lblDAccommodation = new System.Windows.Forms.Label();
             this.lblDSeatType = new System.Windows.Forms.Label();
             this.lblDAircon = new System.Windows.Forms.Label();
             this.lblDPrice = new System.Windows.Forms.Label();
@@ -43,7 +43,7 @@
             this.lblDepartFrom = new System.Windows.Forms.Label();
             this.lblDepartureDate = new System.Windows.Forms.Label();
             this.lblDVesselName = new System.Windows.Forms.Label();
-            this.lblDAccommodation = new System.Windows.Forms.Label();
+            this.pnlDepDropDownNoSelected = new System.Windows.Forms.Panel();
             this.pnlDeparture.SuspendLayout();
             this.pnlDepDropDownSelected.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbArrowRight)).BeginInit();
@@ -86,18 +86,9 @@
             this.btnDepartureClosed.UseVisualStyleBackColor = true;
             this.btnDepartureClosed.Click += new System.EventHandler(this.btnDepartureClosed_Click);
             // 
-            // pnlDepDropDownNoSelected
-            // 
-            this.pnlDepDropDownNoSelected.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.departureSummaryNoSelected;
-            this.pnlDepDropDownNoSelected.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pnlDepDropDownNoSelected.Location = new System.Drawing.Point(0, 41);
-            this.pnlDepDropDownNoSelected.Name = "pnlDepDropDownNoSelected";
-            this.pnlDepDropDownNoSelected.Size = new System.Drawing.Size(334, 199);
-            this.pnlDepDropDownNoSelected.TabIndex = 1;
-            // 
             // pnlDepDropDownSelected
             // 
-            this.pnlDepDropDownSelected.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.pnlDropDownSelected4;
+            this.pnlDepDropDownSelected.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.departureopen3;
             this.pnlDepDropDownSelected.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pnlDepDropDownSelected.Controls.Add(this.pbArrowRight);
             this.pnlDepDropDownSelected.Controls.Add(this.lblDAccommodation);
@@ -124,6 +115,16 @@
             this.pbArrowRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbArrowRight.TabIndex = 1;
             this.pbArrowRight.TabStop = false;
+            // 
+            // lblDAccommodation
+            // 
+            this.lblDAccommodation.AutoSize = true;
+            this.lblDAccommodation.Font = new System.Drawing.Font("SF Pro Display", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDAccommodation.Location = new System.Drawing.Point(22, 369);
+            this.lblDAccommodation.Name = "lblDAccommodation";
+            this.lblDAccommodation.Size = new System.Drawing.Size(53, 19);
+            this.lblDAccommodation.TabIndex = 0;
+            this.lblDAccommodation.Text = "label1";
             // 
             // lblDSeatType
             // 
@@ -215,15 +216,14 @@
             this.lblDVesselName.TabIndex = 0;
             this.lblDVesselName.Text = "label1";
             // 
-            // lblDAccommodation
+            // pnlDepDropDownNoSelected
             // 
-            this.lblDAccommodation.AutoSize = true;
-            this.lblDAccommodation.Font = new System.Drawing.Font("SF Pro Display", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDAccommodation.Location = new System.Drawing.Point(22, 369);
-            this.lblDAccommodation.Name = "lblDAccommodation";
-            this.lblDAccommodation.Size = new System.Drawing.Size(53, 19);
-            this.lblDAccommodation.TabIndex = 0;
-            this.lblDAccommodation.Text = "label1";
+            this.pnlDepDropDownNoSelected.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.departureSummaryNoSelected;
+            this.pnlDepDropDownNoSelected.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pnlDepDropDownNoSelected.Location = new System.Drawing.Point(0, 41);
+            this.pnlDepDropDownNoSelected.Name = "pnlDepDropDownNoSelected";
+            this.pnlDepDropDownNoSelected.Size = new System.Drawing.Size(334, 199);
+            this.pnlDepDropDownNoSelected.TabIndex = 1;
             // 
             // ucDepartureSummary
             // 

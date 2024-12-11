@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Ferry_Ticketing_App.Classes;
 
 namespace Ferry_Ticketing_App
 {
@@ -16,6 +17,10 @@ namespace Ferry_Ticketing_App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            
+            // Clear any existing booked passengers
+            Passenger.ClearBookedPassengers();
+            
             Application.Run(new frmLogin());
         }
     }

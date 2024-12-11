@@ -1,6 +1,6 @@
 ﻿namespace Ferry_Ticketing_App.Pages
 {
-    partial class History
+    partial class ucViewTickets
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,36 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvHistory = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHistory)).BeginInit();
+            this.flpTicketView = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
-            // dgvHistory
+            // flpTicketView
             // 
-            this.dgvHistory.BackgroundColor = System.Drawing.Color.White;
-            this.dgvHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvHistory.Location = new System.Drawing.Point(15, 72);
-            this.dgvHistory.Name = "dgvHistory";
-            this.dgvHistory.Size = new System.Drawing.Size(970, 627);
-            this.dgvHistory.TabIndex = 0;
+            this.flpTicketView.AutoScroll = true;
+            this.flpTicketView.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.paymentBG;
+            this.flpTicketView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.flpTicketView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpTicketView.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpTicketView.Location = new System.Drawing.Point(0, 0);
+            this.flpTicketView.Name = "flpTicketView";
+            this.flpTicketView.Size = new System.Drawing.Size(1026, 720);
+            this.flpTicketView.TabIndex = 0;
+            this.flpTicketView.WrapContents = false;
             // 
-            // History
+            // ucViewTickets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.history2;
-            this.Controls.Add(this.dgvHistory);
-            this.Name = "History";
+            this.Controls.Add(this.flpTicketView);
+            this.Name = "ucViewTickets";
             this.Size = new System.Drawing.Size(1026, 720);
-            this.Load += new System.EventHandler(this.History_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHistory)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvHistory;
+        public System.Windows.Forms.FlowLayoutPanel flpTicketView;
     }
 }

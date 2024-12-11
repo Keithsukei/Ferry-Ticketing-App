@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Ferry_Ticketing_App.Classes
 {
-    internal class CustomDateTimePicker : DateTimePicker    
+    public class CustomDateTimePicker : DateTimePicker    
     {
         public CustomDateTimePicker() : base()
         {

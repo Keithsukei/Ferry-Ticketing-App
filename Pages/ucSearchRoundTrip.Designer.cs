@@ -181,17 +181,17 @@
             // lblReturn
             // 
             this.lblReturn.AutoSize = true;
-            this.lblReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReturn.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReturn.Location = new System.Drawing.Point(691, 59);
             this.lblReturn.Name = "lblReturn";
-            this.lblReturn.Size = new System.Drawing.Size(52, 18);
+            this.lblReturn.Size = new System.Drawing.Size(51, 18);
             this.lblReturn.TabIndex = 0;
             this.lblReturn.Text = "Return";
             // 
             // lblDeparture
             // 
             this.lblDeparture.AutoSize = true;
-            this.lblDeparture.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDeparture.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDeparture.Location = new System.Drawing.Point(494, 60);
             this.lblDeparture.Name = "lblDeparture";
             this.lblDeparture.Size = new System.Drawing.Size(73, 18);
@@ -201,17 +201,17 @@
             // lblPassenger
             // 
             this.lblPassenger.AutoSize = true;
-            this.lblPassenger.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPassenger.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPassenger.Location = new System.Drawing.Point(320, 60);
             this.lblPassenger.Name = "lblPassenger";
-            this.lblPassenger.Size = new System.Drawing.Size(79, 18);
+            this.lblPassenger.Size = new System.Drawing.Size(75, 18);
             this.lblPassenger.TabIndex = 0;
             this.lblPassenger.Text = "Passenger";
             // 
             // lblToCity
             // 
             this.lblToCity.AutoEllipsis = true;
-            this.lblToCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblToCity.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblToCity.Location = new System.Drawing.Point(181, 59);
             this.lblToCity.Name = "lblToCity";
             this.lblToCity.Size = new System.Drawing.Size(79, 18);
@@ -222,7 +222,7 @@
             // lblFromCity
             // 
             this.lblFromCity.AutoEllipsis = true;
-            this.lblFromCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFromCity.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFromCity.Location = new System.Drawing.Point(22, 60);
             this.lblFromCity.Name = "lblFromCity";
             this.lblFromCity.Size = new System.Drawing.Size(74, 18);
@@ -233,16 +233,16 @@
             // lblToCode
             // 
             this.lblToCode.AutoSize = true;
-            this.lblToCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblToCode.Font = new System.Drawing.Font("SF Pro Display", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblToCode.Location = new System.Drawing.Point(191, 25);
             this.lblToCode.Name = "lblToCode";
-            this.lblToCode.Size = new System.Drawing.Size(76, 29);
+            this.lblToCode.Size = new System.Drawing.Size(68, 27);
             this.lblToCode.TabIndex = 0;
             this.lblToCode.Text = "Code";
             // 
             // lblReturnDate
             // 
-            this.lblReturnDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReturnDate.Font = new System.Drawing.Font("SF Pro Display", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReturnDate.Location = new System.Drawing.Point(634, 25);
             this.lblReturnDate.Name = "lblReturnDate";
             this.lblReturnDate.Size = new System.Drawing.Size(166, 27);
@@ -252,7 +252,7 @@
             // 
             // lblDepartureDate
             // 
-            this.lblDepartureDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDepartureDate.Font = new System.Drawing.Font("SF Pro Display", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDepartureDate.Location = new System.Drawing.Point(448, 25);
             this.lblDepartureDate.Name = "lblDepartureDate";
             this.lblDepartureDate.Size = new System.Drawing.Size(166, 27);
@@ -262,7 +262,7 @@
             // 
             // lblNoOfPassengers
             // 
-            this.lblNoOfPassengers.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoOfPassengers.Font = new System.Drawing.Font("SF Pro Display", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoOfPassengers.Location = new System.Drawing.Point(300, 25);
             this.lblNoOfPassengers.Name = "lblNoOfPassengers";
             this.lblNoOfPassengers.Size = new System.Drawing.Size(117, 27);
@@ -273,10 +273,10 @@
             // lblFromCode
             // 
             this.lblFromCode.AutoSize = true;
-            this.lblFromCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFromCode.Font = new System.Drawing.Font("SF Pro Display", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFromCode.Location = new System.Drawing.Point(30, 25);
             this.lblFromCode.Name = "lblFromCode";
-            this.lblFromCode.Size = new System.Drawing.Size(76, 29);
+            this.lblFromCode.Size = new System.Drawing.Size(68, 27);
             this.lblFromCode.TabIndex = 0;
             this.lblFromCode.Text = "Code";
             // 

@@ -30,16 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucOneWTripPayment));
             this.pnlPayment = new System.Windows.Forms.Panel();
+            this.ucPaymentPassengerInfo1 = new Ferry_Ticketing_App.Pages.ucPaymentPassengerInfo();
             this.ucOneWTripSummary1 = new Ferry_Ticketing_App.Pages.ucOneWTripSummary();
             this.btnPaymentContinue = new System.Windows.Forms.Button();
             this.btnPaymentBack = new System.Windows.Forms.Button();
-            this.pnlPassengerInfo = new System.Windows.Forms.Panel();
-            this.lblPIGender = new System.Windows.Forms.Label();
-            this.lblPILName = new System.Windows.Forms.Label();
-            this.lblPIMiddleInitial = new System.Windows.Forms.Label();
-            this.lblPINationality = new System.Windows.Forms.Label();
-            this.lblPIBirthdate = new System.Windows.Forms.Label();
-            this.lblPIFName = new System.Windows.Forms.Label();
             this.pnlContactInfo = new System.Windows.Forms.Panel();
             this.lblCIMobileNo = new System.Windows.Forms.Label();
             this.lblCIAddress = new System.Windows.Forms.Label();
@@ -50,13 +44,23 @@
             this.btnGcash = new System.Windows.Forms.Button();
             this.btnCard = new System.Windows.Forms.Button();
             this.pnlPaymentSummary = new System.Windows.Forms.Panel();
+            this.lblNoOfChild0_2 = new System.Windows.Forms.Label();
+            this.lblNoOfChild3_11 = new System.Windows.Forms.Label();
+            this.lblNoOfSenior = new System.Windows.Forms.Label();
+            this.lblNoOfPWD = new System.Windows.Forms.Label();
+            this.lblNoOfStudents = new System.Windows.Forms.Label();
+            this.lblTotalPrice = new System.Windows.Forms.Label();
+            this.lblTerminalFee = new System.Windows.Forms.Label();
+            this.lblDiscountPercentage = new System.Windows.Forms.Label();
+            this.lblServiceCharge = new System.Windows.Forms.Label();
+            this.lblNoOfPassengers = new System.Windows.Forms.Label();
             this.pbPaymentOptionsHeader = new System.Windows.Forms.PictureBox();
             this.pbYoureAlmostThere = new System.Windows.Forms.PictureBox();
             this.pbProgress = new System.Windows.Forms.PictureBox();
             this.pnlPayment.SuspendLayout();
-            this.pnlPassengerInfo.SuspendLayout();
             this.pnlContactInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPassengerGuidelines)).BeginInit();
+            this.pnlPaymentSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPaymentOptionsHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbYoureAlmostThere)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProgress)).BeginInit();
@@ -66,10 +70,10 @@
             // 
             this.pnlPayment.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.paymentBG;
             this.pnlPayment.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlPayment.Controls.Add(this.ucPaymentPassengerInfo1);
             this.pnlPayment.Controls.Add(this.ucOneWTripSummary1);
             this.pnlPayment.Controls.Add(this.btnPaymentContinue);
             this.pnlPayment.Controls.Add(this.btnPaymentBack);
-            this.pnlPayment.Controls.Add(this.pnlPassengerInfo);
             this.pnlPayment.Controls.Add(this.pnlContactInfo);
             this.pnlPayment.Controls.Add(this.pbPassengerGuidelines);
             this.pnlPayment.Controls.Add(this.btnMaya);
@@ -84,7 +88,15 @@
             this.pnlPayment.Name = "pnlPayment";
             this.pnlPayment.Size = new System.Drawing.Size(1009, 1700);
             this.pnlPayment.TabIndex = 0;
-            this.pnlPayment.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlPayment_Paint);
+            // 
+            // ucPaymentPassengerInfo1
+            // 
+            this.ucPaymentPassengerInfo1.BackColor = System.Drawing.Color.Transparent;
+            this.ucPaymentPassengerInfo1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucPaymentPassengerInfo1.BackgroundImage")));
+            this.ucPaymentPassengerInfo1.Location = new System.Drawing.Point(37, 1343);
+            this.ucPaymentPassengerInfo1.Name = "ucPaymentPassengerInfo1";
+            this.ucPaymentPassengerInfo1.Size = new System.Drawing.Size(545, 155);
+            this.ucPaymentPassengerInfo1.TabIndex = 19;
             // 
             // ucOneWTripSummary1
             // 
@@ -106,6 +118,7 @@
             this.btnPaymentContinue.Size = new System.Drawing.Size(198, 71);
             this.btnPaymentContinue.TabIndex = 11;
             this.btnPaymentContinue.UseVisualStyleBackColor = false;
+            this.btnPaymentContinue.Click += new System.EventHandler(this.btnPaymentContinue_Click);
             // 
             // btnPaymentBack
             // 
@@ -118,88 +131,7 @@
             this.btnPaymentBack.Size = new System.Drawing.Size(198, 71);
             this.btnPaymentBack.TabIndex = 10;
             this.btnPaymentBack.UseVisualStyleBackColor = false;
-            // 
-            // pnlPassengerInfo
-            // 
-            this.pnlPassengerInfo.BackColor = System.Drawing.Color.Transparent;
-            this.pnlPassengerInfo.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.paymentPassengerInfo;
-            this.pnlPassengerInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pnlPassengerInfo.Controls.Add(this.lblPIGender);
-            this.pnlPassengerInfo.Controls.Add(this.lblPILName);
-            this.pnlPassengerInfo.Controls.Add(this.lblPIMiddleInitial);
-            this.pnlPassengerInfo.Controls.Add(this.lblPINationality);
-            this.pnlPassengerInfo.Controls.Add(this.lblPIBirthdate);
-            this.pnlPassengerInfo.Controls.Add(this.lblPIFName);
-            this.pnlPassengerInfo.Location = new System.Drawing.Point(37, 1339);
-            this.pnlPassengerInfo.Name = "pnlPassengerInfo";
-            this.pnlPassengerInfo.Size = new System.Drawing.Size(545, 155);
-            this.pnlPassengerInfo.TabIndex = 9;
-            // 
-            // lblPIGender
-            // 
-            this.lblPIGender.AutoSize = true;
-            this.lblPIGender.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPIGender.ForeColor = System.Drawing.Color.Gray;
-            this.lblPIGender.Location = new System.Drawing.Point(396, 64);
-            this.lblPIGender.Name = "lblPIGender";
-            this.lblPIGender.Size = new System.Drawing.Size(39, 13);
-            this.lblPIGender.TabIndex = 18;
-            this.lblPIGender.Text = "label3";
-            // 
-            // lblPILName
-            // 
-            this.lblPILName.AutoSize = true;
-            this.lblPILName.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPILName.ForeColor = System.Drawing.Color.Gray;
-            this.lblPILName.Location = new System.Drawing.Point(270, 64);
-            this.lblPILName.Name = "lblPILName";
-            this.lblPILName.Size = new System.Drawing.Size(39, 13);
-            this.lblPILName.TabIndex = 18;
-            this.lblPILName.Text = "label3";
-            // 
-            // lblPIMiddleInitial
-            // 
-            this.lblPIMiddleInitial.AutoSize = true;
-            this.lblPIMiddleInitial.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPIMiddleInitial.ForeColor = System.Drawing.Color.Gray;
-            this.lblPIMiddleInitial.Location = new System.Drawing.Point(145, 64);
-            this.lblPIMiddleInitial.Name = "lblPIMiddleInitial";
-            this.lblPIMiddleInitial.Size = new System.Drawing.Size(39, 13);
-            this.lblPIMiddleInitial.TabIndex = 18;
-            this.lblPIMiddleInitial.Text = "label3";
-            // 
-            // lblPINationality
-            // 
-            this.lblPINationality.AutoSize = true;
-            this.lblPINationality.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPINationality.ForeColor = System.Drawing.Color.Gray;
-            this.lblPINationality.Location = new System.Drawing.Point(145, 109);
-            this.lblPINationality.Name = "lblPINationality";
-            this.lblPINationality.Size = new System.Drawing.Size(39, 13);
-            this.lblPINationality.TabIndex = 18;
-            this.lblPINationality.Text = "label3";
-            // 
-            // lblPIBirthdate
-            // 
-            this.lblPIBirthdate.AutoSize = true;
-            this.lblPIBirthdate.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPIBirthdate.ForeColor = System.Drawing.Color.Gray;
-            this.lblPIBirthdate.Location = new System.Drawing.Point(20, 109);
-            this.lblPIBirthdate.Name = "lblPIBirthdate";
-            this.lblPIBirthdate.Size = new System.Drawing.Size(39, 13);
-            this.lblPIBirthdate.TabIndex = 18;
-            this.lblPIBirthdate.Text = "label3";
-            // 
-            // lblPIFName
-            // 
-            this.lblPIFName.AutoSize = true;
-            this.lblPIFName.Font = new System.Drawing.Font("SF Pro Display", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPIFName.ForeColor = System.Drawing.Color.Gray;
-            this.lblPIFName.Location = new System.Drawing.Point(20, 64);
-            this.lblPIFName.Name = "lblPIFName";
-            this.lblPIFName.Size = new System.Drawing.Size(39, 13);
-            this.lblPIFName.TabIndex = 18;
-            this.lblPIFName.Text = "label3";
+            this.btnPaymentBack.Click += new System.EventHandler(this.btnPaymentBack_Click);
             // 
             // pnlContactInfo
             // 
@@ -281,6 +213,7 @@
             this.btnMaya.Size = new System.Drawing.Size(162, 153);
             this.btnMaya.TabIndex = 6;
             this.btnMaya.UseVisualStyleBackColor = false;
+            this.btnMaya.Click += new System.EventHandler(this.btnMaya_Click);
             // 
             // btnGcash
             // 
@@ -293,6 +226,7 @@
             this.btnGcash.Size = new System.Drawing.Size(162, 153);
             this.btnGcash.TabIndex = 6;
             this.btnGcash.UseVisualStyleBackColor = false;
+            this.btnGcash.Click += new System.EventHandler(this.btnGcash_Click);
             // 
             // btnCard
             // 
@@ -305,16 +239,137 @@
             this.btnCard.Size = new System.Drawing.Size(162, 153);
             this.btnCard.TabIndex = 6;
             this.btnCard.UseVisualStyleBackColor = false;
+            this.btnCard.Click += new System.EventHandler(this.btnCard_Click);
             // 
             // pnlPaymentSummary
             // 
             this.pnlPaymentSummary.BackColor = System.Drawing.Color.Transparent;
-            this.pnlPaymentSummary.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.paymentSummaryBG;
+            this.pnlPaymentSummary.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.summaryPayment3;
             this.pnlPaymentSummary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pnlPaymentSummary.Controls.Add(this.lblNoOfChild0_2);
+            this.pnlPaymentSummary.Controls.Add(this.lblNoOfChild3_11);
+            this.pnlPaymentSummary.Controls.Add(this.lblNoOfSenior);
+            this.pnlPaymentSummary.Controls.Add(this.lblNoOfPWD);
+            this.pnlPaymentSummary.Controls.Add(this.lblNoOfStudents);
+            this.pnlPaymentSummary.Controls.Add(this.lblTotalPrice);
+            this.pnlPaymentSummary.Controls.Add(this.lblTerminalFee);
+            this.pnlPaymentSummary.Controls.Add(this.lblDiscountPercentage);
+            this.pnlPaymentSummary.Controls.Add(this.lblServiceCharge);
+            this.pnlPaymentSummary.Controls.Add(this.lblNoOfPassengers);
             this.pnlPaymentSummary.Location = new System.Drawing.Point(609, 319);
             this.pnlPaymentSummary.Name = "pnlPaymentSummary";
-            this.pnlPaymentSummary.Size = new System.Drawing.Size(382, 358);
+            this.pnlPaymentSummary.Size = new System.Drawing.Size(382, 460);
             this.pnlPaymentSummary.TabIndex = 5;
+            // 
+            // lblNoOfChild0_2
+            // 
+            this.lblNoOfChild0_2.AutoSize = true;
+            this.lblNoOfChild0_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.lblNoOfChild0_2.ForeColor = System.Drawing.Color.White;
+            this.lblNoOfChild0_2.Location = new System.Drawing.Point(29, 134);
+            this.lblNoOfChild0_2.Name = "lblNoOfChild0_2";
+            this.lblNoOfChild0_2.Size = new System.Drawing.Size(18, 13);
+            this.lblNoOfChild0_2.TabIndex = 5;
+            this.lblNoOfChild0_2.Text = "0x";
+            // 
+            // lblNoOfChild3_11
+            // 
+            this.lblNoOfChild3_11.AutoSize = true;
+            this.lblNoOfChild3_11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.lblNoOfChild3_11.ForeColor = System.Drawing.Color.White;
+            this.lblNoOfChild3_11.Location = new System.Drawing.Point(29, 121);
+            this.lblNoOfChild3_11.Name = "lblNoOfChild3_11";
+            this.lblNoOfChild3_11.Size = new System.Drawing.Size(18, 13);
+            this.lblNoOfChild3_11.TabIndex = 5;
+            this.lblNoOfChild3_11.Text = "0x";
+            // 
+            // lblNoOfSenior
+            // 
+            this.lblNoOfSenior.AutoSize = true;
+            this.lblNoOfSenior.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.lblNoOfSenior.ForeColor = System.Drawing.Color.White;
+            this.lblNoOfSenior.Location = new System.Drawing.Point(29, 108);
+            this.lblNoOfSenior.Name = "lblNoOfSenior";
+            this.lblNoOfSenior.Size = new System.Drawing.Size(18, 13);
+            this.lblNoOfSenior.TabIndex = 5;
+            this.lblNoOfSenior.Text = "0x";
+            // 
+            // lblNoOfPWD
+            // 
+            this.lblNoOfPWD.AutoSize = true;
+            this.lblNoOfPWD.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.lblNoOfPWD.ForeColor = System.Drawing.Color.White;
+            this.lblNoOfPWD.Location = new System.Drawing.Point(29, 95);
+            this.lblNoOfPWD.Name = "lblNoOfPWD";
+            this.lblNoOfPWD.Size = new System.Drawing.Size(18, 13);
+            this.lblNoOfPWD.TabIndex = 5;
+            this.lblNoOfPWD.Text = "0x";
+            // 
+            // lblNoOfStudents
+            // 
+            this.lblNoOfStudents.AutoSize = true;
+            this.lblNoOfStudents.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.lblNoOfStudents.ForeColor = System.Drawing.Color.White;
+            this.lblNoOfStudents.Location = new System.Drawing.Point(29, 82);
+            this.lblNoOfStudents.Name = "lblNoOfStudents";
+            this.lblNoOfStudents.Size = new System.Drawing.Size(18, 13);
+            this.lblNoOfStudents.TabIndex = 5;
+            this.lblNoOfStudents.Text = "0x";
+            // 
+            // lblTotalPrice
+            // 
+            this.lblTotalPrice.Font = new System.Drawing.Font("SF Pro Display", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalPrice.ForeColor = System.Drawing.Color.White;
+            this.lblTotalPrice.Location = new System.Drawing.Point(174, 394);
+            this.lblTotalPrice.Name = "lblTotalPrice";
+            this.lblTotalPrice.Size = new System.Drawing.Size(193, 35);
+            this.lblTotalPrice.TabIndex = 1;
+            this.lblTotalPrice.Text = "#";
+            this.lblTotalPrice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTerminalFee
+            // 
+            this.lblTerminalFee.Font = new System.Drawing.Font("SF Pro Display", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTerminalFee.ForeColor = System.Drawing.Color.White;
+            this.lblTerminalFee.Location = new System.Drawing.Point(289, 207);
+            this.lblTerminalFee.Name = "lblTerminalFee";
+            this.lblTerminalFee.Size = new System.Drawing.Size(78, 23);
+            this.lblTerminalFee.TabIndex = 2;
+            this.lblTerminalFee.Text = "#";
+            this.lblTerminalFee.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblDiscountPercentage
+            // 
+            this.lblDiscountPercentage.Font = new System.Drawing.Font("SF Pro Display", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDiscountPercentage.ForeColor = System.Drawing.Color.White;
+            this.lblDiscountPercentage.Location = new System.Drawing.Point(282, 61);
+            this.lblDiscountPercentage.Name = "lblDiscountPercentage";
+            this.lblDiscountPercentage.Size = new System.Drawing.Size(85, 23);
+            this.lblDiscountPercentage.TabIndex = 3;
+            this.lblDiscountPercentage.Text = "0%";
+            this.lblDiscountPercentage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblServiceCharge
+            // 
+            this.lblServiceCharge.Font = new System.Drawing.Font("SF Pro Display", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblServiceCharge.ForeColor = System.Drawing.Color.White;
+            this.lblServiceCharge.Location = new System.Drawing.Point(282, 157);
+            this.lblServiceCharge.Name = "lblServiceCharge";
+            this.lblServiceCharge.Size = new System.Drawing.Size(85, 23);
+            this.lblServiceCharge.TabIndex = 3;
+            this.lblServiceCharge.Text = "PM";
+            this.lblServiceCharge.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblNoOfPassengers
+            // 
+            this.lblNoOfPassengers.AutoSize = true;
+            this.lblNoOfPassengers.Font = new System.Drawing.Font("SF Pro Display", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoOfPassengers.ForeColor = System.Drawing.Color.White;
+            this.lblNoOfPassengers.Location = new System.Drawing.Point(35, 25);
+            this.lblNoOfPassengers.Name = "lblNoOfPassengers";
+            this.lblNoOfPassengers.Size = new System.Drawing.Size(21, 23);
+            this.lblNoOfPassengers.TabIndex = 4;
+            this.lblNoOfPassengers.Text = "#";
             // 
             // pbPaymentOptionsHeader
             // 
@@ -358,13 +413,13 @@
             this.Controls.Add(this.pnlPayment);
             this.DoubleBuffered = true;
             this.Name = "ucOneWTripPayment";
-            this.Size = new System.Drawing.Size(1026, 720);
+            this.Size = new System.Drawing.Size(1009, 720);
             this.pnlPayment.ResumeLayout(false);
-            this.pnlPassengerInfo.ResumeLayout(false);
-            this.pnlPassengerInfo.PerformLayout();
             this.pnlContactInfo.ResumeLayout(false);
             this.pnlContactInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPassengerGuidelines)).EndInit();
+            this.pnlPaymentSummary.ResumeLayout(false);
+            this.pnlPaymentSummary.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPaymentOptionsHeader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbYoureAlmostThere)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProgress)).EndInit();
@@ -384,19 +439,23 @@
         private System.Windows.Forms.Button btnGcash;
         private System.Windows.Forms.PictureBox pbPassengerGuidelines;
         private System.Windows.Forms.Panel pnlContactInfo;
-        private System.Windows.Forms.Panel pnlPassengerInfo;
         private System.Windows.Forms.Button btnPaymentBack;
         private System.Windows.Forms.Button btnPaymentContinue;
-        private System.Windows.Forms.Label lblPIGender;
-        private System.Windows.Forms.Label lblPILName;
-        private System.Windows.Forms.Label lblPIMiddleInitial;
-        private System.Windows.Forms.Label lblPINationality;
-        private System.Windows.Forms.Label lblPIBirthdate;
-        private System.Windows.Forms.Label lblPIFName;
-        private System.Windows.Forms.Label lblCIMobileNo;
-        private System.Windows.Forms.Label lblCIAddress;
-        private System.Windows.Forms.Label lblCIEmailAdd;
-        private System.Windows.Forms.Label lblCIName;
-        private ucOneWTripSummary ucOneWTripSummary1;
+        public System.Windows.Forms.Label lblCIMobileNo;
+        public System.Windows.Forms.Label lblCIAddress;
+        public System.Windows.Forms.Label lblCIEmailAdd;
+        public System.Windows.Forms.Label lblCIName;
+        public ucOneWTripSummary ucOneWTripSummary1;
+        public System.Windows.Forms.Label lblTotalPrice;
+        public System.Windows.Forms.Label lblTerminalFee;
+        public System.Windows.Forms.Label lblServiceCharge;
+        public System.Windows.Forms.Label lblNoOfPassengers;
+        public ucPaymentPassengerInfo ucPaymentPassengerInfo1;
+        private System.Windows.Forms.Label lblNoOfSenior;
+        private System.Windows.Forms.Label lblNoOfPWD;
+        private System.Windows.Forms.Label lblNoOfStudents;
+        private System.Windows.Forms.Label lblNoOfChild0_2;
+        private System.Windows.Forms.Label lblNoOfChild3_11;
+        public System.Windows.Forms.Label lblDiscountPercentage;
     }
 }

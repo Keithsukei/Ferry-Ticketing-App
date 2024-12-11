@@ -14,24 +14,66 @@ namespace Ferry_Ticketing_App.Pages
 {
     public partial class ucPassengerContactInfo : UserControl
     {
+        private bool isRoundTrip = false;
 
         public ucPassengerContactInfo()
         {
             InitializeComponent();
+
+            // Add validation events for name fields
+            txtContactPerson.KeyPress += ValidateLettersOnly;
+            txtMobileNo.KeyPress += ValidateNumbersOnly;
+            txtEmailAdd.TextChanged += ValidateEmail;
+            txtConfirmEmailAdd.TextChanged += ValidateEmail;
         }
 
-        public void UpdateItinerary2(string fromCode, string fromCity, string toCode, string toCity, int passengers, DateTime departDate, DateTime returnDate)
+        private void ValidateLettersOnly(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ValidateNumbersOnly(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ValidateEmail(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (textBox != null && !string.IsNullOrEmpty(textBox.Text))
+            {
+                if (!IsValidEmail(textBox.Text))
+                {
+                    textBox.BackColor = Color.LightPink;
+                }
+                else
+                {
+                    textBox.BackColor = SystemColors.Window;
+                }
+            }
+        }
+
+        public void UpdateItinerary2(string fromCode, string fromCity, string toCode, string toCity, 
+            int passengers, DateTime departDate, DateTime returnArrivalDate, bool isRoundTrip = false)
+        {
+            this.isRoundTrip = isRoundTrip;
+
             foreach (Control ctrl in pnlItineraryPH.Controls)
             {
                 if (ctrl is Label label)
                 {
                     switch (label.Name)
                     {
-                        case "lblFromCode":
+                        case "lblFCityCode":
                             label.Text = fromCode;
                             break;
-                        case "lblToCode":
+                        case "lblTCityCode":
                             label.Text = toCode;
                             break;
                         case "lblFCity":
@@ -46,8 +88,19 @@ namespace Ferry_Ticketing_App.Pages
                         case "lblDepartureDate":
                             label.Text = departDate.ToString("yyyy-MM-dd");
                             break;
+                        case "lblReturn":
+                            label.Visible = isRoundTrip;
+                            break;
                         case "lblReturnDate":
-                            label.Text = returnDate.ToString("yyyy-MM-dd");
+                            label.Visible = isRoundTrip;
+                            label.Text = isRoundTrip ? returnArrivalDate.ToString("yyyy-MM-dd") : "";
+                            break;
+                        case "lblArrival":
+                            label.Visible = !isRoundTrip;
+                            break;
+                        case "lblArrivalDate":
+                            label.Visible = !isRoundTrip;
+                            label.Text = !isRoundTrip ? returnArrivalDate.ToString("yyyy-MM-dd") : "";
                             break;
                     }
                 }
@@ -115,24 +168,28 @@ namespace Ferry_Ticketing_App.Pages
             pnlPassengerControlInfo.Refresh();
         }
 
-
-        private void btnModifyItenerary_Click(object sender, EventArgs e)
+        private void btnModifyItinerary_Click(object sender, EventArgs e)
         {
-            var findTrips = this.Parent.Controls.OfType<ucFindTrips>().FirstOrDefault();
+            // Clear all passenger details and contact info
+            btnBack_Click(sender, e);
 
+            // Reset SearchRoundTrip and show FindTrips
+            var findTrips = this.Parent.Controls.OfType<ucFindTrips>().FirstOrDefault();
             if (findTrips != null)
             {
+                var searchRoundTrip = this.Parent.Controls.OfType<ucSearchRoundTrip>().FirstOrDefault();
+                if (searchRoundTrip != null)
+                {
+                    // Reset SearchRoundTrip controls
+                    searchRoundTrip.ucDepartureSummary1.pnlDepDropDownSelected.Visible = false;
+                    searchRoundTrip.ucDepartureSummary1.pnlDepDropDownNoSelected.Visible = true;
+                    searchRoundTrip.ucReturnSummary1.pnlRetDropdownSelected.Visible = false;
+                    searchRoundTrip.ucReturnSummary1.pnlRetDropdownNoSelected.Visible = true;
+                }
+
                 findTrips.BringToFront();
                 findTrips.Visible = true;
-
-                int passengers = int.TryParse(findTrips.txtPassengers.Text, out int result) ? result : 1;
-
-                // Update trip details for all instances of ucIndividualTrips
-                foreach (var tripControl in this.Parent.Controls.OfType<ucIndividualTrips>())
-                {
-                    lblNoOfPassengers.Text = passengers.ToString();
-                    tripControl.RecalculateTripDetails(DateTime.Now);
-                }
+                this.Visible = false;
             }
         }
 
@@ -153,53 +210,43 @@ namespace Ferry_Ticketing_App.Pages
             var firstPassengerDetails = pnlPassengerControlInfo.Controls["ucPassengerDetails1"] as ucPassengerDetails;
             if (firstPassengerDetails != null)
             {
-                // Clear all textboxes in the first passenger details
-                foreach (Control ctrl in firstPassengerDetails.Controls)
-                {
-                    if (ctrl is TextBox textBox)
-                    {
-                        textBox.Clear();
-                    }
-                    else if (ctrl is ComboBox comboBox)
-                    {
-                        comboBox.SelectedIndex = -1;
-                    }
-                }
+                // Reset all controls in the first passenger details
+                firstPassengerDetails.cmbBType.SelectedIndex = 0;
+                firstPassengerDetails.cmbBoxGender.SelectedIndex = 0;
+                firstPassengerDetails.cmbBoxNationality.SelectedIndex = 0;
+                firstPassengerDetails.txtFName.Clear();
+                firstPassengerDetails.txtLName.Clear();
+                firstPassengerDetails.txtMI.Clear();
+                firstPassengerDetails.dtpDateOfBirth.Value = DateTime.Today.AddYears(-20);
             }
+
+            // Clear contact info
+            txtContactPerson.Clear();
+            txtEmailAdd.Clear();
+            txtConfirmEmailAdd.Clear();
+            txtMobileNo.Clear();
+            txtAddress.Clear();
 
             // Clear the itinerary labels
             foreach (Control ctrl in pnlItineraryPH.Controls)
             {
                 if (ctrl is Label label)
                 {
-                    switch (label.Name)
-                    {
-                        case "lblFromCode":
-                        case "lblToCode":
-                        case "lblFCity":
-                        case "lblTCity":
-                        case "lblNoOfPassengers":
-                        case "lblDepartureDate":
-                        case "lblReturnDate":
-                            label.Text = "";
-                            break;
-                    }
+                    label.Text = "";
                 }
             }
 
-            // Hide this control first
-            this.Visible = false;
+            // Reset panel height
+            pnlPassengerControlInfo.Height = 1499;
 
+            // Hide this control and show SearchRoundTrip
+            this.Visible = false;
             var searchRoundTrip = this.Parent.Controls.OfType<ucSearchRoundTrip>().FirstOrDefault();
             if (searchRoundTrip != null)
             {
                 searchRoundTrip.Visible = true;
                 searchRoundTrip.BringToFront();
-
-                this.SendToBack();
             }
-
-            pnlPassengerControlInfo.Height = 1499;
         }
 
         public bool ValidateContactInfo()
@@ -207,6 +254,17 @@ namespace Ferry_Ticketing_App.Pages
             string email = txtEmailAdd.Text.Trim();
             string confirmEmail = txtConfirmEmailAdd.Text.Trim();
             string mobileNo = txtMobileNo.Text.Trim();
+            string contactPerson = txtContactPerson.Text.Trim();
+            string address = txtAddress.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(contactPerson))
+            {
+                MessageBox.Show("Please enter contact person name.",
+                    "Validation Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
 
             // Validate email address
             if (!IsValidEmail(email))
@@ -236,6 +294,15 @@ namespace Ferry_Ticketing_App.Pages
                 return false;
             }
 
+            if (string.IsNullOrWhiteSpace(address))
+            {
+                MessageBox.Show("Please enter an address.",
+                    "Validation Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
+
             return true;
         }
 
@@ -255,111 +322,325 @@ namespace Ferry_Ticketing_App.Pages
             }
         }
 
+        private bool ValidateAllPassengerDetails()
+        {
+            var passengerControls = pnlPassengerControlInfo.Controls
+                .OfType<ucPassengerDetails>()
+                .OrderBy(c => int.Parse(c.Name.Replace("ucPassengerDetails", "")))
+                .ToList();
+
+            bool isValid = true;
+            StringBuilder errorMessage = new StringBuilder();
+            bool hasAdultGuardian = false;
+
+            foreach (var control in passengerControls)
+            {
+                int passengerNumber = int.Parse(control.Name.Replace("ucPassengerDetails", ""));
+                
+                if (!control.ValidatePassengerDetails())
+                {
+                    isValid = false;
+                    errorMessage.AppendLine($"• Passenger {passengerNumber}: Please check all required fields");
+                    control.BackColor = Color.MistyRose;
+                }
+                else
+                {
+                    // Calculate age
+                    DateTime birthDate = control.dtpDateOfBirth.Value;
+                    int age = DateTime.Today.Year - birthDate.Year;
+                    if (birthDate.Date > DateTime.Today.AddYears(-age)) age--;
+
+                    // Check if passenger is an adult (18 or older)
+                    if (age >= 18 && (passengerNumber == 1 || passengerNumber == 2))
+                    {
+                        hasAdultGuardian = true;
+                    }
+
+                    control.BackColor = SystemColors.Control;
+                }
+            }
+
+            if (!hasAdultGuardian)
+            {
+                isValid = false;
+                errorMessage.AppendLine("• At least one of the first two passengers must be 18 years or older");
+            }
+
+            if (!isValid)
+            {
+                MessageBox.Show(
+                    $"Please correct the following errors:\n\n{errorMessage}",
+                    "Validation Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+
+                var firstInvalidControl = passengerControls.FirstOrDefault(c => c.BackColor == Color.MistyRose);
+                firstInvalidControl?.Focus();
+            }
+
+            return isValid;
+        }
+
         private void btnContinue_Click(object sender, EventArgs e)
         {
-            var searchRoundTrip = this.Parent.Controls.OfType<ucSearchRoundTrip>().FirstOrDefault();
-            var roundTripPayment = this.Parent.Controls.OfType<ucRoundTripPayment>().FirstOrDefault();
-            string selectedAccommodationType = searchRoundTrip.ucIndividualTrips2.cmbBoxAccommodationType.SelectedItem?.ToString();
-            decimal departurePrice = decimal.Parse(searchRoundTrip.ucDepartureSummary1.lblDPrice.Text.Replace("₱", ""));
-            int numberOfPassengers = int.Parse(lblNoOfPassengers.Text);
+            if (!ValidateAllPassengerDetails() || !ValidateContactInfo())
+            {
+                return;
+            }
 
-            // Collect passenger details from all ucPassengerDetails controls
+            Console.WriteLine($"isRoundTrip: {isRoundTrip}"); // Debug line
+
+            if (isRoundTrip)
+            {
+                var searchRoundTrip = this.Parent.Controls.OfType<ucSearchRoundTrip>().FirstOrDefault();
+                var roundTripPayment = this.Parent.Controls.OfType<ucRoundTripPayment>().FirstOrDefault();
+
+                if (searchRoundTrip == null || roundTripPayment == null)
+                {
+                    MessageBox.Show("Round trip payment setup failed.", "Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                try
+                {
+                    string priceText = searchRoundTrip.ucDepartureSummary1.lblDPrice.Text;
+                    Console.WriteLine($"Original price text: {priceText}"); // Debug line
+
+                    priceText = priceText.Replace("₱", "").Replace(",", "").Trim();
+                    Console.WriteLine($"Cleaned price text: {priceText}"); // Debug line
+
+                    if (decimal.TryParse(priceText, out decimal price))
+                    {
+                        SetupRoundTripPayment(roundTripPayment, searchRoundTrip, price);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Unable to parse price: {priceText}", "Error", 
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error processing round trip price: {ex.Message}", "Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                var searchOneWay = this.Parent.Controls.OfType<ucSearchOneWayTrip>().FirstOrDefault();
+                var oneWayPayment = this.Parent.Controls.OfType<ucOneWTripPayment>().FirstOrDefault();
+
+                if (searchOneWay == null || oneWayPayment == null)
+                {
+                    MessageBox.Show("One-way trip payment setup failed.", "Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                try
+                {
+                    string oneWayPriceText = searchOneWay.ucDepartureSummary1.lblDPrice.Text;
+                    Console.WriteLine($"Original one-way price text: {oneWayPriceText}"); // Debug line
+
+                    oneWayPriceText = oneWayPriceText.Replace("₱", "").Replace(",", "").Trim();
+                    Console.WriteLine($"Cleaned one-way price text: {oneWayPriceText}"); // Debug line
+
+                    if (decimal.TryParse(oneWayPriceText, out decimal oneWayPrice))
+                    {
+                        SetupOneWayPayment(oneWayPayment, searchOneWay, oneWayPrice);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Unable to parse price: {oneWayPriceText}", "Error", 
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error processing one-way price: {ex.Message}", "Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private List<Passenger> CollectPassengerDetails()
+        {
             List<Passenger> passengers = new List<Passenger>();
-
             foreach (ucPassengerDetails passengerControl in pnlPassengerControlInfo.Controls.OfType<ucPassengerDetails>())
             {
                 Passenger passenger = passengerControl.GetPassengerDetails();
                 if (passenger != null)
                 {
-                    Console.WriteLine($"Passenger: {passenger.FirstName}, {passenger.MiddleInitial}, {passenger.LastName}");
                     passengers.Add(passenger);
                 }
-                else
+            }
+            return passengers;
+        }
+
+        private void SetupPaymentInfo(object payment, List<Passenger> passengers, int numberOfPassengers)
+        {
+            if (payment is ucRoundTripPayment roundTripPayment)
+            {
+                SetupRoundTripPaymentInfo(roundTripPayment, passengers, numberOfPassengers);
+            }
+            else if (payment is ucOneWTripPayment oneWayPayment)
+            {
+                SetupOneWayPaymentInfo(oneWayPayment, passengers, numberOfPassengers);
+            }
+        }
+
+        private void SetupRoundTripPaymentInfo(ucRoundTripPayment payment, List<Passenger> passengers, int numberOfPassengers)
+        {
+            if (payment.ucPaymentPassengerInfo1 != null)
+            {
+                payment.ucPaymentPassengerInfo1.Controls.Clear();
+                for (int i = 0; i < passengers.Count; i++)
                 {
-                    Console.WriteLine("No passenger details found for this control.");
+                    var passengerInfoControl = new ucPaymentPassengerInfo();
+                    passengerInfoControl.Name = $"ucPaymentPassengerInfo{i + 1}";
+                    SetupPassengerInfoControl(passengerInfoControl, passengers[i], i + 1);
+                    payment.ucPaymentPassengerInfo1.Controls.Add(passengerInfoControl);
                 }
+                payment.ucPaymentPassengerInfo1.Refresh();
             }
 
-            if (roundTripPayment.ucPaymentPassengerInfo1 != null)
-            {
-                roundTripPayment.ucPaymentPassengerInfo1.Controls.Clear();
+            payment.lblNoOfPassengers.Text = numberOfPassengers.ToString();
+            payment.lblCIName.Text = txtContactPerson.Text;
+            payment.lblCIEmailAdd.Text = txtEmailAdd.Text;
+            payment.lblCIMobileNo.Text = txtMobileNo.Text;
+            payment.lblCIAddress.Text = txtAddress.Text;
+        }
 
-                for (int i = 0; i < passengers.Count; i++) 
+        private void SetupOneWayPaymentInfo(ucOneWTripPayment payment, List<Passenger> passengers, int numberOfPassengers)
+        {
+            if (payment.ucPaymentPassengerInfo1 != null)
+            {
+                payment.ucPaymentPassengerInfo1.Controls.Clear();
+                for (int i = 0; i < passengers.Count; i++)
                 {
-                    ucPaymentPassengerInfo passengerInfoControl = new ucPaymentPassengerInfo();
-                    passengerInfoControl.Name = $"ucPaymentPassengerInfo{i + 1}"; 
-
-                    Passenger passenger = passengers[i];
-
-                    passengerInfoControl.lblPIFName.Text = passenger.FirstName;
-                    passengerInfoControl.lblPIMiddleInitial.Text = passenger.MiddleInitial;
-                    passengerInfoControl.lblPILName.Text = passenger.LastName;
-                    passengerInfoControl.lblPIGender.Text = passenger.Gender;
-                    passengerInfoControl.lblPIBirthdate.Text = passenger.DateOfBirth.ToShortDateString();
-                    passengerInfoControl.lblPINationality.Text = passenger.Nationality;
-
-
-                    passengerInfoControl.lblPassengerNo.Text = (i + 1).ToString();  
-
-                    roundTripPayment.ucPaymentPassengerInfo1.Controls.Add(passengerInfoControl);
+                    var passengerInfoControl = new ucPaymentPassengerInfo();
+                    passengerInfoControl.Name = $"ucPaymentPassengerInfo{i + 1}";
+                    SetupPassengerInfoControl(passengerInfoControl, passengers[i], i + 1);
+                    payment.ucPaymentPassengerInfo1.Controls.Add(passengerInfoControl);
                 }
-
-                roundTripPayment.ucPaymentPassengerInfo1.Refresh();  
+                payment.ucPaymentPassengerInfo1.Refresh();
             }
 
-            roundTripPayment.lblNoOfPassengers.Text = numberOfPassengers.ToString();
-            decimal totalPrice = departurePrice * numberOfPassengers;
-            roundTripPayment.SetBasePrice(totalPrice);
+            payment.lblNoOfPassengers.Text = numberOfPassengers.ToString();
+            payment.lblCIName.Text = txtContactPerson.Text;
+            payment.lblCIEmailAdd.Text = txtEmailAdd.Text;
+            payment.lblCIMobileNo.Text = txtMobileNo.Text;
+            payment.lblCIAddress.Text = txtAddress.Text;
+        }
 
-            if (roundTripPayment.ucRoundTripTripSummary1 != null)
+        private void UpdateTripSummary(ucRoundTripPayment roundTripPayment, ucOneWTripPayment oneWayPayment, ucSearchRoundTrip roundTrip, ucSearchOneWayTrip oneWay)
+        {
+            if (isRoundTrip)
             {
-                // Departure Summary
-                roundTripPayment.ucRoundTripTripSummary1.lblDepVesselName.Text = searchRoundTrip.ucDepartureSummary1.lblDVesselName.Text;
-                roundTripPayment.ucRoundTripTripSummary1.lblDepFromPort.Text = searchRoundTrip.ucDepartureSummary1.lblDepartFrom.Text;
-                roundTripPayment.ucRoundTripTripSummary1.lblDepToPort.Text = searchRoundTrip.ucDepartureSummary1.lblDepartTo.Text;
-                roundTripPayment.ucRoundTripTripSummary1.lblDepPort.Text = searchRoundTrip.ucDepartureSummary1.lblFromPortName.Text;
-                roundTripPayment.ucRoundTripTripSummary1.lblDepDepartureDate.Text = searchRoundTrip.ucDepartureSummary1.lblDepartureDate.Text;
-                roundTripPayment.ucRoundTripTripSummary1.lblDepAccommodation.Text = searchRoundTrip.ucDepartureSummary1.lblDAccommodation.Text;
-                roundTripPayment.ucRoundTripTripSummary1.lblDepSeatType.Text = searchRoundTrip.ucDepartureSummary1.lblDSeatType.Text;
-                roundTripPayment.ucRoundTripTripSummary1.lblDepAircon.Text = searchRoundTrip.ucDepartureSummary1.lblDAircon.Text;
-                roundTripPayment.ucRoundTripTripSummary1.lblDepDepartureTime.Text = searchRoundTrip.ucIndividualTrips1.lblDTime.Text;
-
-                // Return Summary
-                roundTripPayment.ucRoundTripTripSummary1.lblRetVesselName.Text = searchRoundTrip.ucReturnSummary1.lblRVesselName.Text;
-                roundTripPayment.ucRoundTripTripSummary1.lblRetFromPort.Text = searchRoundTrip.ucReturnSummary1.lblReturnFrom.Text;
-                roundTripPayment.ucRoundTripTripSummary1.lblRetToPort.Text = searchRoundTrip.ucReturnSummary1.lblReturnTo.Text;
-                roundTripPayment.ucRoundTripTripSummary1.lblRetPort.Text = searchRoundTrip.ucIndividualTrips2.lblFrom.Text;
-                roundTripPayment.ucRoundTripTripSummary1.lblRetDepartureDate.Text = searchRoundTrip.lblReturnDate.Text;
-                roundTripPayment.ucRoundTripTripSummary1.lblRetAccommodation.Text = searchRoundTrip.ucIndividualTrips2.cmbBoxAccommodationType.SelectedItem.ToString();
-                roundTripPayment.ucRoundTripTripSummary1.lblRetSeatType.Text = Accommodation.AccommodationDictionary[selectedAccommodationType].SeatType;
-                roundTripPayment.ucRoundTripTripSummary1.lblRetAircon.Text = searchRoundTrip.ucDepartureSummary1.lblDAircon.Text;
-                roundTripPayment.ucRoundTripTripSummary1.lblRetDepartureTime.Text = searchRoundTrip.ucIndividualTrips2.lblDTime.Text;
-
-                // Contact Info
-                roundTripPayment.lblCIName.Text = txtContactPerson.Text;
-                roundTripPayment.lblCIEmailAdd.Text = txtEmailAdd.Text;
-                roundTripPayment.lblCIMobileNo.Text = txtMobileNo.Text;
-                roundTripPayment.lblCIAddress.Text = txtAddress.Text;
+                if (roundTripPayment?.ucRoundTripTripSummary1 == null) return;
+                UpdateRoundTripSummary(roundTripPayment, roundTrip);
             }
-
-            if (!ValidateContactInfo())
+            else
             {
-                return;
+                if (oneWayPayment?.ucOneWTripSummary1 == null) return;
+                UpdateOneWayTripSummary(oneWayPayment, oneWay);
             }
+        }
 
-            // Switch to passenger details page and hide current page
-            var passengerDetails = this.Parent.Controls.OfType<ucPassengerDetails>().FirstOrDefault();
-            if (passengerDetails != null)
-            {
-                this.Visible = false;
-                passengerDetails.Visible = true;
-                passengerDetails.BringToFront();
-            }
+        private void UpdateRoundTripSummary(ucRoundTripPayment payment, ucSearchRoundTrip roundTrip)
+        {
+            var summary = payment.ucRoundTripTripSummary1;
+            // Departure Summary
+            summary.lblDepVesselName.Text = roundTrip.ucDepartureSummary1.lblDVesselName.Text;
+            summary.lblDepFromPort.Text = roundTrip.ucDepartureSummary1.lblDepartFrom.Text;
+            summary.lblDepToPort.Text = roundTrip.ucDepartureSummary1.lblDepartTo.Text;
+            summary.lblDepPort.Text = roundTrip.ucDepartureSummary1.lblFromPortName.Text;
+            summary.lblDepDepartureDate.Text = roundTrip.ucDepartureSummary1.lblDepartureDate.Text;
+            summary.lblDepAccommodation.Text = roundTrip.ucDepartureSummary1.lblDAccommodation.Text;
+            summary.lblDepSeatType.Text = roundTrip.ucDepartureSummary1.lblDSeatType.Text;
+            summary.lblDepAircon.Text = roundTrip.ucDepartureSummary1.lblDAircon.Text;
+            summary.lblDepDepartureTime.Text = roundTrip.ucIndividualTrips1.lblDTime.Text;
 
-            // Show round trip payment page
-            roundTripPayment.Visible = true;
-            roundTripPayment.BringToFront();
-            roundTripPayment.SetupPassengerInfo(numberOfPassengers, passengers);
+            // Return Summary
+            summary.lblRetVesselName.Text = roundTrip.ucReturnSummary1.lblRVesselName.Text;
+            summary.lblRetFromPort.Text = roundTrip.ucReturnSummary1.lblReturnFrom.Text;
+            summary.lblRetToPort.Text = roundTrip.ucReturnSummary1.lblReturnTo.Text;
+            summary.lblRetPort.Text = roundTrip.ucIndividualTrips2.lblFrom.Text;
+            summary.lblRetDepartureDate.Text = roundTrip.lblReturnDate.Text;
+            summary.lblRetAccommodation.Text = roundTrip.ucIndividualTrips2.cmbBoxAccommodationType.SelectedItem.ToString();
+            summary.lblRetSeatType.Text = Accommodation.AccommodationDictionary[roundTrip.ucIndividualTrips2.cmbBoxAccommodationType.SelectedItem.ToString()].SeatType;
+            summary.lblRetAircon.Text = roundTrip.ucDepartureSummary1.lblDAircon.Text;
+            summary.lblRetDepartureTime.Text = roundTrip.ucIndividualTrips2.lblDTime.Text;
+        }
+
+        private void UpdateOneWayTripSummary(ucOneWTripPayment payment, ucSearchOneWayTrip oneWay)
+        {
+            var summary = payment.ucOneWTripSummary1;
+            summary.lblDepVesselName.Text = oneWay.ucDepartureSummary1.lblDVesselName.Text;
+            summary.lblDepFromPort.Text = oneWay.ucDepartureSummary1.lblDepartFrom.Text;
+            summary.lblDepToPort.Text = oneWay.ucDepartureSummary1.lblDepartTo.Text;
+            summary.lblDepPort.Text = oneWay.ucDepartureSummary1.lblFromPortName.Text;
+            summary.lblDepDepartureDate.Text = oneWay.ucDepartureSummary1.lblDepartureDate.Text;
+            summary.lblDepAccommodation.Text = oneWay.ucDepartureSummary1.lblDAccommodation.Text;
+            summary.lblDepSeatType.Text = oneWay.ucDepartureSummary1.lblDSeatType.Text;
+            summary.lblDepAircon.Text = oneWay.ucDepartureSummary1.lblDAircon.Text;
+            summary.lblDepDepartureTime.Text = oneWay.ucIndividualTrips1.lblDTime.Text;
+        }
+
+        private void SetupPassengerInfoControl(ucPaymentPassengerInfo control, Passenger passenger, int index)
+        {
+            control.Name = $"ucPaymentPassengerInfo{index}";
+            control.lblPIFName.Text = passenger.FirstName;
+            control.lblPIMiddleInitial.Text = passenger.MiddleInitial;
+            control.lblPILName.Text = passenger.LastName;
+            control.lblPIGender.Text = passenger.Gender;
+            control.lblPIBirthdate.Text = passenger.DateOfBirth.ToShortDateString();
+            control.lblPINationality.Text = passenger.Nationality;
+            control.lblPassengerNo.Text = index.ToString();
+        }
+
+        private void SetupRoundTripPayment(ucRoundTripPayment payment, ucSearchRoundTrip roundTrip, decimal price)
+        {
+            if (payment == null) return;
+
+            int numberOfPassengers = int.Parse(lblNoOfPassengers.Text);
+            List<Passenger> passengers = CollectPassengerDetails();
+
+            SetupPaymentInfo(payment, passengers, numberOfPassengers);
+            
+            // Get both departure and return prices
+            decimal departurePrice = decimal.Parse(roundTrip.ucDepartureSummary1.lblDPrice.Text.Replace("₱", ""));
+            decimal returnPrice = decimal.Parse(roundTrip.ucIndividualTrips2.lblTicketPrice.Text.Replace("₱", ""));
+            payment.CalculateIndividualPrices(departurePrice, returnPrice);
+            
+            UpdateTripSummary(payment, null, roundTrip, null);
+            payment.SetBasePrice(price);
+
+            this.Visible = false;
+            payment.Visible = true;
+            payment.BringToFront();
+            payment.SetupPassengerInfo(numberOfPassengers, passengers);
+        }
+
+        private void SetupOneWayPayment(ucOneWTripPayment payment, ucSearchOneWayTrip oneWay, decimal price)
+        {
+            if (payment == null) return;
+
+            int numberOfPassengers = int.Parse(lblNoOfPassengers.Text);
+            List<Passenger> passengers = CollectPassengerDetails();
+
+            SetupPaymentInfo(payment, passengers, numberOfPassengers);
+            payment.CalculateIndividualPrices(price);
+            UpdateTripSummary(null, payment, null, oneWay);
+
+            payment.SetBasePrice(price);
+
+            this.Visible = false;
+            payment.Visible = true;
+            payment.BringToFront();
+            payment.SetupPassengerInfo(numberOfPassengers, passengers);
         }
     }
 }

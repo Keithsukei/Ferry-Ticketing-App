@@ -34,6 +34,8 @@
             this.txtPaymentCardExpDate = new System.Windows.Forms.TextBox();
             this.txtPaymentCardCVV = new System.Windows.Forms.TextBox();
             this.cbImNotARobot = new System.Windows.Forms.CheckBox();
+            this.lblCaptcha = new System.Windows.Forms.Label();
+            this.txtCaptchaAnswer = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtPaymentCardFName
@@ -88,13 +90,33 @@
             // 
             // cbImNotARobot
             // 
-            this.cbImNotARobot.FlatAppearance.BorderSize = 0;
-            this.cbImNotARobot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbImNotARobot.Location = new System.Drawing.Point(57, 353);
+            this.cbImNotARobot.AutoSize = true;
+            this.cbImNotARobot.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F);
+            this.cbImNotARobot.Location = new System.Drawing.Point(56, 353);
             this.cbImNotARobot.Name = "cbImNotARobot";
-            this.cbImNotARobot.Size = new System.Drawing.Size(13, 14);
-            this.cbImNotARobot.TabIndex = 2;
+            this.cbImNotARobot.Size = new System.Drawing.Size(15, 14);
+            this.cbImNotARobot.TabIndex = 13;
             this.cbImNotARobot.UseVisualStyleBackColor = true;
+            // 
+            // lblCaptcha
+            // 
+            this.lblCaptcha.AutoSize = true;
+            this.lblCaptcha.Font = new System.Drawing.Font("SF Pro Display", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCaptcha.ForeColor = System.Drawing.Color.Black;
+            this.lblCaptcha.Location = new System.Drawing.Point(59, 377);
+            this.lblCaptcha.Name = "lblCaptcha";
+            this.lblCaptcha.Size = new System.Drawing.Size(47, 19);
+            this.lblCaptcha.TabIndex = 14;
+            this.lblCaptcha.Text = "label1";
+            // 
+            // txtCaptchaAnswer
+            // 
+            this.txtCaptchaAnswer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCaptchaAnswer.Font = new System.Drawing.Font("SF Pro Display", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCaptchaAnswer.Location = new System.Drawing.Point(56, 399);
+            this.txtCaptchaAnswer.Name = "txtCaptchaAnswer";
+            this.txtCaptchaAnswer.Size = new System.Drawing.Size(50, 23);
+            this.txtCaptchaAnswer.TabIndex = 15;
             // 
             // ucPaymentCard
             // 
@@ -102,6 +124,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.BackgroundImage = global::Ferry_Ticketing_App.Properties.Resources.paymentCard;
+            this.Controls.Add(this.txtCaptchaAnswer);
+            this.Controls.Add(this.lblCaptcha);
             this.Controls.Add(this.cbImNotARobot);
             this.Controls.Add(this.txtPaymentCardNo);
             this.Controls.Add(this.txtPaymentCardLName);
@@ -123,5 +147,7 @@
         public System.Windows.Forms.TextBox txtPaymentCardExpDate;
         public System.Windows.Forms.TextBox txtPaymentCardCVV;
         private System.Windows.Forms.CheckBox cbImNotARobot;
+        private System.Windows.Forms.Label lblCaptcha;
+        private System.Windows.Forms.TextBox txtCaptchaAnswer;
     }
 }
